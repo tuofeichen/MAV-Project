@@ -1,0 +1,14 @@
+make[2]: Warning: File `/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg' has modification time 9.9e+07 s in the future
+make[2]: Warning: File `/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg' has modification time 9.9e+07 s in the future
+make[2]: Warning: File `/opt/ros/indigo/share/gencpp/cmake/../msg.h.template' has modification time 1e+08 s in the future
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/teleop.cpp' has modification time 2.1e+02 s in the future
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/checker.cpp' has modification time 2.1e+02 s in the future
+make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp' has modification time 2.1e+02 s in the future
+make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/apriltag.cpp' has modification time 1.1e+08 s in the future
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.

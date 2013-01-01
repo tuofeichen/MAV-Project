@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 CMAKE_PROGRESS_1 = 16
 CMAKE_PROGRESS_2 = 17
+=======
+CMAKE_PROGRESS_1 = 13
+CMAKE_PROGRESS_2 = 14
+>>>>>>> add ros pub
 

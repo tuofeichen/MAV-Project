@@ -627,6 +627,30 @@ src/RANSACBasedTME.cpp.s:
 	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.s
 .PHONY : src/RANSACBasedTME.cpp.s
 
+src/RosHandler.o: src/RosHandler.cpp.o
+.PHONY : src/RosHandler.o
+
+# target to build an object file
+src/RosHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o
+.PHONY : src/RosHandler.cpp.o
+
+src/RosHandler.i: src/RosHandler.cpp.i
+.PHONY : src/RosHandler.i
+
+# target to preprocess a source file
+src/RosHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.i
+.PHONY : src/RosHandler.cpp.i
+
+src/RosHandler.s: src/RosHandler.cpp.s
+.PHONY : src/RosHandler.s
+
+# target to generate assembly for a file
+src/RosHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.s
+.PHONY : src/RosHandler.cpp.s
+
 src/TcpServer.o: src/TcpServer.cpp.o
 
 .PHONY : src/TcpServer.o
@@ -790,6 +814,9 @@ help:
 	@echo "... src/RANSACBasedTME.o"
 	@echo "... src/RANSACBasedTME.i"
 	@echo "... src/RANSACBasedTME.s"
+	@echo "... src/RosHandler.o"
+	@echo "... src/RosHandler.i"
+	@echo "... src/RosHandler.s"
 	@echo "... src/TcpServer.o"
 	@echo "... src/TcpServer.i"
 	@echo "... src/TcpServer.s"

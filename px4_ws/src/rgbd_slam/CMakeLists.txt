@@ -122,6 +122,7 @@ set (CMAKE_CXX_FLAGS "-std=c++11 -mcpu=cortex-a9 -O3 -Ofast -mfloat-abi=hard -ft
 set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/odroid/OpenNI-Linux-Arm-2.2/Redist")
 
 include_directories(
+  include
   ${catkin_SOURCE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
@@ -143,7 +144,7 @@ link_directories(
 #set(SOURCES src/main.cpp src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Backend.cpp src/FeatureDEM.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpServer.cpp src/VisualOdometry.cpp src/UavComProtocolHandler.cpp )
 
 ## Declare a C++ executable
-add_executable(rgbd_slam src/main.cpp)
+add_executable(rgbd_slam src/main.cpp src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(

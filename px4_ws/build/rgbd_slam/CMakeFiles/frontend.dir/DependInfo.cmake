@@ -24,7 +24,12 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   )
 
 # The include file search paths:
+<<<<<<< HEAD
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+=======
+SET(CMAKE_C_TARGET_INCLUDE_PATH
+  "/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/include"
+>>>>>>> add ros pub
   "/opt/ros/indigo/include"
   "/usr/include/eigen3"
   "/home/odroid/OpenNI-Linux-Arm-2.2/Include"

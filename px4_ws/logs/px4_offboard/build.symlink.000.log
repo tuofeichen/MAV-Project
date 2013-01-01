@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/px4_offboard/checker
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/px4_offboard/teleop
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/px4_offboard/apriltag
@@ -15,3 +16,22 @@ Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/common-lisp/ros/
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/_package_JoyCommand.lisp
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/px4_offboard-msg.asd
 Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp
+=======
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/include/px4_offboard/JoyCommand.h
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/pkgconfig/px4_offboard.pc
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/px4_offboard/apriltag
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/px4_offboard/teleop
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/px4_offboard/SLAM
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/px4_offboard/checker
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/python2.7/dist-packages/px4_offboard/__init__.py
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/px4_offboard-msg.asd
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/_package_JoyCommand.lisp
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/common-lisp/ros/px4_offboard/msg/_package.lisp
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/px4_offboard/cmake/px4_offboard-msg-paths.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/px4_offboard/cmake/px4_offboardConfig-version.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/px4_offboard/cmake/px4_offboardConfig.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/px4_offboard/cmake/px4_offboard-msg-extras.cmake
+>>>>>>> add ros pub

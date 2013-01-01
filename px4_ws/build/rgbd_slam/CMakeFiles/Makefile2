@@ -293,6 +293,7 @@ clean: CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 
 # All Build rule for target.
 CMakeFiles/rgbd_slam.dir/all: CMakeFiles/frontend.dir/all
+<<<<<<< HEAD
 CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
 CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
 CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
@@ -308,6 +309,24 @@ CMakeFiles/rgbd_slam.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/depend
 	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles --progress-num=16,17 "Built target rgbd_slam"
+=======
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+CMakeFiles/rgbd_slam.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/depend
+	$(MAKE) -f CMakeFiles/rgbd_slam.dir/build.make CMakeFiles/rgbd_slam.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles  13 14
+	@echo "Built target rgbd_slam"
+>>>>>>> add ros pub
 .PHONY : CMakeFiles/rgbd_slam.dir/all
 
 # Include target in all.
@@ -317,7 +336,11 @@ all: CMakeFiles/rgbd_slam.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rgbd_slam.dir/rule: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles 13
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles 12
+>>>>>>> add ros pub
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rgbd_slam.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles 0
 .PHONY : CMakeFiles/rgbd_slam.dir/rule

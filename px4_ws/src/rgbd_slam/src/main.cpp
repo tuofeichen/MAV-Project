@@ -6,7 +6,7 @@
  */
 #include <iostream>
 #include <ctime>
-#include "ros/ros.h"
+#include "RosHandler.h"
 
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
@@ -124,7 +124,8 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 }
 
 enum{newNode = 0, prevNode = 1};
-int main()
+
+int main(int argc, char **argv)
 {	
 	ros::init(argc,argv,"rgbd");
 	RosHandler logger;
@@ -201,7 +202,7 @@ int main()
 	//
 	// process
 	double start, end, dif; // debug
-	while(backend.running() && AsusProLiveOpenNI2::running())
+	while(backend.running() && AsusProLiveOpenNI2::running() && ros::ok())
 	{
 		//
 		//debug

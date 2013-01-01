@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h
+=======
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h
+>>>>>>> add ros pub
 
 /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/include.h
 ros/ros.h

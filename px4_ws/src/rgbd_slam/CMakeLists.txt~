@@ -122,6 +122,7 @@ set (CMAKE_CXX_FLAGS "-std=c++11 -mcpu=cortex-a9 -O3 -Ofast -mfloat-abi=hard -ft
 set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/odroid/OpenNI-Linux-Arm-2.2/Redist")
 
 include_directories(
+  include
   ${catkin_SOURCE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}

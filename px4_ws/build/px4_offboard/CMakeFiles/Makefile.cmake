@@ -262,6 +262,33 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/ros/indigo/share/tf2_ros/cmake/tf2_rosConfig.cmake"
   "/opt/ros/indigo/share/xmlrpcpp/cmake/xmlrpcppConfig-version.cmake"
   "/opt/ros/indigo/share/xmlrpcpp/cmake/xmlrpcppConfig.cmake"
+<<<<<<< HEAD
+=======
+  "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeGenericSystem.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeParseArguments.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/CheckIncludeFiles.cmake"
+  "/usr/share/cmake-2.8/Modules/CheckLibraryExists.cmake"
+  "/usr/share/cmake-2.8/Modules/CheckSymbolExists.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU-C.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/FindGTest.cmake"
+  "/usr/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/share/cmake-2.8/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-2.8/Modules/FindPkgConfig.cmake"
+  "/usr/share/cmake-2.8/Modules/FindPythonInterp.cmake"
+  "/usr/share/cmake-2.8/Modules/FindThreads.cmake"
+  "/usr/share/cmake-2.8/Modules/MultiArchCross.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU-C.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU-CXX.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/UnixPaths.cmake"
+>>>>>>> add ros pub
   "/usr/src/gtest/CMakeLists.txt"
   "/usr/src/gtest/cmake/internal_utils.cmake"
   )
@@ -273,12 +300,16 @@ set(CMAKE_MAKEFILE_OUTPUTS
   )
 
 # Byproducts of CMake generate step:
+<<<<<<< HEAD
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.3.2/CMakeSystem.cmake"
   "CMakeFiles/3.3.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.3.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.3.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.3.2/CMakeCXXCompiler.cmake"
+=======
+SET(CMAKE_MAKEFILE_PRODUCTS
+>>>>>>> add ros pub
   "catkin_generated/stamps/px4_offboard/package.xml.stamp"
   "catkin_generated/installspace/_setup_util.py"
   "catkin_generated/stamps/px4_offboard/_setup_util.py.stamp"
