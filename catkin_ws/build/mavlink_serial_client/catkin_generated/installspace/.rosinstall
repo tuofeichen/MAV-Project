@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/install/setup.sh

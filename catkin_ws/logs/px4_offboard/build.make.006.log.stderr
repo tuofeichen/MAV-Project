@@ -1,0 +1,6 @@
+CMakeFiles/apriltag.dir/src/apriltag.cpp.o: In function `main':
+apriltag.cpp:(.text+0x1c3): undefined reference to `tagCallback(geometry_msgs::PoseStamped_<std::allocator<void> >)'
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag] Error 1
+make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
+make: *** [all] Error 2

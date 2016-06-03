@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:4:36: fatal error: geometry_msgs/PoseArry.h: No such file or directory
+ #include <geometry_msgs/PoseArry.h>
+                                    ^
+compilation terminated.
+make[2]: *** [CMakeFiles/apriltag.dir/src/apriltag.cpp.o] Error 1
+make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
+make: *** [all] Error 2

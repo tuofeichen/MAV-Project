@@ -1,0 +1,20 @@
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target _apriltags_ros_generate_messages_check_deps_AprilTagDetectionArray
+[  0%] Built target _apriltags_ros_generate_messages_check_deps_AprilTagDetection
+[ 15%] Built target apriltags_ros_generate_messages_cpp
+[ 30%] Built target apriltags_ros_generate_messages_lisp
+[ 53%] Built target apriltags_ros_generate_messages_py
+[ 53%] Built target apriltags_ros_generate_messages
+[35m[1mScanning dependencies of target apriltag_detector[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/apriltag_detector.dir/src/apriltag_detector.cpp.o[0m
+[ 69%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libapriltag_detector.so[0m
+[ 69%] Built target apriltag_detector
+[ 84%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/apriltags_ros/apriltag_detector_node[0m
+[ 84%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libapriltag_detector_nodelet.so[0m
+[ 92%] Built target apriltag_detector_nodelet
+[100%] Built target apriltag_detector_node

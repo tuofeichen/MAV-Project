@@ -1,0 +1,6 @@
+/home/user/MAV-project/catkin_ws_odroid/build/CMakeFiles/clean_test_results.dir
+/home/user/MAV-project/catkin_ws_odroid/build/CMakeFiles/doxygen.dir
+/home/user/MAV-project/catkin_ws_odroid/build/gtest/CMakeFiles/gtest.dir
+/home/user/MAV-project/catkin_ws_odroid/build/gtest/CMakeFiles/gtest_main.dir
+/home/user/MAV-project/catkin_ws_odroid/build/CMakeFiles/run_tests.dir
+/home/user/MAV-project/catkin_ws_odroid/build/CMakeFiles/tests.dir

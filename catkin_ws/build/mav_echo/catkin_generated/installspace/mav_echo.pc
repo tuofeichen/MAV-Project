@@ -1,0 +1,8 @@
+prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install
+
+Name: mav_echo
+Description: Description of mav_echo
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install/lib 
+Requires: 

@@ -1,0 +1,84 @@
+[  0%] Built target actionlib_generate_messages_py
+[  0%] Built target _catkin_empty_exported_target
+[  0%] Built target diagnostic_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target _px4_offboard_generate_messages_check_deps_JoyCommand
+[  0%] Built target diagnostic_msgs_generate_messages_cpp
+[ 16%] Built target checker
+[ 16%] Built target sensor_msgs_generate_messages_cpp
+[ 16%] Built target tf2_msgs_generate_messages_py
+[ 16%] Built target diagnostic_msgs_generate_messages_py
+[ 16%] Built target actionlib_msgs_generate_messages_py
+[ 16%] Built target roscpp_generate_messages_cpp
+[ 16%] Built target roscpp_generate_messages_lisp
+[ 16%] Built target nav_msgs_generate_messages_lisp
+[ 16%] Built target rosgraph_msgs_generate_messages_lisp
+[ 16%] Built target sensor_msgs_generate_messages_lisp
+[ 16%] Built target actionlib_generate_messages_lisp
+[ 16%] Built target nav_msgs_generate_messages_cpp
+[ 16%] Built target rosgraph_msgs_generate_messages_cpp
+[ 16%] Built target roscpp_generate_messages_py
+[ 16%] Built target mavros_msgs_generate_messages_lisp
+[ 16%] Built target rosgraph_msgs_generate_messages_py
+[ 16%] Built target sensor_msgs_generate_messages_py
+[ 16%] Built target nav_msgs_generate_messages_py
+[ 16%] Built target actionlib_generate_messages_cpp
+[ 16%] Built target tf2_msgs_generate_messages_cpp
+[ 16%] Built target mavros_msgs_generate_messages_cpp
+[ 16%] Built target tf2_msgs_generate_messages_lisp
+[ 16%] Built target mavros_msgs_generate_messages_py
+[35m[1mScanning dependencies of target apriltag[0m
+[ 25%] Built target px4_offboard_generate_messages_lisp
+[ 33%] [32mBuilding CXX object CMakeFiles/apriltag.dir/src/apriltag.cpp.o[0m
+[ 58%] Built target teleop
+[ 58%] Built target px4_offboard_generate_messages_cpp
+[ 75%] Built target px4_offboard_generate_messages_py
+[ 75%] Built target px4_offboard_generate_messages
+[ 91%] Built target SLAM
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp: In function ‘void tagCallback(geometry_msgs::PoseArray)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:51:25: error: ‘const value_type’ has no member named ‘pose’
+   if (tag_pose.poses[0].pose.x > 0.1)
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:52:46: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.x = tag_pose.poses[0].pose.x;
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:53:30: error: ‘const value_type’ has no member named ‘pose’
+   else if (tag_pose.poses[0].pose.x < -0.1)
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:54:47: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.x = -tag_pose.poses[0].pose.x;
+                                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:56:25: error: ‘const value_type’ has no member named ‘pose’
+   if (tag_pose.poses[0].pose.y > 0.1)
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:57:46: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.z = tag_pose.poses[0].pose.y;
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:58:30: error: ‘const value_type’ has no member named ‘pose’
+   else if (tag_pose.poses[0].pose.y < -0.1)
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:59:47: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.z = -tag_pose.poses[0].pose.y;
+                                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:61:25: error: ‘const value_type’ has no member named ‘pose’
+   if (tag_pose.poses[0].pose.z > 0.5)
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:62:46: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.y = tag_pose.poses[0].pose.z - 0.5;
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:63:30: error: ‘const value_type’ has no member named ‘pose’
+   else if (tag_pose.poses[0].pose.z < -0.5)
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:64:47: error: ‘const value_type’ has no member named ‘pose’
+     g_command.position.y = -tag_pose.poses[0].pose.z + 0.5;
+                                               ^
+make[2]: *** [CMakeFiles/apriltag.dir/src/apriltag.cpp.o] Error 1
+make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
+make: *** [all] Error 2

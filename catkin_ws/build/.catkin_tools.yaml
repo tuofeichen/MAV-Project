@@ -1,0 +1,6 @@
+devel_space: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
+install: false
+install_space: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/install
+profile: default
+source_space: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src
+workspace: /home/tuofeichen/SLAM/MAV-Project/catkin_ws
