@@ -1,3 +1,0 @@
-sh /etc/init.d/rc.fw_defaults
-set HIL yes
-set MIXER AERT

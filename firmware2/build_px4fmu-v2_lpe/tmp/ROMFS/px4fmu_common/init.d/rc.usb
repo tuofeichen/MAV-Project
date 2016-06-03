@@ -1,2 +1,0 @@
-mavlink start -r 800000 -d /dev/ttyACM0 -m config -x
-exit
