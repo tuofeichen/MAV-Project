@@ -1,0 +1,25 @@
+if param compare SYS_MC_EST_GROUP 0
+then
+	attitude_estimator_q start
+	local_position_estimator start
+fi
+if param compare SYS_MC_EST_GROUP 1
+then
+	attitude_estimator_q start
+	local_position_estimator start
+fi
+if param compare SYS_MC_EST_GROUP 2
+then
+	ekf2 start
+fi
+if mc_att_control start
+then
+else
+	mc_att_control_m start
+fi
+if mc_pos_control start
+then
+else
+	mc_pos_control_m start
+fi
+land_detector start multicopter
