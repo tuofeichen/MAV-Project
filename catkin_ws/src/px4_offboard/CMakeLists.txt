@@ -78,6 +78,8 @@ include_directories(
   ${Eigen_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
+#add_dependencies(SLAM checker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 add_executable(apriltag src/apriltag.cpp)
 target_link_libraries(apriltag ${catkin_LIBRARIES})
@@ -90,7 +92,11 @@ target_link_libraries(teleop ${catkin_LIBRARIES})
 
 add_executable(SLAM src/SLAM.cpp)
 target_link_libraries(SLAM ${catkin_LIBRARIES})
-add_dependencies(SLAM checker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(SLAM ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(checker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(apriltag ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+
 
 
 set(CMAKE_CXX_FLAGS  "-std=c++11")

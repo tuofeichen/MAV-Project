@@ -188,7 +188,7 @@ bool failsafe\n\
 bool arm \n\
 bool offboard\n\
 bool takeoff\n\
-bool land\n\
+bool  land\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\

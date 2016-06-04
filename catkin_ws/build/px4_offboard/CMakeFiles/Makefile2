@@ -64,43 +64,42 @@ CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboar
 
 # All Build rule for target.
 CMakeFiles/SLAM.dir/all: CMakeFiles/_catkin_empty_exported_target.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/checker.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_cpp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_lisp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/nav_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_cpp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/sensor_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/nav_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
 CMakeFiles/SLAM.dir/all: CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_cpp.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_py.dir/all
-CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/px4_offboard_generate_messages_py.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/mavros_msgs_generate_messages_lisp.dir/all
+CMakeFiles/SLAM.dir/all: CMakeFiles/actionlib_generate_messages_cpp.dir/all
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/depend
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=1,2 "Built target SLAM"
@@ -113,7 +112,7 @@ all: CMakeFiles/SLAM.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SLAM.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SLAM.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 0
 .PHONY : CMakeFiles/SLAM.dir/rule
@@ -393,7 +392,43 @@ clean: CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 # Target rules for target CMakeFiles/apriltag.dir
 
 # All Build rule for target.
-CMakeFiles/apriltag.dir/all:
+CMakeFiles/apriltag.dir/all: CMakeFiles/_catkin_empty_exported_target.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/px4_offboard_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/mavros_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/nav_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/mavros_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/px4_offboard_generate_messages_py.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/mavros_msgs_generate_messages_lisp.dir/all
+CMakeFiles/apriltag.dir/all: CMakeFiles/actionlib_generate_messages_cpp.dir/all
 	$(MAKE) -f CMakeFiles/apriltag.dir/build.make CMakeFiles/apriltag.dir/depend
 	$(MAKE) -f CMakeFiles/apriltag.dir/build.make CMakeFiles/apriltag.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=3,4 "Built target apriltag"
@@ -406,7 +441,7 @@ all: CMakeFiles/apriltag.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/apriltag.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/apriltag.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 0
 .PHONY : CMakeFiles/apriltag.dir/rule
@@ -430,7 +465,43 @@ clean: CMakeFiles/apriltag.dir/clean
 # Target rules for target CMakeFiles/checker.dir
 
 # All Build rule for target.
-CMakeFiles/checker.dir/all:
+CMakeFiles/checker.dir/all: CMakeFiles/_catkin_empty_exported_target.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/px4_offboard_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/mavros_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/roscpp_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/roscpp_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/nav_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/mavros_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/roscpp_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/px4_offboard_generate_messages_py.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/mavros_msgs_generate_messages_lisp.dir/all
+CMakeFiles/checker.dir/all: CMakeFiles/actionlib_generate_messages_cpp.dir/all
 	$(MAKE) -f CMakeFiles/checker.dir/build.make CMakeFiles/checker.dir/depend
 	$(MAKE) -f CMakeFiles/checker.dir/build.make CMakeFiles/checker.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=5,6 "Built target checker"
@@ -443,7 +514,7 @@ all: CMakeFiles/checker.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/checker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/checker.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles 0
 .PHONY : CMakeFiles/checker.dir/rule
@@ -979,8 +1050,8 @@ clean: CMakeFiles/px4_offboard_gencpp.dir/clean
 # Target rules for target CMakeFiles/px4_offboard_generate_messages.dir
 
 # All Build rule for target.
-CMakeFiles/px4_offboard_generate_messages.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
 CMakeFiles/px4_offboard_generate_messages.dir/all: CMakeFiles/px4_offboard_generate_messages_cpp.dir/all
+CMakeFiles/px4_offboard_generate_messages.dir/all: CMakeFiles/px4_offboard_generate_messages_lisp.dir/all
 CMakeFiles/px4_offboard_generate_messages.dir/all: CMakeFiles/px4_offboard_generate_messages_py.dir/all
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages.dir/build.make CMakeFiles/px4_offboard_generate_messages.dir/depend
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages.dir/build.make CMakeFiles/px4_offboard_generate_messages.dir/build
@@ -1018,9 +1089,9 @@ clean: CMakeFiles/px4_offboard_generate_messages.dir/clean
 # Target rules for target CMakeFiles/px4_offboard_generate_messages_cpp.dir
 
 # All Build rule for target.
+CMakeFiles/px4_offboard_generate_messages_cpp.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 CMakeFiles/px4_offboard_generate_messages_cpp.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 CMakeFiles/px4_offboard_generate_messages_cpp.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-CMakeFiles/px4_offboard_generate_messages_cpp.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_cpp.dir/build.make CMakeFiles/px4_offboard_generate_messages_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_cpp.dir/build.make CMakeFiles/px4_offboard_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=11 "Built target px4_offboard_generate_messages_cpp"
@@ -1052,9 +1123,9 @@ clean: CMakeFiles/px4_offboard_generate_messages_cpp.dir/clean
 # Target rules for target CMakeFiles/px4_offboard_generate_messages_lisp.dir
 
 # All Build rule for target.
+CMakeFiles/px4_offboard_generate_messages_lisp.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 CMakeFiles/px4_offboard_generate_messages_lisp.dir/all: CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
 CMakeFiles/px4_offboard_generate_messages_lisp.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-CMakeFiles/px4_offboard_generate_messages_lisp.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_lisp.dir/build.make CMakeFiles/px4_offboard_generate_messages_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_lisp.dir/build.make CMakeFiles/px4_offboard_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=12 "Built target px4_offboard_generate_messages_lisp"
@@ -1086,9 +1157,9 @@ clean: CMakeFiles/px4_offboard_generate_messages_lisp.dir/clean
 # Target rules for target CMakeFiles/px4_offboard_generate_messages_py.dir
 
 # All Build rule for target.
+CMakeFiles/px4_offboard_generate_messages_py.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 CMakeFiles/px4_offboard_generate_messages_py.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
 CMakeFiles/px4_offboard_generate_messages_py.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-CMakeFiles/px4_offboard_generate_messages_py.dir/all: CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/all
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_py.dir/build.make CMakeFiles/px4_offboard_generate_messages_py.dir/depend
 	$(MAKE) -f CMakeFiles/px4_offboard_generate_messages_py.dir/build.make CMakeFiles/px4_offboard_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=13,14 "Built target px4_offboard_generate_messages_py"

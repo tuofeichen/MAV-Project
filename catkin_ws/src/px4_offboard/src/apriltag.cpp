@@ -14,13 +14,13 @@ int main(int argc, char **argv) {
   ros::NodeHandle nh;
   // publish joy command
   ros::Publisher state_pub =
-      nh.advertise<px4_offboard::JoyCommand>("/joy/cmd_mav", 100);
+   nh.advertise<px4_offboard::JoyCommand>("/april/cmd_mav", 100);
   // listen to checkerboard
   ros::Subscriber checker_sub = nh.subscribe(
       "/tag_detections_pose", 100, &tagCallback);
   // checkerboard always armed
-  g_command.arm = 1;
-  g_command.offboard = 1;
+  //  g_command.arm = 1;
+  //  g_command.offboard = 1;
 
   ros::Rate loop_rate(100);
   
@@ -33,11 +33,17 @@ int main(int argc, char **argv) {
       // clear buffer
       g_command.position.x = 0;
       g_command.position.y = 0;
+      g_command.position.z = 0;
       g_command.yaw = 0;
     }
     else // if can't find it turn around and keep finding 
     {
-      g_command.yaw = 0.1;
+      g_command.position.x = 0;
+      g_command.position.y = 0;
+      g_command.position.z = 0;
+      g_command.yaw = 0.05;
+      state_pub.publish(g_command);
+
     }
 
 
@@ -48,9 +54,6 @@ int main(int argc, char **argv) {
 }
 
 void tagCallback(const geometry_msgs::PoseArray tag_pose) {
-  // double linear  = 0.5;
-  // double angular = 0.5;
-
   if(!tag_pose.poses.empty()){
   	ROS_INFO("read position!");
   	is_update = 1;

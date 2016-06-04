@@ -32,8 +32,8 @@ private:
   void poseCallback(const geometry_msgs::PoseStamped);
   void velCallback(const geometry_msgs::TwistStamped);
   // subscriber callback from joystick
-  void joyCallback(const px4_offboard::JoyCommand);
-
+  void joyCallback(const px4_offboard::JoyCommand); 
+  void aprilCallback(const px4_offboard::JoyCommand joy);
   // flight controller
 
   void moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
@@ -76,6 +76,7 @@ private:
   ros::Subscriber state_sub_;
   ros::Subscriber radio_sub_;
   ros::Subscriber joy_sub_;
+  ros::Subscriber april_sub_;
 
   // publishing msgs
   mavros_msgs::SetMode set_mode_;

@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/user/MAV-project/catkin_ws_odroid/devel -DCMAKE_INSTALL_PREFIX=/home/user/MAV-project/catkin_ws_odroid/install -G Unix Makefiles

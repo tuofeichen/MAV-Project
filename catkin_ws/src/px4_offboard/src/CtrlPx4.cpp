@@ -33,14 +33,14 @@ CtrlPx4::CtrlPx4() {
 
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
-  
+  april_sub_ = nh_.subscribe("april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
   // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100, &CtrlPx4::checkerCallback, this);
 };
 
 bool CtrlPx4::commandUpdate() {
 
   if (off_en_) {  
-    
+
     // check if in auto takeoff landing mode
     if (auto_tl_){
 
@@ -64,7 +64,9 @@ bool CtrlPx4::commandUpdate() {
 	    }
       else 
   	  { 
-  	       mavros_pos_pub_.publish(fcu_pos_setpoint_);
+  	     // ROS_INFO("Hover setpoint: [x: %f y:%f z: %f]", fcu_pos_setpoint_.pose.position.x, \
+      	//	fcu_pos_setpoint_.pose.position.y,fcu_pos_setpoint_.pose.position.z);
+	        mavros_pos_pub_.publish(fcu_pos_setpoint_);
   	  }
     }
 
@@ -112,6 +114,13 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
 
   state_set_.failsafe = joy.failsafe;
 }
+
+void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
+{
+ moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+ // only matter to the position setpoint
+}
+
 
 void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
   state_read_.arm = (vehicle_state.armed == 128);
@@ -192,7 +201,7 @@ bool CtrlPx4::land(double velocity)
 {
   double current_height = pos_read_.pz;
   ROS_INFO("[Landing] Current Height: %f", current_height);
-  if(current_height > 0.25)
+  if(current_height > 0.20)
   {
     fcu_vel_setpoint_.twist.linear.z = - current_height * velocity; // a rough p controller for velocity
     mavros_vel_pub_.publish(fcu_vel_setpoint_);

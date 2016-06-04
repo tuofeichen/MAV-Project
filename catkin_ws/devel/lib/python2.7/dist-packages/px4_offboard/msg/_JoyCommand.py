@@ -20,7 +20,7 @@ bool failsafe
 bool arm 
 bool offboard
 bool takeoff
-bool land
+bool  land
 
 ================================================================================
 MSG: std_msgs/Header
