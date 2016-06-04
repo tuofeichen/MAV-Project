@@ -1,0 +1,5 @@
+- git:
+    local-name: catkin
+    uri: https://github.com/ros-gbp/catkin-release.git
+    version: release/indigo/catkin/0.6.18-0
+
