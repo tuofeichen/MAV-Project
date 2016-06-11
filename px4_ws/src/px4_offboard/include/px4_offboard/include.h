@@ -7,6 +7,7 @@
 #include <math.h>
 #include <Eigen/Dense>
 #include <mavros_msgs/State.h>
+#include <mavros_msgs/BatteryStatus.h>
 #include <mavros_msgs/ManualControl.h>
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/CommandTOL.h>

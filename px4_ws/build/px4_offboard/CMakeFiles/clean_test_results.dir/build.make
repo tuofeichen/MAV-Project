@@ -49,7 +49,7 @@ CMAKE_BINARY_DIR = /home/odroid/MAV-Project/px4_ws/build/px4_offboard
 include CMakeFiles/clean_test_results.dir/progress.make
 
 CMakeFiles/clean_test_results:
-	/usr/bin/python /home/odroid/MAV-Project/px4_ws/src/catkin/cmake/test/remove_test_results.py /home/odroid/MAV-Project/px4_ws/build/px4_offboard/test_results
+	/usr/bin/python /opt/ros/indigo/share/catkin/cmake/test/remove_test_results.py /home/odroid/MAV-Project/px4_ws/build/px4_offboard/test_results
 
 clean_test_results: CMakeFiles/clean_test_results
 clean_test_results: CMakeFiles/clean_test_results.dir/build.make

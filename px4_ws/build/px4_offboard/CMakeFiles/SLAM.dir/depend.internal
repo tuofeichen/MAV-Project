@@ -17,6 +17,7 @@ CMakeFiles/SLAM.dir/src/SLAM.cpp.o
  /opt/ros/indigo/include/geometry_msgs/TwistStamped.h
  /opt/ros/indigo/include/geometry_msgs/Vector3.h
  /opt/ros/indigo/include/geometry_msgs/Vector3Stamped.h
+ /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
  /opt/ros/indigo/include/mavros_msgs/CommandBool.h
  /opt/ros/indigo/include/mavros_msgs/CommandBoolRequest.h
  /opt/ros/indigo/include/mavros_msgs/CommandBoolResponse.h

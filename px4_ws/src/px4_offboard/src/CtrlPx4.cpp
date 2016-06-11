@@ -2,6 +2,7 @@
 #include "px4_offboard/include.h"
 
 #define TAKEOFF_RATIO 0.9
+#define TAKEOFF 99 // magic number for indicating takeoff
 
 CtrlPx4::CtrlPx4() {
 
@@ -22,14 +23,16 @@ CtrlPx4::CtrlPx4() {
   mavros_armed_client_ =
       nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
 
-  local_vel_sub_ = nh_.subscribe("/mavros/local_position/velocity", 100,
+  bat_sub_ = nh_.subscribe("/mavros/battery",10,&CtrlPx4::batCallback, this);
+  
+local_vel_sub_ = nh_.subscribe("/mavros/local_position/velocity", 100,
                                  &CtrlPx4::velCallback, this);
   local_pos_sub_ = nh_.subscribe("/mavros/local_position/pose", 100,
                                  &CtrlPx4::poseCallback, this);
   state_sub_ =
       nh_.subscribe("/mavros/state", 100, &CtrlPx4::stateCallback, this);
   radio_sub_ =
-      nh_.subscribe("/mavros/rc/in", 100, &CtrlPx4::radioCallback, this);
+      nh_.subscribe("/mavros/rc/in", 10, &CtrlPx4::radioCallback, this);
 
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
@@ -45,7 +48,7 @@ bool CtrlPx4::commandUpdate() {
     if (auto_tl_){
 
       if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(1.5,2); //takeoff to 2m at 2m/s initially
+        takeoff(1.3,2); //takeoff to 2m at 2m/s initially
   	}
       else if((state_set_.land)&&(state_read_.arm))
         land(0.5);
@@ -65,7 +68,8 @@ bool CtrlPx4::commandUpdate() {
       else 
   	  { 
   	     // ROS_INFO("Hover setpoint: [x: %f y:%f z: %f]", fcu_pos_setpoint_.pose.position.x, \
-      	//	fcu_pos_setpoint_.pose.position.y,fcu_pos_setpoint_.pose.position.z);
+      	     //	fcu_pos_setpoint_.pose.position.y,fcu_pos_setpoint_.pose.position.z);
+
 	        mavros_pos_pub_.publish(fcu_pos_setpoint_);
   	  }
     }
@@ -101,6 +105,8 @@ bool CtrlPx4::stateCmp() {
 
 void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
 
+  ROS_INFO("Current setpoint command is x %f y %f z %f yaw %f",joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+
   moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
 
   state_set_.offboard = joy.offboard;
@@ -117,8 +123,21 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
 
 void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
 {
+ ROS_INFO("Current Yaw command is %f",joy.yaw);
  moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
  // only matter to the position setpoint
+
+}
+
+
+void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
+{
+	if (bat.voltage < 13)
+	{
+	  ROS_INFO("Lowbattery!");
+	  state_set_.arm = 0;
+	}
+
 }
 
 
@@ -174,7 +193,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 }
   if (!state_read_.arm)
 {
-	ROS_INFO("Send Arming Command");
+//	ROS_INFO("Send Arming Command");
         set_armed_.request.value = true; // send arm request
         mavros_armed_client_.call(set_armed_);
 }
@@ -200,7 +219,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 bool CtrlPx4::land(double velocity) 
 {
   double current_height = pos_read_.pz;
-  ROS_INFO("[Landing] Current Height: %f", current_height);
+  //ROS_INFO("[Landing] Current Height: %f", current_height);
   if(current_height > 0.20)
   {
     fcu_vel_setpoint_.twist.linear.z = - current_height * velocity; // a rough p controller for velocity
@@ -225,23 +244,15 @@ bool CtrlPx4::land(double velocity)
 void CtrlPx4::hover() {
   double yaw = atan2(2*(pos_read_.q[0] * pos_read_.q[3]+ pos_read_.q[1]*pos_read_.q[2]), \
   1-2*(pos_read_.q[3]*pos_read_.q[3]+pos_read_.q[2]*pos_read_.q[2]));
-/*
-if(ctrl_==POS){
-  fcu_vel_setpoint_.twist.linear.x = 0;
-  fcu_vel_setpoint_.twist.linear.y = 0;
-  fcu_vel_setpoint_.twist.linear.z = 0;
-  mavros_vel_pub_.publish(fcu_vel_setpoint_);
-}
-*/
-//if (ctrl_==VEL)
-//{
+
+     // ROS_INFO("current yaw is %f", yaw);
+
       fcu_pos_setpoint_.pose.position.x = pos_read_.px;
       fcu_pos_setpoint_.pose.position.y = pos_read_.py;
       fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
 
       fcu_pos_setpoint_.pose.orientation.w = cos(0.5 * (yaw));
       fcu_pos_setpoint_.pose.orientation.z = sin(0.5 * (yaw));
-//}
 
 };
 
@@ -299,6 +310,7 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   pos_nav (0) = -pos_body(0)*sin(yaw) + pos_body(1)*cos(yaw); // left and right
   pos_nav (1) = pos_body(0)*cos(yaw) + pos_body(1)*sin(yaw); // front and back
 
+  //ROS_INFO("Current yaw angle is %f", yaw);
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);

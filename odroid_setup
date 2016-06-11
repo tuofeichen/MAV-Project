@@ -23,13 +23,17 @@ PCL and OpenNi2 should already be on the machine
 
 5. install ros package
 sudo apt-get update
-sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros-indigo-mavros-msgs ros-indigo-checkerboard-detector ros-indigo-apriltags ros-indigo-apriltags-ros 
+sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros-indigo-mavros-msgs ros-indigo-checkerboard-detector ros-indigo-apriltags ros-indigo-apriltags-ros ros-indigo-openni2-launch
 
 
 6. Configure wireless interface for access point follow this
 http://odroid.com/dokuwiki/doku.php?id=en:xu4_wlan_ap
 
-7. 
+7. modify launch file in mavros, openni2-launch, apriltags-ros and checkerboard. Refer to code repo or pandaboard
+
+8. Add yourself to dialout group
+sudo gpasswd --add ${USER} dialout
+
 
 
 
