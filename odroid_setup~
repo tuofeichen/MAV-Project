@@ -1,0 +1,37 @@
+0. Flash odroid xu4 robotics edition image onto the board
+http://forum.odroid.com/viewtopic.php?f=95&t=7446
+
+1. wicd->preference
+wirelessinterface: wlan1
+wired interface eth2
+refresh
+choose network to connect to wired/wireless
+
+1.1 add autocomplete to sudo
+complete -cf sudo in .bashrc
+
+2.sudo gparted
+add around 20G to the partition we're using
+
+3. git clone https://github.com/jameswhang/MAV-Project
+clone the repository to local workspace
+
+4. install opencv following this
+https://alliance.seas.upenn.edu/~cis700ii/dynamic/techinfo/2015/09/04/compiling-and-benchmarking-opencv-3-0/
+
+PCL and OpenNi2 should already be on the machine
+
+5. install ros package
+sudo apt-get update
+sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros-indigo-mavros-msgs ros-indigo-checkerboard-detector ros-indigo-apriltags ros-indigo-apriltags-ros ros-indigo-openni2-launch
+
+
+6. Configure wireless interface for access point follow this
+http://odroid.com/dokuwiki/doku.php?id=en:xu4_wlan_ap
+
+7. modify launch file in mavros, openni2-launch, apriltags-ros and checkerboard. Refer to code repo or pandaboard
+
+
+
+
+

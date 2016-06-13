@@ -1,0 +1,62 @@
+[  0%] [  0%] Built target diagnostic_msgs_generate_messages_lisp
+Built target mavros_msgs_generate_messages_cpp
+[  0%] [  0%] [  0%] [  0%] Built target actionlib_msgs_generate_messages_cpp
+Built target diagnostic_msgs_generate_messages_cpp
+[  0%] Built target _catkin_empty_exported_target
+Built target std_msgs_generate_messages_lisp
+Built target geometry_msgs_generate_messages_lisp
+[  0%] [  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] [  0%] Built target sensor_msgs_generate_messages_cpp
+Built target std_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_cpp
+Built target _px4_offboard_generate_messages_check_deps_JoyCommand
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target diagnostic_msgs_generate_messages_py
+[  0%] [  0%] [  0%] Built target std_msgs_generate_messages_cpp
+[  0%] [  0%] Built target nav_msgs_generate_messages_lisp
+Built target sensor_msgs_generate_messages_py
+Built target rosgraph_msgs_generate_messages_lisp
+Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] [  0%] Built target geometry_msgs_generate_messages_cpp
+Built target nav_msgs_generate_messages_py
+[  0%] [  0%] [  0%] Built target mavros_msgs_generate_messages_lisp
+Built target actionlib_generate_messages_cpp
+Built target mavros_msgs_generate_messages_py
+[  0%] Built target tf2_msgs_generate_messages_cpp
+[  0%] [35m[1mScanning dependencies of target teleop
+[  0%] Built target tf2_msgs_generate_messages_lisp
+[  0%] Built target actionlib_generate_messages_py
+Built target tf2_msgs_generate_messages_py
+[ 12%] [ 25%] [ 25%] [ 50%] Built target px4_offboard_generate_messages_lisp
+Built target actionlib_generate_messages_lisp
+Built target px4_offboard_generate_messages_cpp
+Built target px4_offboard_generate_messages_py
+[0m[35m[1mScanning dependencies of target apriltag
+[35m[1mScanning dependencies of target SLAM
+[ 50%] [ 62%] [ 75%] Built target px4_offboard_generate_messages
+Built target checker
+[32mBuilding CXX object CMakeFiles/teleop.dir/src/teleop.cpp.o
+[0m[0m[0m[ 87%] [32mBuilding CXX object CMakeFiles/apriltag.dir/src/apriltag.cpp.o
+[0m[100%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/SLAM.cpp.o
+[0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/teleop
+[0m[100%] Built target teleop
+[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/apriltag
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:2:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In constructor 'CtrlPx4::CtrlPx4()':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:26:51: error: 'batCallback' is not a member of 'CtrlPx4'
+   bat_sub_ = nh_.subscribe("/mavros/battery",100,&CtrlPx4::batCallback, this);
+                                                   ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: At global scope:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:132:63: error: no 'void CtrlPx4::batCallback(mavros_msgs::BatteryStatus)' member function declared in class 'CtrlPx4'
+ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
+                                                               ^
+[0m[100%] Built target apriltag
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

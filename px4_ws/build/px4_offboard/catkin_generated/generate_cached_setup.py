@@ -6,8 +6,8 @@ import stat
 import sys
 
 # find the import for catkin's python package - either from source space or from an installed underlay
-if os.path.exists(os.path.join('/home/odroid/MAV-Project/px4_ws/src/catkin/cmake', 'catkinConfig.cmake.in')):
-    sys.path.insert(0, os.path.join('/home/odroid/MAV-Project/px4_ws/src/catkin/cmake', '..', 'python'))
+if os.path.exists(os.path.join('/opt/ros/indigo/share/catkin/cmake', 'catkinConfig.cmake.in')):
+    sys.path.insert(0, os.path.join('/opt/ros/indigo/share/catkin/cmake', '..', 'python'))
 try:
     from catkin.environment_cache import generate_environment_script
 except ImportError:

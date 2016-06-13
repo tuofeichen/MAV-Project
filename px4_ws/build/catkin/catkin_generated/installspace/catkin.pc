@@ -1,8 +1,0 @@
-prefix=/home/odroid/MAV-Project/px4_ws/install
-
-Name: catkin
-Description: Description of catkin
-Version: 0.6.18
-Cflags: 
-Libs: -L/home/odroid/MAV-Project/px4_ws/install/lib 
-Requires: 

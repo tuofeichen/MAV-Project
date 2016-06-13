@@ -1,0 +1,7 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/apriltag.cpp: In function 'void tagCallback(geometry_msgs::PoseArray)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/apriltag.cpp:125:66: error: expression cannot be used as a function
+     g_command.position.y = 0.5(tag_pose.poses[0].position.z - 0.6);
+                                                                  ^
+make[2]: *** [CMakeFiles/apriltag.dir/src/apriltag.cpp.o] Error 1
+make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
+make: *** [all] Error 2

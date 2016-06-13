@@ -1,1 +1,1 @@
-/home/odroid/MAV-Project/px4_ws/devel/.private/catkin/setup.bash
+/home/odroid/MAV-Project/px4_ws/devel/.private/catkin_tools_prebuild/setup.bash
