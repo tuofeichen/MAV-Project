@@ -1,0 +1,5 @@
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/pkgconfig/rgbd_slam.pc
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/rgbd_slam/cmake/rgbd_slamConfig-version.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/rgbd_slam/cmake/rgbd_slamConfig.cmake

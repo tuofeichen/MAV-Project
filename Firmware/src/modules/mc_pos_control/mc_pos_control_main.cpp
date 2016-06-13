@@ -77,6 +77,7 @@
 #include <uORB/topics/position_setpoint_triplet.h>
 #include <uORB/topics/vehicle_global_velocity_setpoint.h>
 #include <uORB/topics/vehicle_local_position_setpoint.h>
+#include <uORB/topics/vehicle_land_detected.h>
 
 #include <systemlib/systemlib.h>
 #include <systemlib/mavlink_log.h>

@@ -11,6 +11,7 @@ CtrlPx4::CtrlPx4() {
 
   off_en_ = sim_;     // initialize off_en_to be 1 always if in simulation mode
   auto_tl_ = ctrl_;
+  
 
   mavros_pos_pub_ = nh_.advertise<geometry_msgs::PoseStamped>(
       "/mavros/setpoint_position/local", 100);
@@ -33,7 +34,7 @@ CtrlPx4::CtrlPx4() {
 
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
-  april_sub_ = nh_.subscribe("april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
+  april_sub_ = nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
   // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100, &CtrlPx4::checkerCallback, this);
 };
 
@@ -99,25 +100,24 @@ bool CtrlPx4::stateCmp() {
   return offboard;
 }
 
-void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
+void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joystick) {
 
-  moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+  moveToPoint(joystick.position.x,joystick.position.y,joystick.position.z,joystick.yaw);
 
-  state_set_.offboard = joy.offboard;
-  if (state_set_.offboard)
-	state_set_.mode = OFFBOARD;
-  
-  state_set_.arm      = joy.arm;
-  
-  state_set_.takeoff  = joy.takeoff;
-  state_set_.land     = joy.land;
+  state_set_.offboard = joystick.offboard;
+  if (state_set_.offboard){
+	 state_set_.mode = OFFBOARD;
+  }
 
-  state_set_.failsafe = joy.failsafe;
+  state_set_.arm      = joystick.arm;
+  state_set_.takeoff  = joystick.takeoff;
+  state_set_.land     = joystick.land;
+  state_set_.failsafe = joystick.failsafe;
 }
 
-void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
+void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joystick)
 {
- moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+ moveToPoint(joystick.position.x,joystick.position.y,joystick.position.z,joystick.yaw);
  // only matter to the position setpoint
 }
 

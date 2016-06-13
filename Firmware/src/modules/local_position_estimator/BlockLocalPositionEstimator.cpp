@@ -571,7 +571,7 @@ void BlockLocalPositionEstimator::updateHome()
 	_altHome = alt;
 	_gpsAltHome += delta_alt;
 	_baroAltHome +=  delta_alt;
-	mavlink_and_console_log_info(&mavlink_log_pub,"Baro calibration is %f",double(_baroAltHome));
+	//mavlink_and_console_log_info(&mavlink_log_pub,"Baro calibration is %f",double(_baroAltHome));
 	_visionHome(2) += delta_alt;
 	_mocapHome(2) += delta_alt;
 }

@@ -1,0 +1,55 @@
+[  0%] Built target actionlib_generate_messages_cpp
+[  0%] Built target diagnostic_msgs_generate_messages_cpp
+[  0%] Built target _catkin_empty_exported_target
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target diagnostic_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target actionlib_generate_messages_py
+[  0%] Built target diagnostic_msgs_generate_messages_py
+[  0%] Built target mavros_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target actionlib_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target _px4_offboard_generate_messages_check_deps_JoyCommand
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target mavros_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target mavros_msgs_generate_messages_lisp
+[  0%] Built target tf2_msgs_generate_messages_cpp
+[  0%] Built target tf2_msgs_generate_messages_py
+[  0%] Built target tf2_msgs_generate_messages_lisp
+[  8%] Built target px4_offboard_generate_messages_cpp
+[ 25%] Built target px4_offboard_generate_messages_py
+[ 33%] Built target px4_offboard_generate_messages_lisp
+[35m[1mScanning dependencies of target apriltag[0m
+[ 41%] [32mBuilding CXX object CMakeFiles/apriltag.dir/src/apriltag.cpp.o[0m
+[ 58%] Built target checker
+[35m[1mScanning dependencies of target SLAM[0m
+[ 58%] Built target px4_offboard_generate_messages
+[ 75%] Built target teleop
+[ 83%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/SLAM.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:1:21: fatal error: include.h: No such file or directory
+ #include <include.h>
+                     ^
+compilation terminated.
+make[2]: *** [CMakeFiles/apriltag.dir/src/apriltag.cpp.o] Error 1
+make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 91%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/SLAM[0m
+[ 91%] Built target SLAM
+make: *** [all] Error 2

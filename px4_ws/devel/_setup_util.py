@@ -1,0 +1,1 @@
+/home/odroid/MAV-Project/px4_ws/devel/.private/catkin/_setup_util.py

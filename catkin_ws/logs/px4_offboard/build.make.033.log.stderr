@@ -1,0 +1,15 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/teleop.cpp:2:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:36:56: error: expected ‘;’ at end of member declaration
+   void aprilCallback(const px4_offboard::JoyCommand joy)
+                                                        ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/SLAM.cpp:2:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:36:56: error: expected ‘;’ at end of member declaration
+   void aprilCallback(const px4_offboard::JoyCommand joy)
+                                                        ^
+make[2]: *** [CMakeFiles/teleop.dir/src/teleop.cpp.o] Error 1
+make[1]: *** [CMakeFiles/teleop.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

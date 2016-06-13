@@ -1,0 +1,6 @@
+devel_space: /home/odroid/MAV-Project/px4_ws/devel
+install: false
+install_space: /home/odroid/MAV-Project/px4_ws/install
+profile: default
+source_space: /home/odroid/MAV-Project/px4_ws/src
+workspace: /home/odroid/MAV-Project/px4_ws
