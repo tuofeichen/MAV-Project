@@ -2,7 +2,7 @@
  * UavComProtocolHandler.cpp
  *
  *  Created on: May 20, 2015
- *      Author:  Gian Danuser & Michael Eugster
+ *      Author:  Gian Danuf & Michael Eugster
  */
 
 #include <assert.h>

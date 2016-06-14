@@ -25,9 +25,7 @@ public:
 	void setNewNode(const Frame& frame, const Eigen::Matrix4f& tm, const Eigen::Matrix<float, 6, 6>& im, uint8_t toNode); // copy
 	const Eigen::Matrix4f& getCurrentPosition() { return currentPosition; }
 	volatile bool currentPosUpToDate() { return curPosUpToDateFlag; }
-
 	volatile bool running() { return server.serverRunning(); } //TODO remove, debugging
-
 	void deserializeCurrentNode(const uint8_t* data, int size);
 
 private:

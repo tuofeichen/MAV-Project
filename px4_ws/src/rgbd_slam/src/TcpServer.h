@@ -26,7 +26,8 @@ public:
 	void stop();
 
 	virtual bool send(const std::vector<uint8_t>& data);
-	virtual void registerRecvCallback(void(*callback)(const uint8_t* data, int len, void*), void* context) { recvCallback = callback; callerContext = context; }
+	virtual void registerRecvCallback(void(*callback) \
+		(const uint8_t* data, int len, void*), void* context) { recvCallback = callback; callerContext = context; }
 
 	volatile bool serverRunning() { return !stopped; }
 	void run(); // blocking call, runs receive loop

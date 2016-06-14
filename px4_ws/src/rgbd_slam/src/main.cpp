@@ -27,7 +27,7 @@ using namespace Eigen;
 enum {
         setNewNodeAfterNrOfFailedMatches = 1
 };
-//static constexpr int backendPort = 11000;
+
 static constexpr int backendPort = 11000;
 
 #ifdef STREAM_ONLY
@@ -107,22 +107,19 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 	bool validFlag;
 	VisualOdometry::estimateTrafo(newFrame, prevNode, tmCurToNode, imCurToNode, validFlag);
 
-	//
 	// process result
 	VisualOdometry::Result res;
-	if (validFlag)
-	{
+	if (validFlag){
 		res = VisualOdometry::checkReliability(tmCurToNode, newFrame.getTime() - prevNode.getTime());
 		validFlag = (res != VisualOdometry::invalid);
 	}
 
-	if (validFlag)
-	{
+	if (validFlag){
 		newNode = (res == VisualOdometry::valid);
 		return true;
 	}
-	else
-	{
+
+	else {
 		newNode = false;
 		return false;
 	}
@@ -134,18 +131,19 @@ int main()
 	//
 	// initialization
 	//
-	int state = newNode;
+	int state = newNode; 
 	static Frame frames[2];
 	static Matrix4f tmCurToNode;
 	static Matrix<float, 6, 6> imCurToNode;
+
 	Matrix4f currentTME;
 	Matrix3f currentRM;
 	Vector3f currentTV;
 
 	boost::mutex backendMutex;
+
 	Backend backend(backendPort, backendMutex);
 	unsigned int couldNotMatchCounter = 0;
-
 	unsigned int totalNumberOfFrames = 0; // debug
 	unsigned int dummyFrameCounter = 0; // debug
 	unsigned int badFramesCounter = 0; // debug
@@ -155,8 +153,8 @@ int main()
 //	AsusProLive::start();
 	AsusProLiveOpenNI2::start();
 	
-	//
 	// grab some images until brightness is adjusted correctly
+	
 	for(int i=0; i < 5; ++i)
 	{
 //		AsusProLive::grab(frames[state]);
@@ -167,11 +165,9 @@ int main()
 		}
 	}
 
-	//
 	// wait until backend sets the starting position
 	while(!backend.currentPosUpToDate()) boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 
-	//
 	// first frame
 	bool noError = false;
 	while(backend.running() && AsusProLiveOpenNI2::running())
@@ -196,7 +192,7 @@ int main()
 		tmCurToNode = Eigen::Matrix4f::Identity();
 		imCurToNode = Matrix<float, 6, 6>::Identity(); // value not needed
 		backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
-		state = state?0:1;
+		state = state?0:1; // flip state  
 		break;
 	}
 
@@ -226,7 +222,7 @@ int main()
 		//
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
-		dif = (end - start)*1000.0;
+		dif = (end - start)*1000.0; // note down grabbing time 
 		//cout << "Grabbing took " << dif << "ms" << endl; //debug
 		
 
@@ -237,13 +233,14 @@ int main()
 			cout << "Bad Frame Nr. " << ++badFramesCounter << endl; // debug
 			continue;
 		}
-
+		// process frame: with current frame to last frame
 		if(processFrame(frames[state],frames[state?0:1],tmCurToNode,imCurToNode,newNode))
 		{
 			couldNotMatchCounter = 0;
-			currentTME = backend.getCurrentPosition();
-			currentRM  = currentTME.topLeftCorner(3,3);
-			currentTV  = currentTME.topRightCorner(3,1);
+			currentTME = backend.   getCurrentPosition();
+			currentRM  = currentTME.topLeftCorner(3,3);  // get rotation    matrix
+			currentTV  = currentTME.topRightCorner(3,1); // get translation vector
+
 			cout << "current location is "<<endl<<currentTV<<endl;
 			cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 
@@ -252,13 +249,16 @@ int main()
 			// send position to UAV TODO
 
 			// set new node
+
 			if(newNode)
 			{
 				cout << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug
-				cout << "current location is "<<endl<<currentTV<<endl;
-				cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+				
+				// cout << "current location is "<<endl<<currentTV<<endl;
+				// cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+
 				backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
-				state = state?0:1;
+				state = state ? 0 : 1;
 			}
 		}
 		else

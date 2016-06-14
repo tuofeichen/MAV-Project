@@ -50,6 +50,7 @@ void Backend::setNewNode(const Frame& frame, const Eigen::Matrix4f& tm, const Ei
 	serializeTimeStamp(frame.getTime(),sEdge);
 	serializeTm(tm, sEdge);
 	serializeIm(im, sEdge);
+	
 	protocolHandler.send(UavComProtocol::CMD1::EDGE, sEdge);
 //	boost::this_thread::sleep(boost::posix_time::milliseconds(300));
 
