@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
              g_command.position.x = 0;
              g_command.position.y = 0;
              g_command.position.z = 0;
-           	 g_command.yaw = 1;
+             g_command.yaw = 1;
              state_pub.publish(g_command);
             }
       	}
@@ -93,6 +93,7 @@ void tagCallback(const geometry_msgs::PoseArray tag_pose) {
     g_command.position.z = 0.2 * tag_pose.poses[0].position.y;
     g_command.position.y = 0.12* (tag_pose.poses[0].position.z - 1);
     g_command.yaw = -0.5*tag_pose.poses[0].orientation.w;
+
   }
   else{
   	g_command.position.x = 0;
