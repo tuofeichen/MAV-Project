@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target RPY
+[0m[100%] [32mBuilding CXX object CMakeFiles/RPY.dir/src/RPY.cpp.o
+[0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/test/lib/test/RPY
+[0m[100%] Built target RPY

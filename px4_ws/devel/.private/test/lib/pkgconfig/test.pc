@@ -1,0 +1,8 @@
+prefix=/home/odroid/MAV-Project/px4_ws/devel/.private/test
+
+Name: test
+Description: Description of test
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/odroid/MAV-Project/px4_ws/devel/.private/test/lib 
+Requires: 

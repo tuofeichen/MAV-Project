@@ -10,16 +10,16 @@
 
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
+#include <Eigen/Geometry>
 
 #include "VisualOdometry.h"
-//#include "AsusProLive.h"
 #include "AsusProLiveOpenNI2.h"
 #include "Backend.h"
 
 using namespace std;
 using namespace Eigen;
 
-#define STREAM_ONLY
+// #define STREAM_ONLY
 
 //
 // Settings
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	double start, end, dif;
 	while(backend.running())
 	{
-		//
+		
 		//debug
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC;
 		
@@ -138,6 +138,9 @@ int main()
 	static Frame frames[2];
 	static Matrix4f tmCurToNode;
 	static Matrix<float, 6, 6> imCurToNode;
+	Matrix4f currentTME;
+	Matrix3f currentRM;
+	Vector3f currentTV;
 
 	boost::mutex backendMutex;
 	Backend backend(backendPort, backendMutex);
@@ -224,7 +227,7 @@ int main()
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 		dif = (end - start)*1000.0;
-		cout << "Gabbing took " << dif << "ms" << endl; //debug
+		//cout << "Grabbing took " << dif << "ms" << endl; //debug
 		
 
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
@@ -238,19 +241,22 @@ int main()
 		if(processFrame(frames[state],frames[state?0:1],tmCurToNode,imCurToNode,newNode))
 		{
 			couldNotMatchCounter = 0;
+			currentTME = backend.getCurrentPosition();
+			currentRM  = currentTME.topLeftCorner(3,3);
+			currentTV  = currentTME.topRightCorner(3,1);
+			cout << "current location is "<<endl<<currentTV<<endl;
+			cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 
-			//
 			// fuse data with IMU TODO
 
-			//
 			// send position to UAV TODO
 
-			//
 			// set new node
 			if(newNode)
 			{
 				cout << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug
-
+				cout << "current location is "<<endl<<currentTV<<endl;
+				cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 				backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
 				state = state?0:1;
 			}
@@ -277,7 +283,7 @@ int main()
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 		dif = (end - start)*1000.0;
-		cout << "Frontend processing took " << dif << "ms" << endl; //debug
+		//cout << "Frontend processing took " << dif << "ms" << endl; //debug
 	}
 
 //	AsusProLive::stop();

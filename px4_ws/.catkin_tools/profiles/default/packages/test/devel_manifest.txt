@@ -1,0 +1,5 @@
+test
+/home/odroid/MAV-Project/px4_ws/devel/.private/test/lib/test/RPY /home/odroid/MAV-Project/px4_ws/devel/lib/test/RPY
+/home/odroid/MAV-Project/px4_ws/devel/.private/test/lib/pkgconfig/test.pc /home/odroid/MAV-Project/px4_ws/devel/lib/pkgconfig/test.pc
+/home/odroid/MAV-Project/px4_ws/devel/.private/test/share/test/cmake/testConfig.cmake /home/odroid/MAV-Project/px4_ws/devel/share/test/cmake/testConfig.cmake
+/home/odroid/MAV-Project/px4_ws/devel/.private/test/share/test/cmake/testConfig-version.cmake /home/odroid/MAV-Project/px4_ws/devel/share/test/cmake/testConfig-version.cmake
