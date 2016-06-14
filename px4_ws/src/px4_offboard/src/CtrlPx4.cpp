@@ -135,7 +135,7 @@ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 	if (bat.voltage < 13)
 	{
 	  ROS_INFO("Lowbattery!");
-	  state_set_.arm = 0;
+	  state_set_.land = 1;
 	}
 
 }

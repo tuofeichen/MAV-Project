@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
       // g_command.position.x = 0;
       // g_command.position.y = 0;
       // g_command.position.z = 0;
-      g_command.yaw = 0;
+      //g_command.yaw = 0;
       state_pub.publish(g_command);
 
     }
@@ -115,17 +115,17 @@ void tagCallback(const geometry_msgs::PoseArray tag_pose) {
   g_command.yaw = 0;
   
 //translation
-    g_command.position.x = 0.12* tag_pose.poses[0].position.x;  
-    g_command.position.z = 0.12 * tag_pose.poses[0].position.y;
+    g_command.position.x = 0.2* tag_pose.poses[0].position.x;  
+    g_command.position.z = 0.2 * tag_pose.poses[0].position.y;
 
-  if (tag_pose.poses[0].position.z > 0.6)
-    g_command.position.y = 0.1*(tag_pose.poses[0].position.z - 0.6);
-  else if (tag_pose.poses[0].position.z < 0.6)
-    g_command.position.y = -0.1*(tag_pose.poses[0].position.z + 0.6);  
+  if (tag_pose.poses[0].position.z > 1)
+    g_command.position.y = 0.12* (tag_pose.poses[0].position.z - 1);
+  else if (tag_pose.poses[0].position.z < 1)
+    g_command.position.y = -0.12*(1- tag_pose.poses[0].position.z );  
   
 //heading
 
-  g_command.yaw = -0.2*tag_pose.poses[0].orientation.w;
+  g_command.yaw = -0.5*tag_pose.poses[0].orientation.w;
 
 //  if (tag_pose.poses[0].orientation.w < -0.3)
 //	g_command.yaw = 0.1;
