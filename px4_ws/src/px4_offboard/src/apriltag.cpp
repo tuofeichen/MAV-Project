@@ -51,50 +51,25 @@ int main(int argc, char **argv) {
       //state_pub.publish(g_command);
       ROS_INFO("Tag Publishing setpoint: x %f  y %f z %f", g_command.position.x,
                g_command.position.y, g_command.position.z);
-      // clear buffer
-      // g_command.position.x = 0;
-      // g_command.position.y = 0;
-      // g_command.position.z = 0;
-      //g_command.yaw = 0;
+
       state_pub.publish(g_command);
 
     }
     else {
 	//ROS_INFO("pos read yaw %f",pos_read.yaw);
       	if (update_cnt <= 0){
-	update_cnt = 0;
-	if((is_takeoff)&&(az<0.05)){
-        ROS_INFO("New Surveillance Round!");
-        //yaw_start = pos_read.yaw; //note down the yaw when starting   
-         g_command.position.x = 0;
-         g_command.position.y = 0;
-         g_command.position.z = 0;
-       	 g_command.yaw = 1;
-         state_pub.publish(g_command);
-      		}
-	}
-	
-
- //      if (update_cnt >= 1)
- //       update_cnt -= 0.001;
-  
- //       if (update_cnt < 3){
- //       g_command.position.x = 0;
- //       g_command.position.y = 0;
- //       g_command.position.z = 0;
-  
-  // if (update_cnt > 1){ // scan mode
- //         g_command.yaw = 0.1/update_cnt*scan_sign;
-  //  scan_sign ++;
-  //         scan_sign  = -scan_sign;
-  // }
-  // else // normal rotate mode
-  // {
-  //  scan_sign = 1;
-  //  g_command.yaw = 0.1/update_cnt;
-  // }
- //       state_pub.publish(g_command);
-  // }
+      	update_cnt = 0;
+      	if((is_takeoff)&&(az<0.05)){
+            ROS_INFO("New Surveillance Round!");
+            //yaw_start = pos_read.yaw; //note down the yaw when starting   
+             g_command.position.x = 0;
+             g_command.position.y = 0;
+             g_command.position.z = 0;
+           	 g_command.yaw = 1;
+             state_pub.publish(g_command);
+            }
+      	}
+	      // TODO: lost track handling? 
     }
 
 
@@ -109,35 +84,20 @@ void tagCallback(const geometry_msgs::PoseArray tag_pose) {
     ROS_INFO("read position!");
     is_update = 1;
 
-  g_command.position.x = 0; // clean previous command
-  g_command.position.y = 0;
-  g_command.position.z = 0;
-  g_command.yaw = 0;
-  
-//translation
+    g_command.position.x = 0; // clear previous command
+    g_command.position.y = 0;
+    g_command.position.z = 0;
+    g_command.yaw = 0;
+    
     g_command.position.x = 0.2* tag_pose.poses[0].position.x;  
     g_command.position.z = 0.2 * tag_pose.poses[0].position.y;
-
-  if (tag_pose.poses[0].position.z > 1)
     g_command.position.y = 0.12* (tag_pose.poses[0].position.z - 1);
-  else if (tag_pose.poses[0].position.z < 1)
-    g_command.position.y = -0.12*(1- tag_pose.poses[0].position.z );  
-  
-//heading
-
-  g_command.yaw = -0.5*tag_pose.poses[0].orientation.w;
-
-//  if (tag_pose.poses[0].orientation.w < -0.3)
-//	g_command.yaw = 0.1;
-//  if (tag_pose.poses[0].orientation.w > 0.2)
-//	g_command.yaw = -0.1;
-
-
+    g_command.yaw = -0.5*tag_pose.poses[0].orientation.w;
   }
-else
-	{
-	g_command.position.x = 0;
-	g_command.position.y = 0;
+  else{
+  	g_command.position.x = 0;
+  	g_command.position.y = 0;
+    g_command.position.z = 0;
 	}  
 
 }
