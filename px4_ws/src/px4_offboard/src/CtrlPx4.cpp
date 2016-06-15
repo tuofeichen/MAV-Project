@@ -2,7 +2,6 @@
 #include "px4_offboard/include.h"
 
 #define TAKEOFF_RATIO 0.9
-#define TAKEOFF 99 // magic number for indicating takeoff
 
 CtrlPx4::CtrlPx4() {
 
@@ -112,12 +111,9 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
   state_set_.offboard = joy.offboard;
   if (state_set_.offboard)
 	state_set_.mode = OFFBOARD;
-  
   state_set_.arm      = joy.arm;
-  
   state_set_.takeoff  = joy.takeoff;
   state_set_.land     = joy.land;
-
   state_set_.failsafe = joy.failsafe;
 }
 
@@ -134,7 +130,7 @@ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 {
 	if (bat.voltage < 13)
 	{
-	  ROS_INFO("Lowbattery!");
+	  ROS_INFO("Low battery!");
 	  state_set_.land = 1;
 	}
 
@@ -228,15 +224,8 @@ bool CtrlPx4::land(double velocity)
   else {
     state_set_.land = 0;
     state_read_.land = 0;
-    // turn off motor (free fall)
-//    set_mode_.request.custom_mode = "MANUAL"; //state_set_.prev_mode;
-//    mavros_set_mode_client_.call(set_mode_);
-//    set_armed_.request.value = false; 
-//    mavros_armed_client_.call(set_armed_);
+    state_read_.takeoff = 0; // clean takeoff flag to allow takeoff again
     state_set_.mode = MANUAL;
-//  set_mode_.request.custom_mode = "MANUAL"; //state_set_.prev_mode;
-//  mavros_set_mode_client_.call(set_mode_);
-
   }
 
 }
@@ -244,8 +233,6 @@ bool CtrlPx4::land(double velocity)
 void CtrlPx4::hover() {
   double yaw = atan2(2*(pos_read_.q[0] * pos_read_.q[3]+ pos_read_.q[1]*pos_read_.q[2]), \
   1-2*(pos_read_.q[3]*pos_read_.q[3]+pos_read_.q[2]*pos_read_.q[2]));
-
-     // ROS_INFO("current yaw is %f", yaw);
 
       fcu_pos_setpoint_.pose.position.x = pos_read_.px;
       fcu_pos_setpoint_.pose.position.y = pos_read_.py;

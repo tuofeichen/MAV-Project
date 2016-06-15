@@ -14,6 +14,8 @@ public:
 
   bool takeoff(double altitude, double velcity);
   bool land(double velocity);
+  void hover();
+
   void forward(float distance);
   void backward(float distance);
   void left (float distance);
@@ -23,7 +25,6 @@ public:
   void yawLeft(float radian);
   void yawRight(float radian);
 
-  void hover();
 
 private:
   // subscriber callbacks from MAV
@@ -40,10 +41,8 @@ private:
   // flight controller
 
   void moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
-
   bool setMode(int mode);
   bool setArm (bool arm);
-
   bool stateCmp();
 
   // state of vehile
