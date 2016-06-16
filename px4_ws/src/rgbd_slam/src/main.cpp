@@ -34,8 +34,6 @@ static constexpr int backendPort = 11000;
 int main(int argc, char **argv)
 {
 	ros::init(argc,argv,"rgbd");
-	ros::NodeHandle nh;
-	ROS_INFO("Hello World");
 	//
 	// initialization
 	//
@@ -127,7 +125,9 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 
 enum{newNode = 0, prevNode = 1};
 int main()
-{
+{	
+	ros::init(argc,argv,"rgbd");
+	RosHandler logger;
 	//
 	// initialization
 	//
@@ -243,6 +243,8 @@ int main()
 
 			cout << "current location is "<<endl<<currentTV<<endl;
 			cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+			
+			logger.updatePos(currentTME);
 
 			// fuse data with IMU TODO
 

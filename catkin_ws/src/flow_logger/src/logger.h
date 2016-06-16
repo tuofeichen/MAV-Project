@@ -42,17 +42,18 @@ public:
   void clearLog();
   string flow_logname;
   string lpe_logname;
+  
 
   // void csv_dump     (const char*);
 private:
   // subscriber callback
   void lpeCallback  (const geometry_msgs::PoseStamped);
-  void flowCallback (const px_comm::OpticalFlow);
+  void flowCallback (const geometry_msgs::PoseStamped);
   void magCallback  (const sensor_msgs::MagneticField);
   magMsg    mag_msgs;
   lpeMsg    lpe_msgs;
   flowMsg   flow_msgs;
-
+  lpeMsg    vision_msgs;
   ros::NodeHandle nh;
   ros::Subscriber lpe_sub;
   ros::Subscriber flow_sub;

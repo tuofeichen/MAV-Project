@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/include/px4_offboard/JoyCommand.h
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/include/px4_offboard/JoyCommand.h
 string
 -
 vector
@@ -28,13 +28,13 @@ geometry_msgs/Point.h
 geometry_msgs/Quaternion.h
 -
 
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/checker.cpp
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/checker.cpp
 ros/ros.h
 -
 geometry_msgs/PoseStamped.h
 -
 px4_offboard/JoyCommand.h
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/px4_offboard/JoyCommand.h
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/px4_offboard/JoyCommand.h
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

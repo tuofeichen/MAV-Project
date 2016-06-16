@@ -77,6 +77,8 @@ bool CtrlPx4::commandUpdate() {
 // regardless always check for failsafe
   if(state_set_.failsafe)
   {
+    state_set_.takeoff = 0;
+    state_set_.land = 0;
     if (state_read_.arm){
     set_armed_.request.value = false; // forcefully send disarm request
     mavros_armed_client_.call(set_armed_);
@@ -97,7 +99,7 @@ bool CtrlPx4::stateCmp() {
   bool offboard = (read->offboard == set->offboard);
   bool in_the_sky = (arm && set->arm == 1); //&& read->takeoff;
   bool on_the_ground =
-      (arm && set->arm == 0); //&& read->land; TODO local takeoff/land
+      (arm && set->arm == 0); 
 
   return offboard;
 }
@@ -108,9 +110,11 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
 
   moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
 
-  state_set_.offboard = joy.offboard;
-  if (state_set_.offboard)
-	state_set_.mode = OFFBOARD;
+  // state_set_.offboard = joy.offboard;
+  if (joy.offboard)
+	   state_set_.mode = OFFBOARD;
+
+
   state_set_.arm      = joy.arm;
   state_set_.takeoff  = joy.takeoff;
   state_set_.land     = joy.land;

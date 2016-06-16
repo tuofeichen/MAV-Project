@@ -5,7 +5,7 @@ int main(int argv, char **argc)
   ros::init (argv, argc, "logger");
   Logger lpe_flow_logger;
 
-  cout << "Input Flow log filename: "<<endl;
+  cout << "Input vision log filename: "<<endl;
   cin >> lpe_flow_logger.flow_logname;
   cout << "Input LPE log filename: " <<endl;
   cin >> lpe_flow_logger.lpe_logname;
@@ -26,7 +26,7 @@ Logger::Logger()
 {
   //mag_sub = nh.subscribe("/mavros/imu/mag",1000,&Logger::magCallback, this);
   lpe_sub = nh.subscribe("/mavros/local_position/pose",1000,&Logger::lpeCallback, this);
-  flow_sub = nh.subscribe("/px4flow/opt_flow",1000,&Logger::flowCallback,this);
+  flow_sub = nh.subscribe("/rgbd_slam/pose",1000,&Logger::flowCallback,this);
 }
 
 Logger::~Logger()
@@ -89,24 +89,46 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   myfile.close();
 }
 
-void Logger::flowCallback(const px_comm::OpticalFlow flow)
-{
-  // ROS_INFO("Logging FLOW");
-  flow_msgs.vx = flow.velocity_x;
-  flow_msgs.vy = flow.velocity_y;
-  flow_msgs.pz = flow.ground_distance;
-  flow_msgs.quality = flow.quality;
-  // lpe_flow_logger.csv_dump(flow_logname.c_str());
+// void Logger::flowCallback(const px_comm::OpticalFlow flow)
+// {
+//   // ROS_INFO("Logging FLOW");
+//   flow_msgs.vx = flow.velocity_x;
+//   flow_msgs.vy = flow.velocity_y;
+//   flow_msgs.pz = flow.ground_distance;
+//   flow_msgs.quality = flow.quality;
+//   // lpe_flow_logger.csv_dump(flow_logname.c_str());
+//   ofstream myfile;
+//   char* logname_w = new char[flow_logname.size()+1];
+//   std::copy(flow_logname.begin(),flow_logname.end(), logname_w);
+//   logname_w[flow_logname.size()]='\0';
+//   char* full_name= strcat(logname_w,".csv");
+//   myfile.open(full_name,ios::in|ios::app);
+//   myfile<< fixed << setprecision(4)<<flow_msgs.vx<<',';
+//   myfile<< fixed << setprecision(4)<<flow_msgs.vy<<',';
+//   myfile<< fixed << setprecision(4)<<flow_msgs.pz<<',';
+//   myfile<< fixed << setprecision(4)<<flow_msgs.quality<<','<<endl;
+//   myfile.close();
+// }
+ void Logger::flowCallback(const geometry_msgs::PoseStamped vision){
+  vision_msgs.px = vision.pose.position.x;
+  vision_msgs.py = vision.pose.position.y;
+  vision_msgs.pz = vision.pose.position.z;
+
   ofstream myfile;
   char* logname_w = new char[flow_logname.size()+1];
   std::copy(flow_logname.begin(),flow_logname.end(), logname_w);
   logname_w[flow_logname.size()]='\0';
   char* full_name= strcat(logname_w,".csv");
   myfile.open(full_name,ios::in|ios::app);
-  myfile<< fixed << setprecision(4)<<flow_msgs.vx<<',';
-  myfile<< fixed << setprecision(4)<<flow_msgs.vy<<',';
-  myfile<< fixed << setprecision(4)<<flow_msgs.pz<<',';
-  myfile<< fixed << setprecision(4)<<flow_msgs.quality<<','<<endl;
+
+  myfile<< fixed << setprecision(4)<<vision_msgs.px<<',';
+  myfile<< fixed << setprecision(4)<<vision_msgs.py<<',';
+  myfile<< fixed << setprecision(4)<<vision_msgs.pz<<',';
+  myfile<< fixed << setprecision(6)<<vision.pose.orientation.w<<',';
+  myfile<< fixed << setprecision(6)<<vision.pose.orientation.x<<',';
+  myfile<< fixed << setprecision(6)<<vision.pose.orientation.y<<',';
+  myfile<< fixed << setprecision(6)<<vision.pose.orientation.z<<',' <<endl;
+
   myfile.close();
 }
 

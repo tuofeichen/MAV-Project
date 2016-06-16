@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/odroid/MAV-Project/px4_ws/devel/.private/catkin_tools_prebuild/setup.sh
+    local-name: /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/catkin_tools_prebuild/setup.sh

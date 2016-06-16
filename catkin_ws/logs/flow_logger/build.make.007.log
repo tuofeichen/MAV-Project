@@ -1,0 +1,9 @@
+[35m[1mScanning dependencies of target flow_logger[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/flow_logger.dir/src/logger.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/flow_logger/src/logger.cpp: In member function ‘void Logger::flowCallback(geometry_msgs::PoseStamped)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/flow_logger/src/logger.cpp:120:13: error: ‘flog_logname’ was not declared in this scope
+   logname_w[flog_logname.size()]='\0';
+             ^
+make[2]: *** [CMakeFiles/flow_logger.dir/src/logger.cpp.o] Error 1
+make[1]: *** [CMakeFiles/flow_logger.dir/all] Error 2
+make: *** [all] Error 2
