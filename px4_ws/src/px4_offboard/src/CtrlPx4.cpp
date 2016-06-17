@@ -80,8 +80,10 @@ bool CtrlPx4::commandUpdate() {
     state_set_.takeoff = 0;
     state_set_.land = 0;
     if (state_read_.arm){
-    set_armed_.request.value = false; // forcefully send disarm request
-    mavros_armed_client_.call(set_armed_);
+    state_set_.arm = false;
+    state_set_.mode = MANUAL;
+    // set_armed_.request.value = false; // forcefully send disarm request
+    // mavros_armed_client_.call(set_armed_);
     }
     else
     state_set_.failsafe = false;
