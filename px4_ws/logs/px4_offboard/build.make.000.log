@@ -1,231 +1,98 @@
-<<<<<<< HEAD
-[35m[1mScanning dependencies of target actionlib_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target _catkin_empty_exported_target[0m
-[35m[1mScanning dependencies of target tf2_msgs_generate_messages_lisp[0m
-[  0%] Built target actionlib_generate_messages_lisp
-[  0%] Built target tf2_msgs_generate_messages_lisp
-[  0%] Built target _catkin_empty_exported_target
-[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target geometry_msgs_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target _px4_offboard_generate_messages_check_deps_JoyCommand[0m
-[  0%] Built target diagnostic_msgs_generate_messages_cpp
-[  0%] Built target geometry_msgs_generate_messages_lisp
-[  0%] Built target std_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target mavros_msgs_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp[0m
-[  0%] Built target rosgraph_msgs_generate_messages_cpp
-[  0%] Built target mavros_msgs_generate_messages_lisp
-[  0%] Built target rosgraph_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target geometry_msgs_generate_messages_py[0m
-[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
-[  0%] Built target std_msgs_generate_messages_py
-[  0%] Built target std_msgs_generate_messages_cpp
-[  0%] Built target geometry_msgs_generate_messages_py
-[35m[1mScanning dependencies of target geometry_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_lisp[0m
-[  0%] Built target geometry_msgs_generate_messages_cpp
-[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_py[0m
-[  0%] Built target diagnostic_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target sensor_msgs_generate_messages_py[0m
-[  0%] Built target diagnostic_msgs_generate_messages_py
-[35m[1mScanning dependencies of target tf2_msgs_generate_messages_cpp[0m
-[  0%] Built target sensor_msgs_generate_messages_py
-[  0%] Built target _px4_offboard_generate_messages_check_deps_JoyCommand
-[35m[1mScanning dependencies of target roscpp_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_py[0m
-[35m[1mScanning dependencies of target sensor_msgs_generate_messages_lisp[0m
-[  0%] Built target tf2_msgs_generate_messages_cpp
-[  0%] Built target roscpp_generate_messages_lisp
-[  0%] Built target rosgraph_msgs_generate_messages_py
-[  0%] Built target sensor_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target mavros_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target nav_msgs_generate_messages_lisp[0m
-[35m[1mScanning dependencies of target nav_msgs_generate_messages_cpp[0m
-[  0%] Built target mavros_msgs_generate_messages_cpp
-[35m[1mScanning dependencies of target actionlib_generate_messages_cpp[0m
-[  0%] Built target nav_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target nav_msgs_generate_messages_py[0m
-[  0%] Built target actionlib_generate_messages_cpp
-[  0%] Built target nav_msgs_generate_messages_cpp
-[35m[1mScanning dependencies of target roscpp_generate_messages_py[0m
-[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_cpp[0m
-[  0%] Built target nav_msgs_generate_messages_py
-[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_lisp[0m
-[  0%] Built target roscpp_generate_messages_py
-[  0%] Built target actionlib_msgs_generate_messages_cpp
-[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_py[0m
-[  0%] Built target actionlib_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target sensor_msgs_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target roscpp_generate_messages_cpp[0m
-[35m[1mScanning dependencies of target mavros_msgs_generate_messages_py[0m
-[  0%] Built target actionlib_msgs_generate_messages_py
-[  0%] Built target sensor_msgs_generate_messages_cpp
-[  0%] Built target roscpp_generate_messages_cpp
-[35m[1mScanning dependencies of target tf2_msgs_generate_messages_py[0m
-[35m[1mScanning dependencies of target actionlib_generate_messages_py[0m
-[  0%] Built target mavros_msgs_generate_messages_py
-[35m[1mScanning dependencies of target teleop[0m
-[  0%] Built target tf2_msgs_generate_messages_py
-[35m[1mScanning dependencies of target px4_offboard_generate_messages_lisp[0m
-[  0%] Built target actionlib_generate_messages_py
-[  8%] [34m[1mGenerating Lisp code from px4_offboard/JoyCommand.msg[0m
-[35m[1mScanning dependencies of target px4_offboard_generate_messages_py[0m
-[35m[1mScanning dependencies of target px4_offboard_generate_messages_cpp[0m
-[ 16%] [34m[1mGenerating Python from MSG px4_offboard/JoyCommand[0m
-[ 25%] [34m[1mGenerating C++ code from px4_offboard/JoyCommand.msg[0m
-[ 33%] [32mBuilding CXX object CMakeFiles/teleop.dir/src/teleop.cpp.o[0m
-[ 33%] Built target px4_offboard_generate_messages_lisp
-[ 41%] [34m[1mGenerating Python msg __init__.py for px4_offboard[0m
-[ 41%] Built target px4_offboard_generate_messages_py
-[ 41%] Built target px4_offboard_generate_messages_cpp
-[35m[1mScanning dependencies of target SLAM[0m
-[35m[1mScanning dependencies of target apriltag[0m
-[35m[1mScanning dependencies of target checker[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/checker.dir/src/checker.cpp.o[0m
-[ 58%] [32mBuilding CXX object CMakeFiles/apriltag.dir/src/apriltag.cpp.o[0m
-[ 66%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/SLAM.cpp.o[0m
-[ 75%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/checker[0m
-[ 83%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/teleop[0m
-[ 83%] Built target checker
-[35m[1mScanning dependencies of target px4_offboard_generate_messages[0m
-[ 83%] Built target px4_offboard_generate_messages
-[ 83%] Built target teleop
-[ 91%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/apriltag[0m
-[ 91%] Built target apriltag
-[100%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/SLAM[0m
-[100%] Built target SLAM
-=======
--- Using CATKIN_DEVEL_PREFIX: /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard
--- Using CMAKE_PREFIX_PATH: /home/odroid/MAV-Project/px4_ws/devel;/opt/ros/indigo
--- This workspace overlays: /home/odroid/MAV-Project/px4_ws/devel;/opt/ros/indigo
--- Using PYTHON_EXECUTABLE: /usr/bin/python
--- Using Debian Python package layout
--- Using empy: /usr/bin/empy
--- Using CATKIN_ENABLE_TESTING: ON
--- Call enable_testing()
--- Using CATKIN_TEST_RESULTS_DIR: /home/odroid/MAV-Project/px4_ws/build/px4_offboard/test_results
--- Found gtest sources under '/usr/src/gtest': gtests will be built
--- Using Python nosetests: /usr/bin/nosetests-2.7
--- catkin 0.6.18
--- Eigen found (include: /usr/include/eigen3)
--- Using these message generators: gencpp;genlisp;genpy
--- px4_offboard: 1 messages, 0 services
--- Configuring done
--- Generating done
--- Build files have been written to: /home/odroid/MAV-Project/px4_ws/build/px4_offboard
-[35m[1mScanning dependencies of target geometry_msgs_generate_messages_cpp
-[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target mavros_msgs_generate_messages_py
 [0m[35m[1mScanning dependencies of target _px4_offboard_generate_messages_check_deps_JoyCommand
-[0m[0m[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_cpp
-[0m[35m[1mScanning dependencies of target _catkin_empty_exported_target
-[0m[35m[1mScanning dependencies of target std_msgs_generate_messages_py
-[35m[1mScanning dependencies of target geometry_msgs_generate_messages_py
-[0m[0m[  0%] [  0%] [  0%] Built target geometry_msgs_generate_messages_cpp
-Built target std_msgs_generate_messages_cpp
-Built target diagnostic_msgs_generate_messages_lisp
-[  0%] Built target diagnostic_msgs_generate_messages_cpp
-[  0%] Built target _catkin_empty_exported_target
-[  0%] [  0%] Built target std_msgs_generate_messages_py
-Built target geometry_msgs_generate_messages_py
-[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_py
-[35m[1mScanning dependencies of target sensor_msgs_generate_messages_py
-[0m[0m[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_py
-[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_cpp
-[0m[0m[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp
-[  0%] [0mBuilt target _px4_offboard_generate_messages_check_deps_JoyCommand
-[35m[1mScanning dependencies of target sensor_msgs_generate_messages_cpp
-[0m[  0%] [  0%] [  0%] Built target sensor_msgs_generate_messages_py
-Built target diagnostic_msgs_generate_messages_py
-[  0%] [  0%] Built target rosgraph_msgs_generate_messages_lisp
-Built target rosgraph_msgs_generate_messages_cpp
-[  0%] Built target rosgraph_msgs_generate_messages_py
+[0m[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp
+[0m[  0%] [  0%] Built target mavros_msgs_generate_messages_py
 Built target std_msgs_generate_messages_lisp
-[  0%] [35m[1mScanning dependencies of target roscpp_generate_messages_cpp
-[35m[1mScanning dependencies of target roscpp_generate_messages_py
-[35m[1mScanning dependencies of target nav_msgs_generate_messages_cpp
-[0mBuilt target sensor_msgs_generate_messages_cpp
-[0m[0m[35m[1mScanning dependencies of target geometry_msgs_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target sensor_msgs_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target nav_msgs_generate_messages_py
-[35m[1mScanning dependencies of target roscpp_generate_messages_lisp
-[0m[0m[35m[1mScanning dependencies of target nav_msgs_generate_messages_lisp
-[0m[  0%] [  0%] Built target roscpp_generate_messages_py
-Built target roscpp_generate_messages_cpp
-[  0%] [  0%] Built target nav_msgs_generate_messages_cpp
-[  0%] Built target geometry_msgs_generate_messages_lisp
-[  0%] Built target sensor_msgs_generate_messages_lisp
-Built target nav_msgs_generate_messages_py
-[  0%] [  0%] Built target roscpp_generate_messages_lisp
-Built target nav_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target mavros_msgs_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_lisp
+[0m[35m[1mScanning dependencies of target _catkin_empty_exported_target
+[0m[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target _catkin_empty_exported_target
+[  0%] [35m[1mScanning dependencies of target std_msgs_generate_messages_cpp
+Built target _px4_offboard_generate_messages_check_deps_JoyCommand
+[0m[35m[1mScanning dependencies of target geometry_msgs_generate_messages_cpp
+[0m[  0%] Built target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_py
+[0m[  0%] [35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_lisp
+Built target geometry_msgs_generate_messages_cpp
+[0m[  0%] Built target diagnostic_msgs_generate_messages_py
+[  0%] [35m[1mScanning dependencies of target diagnostic_msgs_generate_messages_cpp
+[0mBuilt target diagnostic_msgs_generate_messages_lisp
 [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_cpp
-[0m[0m[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_py
-[0m[  0%] [  0%] [35m[1mScanning dependencies of target mavros_msgs_generate_messages_cpp
-[0mBuilt target mavros_msgs_generate_messages_lisp
-Built target actionlib_msgs_generate_messages_cpp
-[  0%] [35m[1mScanning dependencies of target tf2_msgs_generate_messages_py
-[35m[1mScanning dependencies of target tf2_msgs_generate_messages_lisp
-[  0%] [0m[0mBuilt target actionlib_msgs_generate_messages_py
+[0m[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_lisp
+[0m[  0%] Built target diagnostic_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target actionlib_msgs_generate_messages_py
+[0m[35m[1mScanning dependencies of target mavros_msgs_generate_messages_lisp
+[0m[  0%] [35m[1mScanning dependencies of target mavros_msgs_generate_messages_cpp
+[0mBuilt target actionlib_msgs_generate_messages_py
+[  0%] Built target mavros_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target actionlib_generate_messages_cpp
 [35m[1mScanning dependencies of target tf2_msgs_generate_messages_cpp
-[0mBuilt target actionlib_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target actionlib_generate_messages_lisp
-[0m[  0%] [  0%] Built target mavros_msgs_generate_messages_cpp
-[  0%] Built target tf2_msgs_generate_messages_lisp
-[  0%] Built target tf2_msgs_generate_messages_py
-[  0%] [35m[1mScanning dependencies of target mavros_msgs_generate_messages_py
+[0m[0m[  0%] Built target mavros_msgs_generate_messages_cpp
+[  0%] Built target actionlib_generate_messages_cpp
+[  0%] [35m[1mScanning dependencies of target actionlib_generate_messages_lisp
 Built target tf2_msgs_generate_messages_cpp
-[0m[35m[1mScanning dependencies of target actionlib_generate_messages_py
-[0mBuilt target actionlib_generate_messages_lisp
+[0m[35m[1mScanning dependencies of target nav_msgs_generate_messages_cpp
+[0m[  0%] Built target actionlib_generate_messages_lisp
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp
+[  0%] [0mBuilt target nav_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_py
+[0m[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target actionlib_generate_messages_py
+[0m[  0%] [35m[1mScanning dependencies of target sensor_msgs_generate_messages_lisp
+[0mBuilt target rosgraph_msgs_generate_messages_py
+[  0%] Built target actionlib_generate_messages_py
+[  0%] [35m[1mScanning dependencies of target nav_msgs_generate_messages_lisp
+[0mBuilt target sensor_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_py
+[0m[  0%] [35m[1mScanning dependencies of target std_msgs_generate_messages_py
+[0mBuilt target nav_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] [35m[1mScanning dependencies of target sensor_msgs_generate_messages_cpp
+[0mBuilt target std_msgs_generate_messages_py
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_py
+[0m[  0%] [  0%] Built target sensor_msgs_generate_messages_cpp
+Built target nav_msgs_generate_messages_py
+[35m[1mScanning dependencies of target roscpp_generate_messages_lisp
+[0m[35m[1mScanning dependencies of target roscpp_generate_messages_cpp
+[0m[35m[1mScanning dependencies of target roscpp_generate_messages_py
+[0m[  0%] [  0%] Built target roscpp_generate_messages_lisp
+Built target roscpp_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_py
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_py
+[0m[35m[1mScanning dependencies of target tf2_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_cpp
+[0m[0m[  0%] [  0%] Built target sensor_msgs_generate_messages_py
+Built target tf2_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
 [35m[1mScanning dependencies of target teleop
-[35m[1mScanning dependencies of target px4_offboard_generate_messages_lisp
-[0m[35m[1mScanning dependencies of target actionlib_generate_messages_cpp
-make[2]: Warning: File `/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg' has modification time 9.9e+07 s in the future
-[0m[  0%] [  0%] Built target actionlib_generate_messages_py
-Built target mavros_msgs_generate_messages_py
-[  0%] [ 12%] Built target actionlib_generate_messages_cpp
-[35m[1mScanning dependencies of target px4_offboard_generate_messages_py
-[0m[35m[1mScanning dependencies of target px4_offboard_generate_messages_cpp
-make[2]: Warning: File `/opt/ros/indigo/share/geometry_msgs/cmake/../msg/Point.msg' has modification time 9.9e+07 s in the future
+[35m[1mScanning dependencies of target tf2_msgs_generate_messages_py
+[0m[35m[1mScanning dependencies of target px4_offboard_generate_messages_lisp
+[0m[  0%] Built target tf2_msgs_generate_messages_py
+[ 12%] [35m[1mScanning dependencies of target px4_offboard_generate_messages_cpp
 [0m[34m[1mGenerating Lisp code from px4_offboard/JoyCommand.msg
-make[2]: Warning: File `/opt/ros/indigo/share/gencpp/cmake/../msg.h.template' has modification time 1e+08 s in the future
-[0m[ 25%] [ 37%] [34m[1mGenerating Python from MSG px4_offboard/JoyCommand
+[0m[0m[ 25%] [ 37%] [32mBuilding CXX object CMakeFiles/teleop.dir/src/teleop.cpp.o
 [0m[34m[1mGenerating C++ code from px4_offboard/JoyCommand.msg
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
-[0m[ 37%] Built target px4_offboard_generate_messages_lisp
-[ 50%] [34m[1mGenerating Python msg __init__.py for px4_offboard
-make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/teleop.cpp' has modification time 2.1e+02 s in the future
-[0m[0m[ 62%] [32mBuilding CXX object CMakeFiles/teleop.dir/src/teleop.cpp.o
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
-[0m[ 62%] Built target px4_offboard_generate_messages_py
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
-[ 62%] Built target px4_offboard_generate_messages_cpp
+[0m[35m[1mScanning dependencies of target px4_offboard_generate_messages_py
+[0m[ 50%] [34m[1mGenerating Python from MSG px4_offboard/JoyCommand
+[0m[ 50%] Built target px4_offboard_generate_messages_lisp
+[ 62%] [34m[1mGenerating Python msg __init__.py for px4_offboard
+[0m[ 62%] Built target px4_offboard_generate_messages_cpp
+[ 62%] Built target px4_offboard_generate_messages_py
 [35m[1mScanning dependencies of target checker
-[35m[1mScanning dependencies of target SLAM
 [35m[1mScanning dependencies of target apriltag
+[35m[1mScanning dependencies of target SLAM
 [0m[35m[1mScanning dependencies of target px4_offboard_generate_messages
-make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/checker.cpp' has modification time 2.1e+02 s in the future
-[0m[ 62%] Built target px4_offboard_generate_messages
-[ 75%] [0m[32mBuilding CXX object CMakeFiles/checker.dir/src/checker.cpp.o
-make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp' has modification time 2.1e+02 s in the future
-make[2]: Warning: File `/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/apriltag.cpp' has modification time 1.1e+08 s in the future
-[0m[0m[ 87%] [100%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/SLAM.cpp.o
+[0m[ 75%] [ 75%] Built target px4_offboard_generate_messages
+[32mBuilding CXX object CMakeFiles/checker.dir/src/checker.cpp.o
+[0m[0m[0m[ 87%] [100%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/SLAM.cpp.o
 [0m[32mBuilding CXX object CMakeFiles/apriltag.dir/src/apriltag.cpp.o
 [0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/checker
-[0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/SLAM
 [0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/apriltag
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
 [0m[100%] Built target checker
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
 [100%] Built target apriltag
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
-[100%] Built target SLAM
 [31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/teleop
-make[2]: warning:  Clock skew detected.  Your build may be incomplete.
 [0m[100%] Built target teleop
->>>>>>> add ros pub
+[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/px4_offboard/SLAM
+[0m[100%] Built target SLAM

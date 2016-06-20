@@ -242,8 +242,8 @@ int main(int argc, char **argv)
 			currentRM  = currentTME.topLeftCorner(3,3);  // get rotation    matrix
 			currentTV  = currentTME.topRightCorner(3,1); // get translation vector
 
-			cout << "current location is "<<endl<<currentTV<<endl;
-			cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+		//	cout << "current location is "<<endl<<currentTV<<endl;
+		//	cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 			
 			logger.updatePos(currentTME);
 

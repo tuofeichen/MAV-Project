@@ -124,11 +124,8 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 }
 
 enum{newNode = 0, prevNode = 1};
-<<<<<<< HEAD
-int main()
-=======
+
 int main(int argc, char **argv)
->>>>>>> add ros pub
 {	
 	ros::init(argc,argv,"rgbd");
 	RosHandler logger;
@@ -245,8 +242,8 @@ int main(int argc, char **argv)
 			currentRM  = currentTME.topLeftCorner(3,3);  // get rotation    matrix
 			currentTV  = currentTME.topRightCorner(3,1); // get translation vector
 
-			cout << "current location is "<<endl<<currentTV<<endl;
-			cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+		//	cout << "current location is "<<endl<<currentTV<<endl;
+		//	cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 			
 			logger.updatePos(currentTME);
 

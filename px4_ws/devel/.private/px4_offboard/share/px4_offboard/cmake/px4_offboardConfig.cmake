@@ -67,14 +67,14 @@ set(px4_offboard_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(px4_offboard_SOURCE_PREFIX /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard)
-  set(px4_offboard_DEVEL_PREFIX /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard)
+  set(px4_offboard_SOURCE_PREFIX /home/odroid/MAV-Project/px4_ws/src/px4_offboard)
+  set(px4_offboard_DEVEL_PREFIX /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard)
   set(px4_offboard_INSTALL_PREFIX "")
   set(px4_offboard_PREFIX ${px4_offboard_DEVEL_PREFIX})
 else()
   set(px4_offboard_SOURCE_PREFIX "")
   set(px4_offboard_DEVEL_PREFIX "")
-  set(px4_offboard_INSTALL_PREFIX /home/tuofeichen/SLAM/MAV-Project/px4_ws/install)
+  set(px4_offboard_INSTALL_PREFIX /home/odroid/MAV-Project/px4_ws/install)
   set(px4_offboard_PREFIX ${px4_offboard_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(px4_offboard_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/include;/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include " STREQUAL " ")
+if(NOT "/home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/include;/home/odroid/MAV-Project/px4_ws/src/px4_offboard/include " STREQUAL " ")
   set(px4_offboard_INCLUDE_DIRS "")
-  set(_include_dirs "/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/include;/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include")
+  set(_include_dirs "/home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/include;/home/odroid/MAV-Project/px4_ws/src/px4_offboard/include")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
@@ -103,7 +103,7 @@ if(NOT "/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/inc
         message(FATAL_ERROR "Project 'px4_offboard' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  Ask the maintainer 'parallels <parallels@todo.todo>' to fix it.")
       endif()
     else()
-      message(FATAL_ERROR "Project 'px4_offboard' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/${idir}'.  Ask the maintainer 'parallels <parallels@todo.todo>' to fix it.")
+      message(FATAL_ERROR "Project 'px4_offboard' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/odroid/MAV-Project/px4_ws/src/px4_offboard/${idir}'.  Ask the maintainer 'parallels <parallels@todo.todo>' to fix it.")
     endif()
     _list_append_unique(px4_offboard_INCLUDE_DIRS ${include})
   endforeach()
@@ -122,7 +122,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/.private/px4_offboard/lib;/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib;/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib;/home/tuofeichen/SLAM/panda_ws/devel/lib;/opt/ros/indigo/lib)
+    foreach(path /home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib;/home/odroid/MAV-Project/px4_ws/devel/lib;/opt/ros/indigo/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

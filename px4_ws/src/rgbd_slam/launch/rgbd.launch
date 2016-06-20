@@ -1,0 +1,6 @@
+<launch>
+<node pkg="rgbd_slam" type="rgbd_slam" name="rgbd_slam" output="screen">
+</node>
+
+</launch>
+

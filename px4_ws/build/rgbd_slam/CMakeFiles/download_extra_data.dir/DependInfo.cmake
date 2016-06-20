@@ -1,12 +1,15 @@
 # The set of languages for which implicit dependencies are needed:
-set(CMAKE_DEPENDS_LANGUAGES
+SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 
+# Preprocessor definitions for this target.
+SET(CMAKE_TARGET_DEFINITIONS
+  "ROSCONSOLE_BACKEND_LOG4CXX"
+  "ROS_PACKAGE_NAME=\"rgbd_slam\""
+  )
+
 # Targets to which this target links.
-<<<<<<< HEAD
-set(CMAKE_TARGET_LINKED_INFO_FILES
-=======
 SET(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
@@ -17,5 +20,7 @@ SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
   "/home/odroid/OpenNI-Linux-Arm-2.2/Include"
   "/opt/opencv3/include"
->>>>>>> add ros pub
   )
+SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

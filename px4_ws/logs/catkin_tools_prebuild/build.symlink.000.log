@@ -1,8 +1,8 @@
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/./setup.bash
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/./setup.sh
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/./setup.zsh
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/./_setup_util.py
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/./env.sh
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
-Symlinking /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/./env.sh
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/./setup.sh
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/./setup.zsh
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/./setup.bash
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/./_setup_util.py
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Symlinking /home/odroid/MAV-Project/px4_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake

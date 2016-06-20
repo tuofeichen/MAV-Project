@@ -32,4 +32,3 @@ void RosHandler::updatePos(Matrix4f& currentTME)
 
 }
 
-};

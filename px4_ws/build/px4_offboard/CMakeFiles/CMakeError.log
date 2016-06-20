@@ -1,41 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp
+Change Dir: /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_d29d1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d29d1.dir/build.make CMakeFiles/cmTC_d29d1.dir/build
-make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d29d1.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_d29d1.dir/CheckSymbolExists.c.o   -c /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_d29d1
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d29d1.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_d29d1.dir/CheckSymbolExists.c.o  -o cmTC_d29d1 -rdynamic 
-CMakeFiles/cmTC_d29d1.dir/CheckSymbolExists.c.o: In function `main':
-CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
-collect2: error: ld returned 1 exit status
-make[1]: *** [cmTC_d29d1] Error 1
-make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-make: *** [cmTC_d29d1/fast] Error 2
-=======
-Run Build Command:/usr/bin/make "cmTryCompileExec2476994262/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2476994262.dir/build.make CMakeFiles/cmTryCompileExec2476994262.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec3186414711/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3186414711.dir/build.make CMakeFiles/cmTryCompileExec3186414711.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec2476994262.dir/CheckSymbolExists.c.o
-/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec2476994262.dir/CheckSymbolExists.c.o   -c /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTryCompileExec2476994262
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2476994262.dir/link.txt --verbose=1
-/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec2476994262.dir/CheckSymbolExists.c.o  -o cmTryCompileExec2476994262 -rdynamic 
-CMakeFiles/cmTryCompileExec2476994262.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTryCompileExec3186414711.dir/CheckSymbolExists.c.o
+/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec3186414711.dir/CheckSymbolExists.c.o   -c /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3186414711
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3186414711.dir/link.txt --verbose=1
+/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec3186414711.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3186414711 -rdynamic 
+CMakeFiles/cmTryCompileExec3186414711.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0xe): undefined reference to `pthread_create'
 CheckSymbolExists.c:(.text+0x12): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTryCompileExec2476994262] Error 1
+make[1]: *** [cmTryCompileExec3186414711] Error 1
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-make: *** [cmTryCompileExec2476994262/fast] Error 2
->>>>>>> add ros pub
+make: *** [cmTryCompileExec3186414711/fast] Error 2
 
-File /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -51,38 +34,21 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp
+Change Dir: /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_fd089/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fd089.dir/build.make CMakeFiles/cmTC_fd089.dir/build
-make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fd089.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_fd089.dir/CheckFunctionExists.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CheckFunctionExists.c
-Linking C executable cmTC_fd089
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd089.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_fd089.dir/CheckFunctionExists.c.o  -o cmTC_fd089 -rdynamic -lpthreads 
-/usr/bin/ld: cannot find -lpthreads
-collect2: error: ld returned 1 exit status
-make[1]: *** [cmTC_fd089] Error 1
-make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-make: *** [cmTC_fd089/fast] Error 2
-=======
-Run Build Command:/usr/bin/make "cmTryCompileExec594267445/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec594267445.dir/build.make CMakeFiles/cmTryCompileExec594267445.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec1664022815/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1664022815.dir/build.make CMakeFiles/cmTryCompileExec1664022815.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CheckFunctionExists.c' has modification time 3.3e+07 s in the future
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec594267445.dir/CheckFunctionExists.c.o
-/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec594267445.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec594267445
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec594267445.dir/link.txt --verbose=1
-/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec594267445.dir/CheckFunctionExists.c.o  -o cmTryCompileExec594267445 -rdynamic -lpthreads 
+Building C object CMakeFiles/cmTryCompileExec1664022815.dir/CheckFunctionExists.c.o
+/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1664022815.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1664022815
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1664022815.dir/link.txt --verbose=1
+/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1664022815.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1664022815 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTryCompileExec594267445] Error 1
+make[1]: *** [cmTryCompileExec1664022815] Error 1
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/px4_offboard/CMakeFiles/CMakeTmp'
-make: *** [cmTryCompileExec594267445/fast] Error 2
->>>>>>> add ros pub
+make: *** [cmTryCompileExec1664022815/fast] Error 2
 
 
