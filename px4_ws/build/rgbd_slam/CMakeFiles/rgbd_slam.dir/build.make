@@ -106,50 +106,50 @@ rgbd_slam_OBJECTS = \
 # External object files for target rgbd_slam
 rgbd_slam_EXTERNAL_OBJECTS =
 
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/src/main.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/build.make
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_log4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_backend_interface.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/liblog4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libxmlrpcpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp_serialization.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librostime.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libcpp_common.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_system.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libpthread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_log4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_backend_interface.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/liblog4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libxmlrpcpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp_serialization.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librostime.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libcpp_common.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_system.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libpthread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam"
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/src/main.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/build.make
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_log4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_backend_interface.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/liblog4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libxmlrpcpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp_serialization.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librostime.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libcpp_common.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_system.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libpthread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_log4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librosconsole_backend_interface.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/liblog4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libxmlrpcpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libroscpp_serialization.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/librostime.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /opt/ros/indigo/lib/libcpp_common.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_system.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libpthread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam: CMakeFiles/rgbd_slam.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable /home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rgbd_slam.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/rgbd_slam.dir/build: /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/rgbd_slam/rgbd_slam
+CMakeFiles/rgbd_slam.dir/build: /home/odroid/MAV-Project/px4_ws/devel/lib/rgbd_slam/rgbd_slam
 .PHONY : CMakeFiles/rgbd_slam.dir/build
 
 CMakeFiles/rgbd_slam.dir/requires: CMakeFiles/rgbd_slam.dir/src/main.cpp.o.requires

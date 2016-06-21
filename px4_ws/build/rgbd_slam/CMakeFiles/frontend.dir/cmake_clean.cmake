@@ -9,8 +9,8 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/frontend.dir/src/TcpServer.cpp.o"
   "CMakeFiles/frontend.dir/src/VisualOdometry.cpp.o"
   "CMakeFiles/frontend.dir/src/UavComProtocolHandler.cpp.o"
-  "/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.pdb"
-  "/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so"
+  "/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.pdb"
+  "/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -68,7 +68,7 @@ set(rgbd_slam_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(rgbd_slam_SOURCE_PREFIX /home/odroid/MAV-Project/px4_ws/src/rgbd_slam)
-  set(rgbd_slam_DEVEL_PREFIX /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam)
+  set(rgbd_slam_DEVEL_PREFIX /home/odroid/MAV-Project/px4_ws/devel)
   set(rgbd_slam_INSTALL_PREFIX "")
   set(rgbd_slam_PREFIX ${rgbd_slam_DEVEL_PREFIX})
 else()

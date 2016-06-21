@@ -47,12 +47,13 @@ private:
 		rowsTm = 4, colsTm = 4, sizeTypeTm = sizeof(float),
 		rowsIm = 6, colsIm = 6, sizeTypeIm = sizeof(float)
 	};
+
 	std::vector<uint8_t> sEdge;
 	std::vector<uint8_t> sRgbImg;
 	std::vector<uint8_t> sDepthImg;
 	boost::mutex& backendMutex;
 
-	//
+	
 	// recive stuff
 	std::vector<uint8_t> sTm;
 };

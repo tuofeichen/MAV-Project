@@ -1,1 +1,0 @@
-/home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/pkgconfig/px4_offboard.pc

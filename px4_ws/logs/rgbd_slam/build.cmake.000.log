@@ -9,7 +9,7 @@ Not searching for unused variables given on the command line.
 [36m--[0m Check for working CXX compiler: /usr/lib/ccache/c++ -- works
 [36m--[0m Detecting CXX compiler ABI info
 [36m--[0m Detecting CXX compiler ABI info - done
-[36m--[0m Using CATKIN_DEVEL_PREFIX: /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam
+[36m--[0m Using CATKIN_DEVEL_PREFIX: /home/odroid/MAV-Project/px4_ws/devel
 [36m--[0m Using CMAKE_PREFIX_PATH: /home/odroid/MAV-Project/px4_ws/devel;/opt/ros/indigo
 [36m--[0m This workspace overlays: /home/odroid/MAV-Project/px4_ws/devel;/opt/ros/indigo
 [36m--[0m Found PythonInterp: /usr/bin/python (found version "2.7.6")

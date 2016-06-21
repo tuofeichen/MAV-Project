@@ -109,7 +109,7 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 	VisualOdometry::Result res;
 	if (validFlag){
 		res = VisualOdometry::checkReliability(tmCurToNode, newFrame.getTime() - prevNode.getTime());
-		validFlag = (res != VisualOdometry::invalid);
+		validFlag = (res != VisualOdometry::invalid); // still valid?
 	}
 
 	if (validFlag){
@@ -204,7 +204,7 @@ int main(int argc, char **argv)
 	double start, end, dif; // debug
 	while(backend.running() && AsusProLiveOpenNI2::running() && ros::ok())
 	{
-		//
+		
 		//debug
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC;
 		
@@ -212,15 +212,14 @@ int main(int argc, char **argv)
 //		noError = AsusProLive::grab(frames[state]);
 		noError = AsusProLiveOpenNI2::grab(frames[state]);
 
-		if(!noError)
-        {
+		if(!noError){
         	boost::this_thread::sleep(boost::posix_time::milliseconds(10));
         	continue;
-        }
+        	}
 		else
 			++totalNumberOfFrames; // debug
 		
-		//
+		
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 		dif = (end - start)*1000.0; // note down grabbing time 
@@ -234,17 +233,19 @@ int main(int argc, char **argv)
 			cout << "Bad Frame Nr. " << ++badFramesCounter << endl; // debug
 			continue;
 		}
+
 		// process frame: with current frame to last frame
 		if(processFrame(frames[state],frames[state?0:1],tmCurToNode,imCurToNode,newNode))
 		{
 			couldNotMatchCounter = 0;
-			currentTME = backend.   getCurrentPosition();
+			currentTME = logger.getLpe(); //backend.   getCurrentPosition();
+			
 			currentRM  = currentTME.topLeftCorner(3,3);  // get rotation    matrix
 			currentTV  = currentTME.topRightCorner(3,1); // get translation vector
-
-		//	cout << "current location is "<<endl<<currentTV<<endl;
-		//	cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
 			
+			cout << "current location is "<< endl << currentTME << endl;
+
+		
 			logger.updatePos(currentTME);
 
 			// fuse data with IMU TODO
@@ -286,6 +287,7 @@ int main(int argc, char **argv)
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 		dif = (end - start)*1000.0;
+		ros::spinOnce();
 		//cout << "Frontend processing took " << dif << "ms" << endl; //debug
 	}
 

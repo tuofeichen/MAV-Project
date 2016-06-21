@@ -21,6 +21,8 @@ Eigen/Geometry
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp
 RosHandler.h
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.h
+math.h
+-
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

@@ -1,1 +1,0 @@
-/home/odroid/MAV-Project/px4_ws/devel/.private/px4_offboard/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py

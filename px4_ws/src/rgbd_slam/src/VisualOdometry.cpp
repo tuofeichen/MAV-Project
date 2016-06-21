@@ -22,6 +22,7 @@ bool VisualOdometry::setKeypoints(Frame& frame)
 		ret = true;
 	}
 
+	// number of 3D key points
 	return ret;
 }
 

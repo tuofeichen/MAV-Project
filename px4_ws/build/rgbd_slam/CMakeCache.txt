@@ -18,7 +18,7 @@
 BUILD_SHARED_LIBS:BOOL=ON
 
 //catkin devel space
-CATKIN_DEVEL_PREFIX:PATH=/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam
+CATKIN_DEVEL_PREFIX:PATH=/home/odroid/MAV-Project/px4_ws/devel
 
 //Catkin enable testing
 CATKIN_ENABLE_TESTING:BOOL=ON

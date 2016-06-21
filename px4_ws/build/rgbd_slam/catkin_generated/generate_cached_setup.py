@@ -19,7 +19,7 @@ except ImportError:
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/env.sh')
+code = generate_environment_script('/home/odroid/MAV-Project/px4_ws/devel/env.sh')
 
 output_filename = '/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:

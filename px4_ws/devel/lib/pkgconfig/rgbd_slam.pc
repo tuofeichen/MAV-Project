@@ -1,1 +1,8 @@
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/pkgconfig/rgbd_slam.pc
+prefix=/home/odroid/MAV-Project/px4_ws/devel
+
+Name: rgbd_slam
+Description: Description of rgbd_slam
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/odroid/MAV-Project/px4_ws/devel/lib 
+Requires: 

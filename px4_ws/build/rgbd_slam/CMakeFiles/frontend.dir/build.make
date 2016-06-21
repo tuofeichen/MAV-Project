@@ -298,40 +298,40 @@ frontend_OBJECTS = \
 # External object files for target frontend
 frontend_EXTERNAL_OBJECTS =
 
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AsusProLive.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Backend.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/FeatureDEM.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Frame.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/TcpServer.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/VisualOdometry.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/src/UavComProtocolHandler.cpp.o
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/build.make
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/libroscpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole_log4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole_backend_interface.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/liblog4cxx.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/libxmlrpcpp.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/libroscpp_serialization.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/librostime.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /opt/ros/indigo/lib/libcpp_common.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_system.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libpthread.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
-/home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so: CMakeFiles/frontend.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so"
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AsusProLive.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Backend.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/FeatureDEM.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Frame.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/TcpServer.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/VisualOdometry.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/UavComProtocolHandler.cpp.o
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/build.make
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/libroscpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_signals.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_filesystem.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole_log4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/librosconsole_backend_interface.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/liblog4cxx.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_regex.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/libxmlrpcpp.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/libroscpp_serialization.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/librostime.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_date_time.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/libcpp_common.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_system.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libboost_thread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libpthread.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: /usr/lib/arm-linux-gnueabihf/libconsole_bridge.so
+/home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library /home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/frontend.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/frontend.dir/build: /home/odroid/MAV-Project/px4_ws/devel/.private/rgbd_slam/lib/libfrontend.so
+CMakeFiles/frontend.dir/build: /home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so
 .PHONY : CMakeFiles/frontend.dir/build
 
 CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o.requires
