@@ -28,30 +28,31 @@ The CXX compiler identification is GNU, found in "/home/odroid/MAV-Project/px4_w
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec3784618204/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3784618204.dir/build.make CMakeFiles/cmTryCompileExec3784618204.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec3110675152/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3110675152.dir/build.make CMakeFiles/cmTryCompileExec3110675152.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec3784618204.dir/testCCompiler.c.o
-/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec3784618204.dir/testCCompiler.c.o   -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTryCompileExec3784618204
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3784618204.dir/link.txt --verbose=1
-/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec3784618204.dir/testCCompiler.c.o  -o cmTryCompileExec3784618204 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec3110675152.dir/testCCompiler.c.o
+/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec3110675152.dir/testCCompiler.c.o   -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec3110675152
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3110675152.dir/link.txt --verbose=1
+/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec3110675152.dir/testCCompiler.c.o  -o cmTryCompileExec3110675152 -rdynamic 
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec4210555853/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec4210555853.dir/build.make CMakeFiles/cmTryCompileExec4210555853.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec2127494548/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2127494548.dir/build.make CMakeFiles/cmTryCompileExec2127494548.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
+make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c' has modification time 3.3e+07 s in the future
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o
-/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c
-Linking C executable cmTryCompileExec4210555853
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4210555853.dir/link.txt --verbose=1
-/usr/lib/ccache/cc     -v CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec4210555853 -rdynamic  
+Building C object CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o
+/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec2127494548
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2127494548.dir/link.txt --verbose=1
+/usr/lib/ccache/cc     -v CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2127494548 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/4.8/lto-wrapper
@@ -61,24 +62,26 @@ Thread model: posix
 gcc version 4.8.2 (Ubuntu/Linaro 4.8.2-19ubuntu1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib/:/lib/arm-linux-gnueabihf/:/lib/../lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/../lib/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec4210555853' '-rdynamic' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu'
- /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec4210555853 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2127494548' '-rdynamic' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu'
+ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec2127494548 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec4210555853/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec4210555853.dir/build.make CMakeFiles/cmTryCompileExec4210555853.dir/build]
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec2127494548/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec2127494548.dir/build.make CMakeFiles/cmTryCompileExec2127494548.dir/build]
   ignore line: [make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp']
+  ignore line: [make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c' has modification time 3.3e+07 s in the future]
   ignore line: [/usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building C object CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTryCompileExec4210555853]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4210555853.dir/link.txt --verbose=1]
-  ignore line: [/usr/lib/ccache/cc     -v CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec4210555853 -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec2127494548]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2127494548.dir/link.txt --verbose=1]
+  ignore line: [/usr/lib/ccache/cc     -v CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2127494548 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/4.8/lto-wrapper]
@@ -88,8 +91,8 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 4.8.2 (Ubuntu/Linaro 4.8.2-19ubuntu1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib/:/lib/arm-linux-gnueabihf/:/lib/../lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/../lib/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec4210555853' '-rdynamic' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec4210555853 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2127494548' '-rdynamic' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec2127494548 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2] ==> ignore
     arg [--sysroot=/] ==> ignore
     arg [--build-id] ==> ignore
@@ -104,7 +107,7 @@ Parsed C implicit link information from above output:
     arg [armelf_linux_eabi] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec4210555853] ==> ignore
+    arg [cmTryCompileExec2127494548] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o] ==> ignore
@@ -116,7 +119,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../..]
-    arg [CMakeFiles/cmTryCompileExec4210555853.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec2127494548.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -148,30 +151,31 @@ Parsed C implicit link information from above output:
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec331188720/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec331188720.dir/build.make CMakeFiles/cmTryCompileExec331188720.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec180819224/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec180819224.dir/build.make CMakeFiles/cmTryCompileExec180819224.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec331188720.dir/testCXXCompiler.cxx.o
-/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec331188720.dir/testCXXCompiler.cxx.o -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTryCompileExec331188720
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec331188720.dir/link.txt --verbose=1
-/usr/lib/ccache/c++        CMakeFiles/cmTryCompileExec331188720.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec331188720 -rdynamic 
+Building CXX object CMakeFiles/cmTryCompileExec180819224.dir/testCXXCompiler.cxx.o
+/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec180819224.dir/testCXXCompiler.cxx.o -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec180819224
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec180819224.dir/link.txt --verbose=1
+/usr/lib/ccache/c++        CMakeFiles/cmTryCompileExec180819224.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec180819224 -rdynamic 
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec1305548558/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec1305548558.dir/build.make CMakeFiles/cmTryCompileExec1305548558.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec1192410300/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1192410300.dir/build.make CMakeFiles/cmTryCompileExec1192410300.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
+make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp' has modification time 3.3e+07 s in the future
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o
-/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTryCompileExec1305548558
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1305548558.dir/link.txt --verbose=1
-/usr/lib/ccache/c++      -v CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1305548558 -rdynamic  
+Building CXX object CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o
+/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1192410300
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1192410300.dir/link.txt --verbose=1
+/usr/lib/ccache/c++      -v CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1192410300 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/4.8/lto-wrapper
@@ -181,24 +185,26 @@ Thread model: posix
 gcc version 4.8.2 (Ubuntu/Linaro 4.8.2-19ubuntu1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib/:/lib/arm-linux-gnueabihf/:/lib/../lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/../lib/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1305548558' '-rdynamic' '-shared-libgcc' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu'
- /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec1305548558 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1192410300' '-rdynamic' '-shared-libgcc' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu'
+ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec1192410300 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec1305548558/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec1305548558.dir/build.make CMakeFiles/cmTryCompileExec1305548558.dir/build]
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec1192410300/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec1192410300.dir/build.make CMakeFiles/cmTryCompileExec1192410300.dir/build]
   ignore line: [make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp']
+  ignore line: [make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp' has modification time 3.3e+07 s in the future]
   ignore line: [/usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTryCompileExec1305548558]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1305548558.dir/link.txt --verbose=1]
-  ignore line: [/usr/lib/ccache/c++      -v CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1305548558 -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/lib/ccache/c++     -o CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1192410300]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1192410300.dir/link.txt --verbose=1]
+  ignore line: [/usr/lib/ccache/c++      -v CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1192410300 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/4.8/lto-wrapper]
@@ -208,8 +214,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 4.8.2 (Ubuntu/Linaro 4.8.2-19ubuntu1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/4.8/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib/:/lib/arm-linux-gnueabihf/:/lib/../lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/../lib/:/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1305548558' '-rdynamic' '-shared-libgcc' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec1305548558 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1192410300' '-rdynamic' '-shared-libgcc' '-march=armv7-a' '-mfloat-abi=hard' '-mfpu=vfpv3-d16' '-mthumb' '-mtls-dialect=gnu']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu --as-needed -m armelf_linux_eabi -z relro -o cmTryCompileExec1192410300 /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/4.8 -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../../lib -L/lib/arm-linux-gnueabihf -L/lib/../lib -L/usr/lib/arm-linux-gnueabihf -L/usr/lib/../lib -L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../.. CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/4.8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/collect2] ==> ignore
     arg [--sysroot=/] ==> ignore
     arg [--build-id] ==> ignore
@@ -224,7 +230,7 @@ Parsed CXX implicit link information from above output:
     arg [armelf_linux_eabi] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec1305548558] ==> ignore
+    arg [cmTryCompileExec1192410300] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/4.8/crtbegin.o] ==> ignore
@@ -236,7 +242,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/4.8/../../..]
-    arg [CMakeFiles/cmTryCompileExec1305548558.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec1192410300.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -266,30 +272,32 @@ Parsed CXX implicit link information from above output:
 Determining if files pthread.h exist passed with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec922313052/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec922313052.dir/build.make CMakeFiles/cmTryCompileExec922313052.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec2972001696/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2972001696.dir/build.make CMakeFiles/cmTryCompileExec2972001696.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec922313052.dir/CheckIncludeFiles.c.o
-/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec922313052.dir/CheckIncludeFiles.c.o   -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
-Linking C executable cmTryCompileExec922313052
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec922313052.dir/link.txt --verbose=1
-/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec922313052.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec922313052 -rdynamic 
+Building C object CMakeFiles/cmTryCompileExec2972001696.dir/CheckIncludeFiles.c.o
+/usr/lib/ccache/cc    -o CMakeFiles/cmTryCompileExec2972001696.dir/CheckIncludeFiles.c.o   -c /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec2972001696
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2972001696.dir/link.txt --verbose=1
+/usr/lib/ccache/cc       CMakeFiles/cmTryCompileExec2972001696.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2972001696 -rdynamic 
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec600823543/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec600823543.dir/build.make CMakeFiles/cmTryCompileExec600823543.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec1770123482/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1770123482.dir/build.make CMakeFiles/cmTryCompileExec1770123482.dir/build
 make[1]: Entering directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
+make[1]: Warning: File `/usr/share/cmake-2.8/Modules/CheckFunctionExists.c' has modification time 3.3e+07 s in the future
 /usr/bin/cmake -E cmake_progress_report /home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec600823543.dir/CheckFunctionExists.c.o
-/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec600823543.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec600823543
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec600823543.dir/link.txt --verbose=1
-/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec600823543.dir/CheckFunctionExists.c.o  -o cmTryCompileExec600823543 -rdynamic -lpthread 
+Building C object CMakeFiles/cmTryCompileExec1770123482.dir/CheckFunctionExists.c.o
+/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1770123482.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1770123482
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1770123482.dir/link.txt --verbose=1
+/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1770123482.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1770123482 -rdynamic -lpthread 
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
 make[1]: Leaving directory `/home/odroid/MAV-Project/px4_ws/build/rgbd_slam/CMakeFiles/CMakeTmp'
 
 

@@ -15,6 +15,8 @@ public:
 	~RosHandler();
 	void updatePos(Matrix4f&);
 	Matrix4f getLpe(){ return _lpe; };
+	double   getTime(){ return _lpe_time; };
+
 
 private: 
 	ros::NodeHandle 			_nh;
@@ -22,11 +24,21 @@ private:
 	ros::Subscriber				_lpe_sub;
 
 	Matrix4f 				_lpe;
+	Matrix4f				_lpe2cam; // transformation matrix
+
+	Vector3f				_rpy;
+	Vector3f				_xyz;
+	
+	float					_lpe_yaw_offset;
+	
+	double 					_lpe_time;
+	
 
 	geometry_msgs::PoseStamped 	_rgbd_slam_pos; 
-	void lpeCallback(const geometr1y_msgs::PoseStamped pos_read);
+	void lpeCallback(const geometry_msgs::PoseStamped pos_read);
 	void q2rpy(Quaternionf q, float& r, float& p, float& y);
-	void rot2rpy(Matrix3f R,float& r, float& p, float& y);
+	void rot2rpy(Matrix3f R,float& r, float& p, float& y);		
+	Matrix3f rpy2rot(float r, float p, float y);
 
 };
 

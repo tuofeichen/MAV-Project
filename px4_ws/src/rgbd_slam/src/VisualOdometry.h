@@ -24,6 +24,7 @@ public:
 	static bool setKeypoints(Frame& frame);
 	static void estimateTrafo(const Frame& srcFrame, const Frame& targetFrame,
 				Eigen::Matrix4f& tmSrcToTarget, Eigen::Matrix<float, 6, 6>& imEstSrcToTarget, bool& valid);
+	
 	enum Result {valid, invalid, small};
 	static Result checkReliability(const Eigen::Matrix4f& tm, const double& dt);
 

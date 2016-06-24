@@ -11,6 +11,7 @@
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <Eigen/Geometry>
+#include <Eigen/Dense>
 
 #include "VisualOdometry.h"
 #include "AsusProLiveOpenNI2.h"
@@ -19,16 +20,18 @@
 using namespace std;
 using namespace Eigen;
 
+
 // #define STREAM_ONLY
 
-//
+
 // Settings
-//
+
 enum {
         setNewNodeAfterNrOfFailedMatches = 1
 };
 
 static constexpr int backendPort = 11000;
+
 
 #ifdef STREAM_ONLY
 int main(int argc, char **argv)
@@ -100,6 +103,8 @@ int main(int argc, char **argv)
 
 static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f& tmCurToNode, Matrix<float, 6, 6>& imCurToNode, bool& newNode)
 {
+
+
 	//
 	// estimate transforamtion
 	bool validFlag;
@@ -107,9 +112,11 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 
 	// process result
 	VisualOdometry::Result res;
+	
 	if (validFlag){
 		res = VisualOdometry::checkReliability(tmCurToNode, newFrame.getTime() - prevNode.getTime());
-		validFlag = (res != VisualOdometry::invalid); // still valid?
+		validFlag = (res != VisualOdometry::invalid); 
+		// still valid?
 	}
 
 	if (validFlag){
@@ -129,7 +136,8 @@ int main(int argc, char **argv)
 {	
 	ros::init(argc,argv,"rgbd");
 	RosHandler logger;
-	//
+
+
 	// initialization
 	//
 	int state = newNode; 
@@ -137,7 +145,9 @@ int main(int argc, char **argv)
 	static Matrix4f tmCurToNode;
 	static Matrix<float, 6, 6> imCurToNode;
 
-	Matrix4f currentTME;
+	// lpe related
+	double currentTime = 0;; 
+	Matrix4f currentPos;
 	Matrix3f currentRM;
 	Vector3f currentTV;
 
@@ -173,6 +183,7 @@ int main(int argc, char **argv)
 	bool noError = false;
 	while(backend.running() && AsusProLiveOpenNI2::running())
 	{
+
 //		noError = AsusProLive::grab(frames[state]);
 		noError = AsusProLiveOpenNI2::grab(frames[state]);
 
@@ -199,7 +210,7 @@ int main(int argc, char **argv)
 
 	newNodeCounter = 1;
 
-	//
+	
 	// process
 	double start, end, dif; // debug
 	while(backend.running() && AsusProLiveOpenNI2::running() && ros::ok())
@@ -223,44 +234,61 @@ int main(int argc, char **argv)
 		// TODO debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 		dif = (end - start)*1000.0; // note down grabbing time 
+
 		//cout << "Grabbing took " << dif << "ms" << endl; //debug
-		
 
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
 
-		if(!VisualOdometry::setKeypoints(frames[state]))
-		{
+
+		// calculate the edge regardless
+		tmCurToNode = currentPos.inverse() * logger.getLpe();
+	
+		// check delta movement
+
+		/*
+		if ((logger.getTime() != 0) && (!VisualOdometry::checkReliability(tmCurToNode,logger.getTime() - currentTime)) ){		
+			currentTime = logger.getTime(); 
+			currentPos  = logger.getLpe(); // note down current position regardless
+			newNode = 1; // valid transform
+
+			cout << "[LPE] Node " << ++newNodeCounter << " sent to backend" << endl; // debug
+				// cout << "current location is "<<endl<<currentTV<<endl;
+				// cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+			backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
+			state = state ? 0 : 1;		
+			
+		}
+		*/
+		
+
+		if(!VisualOdometry::setKeypoints(frames[state])){	
 			cout << "Bad Frame Nr. " << ++badFramesCounter << endl; // debug
 			continue;
 		}
 
 		// process frame: with current frame to last frame
+
 		if(processFrame(frames[state],frames[state?0:1],tmCurToNode,imCurToNode,newNode))
 		{
 			couldNotMatchCounter = 0;
-			currentTME = logger.getLpe(); //backend.   getCurrentPosition();
-			
-			currentRM  = currentTME.topLeftCorner(3,3);  // get rotation    matrix
-			currentTV  = currentTME.topRightCorner(3,1); // get translation vector
-			
-			cout << "current location is "<< endl << currentTME << endl;
-
-			cout << "current RPY is" << endl << currentRM.eulerAngles(0,1,2)<<endl;
-			
-			logger.updatePos(currentTME);
+			currentPos = backend.getCurrentPosition();
 
 			// fuse data with IMU TODO
-
 			// send position to UAV TODO
-
 			// set new node
 
 			if(newNode)
-			{
-				cout << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug
+			{	
 				
-				// cout << "current location is "<<endl<<currentTV<<endl;
-				// cout << "current RPY is" << endl << currentRM.eulerAngles(0,2,1)<<endl;
+				cout << endl << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug	
+				cout << "visual slam estimate" << endl;	
+				//cout << currentPos << endl; 			
+				logger.updatePos(currentPos);
+
+				cout << endl << "lpe estimate"<<endl;	
+				//currentPos = logger.getLpe(); 
+				cout << currentPos << endl; 
+				logger.updatePos(currentPos);
 
 				backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
 				state = state ? 0 : 1;
@@ -274,8 +302,8 @@ int main(int argc, char **argv)
 			if( ++couldNotMatchCounter >= setNewNodeAfterNrOfFailedMatches)
 			{
 				cout << "Dummy node " << ++dummyFrameCounter << " sent to backend" << endl; // debug
-
 				// dummy transformation, TODO exchange with IMU estimate
+
 				tmCurToNode = Eigen::Matrix4f::Identity();
 				imCurToNode = Matrix<float, 6, 6>::Identity() * 1e-100;
 

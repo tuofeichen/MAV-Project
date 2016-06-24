@@ -1,16 +1,6 @@
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:19:2: error: stray '\' in program
-  Quaternionf q(pos_read.pose.orientation.w,pos_read.pose.orientation.x,\    pos_read.pose.orientation.y,pos_read.pose.orientation.z);
-  ^
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:22:2: error: stray '\' in program
-  _lpe.ropRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y\   pos_read.pose.position.z  // update translation vector
-  ^
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp: In member function 'void RosHandler::lpeCallback(geometry_msgs::PoseStamped)':
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:22:7: error: 'Eigen::Matrix4f' has no member named 'ropRightCorner'
-  _lpe.ropRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y\   pos_read.pose.position.z  // update translation vector
-       ^
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:22:82: error: expected ';' before 'pos_read'
-  _lpe.ropRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y\   pos_read.pose.position.z  // update translation vector
-                                                                                  ^
-make[2]: *** [CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o] Error 1
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/main.cpp:24:27: error: expected initializer before '<<' token
+ const Matrix4f UAV2CAMERA << 0,0,1,0,
+                           ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
 make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
 make: *** [all] Error 2
