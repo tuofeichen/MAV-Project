@@ -1,0 +1,23 @@
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp: In static member function 'static bool RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&)':
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:175:2: error: 'cout' was not declared in this scope
+  cout << "information matrix" << endl<< informationMat<<endl;
+  ^
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:175:34: error: 'endl' was not declared in this scope
+  cout << "information matrix" << endl<< informationMat<<endl;
+                                  ^
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:175:34: note: suggested alternative:
+In file included from /usr/include/c++/4.8/istream:39:0,
+                 from /usr/include/c++/4.8/sstream:38,
+                 from /usr/include/c++/4.8/complex:45,
+                 from /usr/include/eigen3/Eigen/Core:28,
+                 from /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/AnalyticBasedTME.h:13,
+                 from /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:11:
+/usr/include/c++/4.8/ostream:564:5: note:   'std::endl'
+     endl(basic_ostream<_CharT, _Traits>& __os)
+     ^
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:95:14: warning: unused variable 'nrOfPtsF' [-Wunused-variable]
+  const float nrOfPtsF = static_cast<float>(nrOfPts);
+              ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

@@ -1,0 +1,10 @@
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp: In static member function 'static bool RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&)':
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:175:2: error: 'cout' is not a member of 'std'
+  std::cout << "information matrix" << std::endl<< informationMat << std::endl;
+  ^
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RANSACBasedTME.cpp:95:14: warning: unused variable 'nrOfPtsF' [-Wunused-variable]
+  const float nrOfPtsF = static_cast<float>(nrOfPts);
+              ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2
