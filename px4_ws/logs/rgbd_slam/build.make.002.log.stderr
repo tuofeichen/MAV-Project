@@ -1,6 +1,10 @@
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/main.cpp:24:27: error: expected initializer before '<<' token
- const Matrix4f UAV2CAMERA << 0,0,1,0,
-                           ^
-make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp: In constructor 'RosHandler::RosHandler()':
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:19:2: error: '_lpe_yaw_offset' was not declared in this scope
+  _lpe_yaw_offset = 0.0;
+  ^
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp:11:6: warning: unused variable 'calibrate' [-Wunused-variable]
+  int calibrate = CAL;
+      ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o] Error 1
 make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
 make: *** [all] Error 2

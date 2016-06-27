@@ -7,7 +7,8 @@
 
 #include <limits>
 #include <assert.h>
-
+#include <iostream>
+ 
 #include "AnalyticBasedTME.h"
 #include "RANSACBasedTME.h"
 
@@ -171,6 +172,8 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 	}
 
 	informationMat = Eigen::Matrix<float, 6, 6>::Identity() * (static_cast<float>(optInlier) / optMse);
+
+	std::cout << "information matrix" << std::endl<< informationMat << std::endl;
 
 	return (optInlier >= minInlier && squaredMaxDistInlier > optMse);
 }

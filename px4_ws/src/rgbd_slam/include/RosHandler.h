@@ -28,9 +28,7 @@ private:
 
 	Vector3f				_rpy;
 	Vector3f				_xyz;
-	
-	float					_lpe_yaw_offset;
-	
+
 	double 					_lpe_time;
 	
 

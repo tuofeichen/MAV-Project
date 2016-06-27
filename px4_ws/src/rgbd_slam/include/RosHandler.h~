@@ -38,7 +38,7 @@ private:
 	void lpeCallback(const geometry_msgs::PoseStamped pos_read);
 	void q2rpy(Quaternionf q, float& r, float& p, float& y);
 	void rot2rpy(Matrix3f R,float& r, float& p, float& y);		
-	Matrix3f RosHandler::rpy2rot(float r, float p, float y);
+	Matrix3f rpy2rot(float r, float p, float y);
 
 };
 

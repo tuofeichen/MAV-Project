@@ -1,7 +1,7 @@
 #ifndef CtrlPx4_H_
 #define CtrlPx4_H_
 
-
+#include "px4_offboard/PID.h"
 
 enum flightmode_t {  MANUAL=0, ALTCTL, POSCTL, AUTO_MISSION, AUTO_LOITER, AUTO_RTL, AUTO_ACRO, OFFBOARD }; // following px4 convention
 
@@ -51,6 +51,9 @@ private:
   bool off_en_;
   bool auto_tl_;
 
+  PID pid_takeoff;
+  PID pid_land;
+  PID pid_object;
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_; 

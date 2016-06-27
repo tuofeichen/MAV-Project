@@ -38,6 +38,8 @@ typedef struct pos_s {
   double px; // current POSITION + yaw
   double py;
   double pz;
+  double roll;
+  double pitch;
   double yaw;
   Vector4f q; // current rotation
 } my_pos;
