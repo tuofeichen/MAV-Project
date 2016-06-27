@@ -4,8 +4,6 @@
 using namespace Eigen;
 using namespace std;
 
-bool g_lpe_update = false;
-
 RosHandler::RosHandler()
 {	
 	
@@ -14,8 +12,12 @@ RosHandler::RosHandler()
 
 	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/rgbd_slam/pose",100);
 	_lpe_sub = _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
+	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
+	// served more as a flag for lpe valid;
+
 	_lpe.setZero();
 	_lpe_time = 0.0 ;
+	_lpe_valid = false;
 	// frame transformation between UAV and Camera
 	_lpe2cam = (Matrix4f() << 0,0,1,0,
 				  1,0,0,0,
@@ -33,22 +35,27 @@ RosHandler::~RosHandler()
 
 void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 {
-	g_lpe_update = true;
-
+	
 	Quaternionf q (pos_read.pose.orientation.w, pos_read.pose.orientation.x, pos_read.pose.orientation.y,pos_read.pose.orientation.z);
 	q.normalize();
 	q2rpy(q,_rpy(0),_rpy(1),_rpy(2)); // note down body frame rpy
 
 	// lpe time stamp
 	_lpe_time = pos_read.header.stamp.sec + pos_read.header.stamp.nsec / 1000000000.0;
-	/ROS_INFO("LPE Time stamp is %f", _lpe_time );
-
-	_lpe.setZero(); 	// clear buffer
+	_lpe.setIdentity(); 	// clear buffer
 	_lpe.topLeftCorner(3,3)  = rpy2rot(_rpy(1),_rpy(2),_rpy(0));
-
+	
+// timeout to be one second: only note down translation when lpe is valid
+	if ((_lpe_time - _lpe_timeout) < 2){
 	_lpe.topRightCorner(4,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x, 1; 
+	}
 
+}
 
+void RosHandler::gpeCallback(const std_msgs::Float64 data)
+{	
+	_lpe_valid   = true; // not used at this point
+	_lpe_timeout = _lpe_time; 
 }
 
 // everthing aligned in camera frame

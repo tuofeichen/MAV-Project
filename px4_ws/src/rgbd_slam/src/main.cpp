@@ -237,28 +237,32 @@ int main(int argc, char **argv)
 		//cout << "Grabbing took " << dif << "ms" << endl; //debug
 
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC; //debug
-			// calculate the everytime edge regardless
-
+			
 		if(!VisualOdometry::setKeypoints(frames[state])){	
-			cout << "Bad Frame Nr. " << ++badFramesCounter << endl; // debug
+			cout << "Bad Frame Nr. " << ++badFramesCounter << endl; 
 			cout << "Compensate with LPE instead" << endl; 
 
-			tmCurToNode = logger.getLpe() * currentPos.inverse();
-			if ((logger.getTime() - currentTime)> 100) //initialization
+			tmCurToNode = logger.getLpe() * currentPos.inverse();	// get edge from LPE
+ 
+			if ((logger.getTime() - currentTime)> 100) 		// initialization
 			{	
-				currentTim = logger.getTime();
-				currentPos = logger.getLpe();
+				currentTime = logger.getTime();
+				currentPos  = logger.getLpe();
 			}
 				
 			// check delta movement
 			if ((logger.getTime() != 0) && (!VisualOdometry::checkReliability(tmCurToNode,logger.getTime() - currentTime))) {		
 			cout << "[LPE] time diff " <<(logger.getTime() - currentTime) << endl;
 			cout << "[LPE] transform" << endl <<  tmCurToNode << endl;
-			cout << "[LPE] Node " << ++newNodeCounter << " sent to backend" << endl; //debug
-			currentTime = logger.getTime(); 
-			currentPos  = logger.getLpe(); //refresh last node
+				
+			imCurToNode = Matrix<float, 6, 6>::Identity() * 100000; 	// experimental (need adjustable?) value for LPE measurement
 			backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
-			state = state ? 0 : 1;		
+			cout << "[LPE] Node " << ++newNodeCounter << " sent to backend" << endl; //debug
+			
+			// note down last node in case no visual estimate in between 
+			currentTime = logger.getTime(); 
+			currentPos  = logger.getLpe(); 	
+			state = state ? 0 : 1;	
 			}
 
 			continue;
@@ -273,6 +277,7 @@ int main(int argc, char **argv)
 			cameraPos = backend.getCurrentPosition();
 
 			// fuse data with IMU TODO
+
 			// send position to UAV TODO
 
 			// set new node
@@ -280,29 +285,27 @@ int main(int argc, char **argv)
 			{	
 				
 				cout << endl << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug	
-				cout << "visual slam estimate" << endl;				
+				cout << "visual slam estimate" << endl;							
 				logger.updatePos(cameraPos);
-
-// debug: corresponding lpe estimate z
-				cout << endl << "lpe estimate"<<endl;
-				cameraPos = logger.getLpe();	
-				logger.updatePos(cameraPos);
-
 				backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
+
+				//when image kicks in at anytime, we want edge from that point. (note this relative approach) 				 
+				currentTime = logger.getTime(); 
+				currentPos  = logger.getLpe();
+
 				state = state ? 0 : 1;
 			}
 		}
-		else
+		else // leave this to be dummy ? or exchange with IMU
 		{
 			cout << "Could not match current frame!" << endl; // debug
 			++totalCouldNotMatchCounter; // debug
 
-			if( ++couldNotMatchCounter >= setNewNodeAfterNrOfFailedMatches)
+			if( ++couldNotMatchCounter >= setNewNodeAfterNrOfFailedMatches) // after certain threshold, send back a dummy frame (with nearly no 
 			{
 				cout << "Dummy node " << ++dummyFrameCounter << " sent to backend" << endl; // debug
 				// dummy transformation, TODO exchange with IMU estimate
-				// should also bad frame exchange with IMU estimate? 
-
+				
 				tmCurToNode = Eigen::Matrix4f::Identity();
 				imCurToNode = Matrix<float, 6, 6>::Identity() * 1e-100;
 

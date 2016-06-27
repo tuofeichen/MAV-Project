@@ -11,6 +11,8 @@ ros/ros.h
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/include/ros/ros.h
 geometry_msgs/PoseStamped.h
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/include/geometry_msgs/PoseStamped.h
+std_msgs/Float64.h
+/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/include/std_msgs/Float64.h
 Eigen/Core
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/include/Eigen/Core
 Eigen/Dense
@@ -56,12 +58,6 @@ Eigen/Core
 stdint.h
 -
 vector
--
-
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.cpp
-RosHandler.h
-/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/RosHandler.h
-math.h
 -
 
 /home/odroid/MAV-Project/px4_ws/src/rgbd_slam/src/TcpServer.h
@@ -1381,6 +1377,22 @@ ros/forwards.h
 /opt/ros/indigo/include/ros/ros/forwards.h
 
 /opt/ros/indigo/include/rosconsole/macros_generated.h
+
+/opt/ros/indigo/include/std_msgs/Float64.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/indigo/include/std_msgs/Header.h
 string

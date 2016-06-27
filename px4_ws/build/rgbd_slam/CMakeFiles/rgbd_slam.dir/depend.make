@@ -63,6 +63,7 @@ CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/types
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/wall_timer.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/wall_timer_options.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/rosconsole/macros_generated.h
+CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/std_msgs/Float64.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/std_msgs/Header.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /usr/include/eigen3/Eigen/Cholesky
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /usr/include/eigen3/Eigen/Core
@@ -402,6 +403,7 @@ CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/types.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/wall_timer.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/wall_timer_options.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/rosconsole/macros_generated.h
+CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Float64.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Header.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /usr/include/eigen3/Eigen/Cholesky
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /usr/include/eigen3/Eigen/Core
