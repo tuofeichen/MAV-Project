@@ -40,10 +40,12 @@ private:
 
   // flight controller
 
-  void moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
-  bool setMode(int mode);
-  bool setArm (bool arm);
-  bool stateCmp();
+  void  moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
+  bool  setMode(int mode);
+  bool  setArm (bool arm);
+  //float calibrateYaw();
+
+  // bool stateCmp();
 
   // state of vehile
   int ctrl_;

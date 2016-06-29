@@ -104,9 +104,10 @@ void TeleopPx4::keyLoop() {
   px4_offboard::JoyCommand hover;
   hover.arm = true;
   hover.offboard = true;
+  hover.failsafe = false;
   hover.yaw = 0;
   hover.land = 0;
-  hover .takeoff = 0;
+  hover.takeoff = 0;
   hover.position.x = 0;
   hover.position.y = 0;
   hover.position.z = 0;

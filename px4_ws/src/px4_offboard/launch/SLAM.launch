@@ -2,9 +2,8 @@
 
        <!-- launch offboard control node -->
 
-
 <arg name="sim" default="0"/>
-<arg name="ctrl" default="0"/>
+<arg name="ctrl" default="1"/>
 <arg name="v_takeoff" default="3"/> 
 
 <group unless="$(arg sim)"> 
