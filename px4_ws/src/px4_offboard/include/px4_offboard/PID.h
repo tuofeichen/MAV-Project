@@ -10,6 +10,8 @@ float Kp;
 float Ki;
 float Kd;
 
+int dt; // time difference 
+
 float input;
 float output;
 
@@ -45,6 +47,7 @@ PID::PID(){
 	Kp = 0;
 	Ki = 0;
 	Kd = 0;
+	dt = 1;
 	input = 0;
 	output = 0;
 	error=0;
@@ -93,8 +96,17 @@ void PID::setSensor(float sensor1){
 float PID::update(){
     error = input - sensor;
 	integral = integral + error;
-	derivate = error - errorPast;
-	errorPast = error;
+
+    if ((error - errorPast) != 0){
+		derivate = (error - errorPast)/(float)dt;
+        errorPast = error;
+		dt = 1; 
+    }
+    else 
+    {
+    	dt++;
+    }
+
     output = Kp*error + Ki*integral + Kd*derivate;
     return output;
 }
