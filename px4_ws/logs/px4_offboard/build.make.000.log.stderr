@@ -1,0 +1,11 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:2:0:
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:112:18: error: expected constructor, destructor, or type conversion before ‘;’ token
+   ros::spinOnce();
+                  ^
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:114:1: error: expected declaration before ‘}’ token
+ }
+ ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

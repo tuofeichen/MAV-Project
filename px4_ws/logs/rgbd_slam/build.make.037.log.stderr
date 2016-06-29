@@ -1,0 +1,12 @@
+c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+c++: error: unrecognized command line option ‘-mfloat-abi=hard’
+make[2]: c++: error: unrecognized command line option ‘-mfloat-abi=hard’
+*** [CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLive.cpp.o] Error 1
+c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+c++: error: unrecognized command line option ‘-mfloat-abi=hard’
+make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

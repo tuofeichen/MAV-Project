@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/odroid/MAV-Project/px4_ws/build/rgbd_slam"
+export PWD="/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/rgbd_slam"

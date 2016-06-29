@@ -103,7 +103,6 @@ bool CtrlPx4::commandUpdate() {
     state_set_.arm = false;
     state_set_.mode = MANUAL;
     }
-  }
     else
     state_set_.failsafe = false;
   }
