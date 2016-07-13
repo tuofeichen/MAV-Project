@@ -13,6 +13,8 @@
 
 #include "Mapping.h"
 
+
+
 using namespace std;
 
 namespace SLAM {
@@ -31,6 +33,7 @@ Mapping::Mapping(
 	assert(poseGraph);
 	// assert(map3d);
 
+
 	currentPosition = Eigen::Isometry3d::Identity();
 	keyFrames.clear();
 	nodes.clear();
@@ -39,11 +42,16 @@ Mapping::Mapping(
 Mapping::~Mapping()
 { }
 
-void Mapping::run()
+void Mapping::run(RosHandler& lpe) // fusing with lpe
+
 {
 //	std::cout << "Mapping::start called!" << std::endl;
 	double totalTime = 0;
 	double relTime;
+
+	Matrix4f 			  tm_lpe; 
+	Matrix<float, 6, 6>&  im_lpe; 
+	double 				  dt_lpe; 
 
 	// initialize variables
 	bestInforamtionValue = 0;
@@ -53,8 +61,21 @@ void Mapping::run()
 	time.tic();
 	if (!featureDetectionAndExtraction())
 	{
-		cout << "bad frame!"<< endl; 
+		cout << "bad frame!"<< endl;
 		++badFrameCounter;
+
+		if (badFrameCounter == 1){
+			lpe. updateLpeCam(); // note down current time and lpe 
+			return; 
+		}
+		else{
+			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+			if 
+		}
+		
+
+	
+
 		return;
 	}
 

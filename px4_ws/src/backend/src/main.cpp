@@ -19,13 +19,17 @@
 #include "G2oPoseGraph.h"
 #include "AsusProLiveOpenNI2.h"
 
+
+#include "RosHandler.h" // Ros stuff 
+
+
 using namespace std;
 using namespace SLAM;
 
 //
 // settings
 //
-static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
+static constexpr char frontEndIp[] = "192.168.144.1"; // WLAN
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
 
 enum {
@@ -76,10 +80,15 @@ int main(int argc, char **argv)
 	//
 	// init
 	ros::init(argc,argv,"rgbd_backend");
+	RosHandler px4;  // pixhawk 
+
 	Frame frame, frame_prev;
 
 	Eigen::Isometry3d tm;
 	Eigen::Matrix<double,6,6> im;
+
+	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm 
+	Eigen::Matrix4f lpe_prev; 	// 
 
 	// start camera
 	AsusProLiveOpenNI2::start();
@@ -92,7 +101,6 @@ int main(int argc, char **argv)
 	logPos << "time,x,y,z,qx,qy,qz,qw" <<endl;
 	//pointCloudMap.startMapViewer();
 
-	//
 	// set start position on front end
 	// frontend.setCurrentPosition(slam.getCurrentPosition());
 
@@ -117,6 +125,8 @@ int main(int argc, char **argv)
 	{
 		// int toNode = frontend.getNewNode(frame, tm, im);
 
+		ros::spinOnce(); // get up-to-date lpe regardless 
+
 		noError = AsusProLiveOpenNI2::grab(frame);
 		if(!noError)
 		{
@@ -130,7 +140,7 @@ int main(int argc, char **argv)
 		{
 			// visualization
 			// cv::imshow("RGB Image", frame.getRgb());
-//			cv::imshow("Gray Image", frame.getGray());
+			// cv::imshow("Gray Image", frame.getGray());
 			// const float scaleFactor = 0.05f;
 			// cv::Mat depthMap;
 			// frame.getDepth().convertTo( depthMap, CV_8UC1, scaleFactor );
@@ -142,10 +152,14 @@ int main(int argc, char **argv)
 			//
 			// start slam
 			slam.addFrame(frame);
-			slam.run();
+			slam.run(px4);
+
+
 			// frontend.setCurrentPosition(slam.getCurrentPosition());
 			
 			logPoseGraphNode(frame, slam.getCurrentPosition());
+			
+
 //			pointCloudMap.updateMapViewer();
 		}
 		else

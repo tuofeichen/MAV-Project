@@ -21,6 +21,8 @@
 #include "Frame.h"
 #include "FrameToPcConverter.h"
 
+#include "RosHandler.h"
+
 namespace SLAM {
 
 /**
@@ -59,7 +61,7 @@ public:
 	/**
 	 * @brief processes the new frame
 	 */
-	void run();
+	void run(RosHandler& lpe);
 
 	/**
 	 * @brief adds a new frame

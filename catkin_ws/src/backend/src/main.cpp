@@ -101,7 +101,6 @@ int main(int argc, char **argv)
 	logPos << "time,x,y,z,qx,qy,qz,qw" <<endl;
 	//pointCloudMap.startMapViewer();
 
-	//
 	// set start position on front end
 	// frontend.setCurrentPosition(slam.getCurrentPosition());
 
@@ -141,7 +140,7 @@ int main(int argc, char **argv)
 		{
 			// visualization
 			// cv::imshow("RGB Image", frame.getRgb());
-//			cv::imshow("Gray Image", frame.getGray());
+			// cv::imshow("Gray Image", frame.getGray());
 			// const float scaleFactor = 0.05f;
 			// cv::Mat depthMap;
 			// frame.getDepth().convertTo( depthMap, CV_8UC1, scaleFactor );
