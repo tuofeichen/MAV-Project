@@ -54,11 +54,11 @@ void Logger::clearLog()
   else
     puts("Delete Flow log");
 
-// remove buffer
-    if (remove("mag.csv")!=0)
-      perror("Error Deleting File");
-    else
-      puts("Delte magnetic_field log");
+// // remove buffer
+//     if (remove("mag.csv")!=0)
+//       perror("Error Deleting File");
+//     else
+//       puts("Delte magnetic_field log");
 
 
 }
@@ -69,7 +69,7 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   lpe_msgs.px = lpe.pose.position.x;
   lpe_msgs.py = lpe.pose.position.y;
   lpe_msgs.pz = lpe.pose.position.z;
-  ROS_INFO("Logging LPE: z is %f", lpe_msgs.pz);
+  // ROS_INFO("Logging LPE: z is %f", lpe_msgs.pz);
 
   ofstream myfile;
   char* logname_w = new char[lpe_logname.size()+1];
@@ -109,6 +109,7 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
 //   myfile<< fixed << setprecision(4)<<flow_msgs.quality<<','<<endl;
 //   myfile.close();
 // }
+
  void Logger::flowCallback(const geometry_msgs::PoseStamped vision){
   vision_msgs.px = vision.pose.position.x;
   vision_msgs.py = vision.pose.position.y;

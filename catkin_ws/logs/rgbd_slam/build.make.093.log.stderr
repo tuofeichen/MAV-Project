@@ -1,0 +1,182 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:186:15: warning: variable ‘couldNotMatchCounter’ set but not used [-Wunused-but-set-variable]
+  unsigned int couldNotMatchCounter = 0;
+               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:267:21: warning: variable ‘dif’ set but not used [-Wunused-but-set-variable]
+  double start, end, dif; // debug
+                     ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/opencv.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:6,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:
+/opt/opencv3/include/opencv2/core/persistence.hpp: In instantiation of ‘void cv::write(cv::FileStorage&, const _Tp&) [with _Tp = Eigen::Matrix<float, 3, 1>]’:
+/opt/opencv3/include/opencv2/core/persistence.hpp:764:34:   required from ‘void cv::internal::VecWriterProxy<_Tp, numflag>::operator()(const std::vector<_RealType>&) const [with _Tp = Eigen::Matrix<float, 3, 1>; int numflag = 0]’
+/opt/opencv3/include/opencv2/core/persistence.hpp:920:10:   required from ‘void cv::write(cv::FileStorage&, const std::vector<_RealType>&) [with _Tp = Eigen::Matrix<float, 3, 1>]’
+/opt/opencv3/include/opencv2/core/persistence.hpp:984:18:   required from ‘void cv::write(cv::FileStorage&, const cv::String&, const std::vector<_RealType>&) [with _Tp = Eigen::Matrix<float, 3, 1>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:150:56:   required from here
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: error: no matching function for call to ‘write(cv::FileStorage&, cv::String, const Eigen::Matrix<float, 3, 1>&)’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note: candidates are:
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note: void cv::write(cv::FileStorage&, const cv::String&, int)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, int value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘int’
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note: void cv::write(cv::FileStorage&, const cv::String&, float)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, float value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘float’
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note: void cv::write(cv::FileStorage&, const cv::String&, double)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, double value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘double’
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::String&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const String& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const cv::String&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Mat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const Mat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const cv::Mat&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::SparseMat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const SparseMat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const cv::SparseMat&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::KeyPoint>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<KeyPoint>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const std::vector<cv::KeyPoint>&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::DMatch>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<DMatch>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const std::vector<cv::DMatch>&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const _Tp&)
+ void write(FileStorage& fs, const _Tp& value)
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   candidate expects 2 arguments, 3 provided
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const String& name, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const std::vector<_RealType>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Range&)
+ void write(FileStorage& fs, const String& name, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note:   no known conversion for argument 3 from ‘const Eigen::Matrix<float, 3, 1>’ to ‘const cv::Range&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Scalar_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::String&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const String& name, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Vec<_Tp, m>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Rect_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Complex<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Size_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Point3_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘const Eigen::Matrix<float, 3, 1>’ is not derived from ‘const cv::Point_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const std::vector<_RealType>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note: void cv::write(cv::FileStorage&, const cv::Range&)
+ void write(FileStorage& fs, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note:   candidate expects 2 arguments, 3 provided
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Scalar_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Vec<_Tp, m>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Rect_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Complex<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Size_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Point3_<_Tp>’
+     write(fs, String(), value);
+                              ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note:   template argument deduction/substitution failed:
+/opt/opencv3/include/opencv2/core/persistence.hpp:828:30: note:   ‘cv::String’ is not derived from ‘const cv::Point_<_Tp>’
+     write(fs, String(), value);
+                              ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
+make: *** [all] Error 2

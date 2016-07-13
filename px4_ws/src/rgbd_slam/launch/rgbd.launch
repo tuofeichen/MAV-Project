@@ -1,4 +1,7 @@
 <launch>
+
+<include file="$(find mavros)/launch/px4.launch"> </include>
+
 <node pkg="rgbd_slam" type="rgbd_slam" name="rgbd_slam" output="screen">
 </node>
 

@@ -1,0 +1,41 @@
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target frontend[0m
+[  5%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/RosHandler.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp: In member function ‘void RosHandler::gpeCallback(std_msgs::Float64)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:64:2: error: ‘_timeout’ was not declared in this scope
+  _timeout = _time; 
+  ^
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RosHandler.h:8,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:1:
+/usr/include/eigen3/Eigen/src/Core/Assign.h: In instantiation of ‘Derived& Eigen::DenseBase<Derived>::lazyAssign(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; Derived = Eigen::Matrix<float, 4, 4>]’:
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:411:46:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::lazyAssign(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; Derived = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Core/Assign.h:520:123:   required from ‘static Derived& Eigen::internal::assign_selector<Derived, OtherDerived, false, false>::run(Derived&, const OtherDerived&) [with Derived = Eigen::Matrix<float, 4, 4>; OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:618:105:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::_set_noalias(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; Derived = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:603:120:   required from ‘void Eigen::PlainObjectBase<Derived>::_set_selector(const OtherDerived&, const Eigen::internal::false_type&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; Derived = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:595:189:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::_set(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; Derived = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Core/Matrix.h:172:30:   required from ‘Eigen::Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols>& Eigen::Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols>::operator=(const Eigen::MatrixBase<OtherDerived>&) [with OtherDerived = Eigen::CwiseUnaryOp<Eigen::internal::scalar_multiple_op<float>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_identity_op<float>, Eigen::Matrix<float, 6, 6> > >; _Scalar = float; int _Rows = 4; int _Cols = 4; int _Options = 0; int _MaxRows = 4; int _MaxCols = 4]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:105:5:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_MATRICES_OF_DIFFERENT_SIZES
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:182:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+   EIGEN_STATIC_ASSERT( \
+   ^
+/usr/include/eigen3/Eigen/src/Core/Assign.h:492:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE’
+   EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE(Derived,OtherDerived)
+   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RosHandler.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

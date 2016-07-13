@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘void testTransform()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:116:22: error: ‘CV8UC1’ was not declared in this scope
+  dep1.convertTo(dep1,CV8UC1,scaleFactor);
+                      ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
+make: *** [all] Error 2

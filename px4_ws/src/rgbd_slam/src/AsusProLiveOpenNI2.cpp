@@ -199,6 +199,8 @@ bool AsusProLiveOpenNI2::grab(Frame& frame)
 	if(colorReadyFlag && depthReadyFlag)
 	{
 		boost::mutex::scoped_lock(grabbingMutex);
+		// grab setRgb, setTime, setGray, set Depth
+		
 		cv::cvtColor(colorImg,frame.setRgb(),CV_BGR2RGB);
 		depthImg.copyTo(frame.setDepth());
 		frame.setTime() = depthTimeStamp; // colorTimeStamp

@@ -1,0 +1,10 @@
+In file included from /home/tuofeichen/g2o/g2o/core/hyper_graph.h:40:0,
+                 from /home/tuofeichen/g2o/g2o/core/hyper_dijkstra.h:34,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:7:
+/home/tuofeichen/g2o/g2o/core/g2o_core_api.h:13:24: fatal error: g2o/config.h: No such file or directory
+ #include "g2o/config.h"
+                        ^
+compilation terminated.
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

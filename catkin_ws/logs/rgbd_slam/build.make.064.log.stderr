@@ -1,0 +1,4 @@
+make[2]: *** No rule to make target `CMakeFiles/frontend.dir/build'.  Stop.
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

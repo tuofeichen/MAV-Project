@@ -1,0 +1,24 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp: In function ‘void testTransform()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:149:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0;i< (frame1.getKeypoints3D().size());i++)
+                                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘bool processFrame(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:117:12: error: cannot bind ‘std::basic_ostream<char>’ lvalue to ‘std::basic_ostream<char>&&’
+  logPos << srcMatches << endl << endl ; 
+            ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:7:
+/usr/include/c++/4.8/ostream:602:5: error:   initializing argument 1 of ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&) [with _CharT = char; _Traits = std::char_traits<char>; _Tp = std::vector<int>]’
+     operator<<(basic_ostream<_CharT, _Traits>&& __os, const _Tp& __x)
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:258:59: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int i = 0;i< (frames[state].getKeypoints3D().size());i++)
+                                                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:404:59: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int i = 0;i< (frames[state].getKeypoints3D().size());i++)
+                                                           ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
+make: *** [all] Error 2

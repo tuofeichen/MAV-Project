@@ -1,4 +1,0 @@
-[35m[1mScanning dependencies of target mav_echo[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/mav_echo.dir/src/mav_echo.cpp.o[0m
-[100%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mav_echo/mav_echo[0m
-[100%] Built target mav_echo

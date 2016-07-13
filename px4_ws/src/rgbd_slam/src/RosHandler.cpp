@@ -13,6 +13,9 @@ RosHandler::RosHandler()
 	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/rgbd_slam/pose",100);
 	_lpe_sub = _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
 	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
+	_bat_sub = _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
+  
+
 	// served more as a flag for lpe valid;
 
 	_lpe.setZero();
@@ -44,12 +47,12 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 	_lpe_time = pos_read.header.stamp.sec + pos_read.header.stamp.nsec / 1000000000.0;
 	_lpe.setIdentity(); 	// clear buffer
 	_lpe.topLeftCorner(3,3)  = rpy2rot(_rpy(1),_rpy(2),_rpy(0));
-	
-// timeout to be one second: only note down translation when lpe is valid
-	if ((_lpe_time - _lpe_timeout) < 2){
-	_lpe.topRightCorner(4,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x, 1; 
-	}
 
+// timeout to be one second: only note down translation when lpe is valid
+	//if ((_lpe_time - _lpe_timeout) < 2){
+	_lpe.topRightCorner(3,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x; 
+	//}
+	
 }
 
 void RosHandler::gpeCallback(const std_msgs::Float64 data)
@@ -58,16 +61,26 @@ void RosHandler::gpeCallback(const std_msgs::Float64 data)
 	_lpe_timeout = _lpe_time; 
 }
 
+
+void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
+{
+	if (bat.voltage < 14.5)
+	{
+	  ROS_WARN("Low battery!");
+	}
+}
+
+
 // everthing aligned in camera frame
 void RosHandler::updatePos(Matrix4f& currentTME)
 {
-		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation    matrix
+		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation matrix
 		Quaternionf q(rot_mat); 		
 		float r, p, y;
 		_xyz =  currentTME.topRightCorner(3,1);   // translation
 		rot2rpy(rot_mat, p , y , r); 		  // transformed rpy for debug
-		cout << " transformed r p y is : "   << r << " "  << p << " " << y << endl;
 
+//		cout << " transformed r p y is : "   << r << " "  << p << " " << y << endl;
 //		cout << " current position is: " << _xyz(0) << " "  << _xyz(1) << " " << _xyz(2) << endl; 
 
 		_rgbd_slam_pos.pose.position.x = _xyz(0);

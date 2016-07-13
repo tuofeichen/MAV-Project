@@ -1,0 +1,48 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:23:38: error: ‘rows’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::colorImg(Frame::rows,Frame::cols,CV_8UC3);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:23:50: error: ‘cols’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::colorImg(Frame::rows,Frame::cols,CV_8UC3);
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:24:38: error: ‘rows’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::depthImg(Frame::rows,Frame::cols,CV_16UC1);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:24:50: error: ‘cols’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::depthImg(Frame::rows,Frame::cols,CV_16UC1);
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::start()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:102:38: error: ‘depthMode’ is not a member of ‘SLAM::Frame’
+   rc = depth.setVideoMode(modesDepth[Frame::depthMode]);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:116:38: error: ‘colorMode’ is not a member of ‘SLAM::Frame’
+   rc = color.setVideoMode(modesColor[Frame::colorMode]);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static void AsusProLiveOpenNI2::grabber()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:171:44: error: ‘cols’ is not a member of ‘SLAM::Frame’
+             memcpy( depthImg.data, pDepth, Frame::cols*Frame::rows*sizeof(uint16_t));
+                                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:171:56: error: ‘rows’ is not a member of ‘SLAM::Frame’
+             memcpy( depthImg.data, pDepth, Frame::cols*Frame::rows*sizeof(uint16_t));
+                                                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:176:46: error: ‘rows’ is not a member of ‘SLAM::Frame’
+             memcpy( colorImg.data, pColor, 3*Frame::rows*Frame::cols*sizeof(uint8_t));
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:176:58: error: ‘cols’ is not a member of ‘SLAM::Frame’
+             memcpy( colorImg.data, pColor, 3*Frame::rows*Frame::cols*sizeof(uint8_t));
+                                                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::grab(SLAM::Frame&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:31: error: ‘class SLAM::Frame’ has no member named ‘setRgb’
+   cv::cvtColor(colorImg,frame.setRgb(),CV_BGR2RGB);
+                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:204:25: error: ‘class SLAM::Frame’ has no member named ‘setDepth’
+   depthImg.copyTo(frame.setDepth());
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:9: error: ‘class SLAM::Frame’ has no member named ‘setTime’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:206:31: error: ‘class SLAM::Frame’ has no member named ‘setGray’
+   cv::cvtColor(colorImg,frame.setGray(),CV_BGR2GRAY);
+                               ^
+make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

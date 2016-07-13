@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC   -shared -Wl,-soname,libgtest.so -o libgtest.so CMakeFiles/gtest.dir/src/gtest-all.cc.o  -L/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mav_echo/gtest/src -lpthread -Wl,-rpath,/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mav_echo/gtest/src 

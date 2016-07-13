@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/apriltag.cpp:20:38: error: ‘tagCallback’ was not declared in this scope
-       "/tag_detections_image", 100, &tagCallback);
-                                      ^
-make[2]: *** [CMakeFiles/apriltag.dir/src/apriltag.cpp.o] Error 1
-make[1]: *** [CMakeFiles/apriltag.dir/all] Error 2
-make: *** [all] Error 2

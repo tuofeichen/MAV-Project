@@ -1,0 +1,5 @@
+/usr/bin/ld: cannot find -lg2o*
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

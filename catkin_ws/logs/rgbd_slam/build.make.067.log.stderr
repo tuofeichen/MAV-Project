@@ -1,0 +1,11 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘bool processFrame(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:122:13: error: redefinition of ‘bool processFrame(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’
+ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f& tmCurToNode, Matrix<float, 6, 6>& imCurToNode, bool& newNode)
+             ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:14:13: error: ‘bool processFrame(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’ previously defined here
+ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f& tmCurToNode, Matrix<float, 6, 6>& imCurToNode, bool& newNode)
+             ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
+make: *** [all] Error 2

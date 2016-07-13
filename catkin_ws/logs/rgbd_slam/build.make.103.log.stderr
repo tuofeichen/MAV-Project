@@ -1,0 +1,24 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp: In function ‘bool processFrameDebug(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:22:2: error: ‘srcMatches’ was not declared in this scope
+  srcMatches = VisualOdometry::estimateTrafo(newFrame, prevNode, tmCurToNode, imCurToNode, validFlag);
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp: In function ‘void testTransform()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:154:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0;i< (frame1.getKeypoints3D().size());i++)
+                                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: At global scope:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:106:22: error: redefinition of ‘std::ofstream logPos’
+ static std::ofstream logPos;
+                      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:13:22: error: ‘std::ofstream logPos’ previously declared here
+ static std::ofstream logPos, logTm;
+                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp: In function ‘bool processFrame(const Frame&, const Frame&, Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, bool&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:119:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0; i< srcMatches.size(); i++) 
+                                     ^
+make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
+make: *** [all] Error 2

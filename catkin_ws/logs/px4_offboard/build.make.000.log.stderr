@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/checker.cpp:4:37: fatal error: px4_offboard/JoyCommand.h: No such file or directory
- #include "px4_offboard/JoyCommand.h"
-                                     ^
-compilation terminated.
-make[2]: *** [CMakeFiles/checker.dir/src/checker.cpp.o] Error 1
-make[1]: *** [CMakeFiles/checker.dir/all] Error 2
-make: *** [all] Error 2

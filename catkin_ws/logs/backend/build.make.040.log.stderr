@@ -1,0 +1,176 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:23:38: error: ‘rows’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::colorImg(Frame::rows,Frame::cols,CV_8UC3);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:23:50: error: ‘cols’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::colorImg(Frame::rows,Frame::cols,CV_8UC3);
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:24:38: error: ‘rows’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::depthImg(Frame::rows,Frame::cols,CV_16UC1);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:24:50: error: ‘cols’ is not a member of ‘SLAM::Frame’
+ cv::Mat AsusProLiveOpenNI2::depthImg(Frame::rows,Frame::cols,CV_16UC1);
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::start()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:102:38: error: ‘depthMode’ is not a member of ‘SLAM::Frame’
+   rc = depth.setVideoMode(modesDepth[Frame::depthMode]);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:116:38: error: ‘colorMode’ is not a member of ‘SLAM::Frame’
+   rc = color.setVideoMode(modesColor[Frame::colorMode]);
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static void AsusProLiveOpenNI2::grabber()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:171:44: error: ‘cols’ is not a member of ‘SLAM::Frame’
+             memcpy( depthImg.data, pDepth, Frame::cols*Frame::rows*sizeof(uint16_t));
+                                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:171:56: error: ‘rows’ is not a member of ‘SLAM::Frame’
+             memcpy( depthImg.data, pDepth, Frame::cols*Frame::rows*sizeof(uint16_t));
+                                                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:176:46: error: ‘rows’ is not a member of ‘SLAM::Frame’
+             memcpy( colorImg.data, pColor, 3*Frame::rows*Frame::cols*sizeof(uint8_t));
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:176:58: error: ‘cols’ is not a member of ‘SLAM::Frame’
+             memcpy( colorImg.data, pColor, 3*Frame::rows*Frame::cols*sizeof(uint8_t));
+                                                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::grab(SLAM::Frame&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:50: error: invalid initialization of reference of type ‘cv::OutputArray {aka const cv::_OutputArray&}’ from expression of type ‘boost::shared_ptr<cv::Mat>’
+   cv::cvtColor(colorImg,frame.setRgb(),CV_BGR2RGB);
+                                                  ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:10:0:
+/opt/opencv3/include/opencv2/imgproc.hpp:3264:19: error: in passing argument 2 of ‘void cv::cvtColor(cv::InputArray, cv::OutputArray, int, int)’
+ CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:204:35: error: no matching function for call to ‘cv::Mat::copyTo(boost::shared_ptr<cv::Mat>)’
+   depthImg.copyTo(frame.setDepth());
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:204:35: note: candidates are:
+In file included from /opt/opencv3/include/opencv2/core.hpp:59:0,
+                 from /opt/opencv3/include/opencv2/imgproc.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:10:
+/opt/opencv3/include/opencv2/core/mat.hpp:1067:10: note: void cv::Mat::copyTo(cv::OutputArray) const
+     void copyTo( OutputArray m ) const;
+          ^
+/opt/opencv3/include/opencv2/core/mat.hpp:1067:10: note:   no known conversion for argument 1 from ‘boost::shared_ptr<cv::Mat>’ to ‘cv::OutputArray {aka const cv::_OutputArray&}’
+/opt/opencv3/include/opencv2/core/mat.hpp:1074:10: note: void cv::Mat::copyTo(cv::OutputArray, cv::InputArray) const
+     void copyTo( OutputArray m, InputArray mask ) const;
+          ^
+/opt/opencv3/include/opencv2/core/mat.hpp:1074:10: note:   candidate expects 2 arguments, 1 provided
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: error: no match for ‘operator=’ (operand types are ‘boost::shared_ptr<double>’ and ‘double’)
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note: candidates are:
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:505:18: note: boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = double]
+     shared_ptr & operator=( shared_ptr const & r ) BOOST_NOEXCEPT
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:505:18: note:   no known conversion for argument 1 from ‘double’ to ‘const boost::shared_ptr<double>&’
+/usr/include/boost/smart_ptr/shared_ptr.hpp:514:18: note: template<class Y> boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<Y>&) [with Y = Y; T = double]
+     shared_ptr & operator=(shared_ptr<Y> const & r) BOOST_NOEXCEPT
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:514:18: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note:   mismatched types ‘const boost::shared_ptr<X>’ and ‘double’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:525:18: note: template<class Y> boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&) [with Y = Y; T = double]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:525:18: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note:   mismatched types ‘std::auto_ptr<Y>’ and ‘double’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:534:18: note: template<class Y> boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&) [with Y = Y; T = double]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:534:18: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note:   mismatched types ‘std::auto_ptr<Y>’ and ‘double’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:556:18: note: template<class Y, class D> boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::unique_ptr<_Up, _Ep>&&) [with Y = Y; D = D; T = double]
+     shared_ptr & operator=( std::unique_ptr<Y, D> && r )
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:556:18: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘double’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:592:18: note: boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(boost::shared_ptr<T>&&) [with T = double]
+     shared_ptr & operator=( shared_ptr && r ) BOOST_NOEXCEPT
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:592:18: note:   no known conversion for argument 1 from ‘double’ to ‘boost::shared_ptr<double>&&’
+/usr/include/boost/smart_ptr/shared_ptr.hpp:599:18: note: template<class Y> boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(boost::shared_ptr<Y>&&) [with Y = Y; T = double]
+     shared_ptr & operator=( shared_ptr<Y> && r ) BOOST_NOEXCEPT
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:599:18: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:205:19: note:   mismatched types ‘boost::shared_ptr<X>’ and ‘double’
+   frame.setTime() = depthTimeStamp; // colorTimeStamp
+                   ^
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread_only.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:12,
+                 from /usr/include/boost/thread.hpp:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/AsusProLiveOpenNI2.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:12:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:609:18: note: boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(boost::detail::sp_nullptr_t) [with T = double; boost::detail::sp_nullptr_t = std::nullptr_t]
+     shared_ptr & operator=( boost::detail::sp_nullptr_t ) BOOST_NOEXCEPT // never throws
+                  ^
+/usr/include/boost/smart_ptr/shared_ptr.hpp:609:18: note:   no known conversion for argument 1 from ‘double’ to ‘boost::detail::sp_nullptr_t {aka std::nullptr_t}’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:206:52: error: invalid initialization of reference of type ‘cv::OutputArray {aka const cv::_OutputArray&}’ from expression of type ‘boost::shared_ptr<cv::Mat>’
+   cv::cvtColor(colorImg,frame.setGray(),CV_BGR2GRAY);
+                                                    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:10:0:
+/opt/opencv3/include/opencv2/imgproc.hpp:3264:19: error: in passing argument 2 of ‘void cv::cvtColor(cv::InputArray, cv::OutputArray, int, int)’
+ CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
+                   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

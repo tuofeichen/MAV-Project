@@ -1,0 +1,38 @@
+In file included from /home/tuofeichen/g2o/g2o/core/g2o_core_api.h:13:0,
+                 from /home/tuofeichen/g2o/g2o/core/hyper_graph.h:40,
+                 from /home/tuofeichen/g2o/g2o/core/hyper_dijkstra.h:34,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:7:
+/home/tuofeichen/g2o/g2o/config.h:5:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_HAVE_OPENGL 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:6:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_OPENGL_FOUND 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:7:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_OPENMP 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:8:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_SHARED_LIBS 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:9:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_LGPL_SHARED_LIBS 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:12:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_HAVE_CHOLMOD 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:13:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_HAVE_CSPARSE 1
+  ^
+/home/tuofeichen/g2o/g2o/config.h:15:2: error: invalid preprocessing directive #cmakedefine
+ #cmakedefine G2O_CXX_COMPILER "GNU /usr/bin/c++"
+  ^
+In file included from /home/tuofeichen/g2o/g2o/solvers/csparse/linear_solver_csparse.h:30:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:19,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:
+/home/tuofeichen/g2o/g2o/solvers/csparse/csparse_helper.h:23:16: fatal error: cs.h: No such file or directory
+ #include <cs.h>
+                ^
+compilation terminated.
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

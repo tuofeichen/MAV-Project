@@ -1,0 +1,8 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: undefined reference to `typeinfo for g2o::VertexSE3'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: undefined reference to `g2o::VertexSE3::VertexSE3()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: undefined reference to `typeinfo for g2o::EdgeSE3'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: undefined reference to `g2o::EdgeSE3::EdgeSE3()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/backend/backend] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2
