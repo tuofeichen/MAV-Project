@@ -50,7 +50,7 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 	double relTime;
 
 	Matrix4f 			  tm_lpe; 
-	Matrix<float, 6, 6>&  im_lpe; 
+	Matrix<float, 6, 6>   im_lpe; 
 	double 				  dt_lpe; 
 
 	// initialize variables
@@ -70,7 +70,6 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 		}
 		else{
 			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
-			if 
 		}
 		
 
@@ -79,7 +78,8 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 		return;
 	}
 
-	cout << "finished feature extraction" << endl; 
+	cout << "LPE is" << lpe.getLpe() << endl; 
+
 
 	relTime = time.toc();
 	totalTime += relTime;
