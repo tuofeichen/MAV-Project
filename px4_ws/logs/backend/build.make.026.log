@@ -1,0 +1,180 @@
+[  0%] [  0%] Built target std_msgs_generate_messages_py
+Built target geometry_msgs_generate_messages_py
+[  0%] [  0%] [  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+Built target roscpp_generate_messages_cpp
+Built target rosgraph_msgs_generate_messages_lisp
+[  6%] [  6%] [  6%] [  6%] [ 13%] [ 20%] Built target rosgraph_msgs_generate_messages_py
+Built target std_msgs_generate_messages_cpp
+[32mBuilding CXX object CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o
+[0mBuilt target rosgraph_msgs_generate_messages_cpp
+[ 20%] Built target std_msgs_generate_messages_lisp
+[32mBuilding CXX object CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o
+[0m[ 20%] [ 26%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/FrameToPcConverter.cpp.o
+[0mBuilt target geometry_msgs_generate_messages_lisp
+[ 33%] [ 40%] [ 46%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/Mapping.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/frontend.dir/src/Frame.cpp.o
+[0m[ 53%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/TcpClient.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/frontend.dir/src/SIFT.cpp.o
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h: In member function 'virtual bool SLAM::RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&) const':
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +60)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +60)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +56)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +56)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +52)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +52)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +48)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +48)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +44)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +44)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +40)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +40)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +36)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +36)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +32)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +32)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +28)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +28)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +24)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +24)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +20)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +20)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +16)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +16)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +12)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +12)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +8)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +8)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: '*((void*)& refinedTransfMat +4)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: '*((void*)& refinedTransfMat +4)' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+In file included from /usr/include/eigen3/Eigen/Core:277:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:495:7: warning: 'refinedTransfMat' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       derived().coeffRef(index) = other.derived().coeff(index);
+       ^
+/home/odroid/MAV-Project/px4_ws/src/backend/src/RANSACBasedTME.cpp:199:18: note: 'refinedTransfMat' was declared here
+  Eigen::Matrix4f refinedTransfMat;
+                  ^
+[0m[ 60%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/SURF.cpp.o
+[0m[ 66%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/ORB.cpp.o
+[0m[ 73%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/OrbDetSurfDesc.cpp.o
+[0m[ 80%] [ 86%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/UavComProtocolHandler.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/frontend.dir/src/Frontend.cpp.o
+[0m[ 93%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o
+/home/odroid/MAV-Project/px4_ws/src/backend/src/Mapping.cpp: In member function 'void SLAM::Mapping::parallelMatching()':
+/home/odroid/MAV-Project/px4_ws/src/backend/src/Mapping.cpp:396:8: warning: variable 'prevId' set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+[0m[31m[1mLinking CXX shared library /home/odroid/MAV-Project/px4_ws/devel/lib/libfrontend.so
+[0m[ 93%] Built target frontend
+[100%] [32mBuilding CXX object CMakeFiles/backend.dir/src/main.cpp.o
+[0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/lib/backend/backend
+[0m[100%] Built target backend

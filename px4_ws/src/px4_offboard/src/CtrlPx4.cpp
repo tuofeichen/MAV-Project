@@ -2,6 +2,7 @@
 #include "px4_offboard/include.h"
 
 #define TAKEOFF_RATIO 0.9
+//#define M_PI 3.1415926
 
 CtrlPx4::CtrlPx4() {
 
@@ -12,10 +13,10 @@ CtrlPx4::CtrlPx4() {
   off_en_ = sim_;     // initialize off_en_to be 1 always if in simulation mode
   auto_tl_ = ctrl_;
 
-
-  pid_takeoff.setKp(2);
+//PID pid - Take off;
+  pid_takeoff.setKp(1);
   pid_takeoff.setKi(0);
-  pid_takeoff.setKd(0.1);
+  pid_takeoff.setKd(0.2);
   pid_takeoff.setInput(1.3);
 
 //PID pid - Land;
@@ -72,25 +73,30 @@ bool CtrlPx4::commandUpdate() {
     if (state_set_.mode != state_read_.mode)
       setMode(state_set_.mode);
 
-
+    // position setpoint
     if (state_set_.arm) {
       if(auto_tl_&&((state_set_.takeoff)&&(!state_read_.takeoff))||((state_set_.land)&&(state_read_.arm))){
+	   // ROS_INFO("Velocity control mode");
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
-	    }
+	 }
+
       else { 
+//		ROS_INFO("Height after takeoff %f", pos_read_.pz);
+//		ROS_INFO("fcu pos setpoint %f", fcu_pos_setpoint_.pose.position.z);
 	        mavros_pos_pub_.publish(fcu_pos_setpoint_);
   	  }
     }
 
    }
 
-
+// regardless always check for failsafe
   if(fabs(pos_read_.roll) > (M_PI/4) || fabs(pos_read_.pitch) > (M_PI/4)){ // disarm by angle desbalance
   
   state_set_.arm = false;
   state_set_.mode = MANUAL;
 	state_set_.takeoff = 0;
 	state_set_.land = 0;
+       
   }
 
   if(state_set_.failsafe)
@@ -150,9 +156,9 @@ void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
 
 void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 {
-	if (bat.voltage < 13)
+	if (bat.voltage < 14)
 	{
-	  ROS_INFO("Low battery!");
+	  ROS_WARN("Low battery!");
 	  state_set_.land = 1;
 	}
 
@@ -177,7 +183,7 @@ void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
 };
 
 void CtrlPx4::radioCallback(const mavros_msgs::RCIn rc_in) {
-  off_en_ = (rc_in.channels[6] > 1200)&&((rc_in.channels[4] > 1200));
+  off_en_ = (rc_in.channels[6] > 1200)&&((rc_in.channels[4] > 900)&&(rc_in.channels[4] < 1200));
 };
  
 
@@ -220,8 +226,11 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   {
         set_armed_.request.value = true; // send arm request
         mavros_armed_client_.call(set_armed_);
-  }
+	fcu_pos_setpoint_.pose.position.z = altitude*0.9;
+        mavros_pos_pub_.publish(fcu_pos_setpoint_);
 
+	
+  }
 
 
   if (fabs(pid_takeoff.getDerivate()) > 0.05 || current_height < 0.9*altitude) { 
@@ -229,7 +238,9 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     // sensor read 
     pid_takeoff.setSensor(pos_read_.pz);
     vel_sp = pid_takeoff.update();
-    ROS_INFO("Current output is %f",vel_sp);
+    // ROS_INFO("Current output is %f",vel_sp);
+    ROS_INFO("Height: %f",pos_read_.pz);
+    // ROS_INFO("Current Derivative is %f", pid_takeoff.getDerivate());
    
     // velocity saturation
     if(vel_sp < 0) 
@@ -238,6 +249,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
       fcu_vel_setpoint_.twist.linear.z = velocity;
     else 
       fcu_vel_setpoint_.twist.linear.z = vel_sp;
+
   }  
 
   else{
@@ -247,7 +259,8 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     hover();
   }
 
-  state_read_.takeoff = (fabs(pid_takeoff.getDerivate()) < 0.1) && (current_height > 0.9*altitude);
+  state_read_.takeoff = (fabs(pid_takeoff.getDerivate()) <= 0.05) && (current_height > 0.9*altitude);
+  hover();
 
   return state_read_.takeoff;
 }
@@ -258,7 +271,7 @@ bool CtrlPx4::land(double velocity)
   double current_height = pos_read_.pz;
   pid_land.setSensor(pos_read_.pz);
 
-
+  // might need some sanity check here 
   if(current_height > 0.11 || fabs(pid_land.getDerivate()) > 0.1 )
   {
    // ROS_INFO("[Land] PID derivative term is %f", pid_land.getDerivate());

@@ -15,9 +15,7 @@ bool VisualOdometry::setKeypoints(Frame& frame)
 	bool ret = false;
 	std::vector<cv::KeyPoint> keypoints(Frame::maxNrOfKeyPoints);
 	FeatureDEM::detect(frame.getGray(), keypoints);
-	
 	frame.setKeypoints(keypoints);
-
 	if(frame.getKeypoints().size() >= minNrOfKeyPoints)
 	{
 		FeatureDEM::extract(frame.getGray(), frame.getKeypoints(), frame.setDescriptors());

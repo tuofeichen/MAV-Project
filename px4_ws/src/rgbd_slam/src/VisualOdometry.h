@@ -15,6 +15,7 @@ class VisualOdometry
 public:
 	static constexpr int minNrOfMatches = Frame::minNrOfMatches;
 	static constexpr int minNrOfKeyPoints = Frame::minNrOfKeyPoints;
+
 	static constexpr float minTranslation = Frame::minTranslation;
 	static constexpr float minRotation = Frame::minRotation;
 	static constexpr float maxTranslationPerSecond = Frame::maxTranslationPerSecond;

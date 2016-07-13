@@ -117,7 +117,7 @@ catkin_package(
 
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -mcpu=cortex-a9 -O3 -Ofast -mfloat-abi=hard -ftree-vectorize -ftree-vectorizer-verbose=9 -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/odroid/OpenNI-Linux-Arm-2.2/Include -Wall ")
+set (CMAKE_CXX_FLAGS "-std=c++11 -mcpu=cortex-a8 -O3 -Ofast -mfloat-abi=hard -ftree-vectorize -ftree-vectorizer-verbose=9 -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/odroid/OpenNI-Linux-Arm-2.2/Include -Wall ")
 
 set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/odroid/OpenNI-Linux-Arm-2.2/Redist")
 

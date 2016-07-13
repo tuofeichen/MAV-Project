@@ -9,7 +9,6 @@ private:
 float Kp;
 float Ki;
 float Kd;
-
 int dt; // time difference 
 
 float input;
@@ -99,7 +98,7 @@ float PID::update(){
 
     if ((error - errorPast) != 0){
 		derivate = (error - errorPast)/(float)dt;
-        errorPast = error;
+        	errorPast = error;
 		dt = 1; 
     }
     else 

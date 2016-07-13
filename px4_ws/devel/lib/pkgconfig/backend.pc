@@ -1,0 +1,8 @@
+prefix=/home/odroid/MAV-Project/px4_ws/devel
+
+Name: backend
+Description: Description of backend
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/odroid/MAV-Project/px4_ws/devel/lib 
+Requires: 

@@ -302,8 +302,8 @@ int main(int argc, char **argv)
 			currentPos  = logger.getLpe();
 
 			frontendPos = frontendPos * tmCurToNode; 
-			// logPos << frontendPos(0,3) << "," << frontendPos(1,3) << "," << frontendPos(2,3) << ",";
-			// logPos << currentPos(1,3)<< endl; // also note down LPE pose ? 
+			logPos << frontendPos(0,3) << "," << frontendPos(1,3) << "," << frontendPos(2,3) << ",";
+			logPos << currentPos(1,3)<< endl; // also note down LPE pose ? 
 
 			// state = state ? 0 : 1 // don't update frame index (no feature available)
 			}
@@ -342,6 +342,7 @@ int main(int argc, char **argv)
 #ifdef DEBUG		
 				// save the grayscale node and depth node
 				cout << "Node " << ++newNodeCounter << " saved locally" << endl; // debug
+
 				sprintf(imgName, "/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/Frames/%d_new_node_rgb.png",newNodeCounter);
 				cv::imwrite(imgName,frames[state].getGray());
 				sprintf(imgName, "/home/odroid/MAV-Project/px4_ws/src/rgbd_slam/Frames/%d_new_node_dep.png",newNodeCounter);
