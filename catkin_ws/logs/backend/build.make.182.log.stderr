@@ -1,0 +1,17 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:263:133: error: no matching function for call to ‘SLAM::IFeatures::match(const std::vector<cv::KeyPoint>&, const cv::Mat&, const std::vector<cv::KeyPoint>&, const cv::Mat&, std::vector<cv::DMatch>&)’
+  enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matches);
+                                                                                                                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:263:133: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:18:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IFeatures.h:60:15: note: virtual bool SLAM::IFeatures::match(const std::vector<cv::KeyPoint>&, const cv::Mat&, const std::vector<cv::KeyPoint>&, const cv::Mat&, std::vector<int>&, std::vector<int>&) const
+  virtual bool match(
+               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IFeatures.h:60:15: note:   candidate expects 6 arguments, 5 provided
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:265:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0;i < matches.size(); i++)
+                                  ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

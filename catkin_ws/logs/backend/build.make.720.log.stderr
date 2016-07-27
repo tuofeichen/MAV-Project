@@ -1,0 +1,11 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:519:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:273:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < frame.getKeypoints().size();i++)
+                                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:285:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getBadFrameCounter() == badFrameCnt)
+                                     ^

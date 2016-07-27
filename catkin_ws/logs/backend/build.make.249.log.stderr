@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘void logPoseGraphNode(const SLAM::Frame&, const Isometry3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:76:27: error: passing ‘const SLAM::Frame’ as ‘this’ argument of ‘bool SLAM::Frame::getNewNodeFlag()’ discards qualifiers [-fpermissive]
+  if (frame.getNewNodeFlag()){
+                           ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

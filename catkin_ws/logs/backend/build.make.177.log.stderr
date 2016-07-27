@@ -1,0 +1,37 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/SURF.h:47:38: error: expected ‘;’ at end of member declaration
+    std::vector<cv::DMatch>& matches) const
+                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:55:16: error: ‘DMatch’ was not declared in this scope
+    std::vector<DMatch>& matches) const
+                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:55:16: note: suggested alternative:
+In file included from /opt/opencv3/include/opencv2/core.hpp:58:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:9:
+/opt/opencv3/include/opencv2/core/types.hpp:728:27: note:   ‘cv::DMatch’
+ class CV_EXPORTS_W_SIMPLE DMatch
+                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:55:22: error: template argument 1 is invalid
+    std::vector<DMatch>& matches) const
+                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:55:22: error: template argument 2 is invalid
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:53:6: error: prototype for ‘bool SLAM::SURF::match(const std::vector<cv::KeyPoint>&, const cv::Mat&, const std::vector<cv::KeyPoint>&, const cv::Mat&, int&) const’ does not match any in class ‘SLAM::SURF’
+ bool SURF::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:12:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/SURF.h:45:14: error: candidate is: virtual bool SLAM::SURF::match(const std::vector<cv::KeyPoint>&, const cv::Mat&, const std::vector<cv::KeyPoint>&, const cv::Mat&, std::vector<cv::DMatch>&) const
+ virtual bool match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+              ^
+make[2]: *** [CMakeFiles/frontend.dir/src/SURF.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:282:60: error: ‘matchesIdx1’ was not declared in this scope
+   validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix);
+                                                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:282:98: error: ‘matchesIdx2’ was not declared in this scope
+   validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix);
+                                                                                                  ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

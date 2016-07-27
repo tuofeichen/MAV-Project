@@ -1,0 +1,33 @@
+[35m[1mScanning dependencies of target copter_visualization[0m
+[35m[1mScanning dependencies of target gcs_image_bridge[0m
+[35m[1mScanning dependencies of target servo_state_publisher[0m
+[35m[1mScanning dependencies of target mavros_extras[0m
+[  6%] [32mBuilding CXX object CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o[0m
+[ 13%] [32mBuilding CXX object CMakeFiles/copter_visualization.dir/src/copter_visualization.cpp.o[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o[0m
+[ 33%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher[0m
+[ 33%] Built target servo_state_publisher
+[ 40%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o[0m
+[ 46%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/copter_visualization[0m
+[ 46%] Built target copter_visualization
+[ 53%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o[0m
+[ 60%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/gcs_image_bridge[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o[0m
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `image_cb(boost::shared_ptr<sensor_msgs::Image_<std::allocator<void> > const> const&)':
+gcs_image_bridge.cpp:(.text+0x106f): undefined reference to `cv::imencode(cv::String const&, cv::_InputArray const&, std::vector<unsigned char, std::allocator<unsigned char> >&, std::vector<int, std::allocator<int> > const&)'
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `cv::String::String(char const*)':
+gcs_image_bridge.cpp:(.text._ZN2cv6StringC2EPKc[_ZN2cv6StringC5EPKc]+0x4f): undefined reference to `cv::String::allocate(unsigned long)'
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `cv::String::~String()':
+gcs_image_bridge.cpp:(.text._ZN2cv6StringD2Ev[_ZN2cv6StringD5Ev]+0x14): undefined reference to `cv::String::deallocate()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/gcs_image_bridge] Error 1
+make[1]: *** [CMakeFiles/gcs_image_bridge.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 73%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o[0m
+[ 86%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o[0m
+[ 93%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so[0m
+[100%] Built target mavros_extras
+make: *** [all] Error 2

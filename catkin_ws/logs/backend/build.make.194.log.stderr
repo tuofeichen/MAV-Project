@@ -1,0 +1,13 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp: In constructor ‘SLAM::SURF::SURF(float, int, int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:20:90: error: ‘endl’ was not declared in this scope
+  std:: cout << "hessian threshold now is " << detecterExtracter->getHessianThreshold() <<endl;  
+                                                                                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:20:90: note: suggested alternative:
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:8:
+/usr/include/c++/4.8/ostream:564:5: note:   ‘std::endl’
+     endl(basic_ostream<_CharT, _Traits>& __os)
+     ^
+make[2]: *** [CMakeFiles/frontend.dir/src/SURF.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

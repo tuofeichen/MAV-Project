@@ -15,7 +15,7 @@ class RosHandler{
 public:
 	RosHandler();
 	~RosHandler();
-	void 	 updateCamPos (Matrix4f&); // to pixhawk 
+	void 	 updateCamPos (double, Matrix4f); // to pixhawk 
 	void 	 updateLpeCam() {_lpe_cam = _lpe; _time_cam = _time; }; // note down new lpe (for next edge calculation)
 
 	Matrix4f getLpe()  				{ return _lpe; };
@@ -38,7 +38,8 @@ private:
 	double						_time_cam; 
 	Matrix4f 					_lpe;			// curren lpe
 	Matrix4f					_lpe_cam; 		// last camera node lpe
-	Matrix4f					_lpe2cam;   // transformation matrix
+	
+	// Matrix4f					_lpe2cam;   // transformation matrix
 
 	Vector3f					_rpy;
 	Vector3f					_xyz;

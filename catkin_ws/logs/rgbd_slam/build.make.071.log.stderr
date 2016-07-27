@@ -1,8 +1,0 @@
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/main.cpp:12:0:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp: In function ‘void testTransform()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/src/TransformTest.cpp:92:10: error: ‘imgName’ was not declared in this scope
-  sprintf(imgName, "depth%d",i);
-          ^
-make[2]: *** [CMakeFiles/rgbd_slam.dir/src/main.cpp.o] Error 1
-make[1]: *** [CMakeFiles/rgbd_slam.dir/all] Error 2
-make: *** [all] Error 2

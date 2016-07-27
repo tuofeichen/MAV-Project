@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 	Mapping slam(&fdem, &tme, &graph); //, &pointCloudMap);
 
 	// start viewer and logger
-	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/position.csv", std::ofstream::out | std::ofstream::trunc);
+	logPos.open("/home/odroid/MAV-Project/px4_ws/src/backend/position.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,qx,qy,qz,qw" <<endl;
 	//pointCloudMap.startMapViewer();
 

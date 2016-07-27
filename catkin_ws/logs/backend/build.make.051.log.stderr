@@ -1,18 +1,4 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::grab(SLAM::Frame&)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:204:50: error: invalid initialization of reference of type ‘cv::OutputArray {aka const cv::_OutputArray&}’ from expression of type ‘boost::shared_ptr<cv::Mat>’
-   cv::cvtColor(colorImg,frame.setRgb(),CV_BGR2RGB);
-                                                  ^
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:10:0:
-/opt/opencv3/include/opencv2/imgproc.hpp:3264:19: error: in passing argument 2 of ‘void cv::cvtColor(cv::InputArray, cv::OutputArray, int, int)’
- CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
-                   ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:210:52: error: invalid initialization of reference of type ‘cv::OutputArray {aka const cv::_OutputArray&}’ from expression of type ‘boost::shared_ptr<cv::Mat>’
-   cv::cvtColor(colorImg,frame.setGray(),CV_BGR2GRAY);
-                                                    ^
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:10:0:
-/opt/opencv3/include/opencv2/imgproc.hpp:3264:19: error: in passing argument 2 of ‘void cv::cvtColor(cv::InputArray, cv::OutputArray, int, int)’
- CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
-                   ^
-make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:451:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

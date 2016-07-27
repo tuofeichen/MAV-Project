@@ -1,0 +1,2 @@
+set(px_comm_MESSAGE_FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px-ros-pkg/px_comm/msg/CameraInfo.msg;/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px-ros-pkg/px_comm/msg/Mavlink.msg;/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px-ros-pkg/px_comm/msg/OpticalFlow.msg")
+set(px_comm_SERVICE_FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px-ros-pkg/px_comm/srv/SetCameraInfo.srv")

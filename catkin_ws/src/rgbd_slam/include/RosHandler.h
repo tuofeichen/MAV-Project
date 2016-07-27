@@ -30,7 +30,7 @@ private:
 	double 					_lpe_time;     // time stamp
 	double					_lpe_timeout;  
 	Matrix4f 				_lpe;
-	Matrix4f				_lpe2cam;   // transformation matrix
+	// Matrix4f				_lpe2cam;   // transformation matrix
 
 	Vector3f				_rpy;
 	Vector3f				_xyz;

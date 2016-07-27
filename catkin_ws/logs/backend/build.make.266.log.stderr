@@ -1,0 +1,8 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘SLAM::Mapping::GraphProcessingResult SLAM::Mapping::processGraph(const Isometry3d&, const Eigen::Matrix<double, 6, 6>&, int, double, bool, bool)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:321:14: warning: variable ‘t’ set but not used [-Wunused-but-set-variable]
+     Matrix3d t = transformationMatrix.matrix().topLeftCorner(3,3);
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:462:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

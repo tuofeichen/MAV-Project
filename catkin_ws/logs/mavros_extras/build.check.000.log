@@ -1,0 +1,44 @@
+[36m--[0m Using CATKIN_DEVEL_PREFIX: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
+[36m--[0m Using CMAKE_PREFIX_PATH: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel;/opt/ros/indigo
+[36m--[0m This workspace overlays: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel;/opt/ros/indigo
+[36m--[0m Using PYTHON_EXECUTABLE: /usr/bin/python
+[36m--[0m Using Debian Python package layout
+[36m--[0m Using empy: /usr/bin/empy
+[36m--[0m Using CATKIN_ENABLE_TESTING: ON
+[36m--[0m Call enable_testing()
+[36m--[0m Using CATKIN_TEST_RESULTS_DIR: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/test_results
+[36m--[0m Found gtest sources under '/usr/src/gtest': gtests will be built
+[36m--[0m Using Python nosetests: /usr/bin/nosetests-2.7
+[36m--[0m catkin 0.6.18
+[36m--[0m Using these message generators: gencpp;genlisp;genpy
+[36m--[0m Boost version: 1.54.0
+[36m--[0m Found the following Boost libraries:
+[36m--[0m   system
+[33m[1mCMake Warning[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/CMakeLists.txt:24 (find_package):
+  By not providing "FindEigen3.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Eigen3", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Eigen3" with any
+  of the following names:
+
+    Eigen3Config.cmake
+    eigen3-config.cmake
+
+  Add the installation prefix of "Eigen3" to CMAKE_PREFIX_PATH or set
+  "Eigen3_DIR" to a directory containing one of the above files.  If "Eigen3"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+[36m--[0m Eigen found (include: /usr/include/eigen3)
+[36m--[0m Selected MAVLink dialect: ardupilotmega
+[31m[1mCMake Error[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/CMakeLists.txt:116 (install):
+  install TARGETS given target "gcs_image_bridge" which does not exist in
+  this directory.
+
+
+[36m--[0m Configuring incomplete, errors occurred!
+See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/CMakeOutput.log".
+See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/CMakeError.log".
+make: *** [cmake_check_build_system] Error 1

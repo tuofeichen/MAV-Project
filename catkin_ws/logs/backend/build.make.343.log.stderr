@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:280:54: error: expected primary-expression before ‘<<’ token
+     cout << "match new frame to " << frame2.getId(); << endl 
+                                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:285:4: error: expected ‘;’ before ‘}’ token
+    }
+    ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

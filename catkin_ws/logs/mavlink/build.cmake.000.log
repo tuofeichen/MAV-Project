@@ -1,0 +1,18 @@
+Not searching for unused variables given on the command line.
+[36m--[0m Found PythonInterp: /usr/bin/python (found suitable version "2.7.6", minimum required is "2")
+[36m--[0m Package version: 2016.4.4
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ardupilotmega.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ASLUAV.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/paparazzi.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/minimal.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ualberta.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/slugs.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/autoquad.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/test.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/matrixpilot.xml
+[36m--[0m processing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/python_array_test.xml
+[36m--[0m Using Debian Python package layout
+[36m--[0m Configuring done
+[36m--[0m Generating done
+[36m--[0m Build files have been written to: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink

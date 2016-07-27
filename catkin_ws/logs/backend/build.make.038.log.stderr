@@ -1,30 +1,4 @@
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Frame.cpp:7:0:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h: In member function ‘double& SLAM::Frame::setTime()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:46:29: error: invalid initialization of reference of type ‘double&’ from expression of type ‘boost::shared_ptr<double>’
-  double& setTime() { return time; }
-                             ^
-make[2]: *** [CMakeFiles/frontend.dir/src/Frame.cpp.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frontend.h:18:0,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Frontend.cpp:13:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h: In member function ‘double& SLAM::Frame::setTime()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:46:29: error: invalid initialization of reference of type ‘double&’ from expression of type ‘boost::shared_ptr<double>’
-  double& setTime() { return time; }
-                             ^
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/FrameToPcConverter.h:14:0,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/FrameToPcConverter.cpp:7:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h: In member function ‘double& SLAM::Frame::setTime()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:46:29: error: invalid initialization of reference of type ‘double&’ from expression of type ‘boost::shared_ptr<double>’
-  double& setTime() { return time; }
-                             ^
-make[2]: *** [CMakeFiles/frontend.dir/src/FrameToPcConverter.cpp.o] Error 1
-make[2]: *** [CMakeFiles/frontend.dir/src/Frontend.cpp.o] Error 1
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:21:0,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:14:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h: In member function ‘double& SLAM::Frame::setTime()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:46:29: error: invalid initialization of reference of type ‘double&’ from expression of type ‘boost::shared_ptr<double>’
-  double& setTime() { return time; }
-                             ^
-make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:451:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

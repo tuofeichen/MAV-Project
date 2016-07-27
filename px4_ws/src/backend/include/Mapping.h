@@ -100,7 +100,7 @@ public:
 	static constexpr bool optimizeTillConvergence = false; ///< Enables/disable optimization till convergence
 	static constexpr bool addDummyNodeFlag = true; ///< Enables/disable dummy nodes
 	static constexpr bool exchangeFirstNode = false; ///< Enables/disable exchanges first node
-	static constexpr bool searchLoopClosures = true; ///< Enables/disable loop closure search
+	static constexpr bool searchLoopClosures = false;//true; ///< Enables/disable loop closure search
 	static constexpr int lcRandomMatching = 0; ///< Enables/disable random loop closure matching 0 --> off (use average descriptor), else match n random key frames
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
 	static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)

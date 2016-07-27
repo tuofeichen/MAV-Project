@@ -164,7 +164,6 @@ CMakeFiles/backend.dir/src/main.cpp.o
  /opt/ros/indigo/include/geometry_msgs/Pose.h
  /opt/ros/indigo/include/geometry_msgs/PoseStamped.h
  /opt/ros/indigo/include/geometry_msgs/Quaternion.h
- /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
  /opt/ros/indigo/include/ros/advertise_options.h
  /opt/ros/indigo/include/ros/advertise_service_options.h
  /opt/ros/indigo/include/ros/assert.h

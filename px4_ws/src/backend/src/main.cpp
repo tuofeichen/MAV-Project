@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 	Eigen::Matrix<double,6,6> im;
 
 	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm 
-	Eigen::Matrix4f lpe_prev; 	// 
+	Eigen::Matrix4f lpe_prev; 	 
 
 	// start camera
 	AsusProLiveOpenNI2::start();

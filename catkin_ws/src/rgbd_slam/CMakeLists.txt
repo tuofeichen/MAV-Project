@@ -117,7 +117,7 @@ catkin_package(
 
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize -ftree-vectorizer-verbose=9 -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
+  set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
 
 set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist")
 
@@ -140,11 +140,12 @@ link_directories(
 
 
 ## Declare a C++ executable
-add_executable(rgbd_slam src/main.cpp src/RosHandler.cpp)
+add_executable(rgbd_slam src/main.cpp src/RosHandler.cpp) 
+#src/TransformTest.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-frontend src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Backend.cpp src/FeatureDEM.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpServer.cpp src/VisualOdometry.cpp src/UavComProtocolHandler.cpp  )
+frontend src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Backend.cpp src/FeatureDEM.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpServer.cpp src/VisualOdometry.cpp src/UavComProtocolHandler.cpp )
 
 target_link_libraries(frontend 
 ${catkin_LIBRARIES}

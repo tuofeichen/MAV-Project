@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:271:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < frame.getKeypoints().size();i++)
+                                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:287:8: error: ‘class RosHandler’ has no member named ‘updateCamPose’
+    px4.updateCamPose(tm.matrix());
+        ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

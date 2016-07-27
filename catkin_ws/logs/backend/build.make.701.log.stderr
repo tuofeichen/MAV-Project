@@ -1,0 +1,59 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘SLAM::Mapping::GraphProcessingResult SLAM::Mapping::processGraph(const Isometry3d&, const Eigen::Matrix<double, 6, 6>&, int, double, bool, bool)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:367:14: warning: variable ‘t’ set but not used [-Wunused-but-set-variable]
+     Matrix3d t = transformationMatrix.matrix().topLeftCorner(3,3);
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:515:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h: In instantiation of ‘Eigen::Transform<Scalar, Dim, Mode, _Options>& Eigen::Transform<Scalar, Dim, Mode, _Options>::operator=(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0]’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:87:30:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_DIFFERENT_NUMERIC_TYPES__YOU_NEED_TO_USE_THE_CAST_METHOD_OF_MATRIXBASE_TO_CAST_NUMERIC_TYPES_EXPLICITLY
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:280:5: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+     EIGEN_STATIC_ASSERT((internal::is_same<Scalar,typename OtherDerived::Scalar>::value),
+     ^
+In file included from /usr/include/eigen3/Eigen/Geometry:42:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:283:109: error: no matching function for call to ‘Eigen::internal::transform_construct_from_matrix<Eigen::Matrix<float, 4, 4>, 1, 0, 3, 4, 4, 4>::run(Eigen::Transform<double, 3, 1>* const, const Eigen::Matrix<float, 4, 4>&)’
+     internal::transform_construct_from_matrix<OtherDerived,Mode,Options,Dim,HDim>::run(this, other.derived());
+                                                                                                             ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:283:109: note: candidate is:
+In file included from /usr/include/eigen3/Eigen/Geometry:42:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1204:22: note: static void Eigen::internal::transform_construct_from_matrix<Other, Mode, Options, Dim, HDim, HDim, HDim>::run(Eigen::Transform<typename Other::Scalar, Dim, Mode, Options>*, const Other&) [with Other = Eigen::Matrix<float, 4, 4>; int Mode = 1; int Options = 0; int Dim = 3; int HDim = 4; typename Other::Scalar = float]
+   static inline void run(Transform<typename Other::Scalar,Dim,Mode,Options> *transform, const Other& other)
+                      ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1204:22: note:   no known conversion for argument 1 from ‘Eigen::Transform<double, 3, 1>* const’ to ‘Eigen::Transform<float, 3, 1>*’
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/Assign.h: In instantiation of ‘Derived& Eigen::DenseBase<Derived>::lazyAssign(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; Derived = Eigen::Matrix<double, 6, 6>]’:
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:411:46:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::lazyAssign(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; Derived = Eigen::Matrix<double, 6, 6>]’
+/usr/include/eigen3/Eigen/src/Core/Assign.h:520:123:   required from ‘static Derived& Eigen::internal::assign_selector<Derived, OtherDerived, false, false>::run(Derived&, const OtherDerived&) [with Derived = Eigen::Matrix<double, 6, 6>; OtherDerived = Eigen::Matrix<float, 6, 6>]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:618:105:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::_set_noalias(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; Derived = Eigen::Matrix<double, 6, 6>]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:603:120:   required from ‘void Eigen::PlainObjectBase<Derived>::_set_selector(const OtherDerived&, const Eigen::internal::false_type&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; Derived = Eigen::Matrix<double, 6, 6>]’
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:595:189:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::_set(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; Derived = Eigen::Matrix<double, 6, 6>]’
+/usr/include/eigen3/Eigen/src/Core/Matrix.h:172:30:   required from ‘Eigen::Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols>& Eigen::Matrix<_Scalar, _Rows, _Cols, _Options, _MaxRows, _MaxCols>::operator=(const Eigen::MatrixBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 6, 6>; _Scalar = double; int _Rows = 6; int _Cols = 6; int _Options = 0; int _MaxRows = 6; int _MaxCols = 6]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:89:27:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_DIFFERENT_NUMERIC_TYPES__YOU_NEED_TO_USE_THE_CAST_METHOD_OF_MATRIXBASE_TO_CAST_NUMERIC_TYPES_EXPLICITLY
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Core/Assign.h:493:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+   EIGEN_STATIC_ASSERT(SameType,YOU_MIXED_DIFFERENT_NUMERIC_TYPES__YOU_NEED_TO_USE_THE_CAST_METHOD_OF_MATRIXBASE_TO_CAST_NUMERIC_TYPES_EXPLICITLY)
+   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

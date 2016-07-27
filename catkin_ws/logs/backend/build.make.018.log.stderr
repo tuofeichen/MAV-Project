@@ -1,10 +1,21 @@
-In file included from /home/tuofeichen/g2o/g2o/core/hyper_graph.h:40:0,
-                 from /home/tuofeichen/g2o/g2o/core/hyper_dijkstra.h:34,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:7:
-/home/tuofeichen/g2o/g2o/core/g2o_core_api.h:13:24: fatal error: g2o/config.h: No such file or directory
- #include "g2o/config.h"
-                        ^
-compilation terminated.
-make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:450:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘void saveImage(SLAM::Frame, int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:100:23: error: ‘frames’ was not declared in this scope
+ }
+                       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:100:30: error: ‘state’ was not declared in this scope
+ }
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:100:30: note: suggested alternative:
+In file included from /usr/include/boost/thread.hpp:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frontend.h:13,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:12:
+/usr/include/boost/thread/future.hpp:168:14: note:   ‘boost::future_state::state’
+         enum state { uninitialized, waiting, ready, moved, deferred };
+              ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
 make: *** [all] Error 2

@@ -1,0 +1,33 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:447:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:14:
+/usr/include/eigen3/Eigen/src/Core/GeneralProduct.h: In instantiation of ‘const typename Eigen::ProductReturnType<Derived, OtherDerived>::Type Eigen::MatrixBase<Derived>::operator*(const Eigen::MatrixBase<OtherDerived>&) const [with OtherDerived = Eigen::ReturnByValue<Eigen::internal::inverse_impl<Eigen::Matrix<float, 4, 4> > >; Derived = Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>; typename Eigen::ProductReturnType<Derived, OtherDerived>::Type = Eigen::CoeffBasedProduct<const Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>, Eigen::Matrix<float, 4, 4>, 256>]’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:279:44:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: INVALID_MATRIX_PRODUCT
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:591:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+   EIGEN_STATIC_ASSERT(ProductIsValid || SameSizes, INVALID_MATRIX_PRODUCT)
+   ^
+/usr/include/eigen3/Eigen/src/Core/Assign.h: In instantiation of ‘Derived& Eigen::DenseBase<Derived>::lazyAssign(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CoeffBasedProduct<const Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>, Eigen::Matrix<float, 4, 4>, 256>; Derived = Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>]’:
+/usr/include/eigen3/Eigen/src/Core/Assign.h:520:123:   required from ‘static Derived& Eigen::internal::assign_selector<Derived, OtherDerived, false, false>::run(Derived&, const OtherDerived&) [with Derived = Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>; OtherDerived = Eigen::CoeffBasedProduct<const Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>, Eigen::Matrix<float, 4, 4>, 256>]’
+/usr/include/eigen3/Eigen/src/Core/Assign.h:564:89:   required from ‘Derived& Eigen::MatrixBase<Derived>::operator=(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::CoeffBasedProduct<const Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>, Eigen::Matrix<float, 4, 4>, 256>; Derived = Eigen::Block<Eigen::Matrix<float, 4, 4>, 4, 1, true>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:279:13:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_MATRICES_OF_DIFFERENT_SIZES
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:182:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+   EIGEN_STATIC_ASSERT( \
+   ^
+/usr/include/eigen3/Eigen/src/Core/Assign.h:492:3: note: in expansion of macro ‘EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE’
+   EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE(Derived,OtherDerived)
+   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

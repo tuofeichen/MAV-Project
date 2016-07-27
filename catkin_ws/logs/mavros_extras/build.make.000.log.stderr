@@ -1,0 +1,11 @@
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `image_cb(boost::shared_ptr<sensor_msgs::Image_<std::allocator<void> > const> const&)':
+gcs_image_bridge.cpp:(.text+0x106f): undefined reference to `cv::imencode(cv::String const&, cv::_InputArray const&, std::vector<unsigned char, std::allocator<unsigned char> >&, std::vector<int, std::allocator<int> > const&)'
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `cv::String::String(char const*)':
+gcs_image_bridge.cpp:(.text._ZN2cv6StringC2EPKc[_ZN2cv6StringC5EPKc]+0x4f): undefined reference to `cv::String::allocate(unsigned long)'
+CMakeFiles/gcs_image_bridge.dir/src/gcs_image_bridge.cpp.o: In function `cv::String::~String()':
+gcs_image_bridge.cpp:(.text._ZN2cv6StringD2Ev[_ZN2cv6StringD5Ev]+0x14): undefined reference to `cv::String::deallocate()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/gcs_image_bridge] Error 1
+make[1]: *** [CMakeFiles/gcs_image_bridge.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

@@ -143,7 +143,6 @@ link_directories(
 /opt/opencv3/lib
 /usr/local/lib
 /usr/lib
-#/usr/lib/arm-linux-gnueabihf
 /home/odroid/codes/g2o/lib
 /home/odroid/OpenNI-Linux-Arm-2.2/Redist
 /opt/ros/indigo/lib/
@@ -155,7 +154,7 @@ add_executable(backend src/main.cpp) # src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-frontend src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp)
+frontend src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp)
 
 target_link_libraries(frontend 
 ${catkin_LIBRARIES}
@@ -232,15 +231,3 @@ add_dependencies(backend ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_T
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
-#############
-## Testing ##
-#############
-
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rgbd_slam.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
-
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)

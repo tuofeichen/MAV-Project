@@ -1,0 +1,32 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:25: error: variable or field ‘getTm’ declared void
+ void  RosHandler::getTm(Matrixf& tm, Matrix<float, 6, 6>& im, double&dt)
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:25: error: ‘Matrixf’ was not declared in this scope
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:36: error: expected primary-expression before ‘,’ token
+ void  RosHandler::getTm(Matrixf& tm, Matrix<float, 6, 6>& im, double&dt)
+                                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:57: error: expected primary-expression before ‘&’ token
+ void  RosHandler::getTm(Matrixf& tm, Matrix<float, 6, 6>& im, double&dt)
+                                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:59: error: ‘im’ was not declared in this scope
+ void  RosHandler::getTm(Matrixf& tm, Matrix<float, 6, 6>& im, double&dt)
+                                                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:100:63: error: expected primary-expression before ‘double’
+ void  RosHandler::getTm(Matrixf& tm, Matrix<float, 6, 6>& im, double&dt)
+                                                               ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::run(RosHandler&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:82:34: error: no matching function for call to ‘RosHandler::getTm(Eigen::Matrix4d&, Eigen::Matrix<double, 6, 6>&, double&)’
+    lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:82:34: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RosHandler.h:24:9: note: void RosHandler::getTm(Eigen::Matrix4f&, Eigen::Matrix<float, 6, 6>&, double&)
+  void   getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RosHandler.h:24:9: note:   no known conversion for argument 1 from ‘Eigen::Matrix4d {aka Eigen::Matrix<double, 4, 4>}’ to ‘Eigen::Matrix4f& {aka Eigen::Matrix<float, 4, 4>&}’
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

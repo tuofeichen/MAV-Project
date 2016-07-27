@@ -1,21 +1,4 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp: In static member function ‘static bool AsusProLiveOpenNI2::grab(SLAM::Frame&)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:3: error: ‘cout’ was not declared in this scope
-   cout << "copying start" << endl; 
-   ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:3: note: suggested alternative:
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:8:0:
-/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
-   extern ostream cout;  /// Linked to standard output
-                  ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:30: error: ‘endl’ was not declared in this scope
-   cout << "copying start" << endl; 
-                              ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:203:30: note: suggested alternative:
-In file included from /usr/include/c++/4.8/iostream:39:0,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AsusProLiveOpenNI2.cpp:8:
-/usr/include/c++/4.8/ostream:564:5: note:   ‘std::endl’
-     endl(basic_ostream<_CharT, _Traits>& __os)
-     ^
-make[2]: *** [CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:447:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

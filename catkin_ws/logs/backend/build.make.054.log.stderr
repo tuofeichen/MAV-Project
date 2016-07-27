@@ -1,15 +1,16 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:107:3: error: expected ‘)’ before ‘{’ token
-   {
-   ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:111:2: error: expected primary-expression before ‘}’ token
-  }
-  ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:111:2: error: expected ‘;’ before ‘}’ token
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: At global scope:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:60:13: warning: ‘void logPoseGraphNode(const SLAM::Frame&, const Isometry3d&)’ defined but not used [-Wunused-function]
- static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:454:5: error: expected ‘,’ or ‘;’ before ‘int’
+     int* temp_ids = (int *) malloc( 100 * sizeof(int) ) 
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:479:6: error: ‘isNeighbor’ was not declared in this scope
+      isNeighbor = false; // initialize as no neighbors
+      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:489:6: error: ‘temp_ids’ was not declared in this scope
+      temp_ids = ids; 
+      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:501:13: error: ‘isNeighbor’ was not declared in this scope
+     } while(isNeighbor); //TODO check that not the same key frames are matched
              ^
-make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
-make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
 make: *** [all] Error 2

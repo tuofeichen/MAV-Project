@@ -1,0 +1,15 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘SLAM::Mapping::GraphProcessingResult SLAM::Mapping::processGraph(const Isometry3d&, const Eigen::Matrix<double, 6, 6>&, int, double, bool, bool)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:321:14: warning: variable ‘t’ set but not used [-Wunused-but-set-variable]
+     Matrix3d t = transformationMatrix.matrix().topLeftCorner(3,3);
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:462:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘void logPoseGraphNode(const SLAM::Frame&, const Isometry3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:76:5: error: expected ‘(’ before ‘frame’
+  if frame.getNewNodeFlag(){
+     ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

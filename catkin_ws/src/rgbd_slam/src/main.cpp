@@ -51,8 +51,8 @@ int main(int argc, char **argv)
 	static Frame frame;
 	Matrix4f tmCurToNode = Eigen::Matrix4f::Identity();
 	Matrix<float, 6, 6> imCurToNode = Matrix<float, 6, 6>::Identity();
-	boost::mutex backendMutex;
-	Backend backend(backendPort, backendMutex);
+	// boost::mutex backendMutex;
+	// Backend backend(backendPort, backendMutex);
 	
 	//
 	// start the RGBD sensor
@@ -69,12 +69,13 @@ int main(int argc, char **argv)
 	
 	//
 	// wait until backend sets the starting position
-	while(!backend.currentPosUpToDate()) boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+	// while(!backend.currentPosUpToDate()) boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 
 	//
 	// first frame
 	double start, end, dif;
-	while(backend.running())
+	// while(backend.running())
+	while(ros::ok());
 	{
 		
 		//debug
@@ -90,7 +91,7 @@ int main(int argc, char **argv)
 
 		//debug
 		start = static_cast<double>( clock () ) /  CLOCKS_PER_SEC;		
-		backend.setNewNode(frame,tmCurToNode,imCurToNode,1);
+		// backend.setNewNode(frame,tmCurToNode,imCurToNode,1);
 		
 		// debug
 		end = static_cast<double>( clock () ) /  CLOCKS_PER_SEC;
@@ -128,14 +129,14 @@ static bool processFrame(const Frame& newFrame, const Frame& prevNode, Matrix4f&
 	if (validFlag){
 	newNode = (res == VisualOdometry::valid);
 
-#ifndef DEBUG		
-		if (newNode){
-			logPos << endl << "new frame" <<endl; 
-			for (int i = 0; i< srcMatches.size(); i++)	
-				logPos << srcMatches[i] << ",";
-			logPos << endl; 
-		}
-#endif
+// #ifndef DEBUG		
+// 		if (newNode){
+// 			logPos << endl << "new frame" <<endl; 
+// 			for (int i = 0; i< srcMatches.size(); i++)	
+// 				logPos << srcMatches[i] << ",";
+// 			logPos << endl; 
+// 		}
+// #endif
 
 		return true;
 	}
@@ -199,9 +200,9 @@ int main(int argc, char **argv)
 
 	deleteLog();
 
-	boost::mutex backendMutex;
+	// boost::mutex backendMutex;
 
-	Backend backend(backendPort, backendMutex);
+	// Backend backend(backendPort, backendMutex);
 	unsigned int couldNotMatchCounter = 0;
 	unsigned int totalNumberOfFrames = 0; // debug
 	unsigned int dummyFrameCounter = 0; // debug
@@ -212,7 +213,7 @@ int main(int argc, char **argv)
 //	AsusProLive::start();
 	AsusProLiveOpenNI2::start();
 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/rgbd_slam/Frames/frontend.csv",std::ofstream::out | std::ofstream::trunc);
-    logPos << "X,Y,Z,LPE_Z"<<endl;
+    logPos << "X,Y,Z,roll, pitch, yaw"<<endl;
    // grab some images until brightness is adjusted correctly
 	
 	for(int i=0; i < 5; ++i)
@@ -225,11 +226,12 @@ int main(int argc, char **argv)
 	}
 
 	// wait until backend sets the starting position
-	while(!backend.currentPosUpToDate()) boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+	// while(!backend.currentPosUpToDate()) boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 
 	// first frame
 	bool noError = false;
-	while(backend.running() && AsusProLiveOpenNI2::running())
+	// while(backend.running() && AsusProLiveOpenNI2::running())
+	while(AsusProLiveOpenNI2::running())
 	{
 
     	noError = AsusProLiveOpenNI2::grab(frames[state]);
@@ -250,7 +252,7 @@ int main(int argc, char **argv)
 
 		tmCurToNode = Eigen::Matrix4f::Identity();
 		imCurToNode = Matrix<float, 6, 6>::Identity(); // value not needed
-		backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
+		// backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
 		
 		// sprintf(imgName, "/home/tuofeichen/Downloads/Frames/1_new_node_rgb.png");
 		// cv::imwrite(imgName,frames[state].getRgb());
@@ -294,7 +296,7 @@ int main(int argc, char **argv)
 	
 	// process
 	double start, end, dif; // debug
-	while(backend.running() && AsusProLiveOpenNI2::running() && ros::ok())
+	while(AsusProLiveOpenNI2::running() && ros::ok())//backend.running() 
 	{
 		
 		//debug
@@ -377,8 +379,30 @@ int main(int argc, char **argv)
 			// set new node
 			if(newNode)
 			{	
+				Matrix3f t = tmCurToNode.topLeftCorner(3,3); //frontendPos.topLeftCorner(3,3) ;// Rotation matrix
+				float droll  = 	atan2(t(2,1),t(2,2)); // roll (around x)
 				
-				cout << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug	
+				float dpitch = 	atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
+
+				float dyaw   = 	atan2(t(1,0),t(0,0)); // yaw (around z)
+
+				t = frontendPos.topLeftCorner(3,3);
+				float roll  = 	atan2(t(2,1),t(2,2)); // roll (around x)
+				
+				float pitch = 	atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
+				
+				float yaw   = 	atan2(t(1,0),t(0,0)); // yaw (around z)
+				
+				cout << std::setprecision(3) << std::fixed;
+
+
+				// cout << "current transformation is" << endl << tmCurToNode << endl; 
+				cout << "roll: " << roll << " pitch: "<< pitch << " yaw: " << yaw << endl;  
+				
+				cout << "droll: " << droll << " dpitch: "<< dpitch << " dyaw: " << dyaw << endl;  
+				// cout << "transformation is " << endl << tmCurToNode << endl << endl; 
+
+				// cout << "Node " << ++newNodeCounter << " sent to backend" << endl; // debug	
 				
 				// note down the exact frame being processed. 
 			
@@ -397,21 +421,22 @@ int main(int argc, char **argv)
 					
 				// cout << tmCurToNode << endl; 	 					
 				// logger.updatePos(cameraPos);
-				backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
-				frontendPos = frontendPos * tmCurToNode; // actual integration
+				// backend.setNewNode(frames[state],tmCurToNode,imCurToNode,1);
+				frontendPos = tmCurToNode * frontendPos; // * tmCurToNode; // actual integration
 
 				// sprintf(imgName, "/home/tuofeichen/Downloads/Frames/%d_new_node_rgb.png",newNodeCounter);
 				// cv::imwrite(imgName,frames[state].getGray());
 				// sprintf(imgName, "/home/tuofeichen/Downloads/Frames/%d_new_node_dep.png",newNodeCounter);
 				// cv::imwrite(imgName,frames[state].getDepth()); // save new frame image right away
 
-				//when image kicks in at anytime, we want edge from that point. (note this relative approach) 				 
+				// when image kicks in at anytime, we want edge from that point. (note this relative approach) 				 
 				// currentTime = logger.getTime(); 
 				// currentPos  = logger.getLpe();
 
 #ifdef DEBUG
 				logPos << frontendPos(0,3) << "," << frontendPos(1,3) << "," << frontendPos(2,3) << ",";
-				logPos << currentPos(1,3)<< endl; // also note down LPE pose ? 
+				logPos << roll << "," << pitch << "," << yaw << endl;
+				// logPos << currentPos(1,3)<< endl; // also note down LPE pose ? 
 #else	
 			    // logPos  << frames[state].getDescriptors() << endl << endl; 
 
@@ -482,7 +507,7 @@ int main(int argc, char **argv)
 	storage.release();  // try different file format
 #endif
 
-	testTransform();
+	// testTransform();
 
 #ifndef DEBUG_ONLY
 	// debug stats
@@ -492,7 +517,7 @@ int main(int argc, char **argv)
 	cout << "badFramesCounter = " << badFramesCounter << endl; // debug
 	cout << "totalCouldNotMatchCounter = " << totalCouldNotMatchCounter << endl; // debug
 
-	while(backend.running()) boost::this_thread::sleep(boost::posix_time::milliseconds(100)); //TODO debug
+	// while(backend.running()) boost::this_thread::sleep(boost::posix_time::milliseconds(100)); //TODO debug
 #endif
 
 	return 0;

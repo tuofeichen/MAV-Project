@@ -10,7 +10,8 @@ RosHandler::RosHandler()
 	Matrix4f yaw_offset;
 	yaw_offset.setZero();
 
-	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/rgbd_slam/pose",100);
+	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/mavros/vision_pose/pose",1000);
+
 	_lpe_sub = _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
 	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
 	_bat_sub = _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
@@ -25,10 +26,10 @@ RosHandler::RosHandler()
 
 	_lpe_valid = false;
 	// frame transformation between UAV and Camera
-	_lpe2cam = (Matrix4f() << 0,0,1,0,
-				  			1,0,0,0,
-				  			0,1,0,0,
-						    0,0,0,1).finished();
+	// _lpe2cam = (Matrix4f() << 0,0,1,0,
+				  			// 1,0,0,0,
+				  			// 0,1,0,0,
+						   //  0,0,0,1).finished();
 
 };
 
@@ -42,19 +43,16 @@ RosHandler::~RosHandler()
 void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 {
 	Quaternionf q (pos_read.pose.orientation.w, pos_read.pose.orientation.x, pos_read.pose.orientation.y,pos_read.pose.orientation.z);
-
-	q.normalize();
-	q2rpy(q,_rpy(0),_rpy(1),_rpy(2)); // note down body frame rpy
-
-	// lpe time stamp
 	_time = pos_read.header.stamp.sec + pos_read.header.stamp.nsec / 1000000000.0;
 	_lpe.setIdentity(); 	// clear buffer
-	_lpe.topLeftCorner(3,3)  = rpy2rot(_rpy(1),_rpy(2),_rpy(0));
+	_lpe.topLeftCorner (3,3) = q.matrix(); 
 
-// timeout to be one second: only note down translation when lpe is valid
-	//if ((_time - _timeout) < 2){
-	_lpe.topRightCorner(3,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x; 
-	//}
+	float r, p, y;
+	rot2rpy(q.matrix(),r,p,y);	
+	cout << "lpe rpy is " << r << " " << p << " "<< y << endl;
+
+	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
+
 	
 }
 
@@ -75,16 +73,22 @@ void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
 
 
 // everthing aligned in camera frame
-void RosHandler::updateCamPos(Matrix4f& currentTME)
+void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME)
 {
 		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation matrix
 		Quaternionf q(rot_mat); 		
 		float r, p, y;
 		_xyz =  currentTME.topRightCorner(3,1);   // translation
-		rot2rpy(rot_mat, p , y , r); 		  // transformed rpy for debug
+		rot2rpy(rot_mat, r , p , y); 		  // transformed rpy for debug
 
 //		cout << " transformed r p y is : "   << r << " "  << p << " " << y << endl;
 //		cout << " current position is: " << _xyz(0) << " "  << _xyz(1) << " " << _xyz(2) << endl; 
+
+		_rgbd_slam_pos.header.stamp.sec  = floor(timeStamp); 
+		_rgbd_slam_pos.header.stamp.nsec = (timeStamp - floor(timeStamp)) *1000000000.0;
+
+		// cout << "current time sec is " << _rgbd_slam_pos.header.stamp.sec << endl;
+		// cout << "current time nsec is " << _rgbd_slam_pos.header.stamp.nsec << endl;
 
 		_rgbd_slam_pos.pose.position.x = _xyz(0);
 		_rgbd_slam_pos.pose.position.y = _xyz(1);
@@ -95,14 +99,16 @@ void RosHandler::updateCamPos(Matrix4f& currentTME)
 		_rgbd_slam_pos.pose.orientation.y = q.y();
 		_rgbd_slam_pos.pose.orientation.z = q.z();
 		_rgbd_slam_pub.publish(_rgbd_slam_pos);
-
-
 }
 
 void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 {
 	tm = _lpe * _lpe_cam.inverse();
-	im = Matrix<float, 6, 6>::Identity() * 2000; // make dynamic later
+	im = Matrix<float, 6, 6>::Identity() * 2000; // should get dynamic matrix from 
+	
+	Matrix3f rot = tm.topLeftCorner(3,3);
+	// rot = rot * 
+
 	dt = _time - _time_cam;
 }
 

@@ -168,6 +168,9 @@ void G2oPoseGraph::getEdgeNeighborsToCurrentNode(int sequential, std::vector<int
 	g2o::UniformCostFunction costFun;
 	g2o::VertexSE3* v = dynamic_cast<g2o::VertexSE3*>(optimizer.vertex(currentIndex));
 	dijkstra.shortestPaths(v, &costFun, 3); // geodesic distance == 3
+
+	// shortest path search
+	
 	g2o::HyperGraph::VertexSet& vs = dijkstra.visited();
 
 	for (g2o::HyperGraph::VertexSet::iterator i=vs.begin(); i!=vs.end(); ++i)

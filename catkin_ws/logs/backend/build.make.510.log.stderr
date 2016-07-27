@@ -1,0 +1,13 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:20:2: error: invalid preprocessing directive #inclu
+ #inclu`de "RANSACBasedTME.h"
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:60:8: error: ‘RANSACBasedTME’ does not name a type
+ static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:184:23: error: ‘tme’ was not declared in this scope
+  Mapping slam(&fdem, &tme, &graph); //, &pointCloudMap);
+                       ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

@@ -1,0 +1,3 @@
+[ 30%] Built target copter_visualization
+[ 30%] Built target servo_state_publisher
+[100%] Built target mavros_extras

@@ -2,7 +2,8 @@
 
 
 
-<!-- <include file="$(find mavros)/launch/px4.launch"> </include> -->
+<include file="$(find mavros)/launch/px4.launch"> </include> 
+
 
 <arg name="sim" default="0"/>
 

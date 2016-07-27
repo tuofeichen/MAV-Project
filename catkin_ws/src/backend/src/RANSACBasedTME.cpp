@@ -7,11 +7,13 @@
 
 #include <limits>
 #include <assert.h>
-
+#include <iostream>
 #include "Eigen/Geometry"
 
 #include "AnalyticBasedTME.h"
 #include "RANSACBasedTME.h"
+
+#include <ctime>
 
 namespace SLAM {
 
@@ -27,7 +29,9 @@ RANSACBasedTME::RANSACBasedTME(int iterations, float maxDistForInlier, float max
   thresholdAbsolutDistanceTest(maxDistanceInitialTest),
   squaredMaxDistInlier(maxDistForInlier*maxDistForInlier),
   minInlier(inlierMin), termInlierPct(terminationInlierPct)
-{ }
+{
+	srand (std::time(NULL));
+}
 
 RANSACBasedTME::~RANSACBasedTME()
 { }
@@ -217,10 +221,12 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 		consensus.push_back(idx[2]);
 
 		if (!estimateTransformationMatrix(keys3D1, matchIdx1, keys3D2, matchIdx2, consensus, transfMat))
-			continue; // transformation matrix estimation failed
+			continue; //if the three point doesn't work out 
 
 		int inlierRefined = 0;
 		float mseRefined = std::numeric_limits<float>::infinity();
+
+		// refining the RANSAC ? 
 		for(int refine = 4; refine < 20; ++refine)
 		{
 			float mse;
@@ -257,7 +263,7 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 
 	if (optInlier >= minInlier && squaredMaxDistInlier > optMse)
 	{
-//		std::cout << "Inlier = " << optInlier << " RMSE = " << sqrt(optMse) << std::endl;
+		// std::cout << "Inlier = " << optInlier << " RMSE = " << sqrt(optMse) << std::endl;
 		return true;
 	}
 	else

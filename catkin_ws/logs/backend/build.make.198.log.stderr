@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:48:6: error: prototype for ‘bool SLAM::Mapping::run(RosHandler&)’ does not match any in class ‘SLAM::Mapping’
+ bool Mapping::run(RosHandler& lpe) 
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:64:7: error: candidate is: void SLAM::Mapping::run(RosHandler&)
+  void run(RosHandler& lpe);
+       ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

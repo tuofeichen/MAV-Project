@@ -57,10 +57,15 @@ public:
 	 *
 	 * @return true if enough matches where found, else false
 	 */
-	virtual bool match(
-			const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+	// virtual bool match(
+	// 		const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+	// 		const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
+	// 		std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const = 0; // must be thread safe
+
+	 virtual bool match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
-			std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const = 0; // must be thread safe
+			std::vector<cv::DMatch>& matches) const = 0;
+
 };
 
 } /* namespace SLAM */

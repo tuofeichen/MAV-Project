@@ -1,0 +1,441 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:119:35: error: expected identifier before string constant
+  static cv::FileStorage fileStore("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints.txt",cv::FileStorage::WRITE);
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:119:35: error: expected ‘,’ or ‘...’ before string constant
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:120:39: error: expected identifier before string constant
+     static cv::FileStorage fileStore2("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints2.txt",cv::FileStorage::WRITE);
+                                       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:120:39: error: expected ‘,’ or ‘...’ before string constant
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: error: no matching function for call to ‘write(cv::FileStorage (&)(int), char [50], std::vector<int>&)’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note: candidates are:
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note: void cv::write(cv::FileStorage&, const cv::String&, int)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, int value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note: void cv::write(cv::FileStorage&, const cv::String&, float)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, float value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note: void cv::write(cv::FileStorage&, const cv::String&, double)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, double value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::String&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const String& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Mat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const Mat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::SparseMat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const SparseMat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::KeyPoint>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<KeyPoint>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::DMatch>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<DMatch>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const _Tp&)
+ void write(FileStorage& fs, const _Tp& value)
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note: void cv::write(cv::FileStorage&, const cv::Range&)
+ void write(FileStorage& fs, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note:   candidate expects 2 arguments, 3 provided
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::String&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const String& name, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Range&)
+ void write(FileStorage& fs, const String& name, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const String& name, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:296:45: note:   cannot convert ‘SLAM::Mapping::fileStore’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore, logName, matchesIdx1);
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: error: no matching function for call to ‘write(cv::FileStorage (&)(int), char [50], std::vector<int>&)’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note: candidates are:
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note: void cv::write(cv::FileStorage&, const cv::String&, int)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, int value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:656:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note: void cv::write(cv::FileStorage&, const cv::String&, float)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, float value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:657:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note: void cv::write(cv::FileStorage&, const cv::String&, double)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, double value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:658:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::String&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const String& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:659:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Mat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const Mat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:660:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::SparseMat&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const SparseMat& value );
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:661:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::KeyPoint>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<KeyPoint>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:662:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note: void cv::write(cv::FileStorage&, const cv::String&, const std::vector<cv::DMatch>&)
+ CV_EXPORTS void write( FileStorage& fs, const String& name, const std::vector<DMatch>& value);
+                 ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:663:17: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const _Tp&)
+ void write(FileStorage& fs, const _Tp& value)
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:826:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:856:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:863:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:871:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:878:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:885:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:894:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:901:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note: void cv::write(cv::FileStorage&, const cv::Range&)
+ void write(FileStorage& fs, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:910:6: note:   candidate expects 2 arguments, 3 provided
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:917:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:925:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Point3_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Point3_<_Tp>& pt )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:932:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Size_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Size_<_Tp>& sz )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:939:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Complex<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Complex<_Tp>& c )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:946:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Rect_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Rect_<_Tp>& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:953:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note: template<class _Tp, int cn> void cv::write(cv::FileStorage&, const cv::String&, const cv::Vec<_Tp, m>&)
+ void write(FileStorage& fs, const String& name, const Vec<_Tp, cn>& v )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:960:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const cv::Scalar_<_Tp>&)
+ void write(FileStorage& fs, const String& name, const Scalar_<_Tp>& s )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:967:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+In file included from /opt/opencv3/include/opencv2/core.hpp:60:0,
+                 from /opt/opencv3/include/opencv2/highgui.hpp:46,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:11:
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note: void cv::write(cv::FileStorage&, const cv::String&, const cv::Range&)
+ void write(FileStorage& fs, const String& name, const Range& r )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:974:6: note:   no known conversion for argument 1 from ‘cv::FileStorage(int)’ to ‘cv::FileStorage&’
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note: template<class _Tp> void cv::write(cv::FileStorage&, const cv::String&, const std::vector<_RealType>&)
+ void write( FileStorage& fs, const String& name, const std::vector<_Tp>& vec )
+      ^
+/opt/opencv3/include/opencv2/core/persistence.hpp:981:6: note:   template argument deduction/substitution failed:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:297:45: note:   cannot convert ‘SLAM::Mapping::fileStore2’ (type ‘cv::FileStorage(int)’) to type ‘cv::FileStorage&’
+    cv::write(fileStore2,logName, matchesIdx2);
+                                             ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

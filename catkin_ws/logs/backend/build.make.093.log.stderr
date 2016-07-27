@@ -1,14 +1,4 @@
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:14:0:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:62:11: error: ‘RosHandler’ has not been declared
-  void run(RosHandler& lpe);
-           ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:45:6: error: prototype for ‘void SLAM::Mapping::run(RosHandler&)’ does not match any in class ‘SLAM::Mapping’
- void Mapping::run(RosHandler& lpe) // fusing with lpe
-      ^
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:14:0:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:62:7: error: candidate is: void SLAM::Mapping::run(int&)
-  void run(RosHandler& lpe);
-       ^
-make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:447:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

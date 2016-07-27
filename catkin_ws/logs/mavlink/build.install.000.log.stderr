@@ -1,0 +1,13 @@
++ [ -n  ]
++ /usr/bin/env /usr/bin/python /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/pymavlink/setup.py build --build-base /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild install --install-layout=deb --prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
+mavnative/mavnative.c: In function ‘py_mavlink_parse_char’:
+mavnative/mavnative.c:155:5: warning: enumeration value ‘MAVLINK_PARSE_STATE_GOT_BAD_CRC1’ not handled in switch [-Wswitch]
+     switch (status->parse_state)
+     ^
+zip_safe flag not set; analyzing archive contents...
+pymavlink.generator.mavgen: module references __file__
+pymavlink.generator.mavgen_c: module references __file__
+pymavlink.generator.mavgen_java: module references __file__
+pymavlink.generator.mavgen_swift: module references __file__
+pymavlink.generator.lib.minixsv.__init__: module references __file__
+pymavlink.generator.lib.genxmlif.__init__: module references __file__

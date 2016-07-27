@@ -1,0 +1,12 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp: In member function ‘void RosHandler::lpeCallback(geometry_msgs::PoseStamped)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:53:2: error: expected ‘;’ before ‘_lpe’
+  _lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
+  ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:525:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

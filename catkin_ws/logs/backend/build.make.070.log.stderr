@@ -1,7 +1,4 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp: In member function ‘virtual boost::shared_ptr<std::vector<cv::KeyPoint> > SLAM::SURF::detect(const cv::Mat&)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:30:25: error: ‘kpts’ was not declared in this scope
-  cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
-                         ^
-make[2]: *** [CMakeFiles/frontend.dir/src/SURF.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:447:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

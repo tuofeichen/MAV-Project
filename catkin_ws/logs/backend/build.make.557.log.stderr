@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp: In member function ‘virtual bool SLAM::SURF::match(const std::vector<cv::KeyPoint>&, const cv::Mat&, const std::vector<cv::KeyPoint>&, const cv::Mat&, std::vector<cv::DMatch>&) const’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/SURF.cpp:65:2: error: ‘matcher’ is not a member of ‘cv’
+  cv::matcher->match(descs1,descs2,matches);
+  ^
+make[2]: *** [CMakeFiles/frontend.dir/src/SURF.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

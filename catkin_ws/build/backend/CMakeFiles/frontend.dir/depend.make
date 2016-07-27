@@ -1449,7 +1449,6 @@ CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/geometry_msgs
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/geometry_msgs/Pose.h
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/geometry_msgs/PoseStamped.h
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/geometry_msgs/Quaternion.h
-CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/ros/advertise_options.h
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/ros/advertise_service_options.h
 CMakeFiles/frontend.dir/src/Mapping.cpp.o: /opt/ros/indigo/include/ros/assert.h
@@ -2051,7 +2050,6 @@ CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_m
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/Pose.h
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/PoseStamped.h
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/Quaternion.h
-CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/advertise_options.h
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/advertise_service_options.h
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/assert.h

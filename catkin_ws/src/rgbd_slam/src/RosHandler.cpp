@@ -23,10 +23,6 @@ RosHandler::RosHandler()
 	_lpe_time = 0.0 ;
 	_lpe_valid = false;
 	// frame transformation between UAV and Camera
-	_lpe2cam = (Matrix4f() << 0,0,1,0,
-				  1,0,0,0,
-				  0,1,0,0,
-				  0,0,0,1).finished();
 
 };
 
@@ -42,17 +38,22 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 	Quaternionf q (pos_read.pose.orientation.w, pos_read.pose.orientation.x, pos_read.pose.orientation.y,pos_read.pose.orientation.z);
 
 	q.normalize();
-	q2rpy(q,_rpy(0),_rpy(1),_rpy(2)); // note down body frame rpy
+	// q2rpy(q,_rpy(0),_rpy(1),_rpy(2)); // note down body frame rpy
 
 	// lpe time stamp
 	_lpe_time = pos_read.header.stamp.sec + pos_read.header.stamp.nsec / 1000000000.0;
 	_lpe.setIdentity(); 	// clear buffer
-	_lpe.topLeftCorner(3,3)  = rpy2rot(_rpy(1),_rpy(2),_rpy(0));
+	_lpe.topLeftCorner(3,3) = q.matrix(); 
+	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
 
-// timeout to be one second: only note down translation when lpe is valid
-	//if ((_lpe_time - _lpe_timeout) < 2){
-	_lpe.topRightCorner(3,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x;
-	// cout << pos_read << endl;  
+
+// no more frame transformation (done on camera side)
+// 	_lpe.topLeftCorner(3,3)  = rpy2rot(_rpy(1),_rpy(2),_rpy(0));
+
+// // timeout to be one second: only note down translation when lpe is valid
+// 	//if ((_lpe_time - _lpe_timeout) < 2){
+// 	_lpe.topRightCorner(3,1) << pos_read.pose.position.y, pos_read.pose.position.z, pos_read.pose.position.x;
+// 	// cout << pos_read << endl;  
 	//}
 	
 }
