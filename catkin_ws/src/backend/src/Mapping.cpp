@@ -346,14 +346,14 @@ void Mapping::matchTwoFrames(
 
 		tm_temp = tm; 
 
-		tm.row(0) = tm_temp.row(1) * rot;
+		tm.row(0) = tm_temp.row(2) * rot;
 		
-		tm.row(1) = tm_temp.row(2) * rot;
+		tm.row(1) = tm_temp.row(0) * rot;
 		
-		tm.row(2) = tm_temp.row(0) * rot;
+		tm.row(2) = tm_temp.row(1) * rot;
 
-		tm.col(3) =	rot.inverse()  * tm_temp.col(3);
-		
+		tm.col(3) =	rot.inverse() * tm_temp.col(3);
+
 		// tm_temp = tm.transpose(); // leave it this way and do conversion when feeding into pixhawk
 		// tm.topLeftCorner(3,3) = tm_temp.topLeftCorner(3,3);
 	

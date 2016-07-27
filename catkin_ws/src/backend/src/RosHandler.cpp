@@ -47,9 +47,9 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 	_lpe.setIdentity(); 	// clear buffer
 	_lpe.topLeftCorner (3,3) = q.matrix(); 
 
-	float r, p, y;
-	rot2rpy(q.matrix(),r,p,y);	
-	cout << "lpe rpy is " << r << " " << p << " "<< y << endl;
+	// float r, p, y;
+	// rot2rpy(q.matrix(),r,p,y);	
+	// cout << "lpe rpy is " << r << " " << p << " "<< y << endl;
 
 	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
 
