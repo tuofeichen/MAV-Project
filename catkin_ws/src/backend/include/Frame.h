@@ -227,9 +227,16 @@ public:
 	 */
 	const cv::Mat& getAverageDescriptors() const { assert(averageFeatureDescriptor); return *averageFeatureDescriptor; }
 
-	void setNewNodeFlag() { *newNodeFlag = true; }
+	void setNewNodeFlag(bool flag) { *newNodeFlag = flag; }
 
 	bool getNewNodeFlag() const { return *newNodeFlag; }
+
+
+	void setBadFrameFlag(bool flag) { *badFrameFlag = flag; }
+
+	bool getBadFrameFlag() const { return *badFrameFlag; }
+
+
 
 private:
 	void setAverageDescriptors();
@@ -238,6 +245,7 @@ private:
 	boost::shared_ptr<bool> keyFrameFlag;
 	boost::shared_ptr<bool> dummyFrameFlag;	
 	boost::shared_ptr<bool> newNodeFlag;
+	boost::shared_ptr<bool> badFrameFlag;
 
 	boost::shared_ptr<double> time;
 	boost::shared_ptr<cv::Mat> rgb;

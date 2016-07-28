@@ -1,0 +1,26 @@
+In file included from /usr/include/c++/4.8/bits/atomic_base.h:36:0,
+                 from /usr/include/c++/4.8/atomic:41,
+                 from /usr/include/boost/asio/detail/atomic_count.hpp:23,
+                 from /usr/include/boost/asio/detail/task_io_service.hpp:24,
+                 from /usr/include/boost/asio/impl/io_service.hpp:71,
+                 from /usr/include/boost/asio/io_service.hpp:770,
+                 from /usr/include/boost/asio/basic_io_object.hpp:19,
+                 from /usr/include/boost/asio/basic_socket.hpp:20,
+                 from /usr/include/boost/asio/basic_datagram_socket.hpp:20,
+                 from /usr/include/boost/asio.hpp:21,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/TcpClient.h:15,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frontend.h:19,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:14:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:206:2: error: expected ‘;’ before ‘bool’
+  bool stop = false;
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:224:9: error: ‘stop’ was not declared in this scope
+  while(!stop && ros::ok())
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:288:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getBadFrameCounter() == badFrameCnt)
+                                     ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

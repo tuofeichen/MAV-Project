@@ -94,8 +94,8 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 		 << y  << "," << frameNum << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
 	cout << fixed << setprecision(3);
-	cout << "yaw is " << y << " roll is " <<  r << "  pitch is " << p << endl; 
-	cout << " x is " <<  pose.translation().x() << "  y is " << pose.translation().y() <<"  z is " << pose.translation().z() << endl << endl;
+	cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
+	cout << "[VSLAM] x " <<  pose.translation().x() << "  y " << pose.translation().y() <<" z " << pose.translation().z() << endl;
 	}
 	
 }
@@ -196,6 +196,7 @@ int main(int argc, char **argv)
 
 	Mapping slam(&fdem, &tme, &graph); //, &pointCloudMap);
 
+	
 	// pointCloudMap.startMapViewer();
 
 	// set start position on front end
@@ -258,8 +259,8 @@ int main(int argc, char **argv)
 			// stop |= (cv::waitKey(10) >= 0); //stop when key pressed
 			
 			// start slam
-			slam.addFrame(frame);
 			
+			slam.addFrame(frame);
 			slam.run(px4);
 
 			sprintf(fileName,"Matching%d", toNode);
@@ -302,6 +303,10 @@ int main(int argc, char **argv)
 		}
 #endif
 			logPoseGraphNode(frame, slam.getCurrentPosition());
+			if(frame.getNewNodeFlag())
+				px4.getLpe();//log lpe
+
+
 			
 //			pointCloudMap.updateMapViewer();
 		}
@@ -347,8 +352,8 @@ int main(int argc, char **argv)
 
 void logPoseGraphEnd(Frame frame, G2oPoseGraph graph, int nodeCnt)
 {
-	cout << " total number of node ? " << nodeCnt <<  endl; 
-	frame.setNewNodeFlag();
+	// cout << " total number of node ? " << nodeCnt <<  endl; 
+	frame.setNewNodeFlag(true);
 	for (int i = 0; i < nodeCnt; i++)
 	{
 	  // cout << "position of id is " << graph.getPositionOfId(i) << endl;

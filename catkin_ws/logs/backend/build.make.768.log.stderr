@@ -1,0 +1,257 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::run(RosHandler&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:71: error: expected ‘)’ before ‘;’ token
+   currentPosition = (poseGraph->getPositionOfId(nodes.size()-1)*tm_lpe; // last node    
+                                                                       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:107:37: error: ‘dummyTm’ was not declared in this scope
+   poseGraph->addEdgeFromIdToCurrent(dummyTm, dummyInfoMat, nodes.back().getId());
+                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:107:46: error: ‘dummyInfoMat’ was not declared in this scope
+   poseGraph->addEdgeFromIdToCurrent(dummyTm, dummyInfoMat, nodes.back().getId());
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:324:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h: In instantiation of ‘Eigen::Transform<Scalar, Dim, Mode, _Options>& Eigen::Transform<Scalar, Dim, Mode, _Options>::operator=(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0]’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:19:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_DIFFERENT_NUMERIC_TYPES__YOU_NEED_TO_USE_THE_CAST_METHOD_OF_MATRIXBASE_TO_CAST_NUMERIC_TYPES_EXPLICITLY
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:280:5: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+     EIGEN_STATIC_ASSERT((internal::is_same<Scalar,typename OtherDerived::Scalar>::value),
+     ^
+In file included from /usr/include/eigen3/Eigen/Geometry:42:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:283:109: error: no matching function for call to ‘Eigen::internal::transform_construct_from_matrix<Eigen::Matrix<float, 4, 4>, 1, 0, 3, 4, 4, 4>::run(Eigen::Transform<double, 3, 1>* const, const Eigen::Matrix<float, 4, 4>&)’
+     internal::transform_construct_from_matrix<OtherDerived,Mode,Options,Dim,HDim>::run(this, other.derived());
+                                                                                                             ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:283:109: note: candidate is:
+In file included from /usr/include/eigen3/Eigen/Geometry:42:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1204:22: note: static void Eigen::internal::transform_construct_from_matrix<Other, Mode, Options, Dim, HDim, HDim, HDim>::run(Eigen::Transform<typename Other::Scalar, Dim, Mode, Options>*, const Other&) [with Other = Eigen::Matrix<float, 4, 4>; int Mode = 1; int Options = 0; int Dim = 3; int HDim = 4; typename Other::Scalar = float]
+   static inline void run(Transform<typename Other::Scalar,Dim,Mode,Options> *transform, const Other& other)
+                      ^
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1204:22: note:   no known conversion for argument 1 from ‘Eigen::Transform<double, 3, 1>* const’ to ‘Eigen::Transform<float, 3, 1>*’
+In file included from /usr/include/eigen3/Eigen/Core:328:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h: In instantiation of ‘struct Eigen::internal::traits<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’:
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:41:34:   required from ‘class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:113:7:   required from ‘class Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1262:69:   required from ‘static Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::run(const TransformType&, const MatrixType&) [with TransformType = Eigen::Transform<double, 3, 1>; MatrixType = Eigen::Matrix<float, 4, 4>; Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:401:102:   required from ‘const typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType Eigen::Transform<Scalar, Dim, Mode, _Options>::operator*(const Eigen::EigenBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0; typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:65:   required from here
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:43:112: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+   typedef typename scalar_product_traits<typename _LhsNested::Scalar, typename _RhsNested::Scalar>::ReturnType Scalar;
+                                                                                                                ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:69:51: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+                           || ( (ColsAtCompileTime % packet_traits<Scalar>::size) == 0
+                                                   ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:76:51: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+                           || ( (RowsAtCompileTime % packet_traits<Scalar>::size) == 0
+                                                   ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:94:41: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+                       + (InnerSize - 1) * NumTraits<Scalar>::AddCost,
+                                         ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:93:63: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+                     : InnerSize * (NumTraits<Scalar>::MulCost + LhsCoeffReadCost + RhsCoeffReadCost)
+                                                               ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:106:41: error: no type named ‘ReturnType’ in ‘struct Eigen::internal::scalar_product_traits<double, float>’
+                           && (InnerSize % packet_traits<Scalar>::size == 0)
+                                         ^
+In file included from /usr/include/eigen3/Eigen/Core:278:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h: In instantiation of ‘class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’:
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:48:34:   required from ‘class Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:113:7:   required from ‘class Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1262:69:   required from ‘static Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::run(const TransformType&, const MatrixType&) [with TransformType = Eigen::Transform<double, 3, 1>; MatrixType = Eigen::Matrix<float, 4, 4>; Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:401:102:   required from ‘const typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType Eigen::Transform<Scalar, Dim, Mode, _Options>::operator*(const Eigen::EigenBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0; typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:65:   required from here
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:51:96: error: using-declaration for non-member at class scope
+                 typename NumTraits<typename internal::traits<Derived>::Scalar>::Real>::operator*;
+                                                                                                ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:68:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::derived;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:69:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::const_cast_derived;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:70:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::rows;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:71:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::cols;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:72:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::size;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:73:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::rowIndexByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:74:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::colIndexByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:75:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::coeff;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:76:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::coeffByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:77:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::packet;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:78:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::packetByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:79:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::writePacket;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:80:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::writePacketByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:81:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::coeffRef;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:82:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::coeffRefByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:83:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::copyCoeff;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:84:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::copyCoeffByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:85:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::copyPacket;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:86:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::copyPacketByOuterInner;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:87:26: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::operator();
+                          ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:88:26: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::operator[];
+                          ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:89:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::x;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:90:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::y;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:91:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::z;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:92:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::w;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:93:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::stride;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:94:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::innerStride;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:95:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::outerStride;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:96:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::rowStride;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/DenseBase.h:97:17: error: type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseCoeffsBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>, 0>}’ is not a base type for type ‘Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’
+     using Base::colStride;
+                 ^
+In file included from /usr/include/eigen3/Eigen/Core:279:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h: In instantiation of ‘class Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >’:
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:113:7:   required from ‘class Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1262:69:   required from ‘static Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::run(const TransformType&, const MatrixType&) [with TransformType = Eigen::Transform<double, 3, 1>; MatrixType = Eigen::Matrix<float, 4, 4>; Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:401:102:   required from ‘const typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType Eigen::Transform<Scalar, Dim, Mode, _Options>::operator*(const Eigen::EigenBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0; typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:65:   required from here
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:71:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::derived’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::derived;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:72:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::const_cast_derived’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::const_cast_derived;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:73:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::rows’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::rows;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:74:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::cols’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::cols;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:75:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::size’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::size;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:76:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::coeff’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::coeff;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:77:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::coeffRef’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::coeffRef;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:79:17: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::eval’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::eval;
+                 ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:82:25: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::operator*=’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::operator*=;
+                         ^
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:83:25: error: no members matching ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::operator/=’ in ‘Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >::Base {aka class Eigen::DenseBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+     using Base::operator/=;
+                         ^
+In file included from /usr/include/eigen3/Eigen/Core:20:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h: In instantiation of ‘class Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>’:
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1262:69:   required from ‘static Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::run(const TransformType&, const MatrixType&) [with TransformType = Eigen::Transform<double, 3, 1>; MatrixType = Eigen::Matrix<float, 4, 4>; Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:401:102:   required from ‘const typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType Eigen::Transform<Scalar, Dim, Mode, _Options>::operator*(const Eigen::EigenBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0; typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:65:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/Macros.h:366:15: error: no members matching ‘Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>::Base {aka Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::derived’ in ‘Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>::Base {aka class Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+   using Base::derived; \
+               ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:120:5: note: in expansion of macro ‘EIGEN_DENSE_PUBLIC_INTERFACE’
+     EIGEN_DENSE_PUBLIC_INTERFACE(CoeffBasedProduct)
+     ^
+/usr/include/eigen3/Eigen/src/Core/util/Macros.h:367:15: error: no members matching ‘Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>::Base {aka Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}::const_cast_derived’ in ‘Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>::Base {aka class Eigen::MatrixBase<Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6> >}’
+   using Base::const_cast_derived;
+               ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:120:5: note: in expansion of macro ‘EIGEN_DENSE_PUBLIC_INTERFACE’
+     EIGEN_DENSE_PUBLIC_INTERFACE(CoeffBasedProduct)
+     ^
+In file included from /usr/include/eigen3/Eigen/Core:254:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/IPoseGraph.h:11,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h: In instantiation of ‘Eigen::CoeffBasedProduct<Lhs, Rhs, NestingFlags>::CoeffBasedProduct(const Lhs&, const Rhs&) [with Lhs = Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>; Rhs = Eigen::Matrix<float, 4, 4>; LhsNested = const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>; RhsNested = const Eigen::Matrix<float, 4, 4>&; int NestingFlags = 6]’:
+/usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:595:91:   required from ‘const typename Eigen::ProductReturnType<Derived, OtherDerived>::Type Eigen::MatrixBase<Derived>::operator*(const Eigen::MatrixBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; Derived = Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>; typename Eigen::ProductReturnType<Derived, OtherDerived>::Type = Eigen::CoeffBasedProduct<const Eigen::Block<const Eigen::Matrix<double, 4, 4>, 3, 4, false>, const Eigen::Matrix<float, 4, 4>&, 6>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:1262:69:   required from ‘static Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::run(const TransformType&, const MatrixType&) [with TransformType = Eigen::Transform<double, 3, 1>; MatrixType = Eigen::Matrix<float, 4, 4>; Eigen::internal::transform_right_product_impl<TransformType, MatrixType, 1>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/usr/include/eigen3/Eigen/src/Geometry/Transform.h:401:102:   required from ‘const typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType Eigen::Transform<Scalar, Dim, Mode, _Options>::operator*(const Eigen::EigenBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<float, 4, 4>; _Scalar = double; int _Dim = 3; int _Mode = 1; int _Options = 0; typename Eigen::internal::transform_right_product_impl<Eigen::Transform<Scalar, Dim, Mode, _Options>, OtherDerived>::ResultType = Eigen::Matrix<float, 4, 4>]’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:105:65:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h:32:40: error: static assertion failed: YOU_MIXED_DIFFERENT_NUMERIC_TYPES__YOU_NEED_TO_USE_THE_CAST_METHOD_OF_MATRIXBASE_TO_CAST_NUMERIC_TYPES_EXPLICITLY
+     #define EIGEN_STATIC_ASSERT(X,MSG) static_assert(X,#MSG);
+                                        ^
+/usr/include/eigen3/Eigen/src/Core/products/CoeffBasedProduct.h:153:7: note: in expansion of macro ‘EIGEN_STATIC_ASSERT’
+       EIGEN_STATIC_ASSERT((internal::scalar_product_traits<typename Lhs::RealScalar, typename Rhs::RealScalar>::Defined),
+       ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

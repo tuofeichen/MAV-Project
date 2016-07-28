@@ -70,34 +70,67 @@ void Mapping::run(RosHandler& lpe)
 	frames = 0;
 
 	time.tic();
+
 	if (!featureDetectionAndExtraction())
 	{
-		// cout << "bad feature!"<< endl;
+		cout << "bad feature!"<< endl;
 		++badFrameCounter;
 
 		if (badFrameCounter == 1){
+			currentFrame.setBadFrameFlag(true);
 			lpe.updateLpeCam(); // note down current time and lpe  
 		}
 		else{
 			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
-
-			validTrafo[0] 	 = 1; 
-			
+			validTrafo[0] 	 = 1;
 			enoughMatches[0] = 1;
-			
 			transformationMatrices[0] = tm_lpe.cast<double>();
-
 			informationMatrices[0] =  im_lpe.cast<double>();
-
-			graphIds[0] = nodes.size()-1;
+			
+			if (nodes.size()==0){
+				addFirstNode();
+				return;
+			}
+			else
+				graphIds[0] = nodes.size()-1;
+			
 
 			deltaT[0] = dt_lpe;
 
 			tryToAddNode(0); 		// try to add one sequential node
 
+			currentFrame.setBadFrameFlag(true);
+			currentFrame.setKeyFrameFlag(false);// ensure bad frame is not key frame
+
+			// currentFrame.setNewNodeFlag(false); // it can be new node but can't be key frame
 			lpe.updateLpeCam();
 		}
 	
+		return;
+	}
+	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()))
+	{
+
+		cout << "last frame is a badframe" << endl;
+		lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+		currentPosition = (poseGraph->getPositionOfId(nodes.size()-1)) * tm_lpe.cast<double>(); // last node 			
+		
+		poseGraph->addNode(currentPosition);
+		
+		const Eigen::Isometry3d recoverTm(tm_lpe.cast<double>());
+
+		poseGraph->addEdgeFromIdToCurrent(recoverTm, im_lpe.cast<double>(), nodes.size()-1);
+		currentFrame.setId(poseGraph->getCurrentId());		
+		currentFrame.setDummyFrameFlag(true);
+		nodes.push_back(currentFrame);
+
+		currentFrame.setBadFrameFlag(false);
+
+		// deltaT[0] = dt_lpe;
+		// tryToAddNode(0); 	
+
+		// try to add one sequential node
+
 		return;
 	}
 
@@ -113,7 +146,12 @@ void Mapping::run(RosHandler& lpe)
 	}
 
 	time.tic();
+
+
+ 	//need recovery handling
+
 	parallelMatching();
+
 	relTime = time.toc();
 	totalTime += relTime;
 	// cout << "Parallel matching took " << relTime << "ms" << endl;
@@ -281,9 +319,17 @@ void Mapping::matchTwoFrames(
 {
 	
 	assert(frame1.getId() != frame2.getId());
-	assert(!frame1.getKeypoints().empty());
-	assert(!frame2.getKeypoints().empty());
 
+	// assert(!frame1.getKeypoints().empty());
+	// assert(!frame2.getKeypoints().empty());
+
+	if ((frame2.getBadFrameFlag())||frame2.getKeypoints().empty())
+	{
+		cout << "just recover from a bad frame!" << endl; 
+		validTrafo = false;
+		enoughMatches = false;
+		return;
+	}
 
 	// cv::FileStorage storage("test.yml", cv::FileStorage::WRITE);
 
@@ -299,8 +345,7 @@ void Mapping::matchTwoFrames(
 	// enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matchesIdx1, matchesIdx2);
 
 	enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matches);
-
-
+	
 	if (enoughMatches)
 	{
 		for (int i = 0;i < static_cast<int>(matches.size()); i++)
@@ -366,6 +411,7 @@ void Mapping::matchTwoFrames(
 
 Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure)
 { 
+
 	assert(prevId >= 0);
 	assert(!(tryToAddNode && possibleLoopClosure));
 	// cout << "processing graph" << endl; 
@@ -376,7 +422,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 		{
 			if(isMovementBigEnough(transformationMatrix))
 			{
-				currentFrame.setNewNodeFlag(); 
+				currentFrame.setNewNodeFlag(true); 
 				// cout << "current delta yaw from " << prevId << " is ";
 				// Matrix3d t = transformationMatrix.matrix().topLeftCorner(3,3);
 				// cout << atan2(t(1,0),t(0,0)); 
@@ -384,7 +430,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;				
 				poseGraph->addNode(currentPosition);
-
 				currentFrame.setId(poseGraph->getCurrentId());
 				nodes.push_back(currentFrame);
 			}
@@ -458,6 +503,10 @@ void Mapping::parallelMatching()
 
 		for (int frame = 0; frame < nrOfContFramesToMatch; ++frame, ++frames, --pNode)
 		{
+
+			if (pNode->getBadFrameFlag()) // skip bad frames (should we match more? )
+				continue;
+
 			// reinitialize graph id every time new processing occus
 			graphIds[frames] = pNode->getId(); // continuous node 
 			lcSmallestId = std::min(lcSmallestId, graphIds[frames]);
@@ -492,14 +541,17 @@ void Mapping::parallelMatching()
 			const int tmpNeighborsToMatch = std::min<int>(neighborIds.size(), neighborsToMatch);
 			for(int i = 0; i < tmpNeighborsToMatch; ++i, ++frames)
 			{
+
 				int tmp;
 				do { tmp = rand() % neighborIds.size(); } while( tmpPrev == tmp ); //TODO how to choose randomly? with weights?
 				graphIds[frames] = neighborIds.at(tmp);
 				lcSmallestId = std::min(lcSmallestId, graphIds[frames]); // also match with geodesic neighbor
-
-					tmpPrev = tmp;
+				tmpPrev = tmp;
 
 				const int nodesId = nodes.size() - 1 - (poseGraph->getCurrentId() - graphIds[frames]);
+
+				if (nodes.at(nodesId).getBadFrameFlag())
+					continue; // don't match bad frames
 
 				// match frames
 				deltaT[frames] = currentFrame.getTime() - nodes.at(nodesId).getTime();
@@ -604,11 +656,11 @@ void Mapping::tryToAddNode(int thread)
 	if (validTrafo[thread] && enoughMatches[thread])
 	{
 		GraphProcessingResult result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], deltaT[thread], true, false);
+		
 		if(result == trafoValid)
 		{
 			smallestId = std::min(smallestId, graphIds[thread]);
 			bestInforamtionValue = informationMatrices[thread](0,0);
-
 			currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
 		}
 		else if(result == trafoToSmall)

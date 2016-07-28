@@ -18,7 +18,7 @@ public:
 	void 	 updateCamPos (double, Matrix4f); // to pixhawk 
 	void 	 updateLpeCam() {_lpe_cam = _lpe; _time_cam = _time; }; // note down new lpe (for next edge calculation)
 
-	Matrix4f getLpe()  				{ return _lpe; };
+	Matrix4f getLpe();
 	double   getTime() 				{ return _time; };
 
 	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);

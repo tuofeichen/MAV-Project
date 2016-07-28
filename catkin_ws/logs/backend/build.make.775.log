@@ -1,0 +1,27 @@
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target frontend[0m
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  5%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/Mapping.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::run(RosHandler&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:93:4: error: expected primary-expression before ‘}’ token
+    }
+    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:93:4: error: return-statement with a value, in function returning 'void' [-fpermissive]
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:93:4: error: expected ‘;’ before ‘}’ token
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:337:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

@@ -1,0 +1,22 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:340:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:581:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘void logPoseGraphNode(const SLAM::Frame&, const Isometry3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:97:7: error: expected ‘;’ before string constant
+  cout "[VSLAM] roll" <<  r << "  pitch is " << p << << " yaw is " << y << endl; 
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:97:79: warning: statement has no effect [-Wunused-value]
+  cout "[VSLAM] roll" <<  r << "  pitch is " << p << << " yaw is " << y << endl; 
+                                                                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:286:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getBadFrameCounter() == badFrameCnt)
+                                     ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

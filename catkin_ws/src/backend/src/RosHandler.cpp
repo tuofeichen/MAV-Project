@@ -101,12 +101,24 @@ void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME)
 		_rgbd_slam_pub.publish(_rgbd_slam_pos);
 }
 
+Matrix4f RosHandler::getLpe() {
+		float r, p, y;
+		Matrix3f rot = _lpe.topLeftCorner(3,3);
+		rot2rpy(rot,r,p,y);
+		
+		cout << "[LPE] rpy :   "<< r <<"   " << p << "   " << y << endl;
+		cout << "[LPE] position" << _lpe.topRightCorner(3,1).transpose()<< endl << endl;
+
+		return _lpe; 
+};
+
+
 void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 {
-	tm = _lpe * _lpe_cam.inverse();
+	tm =  _lpe_cam.inverse() * _lpe;
 	im = Matrix<float, 6, 6>::Identity() * 2000; // should get dynamic matrix from 
 	
-	Matrix3f rot = tm.topLeftCorner(3,3);
+	// Matrix3f rot = tm.topLeftCorner(3,3);
 	// rot = rot * 
 
 	dt = _time - _time_cam;

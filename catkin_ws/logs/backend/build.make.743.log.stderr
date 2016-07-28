@@ -1,0 +1,13 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp: In member function ‘Eigen::Matrix4f RosHandler::getLpe()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:107:20: error: no matching function for call to ‘RosHandler::rot2rpy(Eigen::Matrix3f&, double&, double&, double&)’
+   rot2rpy(rot,r,p,y);
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:107:20: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RosHandler.h:55:7: note: void RosHandler::rot2rpy(Eigen::Matrix3f, float&, float&, float&)
+  void rot2rpy (Matrix3f R,float& r, float& p, float& y);  
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RosHandler.h:55:7: note:   no known conversion for argument 2 from ‘double’ to ‘float&’
+make[2]: *** [CMakeFiles/frontend.dir/src/RosHandler.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

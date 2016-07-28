@@ -1,0 +1,37 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:247:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
+  boost::shared_ptr<bool> newNodeFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:245:26: warning:   ‘boost::shared_ptr<bool> SLAM::Frame::keyFrameFlag’ [-Wreorder]
+  boost::shared_ptr<bool> keyFrameFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:311:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:546:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:285:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getBadFrameCounter() == badFrameCnt)
+                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘void logPoseGraphEnd(SLAM::Frame, SLAM::G2oPoseGraph, int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:354:23: error: no matching function for call to ‘SLAM::Frame::setNewNodeFlag()’
+  frame.setNewNodeFlag();
+                       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:354:23: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frontend.h:18:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:14:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:230:7: note: void SLAM::Frame::setNewNodeFlag(bool)
+  void setNewNodeFlag(bool flag) { *newNodeFlag = flag; }
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Frame.h:230:7: note:   candidate expects 1 argument, 0 provided
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2
