@@ -8,7 +8,7 @@
 #define G2OPOSEGRAPH_H_
 
 #include <vector>
-
+#include <fstream>
 #include <boost/thread/mutex.hpp>
 
 #include "g2o/core/sparse_optimizer.h"
@@ -59,7 +59,33 @@ public:
 	/**
 	 * @brief saves the pose graph
 	 */
-	void save() { optimizer.save("graph.g2o"); }
+	void save() { 
+
+		std::string buffer;
+		std::ofstream ofs("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/g.g2o");
+		std::ifstream ifs("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/g.g2o");
+		std::ofstream edgeLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/edge.g2o");
+		std::ofstream vertexLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/vertex.g2o");
+
+
+		optimizer.save(ofs);
+
+		while(getline(ifs,buffer))
+		{
+			if (buffer[0] == 'E')
+				edgeLog << buffer << std::endl;
+			if (buffer[0]=='V')
+				vertexLog << buffer << std::endl;
+		}
+
+
+		// std::ofstream ofs2("/home/tuofeichen/graph2.g2o");
+		// std::cout << "what is current index?" << currentIndex << std::endl;
+		// for (int i = 0;i<currentIndex;i++)
+		// 	optimizer.saveVertex(ofs,optimizer.vertex(i));
+		// ofs << "/home/tuofeichen/graph2.g2o";
+		// optimizer.saveVertex(ofs,optimizer.vertex(1));
+	}
 
 private:
 	// allocating the optimizer

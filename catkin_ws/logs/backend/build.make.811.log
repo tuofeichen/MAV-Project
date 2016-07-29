@@ -1,0 +1,21 @@
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[ 88%] Built target frontend
+[35m[1mScanning dependencies of target backend[0m
+[ 94%] [32mBuilding CXX object CMakeFiles/backend.dir/src/main.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:290:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getBadFrameCounter() == badFrameCnt)
+                                     ^
+[100%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/backend/backend[0m
+[100%] Built target backend

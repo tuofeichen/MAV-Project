@@ -108,7 +108,7 @@ public:
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
 	static constexpr double minRotation = 1*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)	
+	static constexpr double minTranslation = 0.02;   ///< minimal translation in meter(negative values to disable)	
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
@@ -173,6 +173,7 @@ private:
 
 	Eigen::Isometry3d currentPosition;
 	Frame currentFrame;
+	Frame lastFrame;
 
 	std::vector<Frame> nodes;
 	std::vector<Frame> keyFrames;

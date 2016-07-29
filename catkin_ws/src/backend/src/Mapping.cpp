@@ -73,12 +73,17 @@ void Mapping::run(RosHandler& lpe)
 
 	if (!featureDetectionAndExtraction())
 	{
-		cout << "bad feature!"<< endl;
+		// cout << "bad feature!"<< endl;
 		++badFrameCounter;
 
-		if (badFrameCounter == 1){
+		if ((badFrameCounter == 1)||(!lastFrame.getBadFrameFlag()))
+		{
+		 //first time enter bad frame counter
+
+			cout << "first time here babe!" << endl; 
 			currentFrame.setBadFrameFlag(true);
-			lpe.updateLpeCam(); // note down current time and lpe  
+			lpe.updateLpeCam(); // note down current time and lpe
+
 		}
 		else{
 			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
@@ -111,7 +116,7 @@ void Mapping::run(RosHandler& lpe)
 	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()))
 	{
 
-		cout << "last frame is a badframe" << endl;
+		// cout << "last frame is a badframe" << endl;
 		lpe.getTm(tm_lpe,im_lpe,dt_lpe);
 		currentPosition = (poseGraph->getPositionOfId(nodes.size()-1)) * tm_lpe.cast<double>(); // last node 			
 		
@@ -303,7 +308,10 @@ void Mapping::addFrame(Frame& frame)
 			initDone = true;
 	}
 
+	lastFrame = currentFrame;
 	currentFrame = frame;
+
+
 }
 
 

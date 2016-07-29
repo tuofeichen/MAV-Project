@@ -1,0 +1,8 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:11:20: fatal error: ofstream: No such file or directory
+ #include <ofstream>
+                    ^
+compilation terminated.
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

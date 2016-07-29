@@ -81,6 +81,10 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 	bool new_node = frame.getNewNodeFlag();
 
 	if (new_node || (frame.getId() == 0)){
+	if (frame.getBadFrameFlag())
+	{
+		cout << "bad frame " << frame.getId() << " compensated by IMU"  << endl; 
+	}
 	r = atan2(t(2,1),t(2,2)); // roll (around x)
 	p = atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
 	y = atan2(t(1,0),t(0,0)); // yaw (around z)
@@ -95,7 +99,7 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 
 	cout << fixed << setprecision(3);
 	cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
-	cout << "[VSLAM] x " <<  pose.translation().x() << "  y " << pose.translation().y() <<" z " << pose.translation().z() << endl;
+	cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
 	}
 	
 }
@@ -284,7 +288,9 @@ int main(int argc, char **argv)
 			// cout << "dummy frame? " << frame.getDummyFrameFlag() << endl;
 
 			if (slam.getBadFrameCounter() == badFrameCnt)
-			{ // valid frame
+			{ 
+				//if valid frame, keep updating
+
 				tm = slam.getCurrentPosition();
 				px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>());
 			}
@@ -324,6 +330,8 @@ int main(int argc, char **argv)
 	graph.optimizeTillConvergenz();
 
 //pointCloudMap.updateMapViewer();
+
+	graph.save();
 
 	logPos.close();
 //	pointCloudMap.saveMap("Map.pcd");

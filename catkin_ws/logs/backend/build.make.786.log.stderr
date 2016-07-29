@@ -1,0 +1,28 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h: In member function ‘void SLAM::G2oPoseGraph::save()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:63:73: error: no matching function for call to ‘g2o::SparseOptimizer::saveVertex(const char [28], g2o::OptimizableGraph::Vertex*)’
+   optimizer.saveVertex("/home/tuofeichen/graph1.g2o",optimizer.vertex(0));
+                                                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:63:73: note: candidate is:
+In file included from /home/tuofeichen/g2o/g2o/core/sparse_optimizer.h:32:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:
+/home/tuofeichen/g2o/g2o/core/optimizable_graph.h:628:10: note: bool g2o::OptimizableGraph::saveVertex(std::ostream&, g2o::OptimizableGraph::Vertex*) const
+     bool saveVertex(std::ostream& os, Vertex* v) const;
+          ^
+/home/tuofeichen/g2o/g2o/core/optimizable_graph.h:628:10: note:   no known conversion for argument 1 from ‘const char [28]’ to ‘std::ostream& {aka std::basic_ostream<char>&}’
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:64:73: error: no matching function for call to ‘g2o::SparseOptimizer::saveVertex(const char [28], g2o::OptimizableGraph::Vertex*)’
+   optimizer.saveVertex("/home/tuofeichen/graph2.g2o",optimizer.vertex(1));
+                                                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:64:73: note: candidate is:
+In file included from /home/tuofeichen/g2o/g2o/core/sparse_optimizer.h:32:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:14,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:
+/home/tuofeichen/g2o/g2o/core/optimizable_graph.h:628:10: note: bool g2o::OptimizableGraph::saveVertex(std::ostream&, g2o::OptimizableGraph::Vertex*) const
+     bool saveVertex(std::ostream& os, Vertex* v) const;
+          ^
+/home/tuofeichen/g2o/g2o/core/optimizable_graph.h:628:10: note:   no known conversion for argument 1 from ‘const char [28]’ to ‘std::ostream& {aka std::basic_ostream<char>&}’
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

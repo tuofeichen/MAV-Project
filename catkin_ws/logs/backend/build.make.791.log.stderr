@@ -1,0 +1,15 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h: In member function ‘void SLAM::G2oPoseGraph::save()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:65:7: error: no match for ‘operator=’ (operand types are ‘std::ofstream {aka std::basic_ofstream<char>}’ and ‘const char [28]’)
+   ofs = "/home/tuofeichen/graph2.g2o";
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:65:7: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:11:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:
+/usr/include/c++/4.8/fstream:599:11: note: std::basic_ofstream<char>& std::basic_ofstream<char>::operator=(const std::basic_ofstream<char>&) <deleted>
+     class basic_ofstream : public basic_ostream<_CharT,_Traits>
+           ^
+/usr/include/c++/4.8/fstream:599:11: note:   no known conversion for argument 1 from ‘const char [28]’ to ‘const std::basic_ofstream<char>&’
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

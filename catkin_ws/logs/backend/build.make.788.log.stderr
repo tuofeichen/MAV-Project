@@ -1,0 +1,28 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h: In member function ‘void SLAM::G2oPoseGraph::save()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:63:3: error: ‘ofstream’ was not declared in this scope
+   ofstream ofs("/home/tuofeichen/graph1.g2o");
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:63:3: note: suggested alternative:
+In file included from /usr/include/c++/4.8/bits/localefwd.h:41:0,
+                 from /usr/include/c++/4.8/string:43,
+                 from /usr/include/c++/4.8/stdexcept:39,
+                 from /usr/include/c++/4.8/array:38,
+                 from /usr/include/c++/4.8/tuple:39,
+                 from /usr/include/c++/4.8/bits/stl_map.h:63,
+                 from /usr/include/c++/4.8/map:61,
+                 from /home/tuofeichen/g2o/g2o/core/hyper_dijkstra.h:30,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:7:
+/usr/include/c++/4.8/iosfwd:160:34: note:   ‘std::ofstream’
+   typedef basic_ofstream<char>   ofstream;
+                                  ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:63:12: error: expected ‘;’ before ‘ofs’
+   ofstream ofs("/home/tuofeichen/graph1.g2o");
+            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:64:24: error: ‘ofs’ was not declared in this scope
+   optimizer.saveVertex(ofs,optimizer.vertex(0));
+                        ^
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2
