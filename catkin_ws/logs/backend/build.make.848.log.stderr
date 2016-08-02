@@ -1,0 +1,17 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:275:40: error: expected identifier before ‘(’ token
+    if (frame.getKeypoints().size()>0)&&((frame.getId()==4)||(frame.getId()==5)))
+                                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:275:40: error: expected ‘;’ before ‘(’ token
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:363:1: error: expected ‘}’ at end of input
+ }
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:363:1: error: expected ‘}’ at end of input
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:363:1: error: expected ‘}’ at end of input
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: At global scope:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:73:13: warning: ‘void logPoseGraphNode(const SLAM::Frame&, const Isometry3d&)’ defined but not used [-Wunused-function]
+ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
+             ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

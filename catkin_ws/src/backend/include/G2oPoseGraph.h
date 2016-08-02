@@ -9,6 +9,8 @@
 
 #include <vector>
 #include <fstream>
+#
+
 #include <boost/thread/mutex.hpp>
 
 #include "g2o/core/sparse_optimizer.h"
@@ -62,10 +64,11 @@ public:
 	void save() { 
 
 		std::string buffer;
-		std::ofstream ofs("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/g.g2o");
-		std::ifstream ifs("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/g.g2o");
-		std::ofstream edgeLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/edge.g2o");
-		std::ofstream vertexLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/vertex.g2o");
+		const char origFile [100] = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/g.g2o";
+		std::ofstream ofs(origFile);
+		std::ifstream ifs(origFile);
+		std::ofstream edgeLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/edge.g2o");
+		std::ofstream vertexLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/vertex.g2o");
 
 
 		optimizer.save(ofs);
@@ -78,6 +81,7 @@ public:
 				vertexLog << buffer << std::endl;
 		}
 
+		std::remove(origFile);
 
 		// std::ofstream ofs2("/home/tuofeichen/graph2.g2o");
 		// std::cout << "what is current index?" << currentIndex << std::endl;

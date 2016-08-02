@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AnalyticBasedTME.cpp: In static member function ‘static void SLAM::AnalyticBasedTME::estimate(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<int>&, Eigen::Matrix4f&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AnalyticBasedTME.cpp:78:2: error: ‘cout’ is not a member of ‘std’
+  std::cout <<"cov xy det is " << detCovXY << std::endl;
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/AnalyticBasedTME.cpp:98:3: error: ‘cout’ is not a member of ‘std’
+   std::cout <<"final scale is " << scale << std::endl;
+   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

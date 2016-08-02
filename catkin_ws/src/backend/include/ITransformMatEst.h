@@ -41,7 +41,8 @@ public:
 			const std::vector<Eigen::Vector3f>& keys3D2,
 			const std::vector<int>& matchIdx2,
 			Eigen::Matrix4f& transformMat,
-			Eigen::Matrix<double, 6, 6>& informationMat
+			Eigen::Matrix<double, 6, 6>& informationMat,
+			std::vector<int>& consensus
 			) const = 0;
 };
 

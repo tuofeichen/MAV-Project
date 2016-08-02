@@ -1,0 +1,26 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp: In member function ‘virtual bool SLAM::RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, std::vector<int>&) const’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:239:4: error: ‘Matrix4f’ was not declared in this scope
+    Matrix4f tmOld = transfMat;
+    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:239:4: note: suggested alternative:
+In file included from /usr/include/eigen3/Eigen/Core:294:0,
+                 from /usr/include/eigen3/Eigen/Geometry:4,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:11:
+/usr/include/eigen3/Eigen/src/Core/Matrix.h:372:34: note:   ‘Eigen::Matrix4f’
+ typedef Matrix<Type, Size, Size> Matrix##SizeSuffix##TypeSuffix;  \
+                                  ^
+/usr/include/eigen3/Eigen/src/Core/Matrix.h:387:1: note: in expansion of macro ‘EIGEN_MAKE_TYPEDEFS’
+ EIGEN_MAKE_TYPEDEFS(Type, TypeSuffix, 4, 4) \
+ ^
+/usr/include/eigen3/Eigen/src/Core/Matrix.h:394:1: note: in expansion of macro ‘EIGEN_MAKE_TYPEDEFS_ALL_SIZES’
+ EIGEN_MAKE_TYPEDEFS_ALL_SIZES(float,                f)
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:239:13: error: expected ‘;’ before ‘tmOld’
+    Matrix4f tmOld = transfMat;
+             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:248:18: error: ‘tmOld’ was not declared in this scope
+      transfMat = tmOld;
+                  ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

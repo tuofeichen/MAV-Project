@@ -1,0 +1,21 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:384:4: warning: multi-line comment [-Wcomment]
+    // cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:26:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ #define DEBUG_NEW -10
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:381:24: note: in expansion of macro ‘DEBUG_NEW’
+   if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD) && validTrafo){ // sequential node
+                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:26:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ #define DEBUG_NEW -10
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:403:26: note: in expansion of macro ‘DEBUG_NEW’
+    else if (nodes.size()>DEBUG_NEW)
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:601:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^

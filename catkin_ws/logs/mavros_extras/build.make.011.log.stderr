@@ -1,0 +1,18 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp: In member function ‘void mavplugin::VisionPoseEstimatePlugin::send_vision_estimate(const ros::Time&, const Affine3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:129:55: error: no matching function for call to ‘tf::Matrix3x3::getRPY(double&, double&, double)’
+   tf::Matrix3x3(q_tf).getRPY(roll, pitch, yaw + M_PI/2);
+                                                       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:129:55: note: candidate is:
+In file included from /opt/ros/indigo/include/tf/LinearMath/Transform.h:21:0,
+                 from /opt/ros/indigo/include/tf/transform_datatypes.h:41,
+                 from /opt/ros/indigo/include/tf/time_cache.h:38,
+                 from /opt/ros/indigo/include/tf/tf.h:43,
+                 from /opt/ros/indigo/include/tf/transform_broadcaster.h:36,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:22:
+/opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h:365:7: note: void tf::Matrix3x3::getRPY(tfScalar&, tfScalar&, tfScalar&, unsigned int) const
+  void getRPY(tfScalar& roll, tfScalar& pitch, tfScalar& yaw, unsigned int solution_number = 1) const
+       ^
+/opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h:365:7: note:   no known conversion for argument 3 from ‘double’ to ‘tfScalar& {aka double&}’
+make[2]: *** [CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mavros_extras.dir/all] Error 2
+make: *** [all] Error 2

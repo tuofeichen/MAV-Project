@@ -23,6 +23,9 @@
 
 #include "RosHandler.h"
 
+#define DEBUG_NEW 14
+#define DEBUG_OLD 13
+
 namespace SLAM {
 
 /**
@@ -86,6 +89,7 @@ public:
 	unsigned int getDetLoopClsrsCounter() {return detLoopClsrsCounter;}
 	unsigned int getTrafoVelocityToBigCounter() {return trafoVelocityToBigCounter;}
 	unsigned int getDummyNodeCounter() {return dummyNodeCounter;}
+	unsigned int getImuCompensateCounter() {return imuCompensateCounter;}
 
 	const std::vector<Frame>& getNodes() {return nodes;}
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
@@ -97,23 +101,26 @@ public:
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
+	enum{ badFrame = 0, recoverFrame = 1, dummyFrame = 2};
+
+
 	static constexpr bool onlineOptimization = true; ///< Enables/disable online optimization
 	static constexpr bool optimizeTillConvergence = false; ///< Enables/disable optimization till convergence
 	static constexpr bool addDummyNodeFlag = true; ///< Enables/disable dummy nodes
 	static constexpr bool exchangeFirstNode = false; ///< Enables/disable exchanges first node
-	static constexpr bool searchLoopClosures = true; //true; ///< Enables/disable loop closure search
+	static constexpr bool searchLoopClosures =true;// true; //true; ///< Enables/disable loop closure search
 	static constexpr int lcRandomMatching = 0; ///< Enables/disable random loop closure matching 0 --> off (use average descriptor), else match n random key frames
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
 	// static constexpr double minRotation = -1.0;    //   < minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
-	static constexpr double minRotation = 1*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minRotation = 2 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
 	static constexpr double minTranslation = 0.02;   ///< minimal translation in meter(negative values to disable)	
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
 //	static constexpr double maxAngularVelocity = 90.0 *M_PI / 180.0; ///< max angular velocity in rad per second
-	static constexpr double loopClosureDetectionThreshold =  0.1;//std::numeric_limits<double>::infinity(); //0.1//< loop closure detection threshold for the averge descriptor
+	static constexpr double loopClosureDetectionThreshold =  0.01;//std::numeric_limits<double>::infinity(); //0.1//< loop closure detection threshold for the averge descriptor
 	static constexpr double edgeErrorThreshold = 30.0 / (0.02 * 0.02); ///< g²o threshold for eges with big errors
 
     // cv::FileStorage fileStore("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints.txt",cv::FileStorage::WRITE);
@@ -131,7 +138,7 @@ private:
 	void parallelMatching();
 	void tryToAddNode(int thread);
 	void addEdges(int thread);
-	void setDummyNode();
+	void setDummyNode(RosHandler& lpe);
 	bool searchKeyFrames();
 	void optimizeGraph(bool tillConvergenz);
 	void updateMap();
@@ -155,6 +162,7 @@ private:
 	enum ComparisonResult {noTimeStamp, succeed, failed};
 	ComparisonResult compareCurrentPosition(const Frame& frame, const Eigen::Isometry3d& pose);
 	void loopClosureDetection();
+	void fusePX4LPE(RosHandler& lpe, int frameType);
 
 	//
 	// variables
@@ -209,6 +217,7 @@ private:
 	unsigned int detLoopClsrsCounter = 0;
 	unsigned int trafoVelocityToBigCounter = 0;
 	unsigned int dummyNodeCounter = 0;
+	unsigned int imuCompensateCounter = 0;
 
 	pcl::console::TicToc optTime;
 	double optAvrTime = 0;

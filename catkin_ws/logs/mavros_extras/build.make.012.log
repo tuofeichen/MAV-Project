@@ -1,0 +1,30 @@
+[ 15%] Built target copter_visualization
+[ 30%] Built target servo_state_publisher
+[35m[1mScanning dependencies of target mavros_extras[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:173:0: error: unterminated argument list invoking macro "ROS_INFO"
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: expected ‘}’ at end of input
+   ROS_INFO("RPY from mavros is %f, %f, %f", roll,pitch,yaw+M_PI/2;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp: In member function ‘virtual void mavplugin::VisionPoseEstimatePlugin::initialize(mavros::UAS&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:60:31: error: ‘transform_cb’ is not a member of ‘mavplugin::VisionPoseEstimatePlugin’
+    tf2_start("VisionPoseTF", &VisionPoseEstimatePlugin::transform_cb);
+                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:63:46: error: ‘vision_cb’ is not a member of ‘mavplugin::VisionPoseEstimatePlugin’
+    vision_sub = sp_nh.subscribe("pose", 10, &VisionPoseEstimatePlugin::vision_cb, this);
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:64:54: error: ‘vision_cov_cb’ is not a member of ‘mavplugin::VisionPoseEstimatePlugin’
+    vision_cov_sub = sp_nh.subscribe("pose_cov", 10, &VisionPoseEstimatePlugin::vision_cov_cb, this);
+                                                      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp: In member function ‘void mavplugin::VisionPoseEstimatePlugin::send_vision_estimate(const ros::Time&, const Affine3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: ‘ROS_INFO’ was not declared in this scope
+   ROS_INFO("RPY from mavros is %f, %f, %f", roll,pitch,yaw+M_PI/2;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: expected ‘;’ at end of input
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: expected ‘}’ at end of input
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp: At global scope:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: expected unqualified-id at end of input
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:135:3: error: expected ‘}’ at end of input
+make[2]: *** [CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mavros_extras.dir/all] Error 2
+make: *** [all] Error 2

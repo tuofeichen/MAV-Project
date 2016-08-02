@@ -23,7 +23,7 @@
 
 
 #include "RosHandler.h" // Ros stuff 
-
+// 
 
 using namespace std;
 using namespace SLAM;
@@ -39,17 +39,17 @@ static constexpr char frontEndIp[] = "192.168.144.1"; // WLAN
 
 enum {
 	frontEndPortNr = 11000, ///< port of the front end
-	minMatches = 15, ///< minimal number of matches
+	minMatches = 25, ///< minimal number of matches
 	maxNrOfFeatures = 600, ///< maximal number of features to detect (only needed for OrbDetSurfDesc)
 	sufficientMatches = 600, ///< sufficient number of matches to return
-	maxRansacIterations = 1000, ///< maximal number of RANSAC iterations
-	minNrOfInlier = 15 ///< minimal number of inlier for the RANSAC
+	maxRansacIterations = 2000, ///< maximal number of RANSAC iterations
+	minNrOfInlier = 20 ///< minimal number of inlier for the RANSAC
 };
 
-static constexpr float maxDistanceForInlier = 0.02f; ///< maximal distance for inlier in meter (RANSAC)
+static constexpr float maxDistanceForInlier = 0.01f; ///< maximal distance for inlier in meter (RANSAC)
 static constexpr float thresholdAbsolutDistanceTest = 0.03f; ///< threshold for the absolute distance test in meter (RANSAC)
-static constexpr float sufficentPercentageOfInlier = 0.95f; ///< percentage of inlier to terminate the RANSAC
-static constexpr float descriptorRatio = 0.15f; ///< feature match ratio
+static constexpr float sufficentPercentageOfInlier = 0.65f; ///< percentage of inlier to terminate the RANSAC
+static constexpr float descriptorRatio = 0.5f; ///< feature match ratio
 static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
@@ -66,7 +66,10 @@ static G2oPoseGraph graph;
 // log position
 //
 static std::ofstream logPos;
+static std::ofstream logLPE;
+
 static std::ofstream logKpts;
+static std::ofstream logKpts3D;
 
 static int frameNum = 0;
 
@@ -80,11 +83,9 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 	
 	bool new_node = frame.getNewNodeFlag();
 
-	if (new_node || (frame.getId() == 0)){
-	if (frame.getBadFrameFlag())
-	{
-		cout << "bad frame " << frame.getId() << " compensated by IMU"  << endl; 
-	}
+
+	// if ((new_node || (frame.getId() == 0))&&(!frame.getBadFrameFlag())){
+	if(new_node){
 	r = atan2(t(2,1),t(2,2)); // roll (around x)
 	p = atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
 	y = atan2(t(1,0),t(0,0)); // yaw (around z)
@@ -97,9 +98,9 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 		 << p << ","
 		 << y  << "," << frameNum << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
-	cout << fixed << setprecision(3);
-	cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
-	cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
+	// cout << fixed << setprecision(6);
+	// cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
+	// cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
 	}
 	
 }
@@ -118,7 +119,7 @@ void saveImage(Frame frame, int id)
 
 }
 
-void readImage(Frame& frame, int id) // implemented for playback debug
+bool readImage(Frame& frame, int id) // implemented for playback debug
 {
 	char imgName [100];
 	int i = 0; // reiterator
@@ -155,7 +156,7 @@ void readImage(Frame& frame, int id) // implemented for playback debug
 	*time_ptr = timeStamp; 
 	frame = Frame(rgb_ptr,gray_ptr,dep_ptr,time_ptr);// empty RGB-image
 	
-	return;  
+	return (!img1.empty());  
 
 }
 
@@ -169,31 +170,33 @@ int main(int argc, char **argv)
 	Frame frame, frame_prev;
 	int toNode = 1; // node id
 	int badFrameCnt = 0;
-	int noTrafoCnt  = 0; 
-
 
 	Eigen::Isometry3d tm;
 	Eigen::Matrix<double,6,6> im;
 
 	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm 
 	Eigen::Matrix4f lpe_prev; 	//
-	cv::FileStorage fileStore("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints.yml",cv::FileStorage::WRITE);
- 	char fileName[100];
+	char fileName[100];
 
 	// start camera
 	AsusProLiveOpenNI2::start();
+	logKpts3D.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/keypoints3D.csv", std::ofstream::out | std::ofstream::trunc);
+	logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
+
 
 	// start viewer and logger
 #ifdef DEBUG
 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/position_debug.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,roll,pitch,yaw" <<endl;
 
-	logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
-
 #else
 
-	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/position.csv", std::ofstream::out | std::ofstream::trunc);
+	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,roll,pitch,yaw" <<endl;
+
+	logLPE.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/LPE.csv", std::ofstream::out | std::ofstream::trunc);
+	logLPE << "x,y,z" <<endl;
+
 #endif	
 
 	// setup mapping class
@@ -233,8 +236,10 @@ int main(int argc, char **argv)
 
 #ifdef DEBUG
 
-		readImage(frame,toNode);//toNode is node number
-		toNode ++ ;
+		if(readImage(frame,toNode))//toNode is node number
+			toNode ++ ;
+		else
+			break;
 #else
 
 		noError = AsusProLiveOpenNI2::grab(frame);
@@ -259,7 +264,7 @@ int main(int argc, char **argv)
 			// cv::imshow("Depth Image", depthMap);
 
 			frameNum = toNode - 1;
-			cv::waitKey(20);
+			
 			// stop |= (cv::waitKey(10) >= 0); //stop when key pressed
 			
 			// start slam
@@ -267,52 +272,69 @@ int main(int argc, char **argv)
 			slam.addFrame(frame);
 			slam.run(px4);
 
-			sprintf(fileName,"Matching%d", toNode);
+			sprintf(fileName,"Keypoint Frame `%d", toNode);
+			logKpts3D << fileName  << endl;
 			logKpts << fileName  << endl;
 			
-			// if (frame.getKeypoints().size())
-			// cv::KeyPoint kpts ; 
-			// if (frame.getKeypoints().size()>0)
-			// {	
-			// 	// cout << "start logging keypoints of size " <<frame.getKeypoints().size()<< endl;
-			// 	for (int i = 0; i < frame.getKeypoints().size();i++)
-			// 	{
-			// 		kpts = frame.getKeypoints().at(i);	
-			// 		// cout << " key point is " << kpts.pt << endl;
-			// 		// cv::write(fileStore, fileName, frame.getKeypoints());
-			// 		// cv::write(fileStore, fileName, kpts.pt);
-			// 		logKpts << kpts.pt.x << "," << kpts.pt.y << endl;
-			// 	}
-			// }
+			Eigen::Vector3f kpts3D ;
+			cv::KeyPoint kpts;
+			if ((frame.getKeypoints().size()>0)&&((frame.getId()== DEBUG_NEW)||(frame.getId()==DEBUG_OLD)))
+			{	
+				// cout << "start logging keypoints of size " <<frame.getKeypoints().size()<< endl;
+				for (int i = 0; i < frame.getKeypoints3D().size();i++)
+				{
+					kpts3D = frame.getKeypoints3D().at(i);	
+					logKpts3D << kpts3D.x() << "," << kpts3D.y() << "," << kpts3D.z()<<endl;
+				}
 
-			// cout << "dummy frame? " << frame.getDummyFrameFlag() << endl;
+				for (int i = 0; i< frame.getKeypoints().size();i++)
+				{
+					kpts = frame.getKeypoints().at(i);
+					logKpts << kpts.pt.x << "," << kpts.pt.y << endl;
+				}
 
-			if (slam.getBadFrameCounter() == badFrameCnt)
+			}
+
+			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 
-				//if valid frame, keep updating
-
+				// if valid frame, keep updating
+				cout << "[main] valid frame" << endl; 
 				tm = slam.getCurrentPosition();
-				px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>());
+				// px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
-			else
+			else	
 			{
-				badFrameCnt = slam.getBadFrameCounter();
-				// noTrafoCnt  = slam.getNoTrafoFoundCounter();
+				// frame.setBadFrameFlag(true); // not a visual SLAM processed frame
+				badFrameCnt = slam.getImuCompensateCounter();
 			}
 
-			// cv::write(fileStore, fileName, frame.getKeypoints());
+
 			// frontend.setCurrentPosition(slam.getCurrentPosition());
 #ifndef DEBUG		
+		cv::waitKey(30);
 		if(frame.getNewNodeFlag()){
 			saveImage(frame,toNode);
 			toNode ++ ; // increase id
 		}
+#else
+		cv::waitKey(0);
 #endif
+
 			logPoseGraphNode(frame, slam.getCurrentPosition());
-			if(frame.getNewNodeFlag())
-				px4.getLpe();//log lpe
+			Matrix4f lpe = px4.getLpe();
+			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << endl;
 
 
+			// if((!frame.getBadFrameFlag())&&(frame.getNewNodeFlag()))
+			// 	cout << " [main] valid VSLAM frame get" << endl;
+
+
+			// if(frame.getNewNodeFlag())
+			// {
+			// 	Matrix4f lpe = px4.getLpe();
+			// 	logPos << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3)<<endl;
+			// 	// px4.getLpe();//log lpe
+			// }
 			
 //			pointCloudMap.updateMapViewer();
 		}
@@ -322,7 +344,6 @@ int main(int argc, char **argv)
 		}
 	}
 
-	// fileStore.release(); 
 
 //	graph.optimize();
 //  graph.removeEdgesWithErrorBiggerThen(10.0/(0.02*0.02));
@@ -332,8 +353,8 @@ int main(int argc, char **argv)
 //pointCloudMap.updateMapViewer();
 
 	graph.save();
-
 	logPos.close();
+	logLPE.close();
 //	pointCloudMap.saveMap("Map.pcd");
 
 

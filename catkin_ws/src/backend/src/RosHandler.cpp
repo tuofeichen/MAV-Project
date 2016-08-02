@@ -76,6 +76,7 @@ void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
 void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME)
 {
 		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation matrix
+
 		Quaternionf q(rot_mat); 		
 		float r, p, y;
 		_xyz =  currentTME.topRightCorner(3,1);   // translation
@@ -106,8 +107,8 @@ Matrix4f RosHandler::getLpe() {
 		Matrix3f rot = _lpe.topLeftCorner(3,3);
 		rot2rpy(rot,r,p,y);
 		
-		cout << "[LPE] rpy :   "<< r <<"   " << p << "   " << y << endl;
-		cout << "[LPE] position" << _lpe.topRightCorner(3,1).transpose()<< endl << endl;
+		// cout << "[LPE] rpy :   "<< r <<"   " << p << "   " << y << endl;
+		// cout << "[LPE] position : " << _lpe.topRightCorner(3,1).transpose()<< endl << endl;
 
 		return _lpe; 
 };

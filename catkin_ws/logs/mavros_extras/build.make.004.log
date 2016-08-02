@@ -1,6 +1,0 @@
-[ 15%] Built target servo_state_publisher
-[ 30%] Built target copter_visualization
-[35m[1mScanning dependencies of target mavros_extras[0m
-[ 38%] [32mBuilding CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o[0m
-[ 46%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so[0m
-[100%] Built target mavros_extras

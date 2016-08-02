@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:281:51: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     {
+                                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:293:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    { 
+                                     ^

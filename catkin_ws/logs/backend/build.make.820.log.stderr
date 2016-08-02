@@ -1,0 +1,11 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/G2oPoseGraph.cpp:9:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h: In member function ‘void SLAM::G2oPoseGraph::save()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:65:7: error: expected unqualified-id before ‘[’ token
+   char[100] origFile = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/g.g2o";
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/G2oPoseGraph.h:66:21: error: ‘origFile’ was not declared in this scope
+   std::ofstream ofs(origFile);
+                     ^
+make[2]: *** [CMakeFiles/frontend.dir/src/G2oPoseGraph.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

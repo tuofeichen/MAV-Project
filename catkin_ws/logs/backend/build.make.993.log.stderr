@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:330:4: warning: multi-line comment [-Wcomment]
+    // cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:164:48: error: expected ‘;’ at end of member declaration
+  void fusePX4LPE(RosHandler& lpe, int frameType)
+                                                ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

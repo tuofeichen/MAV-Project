@@ -42,7 +42,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 		uint16_t depthVal = depth->at<uint16_t>(row, col);
 		long depthSum = 0; 
 		
-		if(depthVal != 0 && depthVal <= static_cast<uint16_t>(1.5*depthScale))
+		if(depthVal != 0 && depthVal <= static_cast<uint16_t>(3.5*depthScale))
 		{
 
 			for (int nx = -NEIGHBOR_X/2; nx < NEIGHBOR_X/2; nx ++)
@@ -65,9 +65,8 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 			}
 
 
-			if ((abs(static_cast<uint16_t>(depthSum / (NEIGHBOR_X*NEIGHBOR_Y))) >= 500))
+			if ((abs(static_cast<uint16_t>(depthSum / (NEIGHBOR_X*NEIGHBOR_Y))) > 100))
 			{
-
 			// std::cout << "keypoint threshold is " << (depthSum / (NEIGHBOR*NEIGHBOR)) << std::endl;
 			// std::cout << "  keypoint depth is " << depthVal << std::endl;
 			

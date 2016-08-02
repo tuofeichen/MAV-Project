@@ -1,0 +1,47 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp: In member function ‘void mavplugin::VisionPoseEstimatePlugin::send_vision_estimate(const ros::Time&, const Affine3d&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:124:3: error: ‘Quaternion’ is not a member of ‘tf’
+   tf::Quaternion q_tf(q_eigen.x(), q_eigen.y(), q_eigen.z(), q_eigen.w());
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:124:3: note: suggested alternatives:
+In file included from /usr/include/eigen3/Eigen/Core:252:0,
+                 from /usr/include/eigen3/Eigen/Dense:1,
+                 from /usr/include/eigen3/Eigen/Eigen:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:23,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:23,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:18:
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:260:58: note:   ‘Eigen::Quaternion’
+ template<typename Scalar, int Options = AutoAlign> class Quaternion;
+                                                          ^
+In file included from /opt/ros/indigo/include/geometry_msgs/Transform.h:19:0,
+                 from /opt/ros/indigo/include/geometry_msgs/TransformStamped.h:19,
+                 from /opt/ros/indigo/include/tf2_msgs/TFMessage.h:18,
+                 from /opt/ros/indigo/include/tf2_ros/transform_listener.h:36,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:25,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:23,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:18:
+/opt/ros/indigo/include/geometry_msgs/Quaternion.h:62:61: note:   ‘geometry_msgs::Quaternion’
+ typedef ::geometry_msgs::Quaternion_<std::allocator<void> > Quaternion;
+                                                             ^
+In file included from /opt/ros/indigo/include/tf2/transform_storage.h:36:0,
+                 from /opt/ros/indigo/include/tf2/buffer_core.h:35,
+                 from /opt/ros/indigo/include/tf2_ros/buffer_interface.h:35,
+                 from /opt/ros/indigo/include/tf2_ros/buffer.h:35,
+                 from /opt/ros/indigo/include/tf2_ros/transform_listener.h:40,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:25,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:23,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:18:
+/opt/ros/indigo/include/tf2/LinearMath/Quaternion.h:28:7: note:   ‘tf2::Quaternion’
+ class Quaternion : public QuadWord {
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:124:18: error: expected ‘;’ before ‘q_tf’
+   tf::Quaternion q_tf(q_eigen.x(), q_eigen.y(), q_eigen.z(), q_eigen.w());
+                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:126:3: error: ‘Matrix3x3’ is not a member of ‘tf’
+   tf::Matrix3x3(q_tf).getRPY(roll, pitch, yaw);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:126:17: error: ‘q_tf’ was not declared in this scope
+   tf::Matrix3x3(q_tf).getRPY(roll, pitch, yaw);
+                 ^
+make[2]: *** [CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mavros_extras.dir/all] Error 2
+make: *** [all] Error 2

@@ -1,0 +1,7 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp:23:27: fatal error: tf/Quaternion.h: No such file or directory
+ #include <tf/Quaternion.h>
+                           ^
+compilation terminated.
+make[2]: *** [CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mavros_extras.dir/all] Error 2
+make: *** [all] Error 2

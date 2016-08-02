@@ -1,12 +1,11 @@
 <launch>
 
 
-
-<!-- <include file="$(find mavros)/launch/px4.launch"> </include> -->
-
-
 <arg name="sim" default="0"/>
 
+<group if="$(arg sim)">
+<include file="$(find mavros)/launch/px4_sitl.launch"> </include>
+</group>
 
 
 <node pkg="backend" type="backend" name="rgbd_backend" output="screen">

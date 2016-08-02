@@ -9,6 +9,7 @@
 
 #include "AnalyticBasedTME.h"
 
+#include <iostream>
 //typedef  double FloatingPoint;
 //typedef  Eigen::Vector4d Vector4;
 //typedef  Eigen::Vector3d Vector3;
@@ -69,9 +70,13 @@ void AnalyticBasedTME::estimate( // return false if estimation failed and else t
 
 	// single value decomposition of covariance_xy
 	Eigen::JacobiSVD<Matrix3> svd(covXY, Eigen::ComputeFullU | Eigen::ComputeFullV);
+
 	Matrix3 s = Matrix3::Identity();
+	
 	FloatingPoint scale = 1.0/varX;
+	
 	const FloatingPoint detCovXY = covXY.determinant();
+
 	if(fabs(detCovXY) < 1e-12)
 	{
 		const FloatingPoint detUV = svd.matrixU().determinant() * svd.matrixV().determinant();
@@ -89,7 +94,9 @@ void AnalyticBasedTME::estimate( // return false if estimation failed and else t
 		scale *= svd.singularValues().middleRows(0,2).sum() - svd.singularValues()(2);
 	}
 	else
+	{
 		scale *= svd.singularValues().sum();
+	}
 
 	// calculate the rotation, translation and scaling
 	Matrix3 rot = svd.matrixU() * s * svd.matrixV().transpose(); // rotation

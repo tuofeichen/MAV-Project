@@ -1,0 +1,41 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:336:4: warning: multi-line comment [-Wcomment]
+    // cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:164:48: error: expected ‘;’ at end of member declaration
+  void fusePX4LPE(RosHandler& lpe, int frameType)
+                                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::run(RosHandler&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:202:18: error: no matching function for call to ‘SLAM::Mapping::setDummyNode()’
+     setDummyNode();
+                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:202:18: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:140:7: note: void SLAM::Mapping::setDummyNode(RosHandler&)
+  void setDummyNode(RosHandler& lpe);
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:140:7: note:   candidate expects 1 argument, 0 provided
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:69:15: warning: unused variable ‘dt_lpe’ [-Wunused-variable]
+  double       dt_lpe; 
+               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::fusePX4LPE(RosHandler&, int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:827:13: error: ‘tm_lpe’ was not declared in this scope
+   lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:827:20: error: ‘im_lpe’ was not declared in this scope
+   lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:827:27: error: ‘dt_lpe’ was not declared in this scope
+   lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:830:43: error: expected primary-expression before ‘double’
+   transformationMatrices[0] = tm_lpe.cast<double>();
+                                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:830:43: error: expected ‘;’ before ‘double’
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:831:41: error: expected primary-expression before ‘double’
+   informationMatrices[0] =  im_lpe.cast<double>();
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:831:41: error: expected ‘;’ before ‘double’
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

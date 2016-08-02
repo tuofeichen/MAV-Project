@@ -1,0 +1,52 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/RANSACBasedTME.h:13:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:14:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:45:9: error: ‘std::std’ has not been declared
+    std::std::vector<int> consensus
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:45:20: error: expected ‘,’ or ‘...’ before ‘<’ token
+    std::std::vector<int> consensus
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp: In member function ‘virtual bool SLAM::RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, std::vector<int>&) const’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:202:19: error: declaration of ‘std::vector<int> consensus’ shadows a parameter
+  std::vector<int> consensus;
+                   ^
+make[2]: *** [CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:375:4: warning: multi-line comment [-Wcomment]
+    // cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:19:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:45:9: error: ‘std::std’ has not been declared
+    std::std::vector<int> consensus
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:45:20: error: expected ‘,’ or ‘...’ before ‘<’ token
+    std::std::vector<int> consensus
+                    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:26:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ #define DEBUG_NEW -10
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:372:24: note: in expansion of macro ‘DEBUG_NEW’
+   if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD)){ // sequential node
+                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:26:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ #define DEBUG_NEW -10
+                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:390:26: note: in expansion of macro ‘DEBUG_NEW’
+    else if (nodes.size()>DEBUG_NEW)
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:406:142: error: no matching function for call to ‘SLAM::ITransformMatEst::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, std::vector<int>&)’
+   validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix,consensus);
+                                                                                                                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:406:142: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Mapping.h:19:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:38:15: note: virtual bool SLAM::ITransformMatEst::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, int) const
+  virtual bool estimateTrafo(
+               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/ITransformMatEst.h:38:15: note:   no known conversion for argument 7 from ‘std::vector<int>’ to ‘int’
+make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

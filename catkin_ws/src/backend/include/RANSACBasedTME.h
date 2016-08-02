@@ -44,7 +44,8 @@ public:
 				const std::vector<Eigen::Vector3f>& keys3D2, // in: 3D keypoints of image 2
 				const std::vector<int>& matchIdx2, // in: matched keypoint index of image 2
 				Eigen::Matrix4f& transformMat, // out: transformation matrix to transform the input to the target
-				Eigen::Matrix<double, 6, 6>& informationMat // out: information matrix of the transformation
+				Eigen::Matrix<double, 6, 6>& informationMat, // out: information matrix of the transformation
+				std::vector<int>& consensus
 				) const; // Note: This function must be thread safe!!!
 
 private:

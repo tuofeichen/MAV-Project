@@ -18,11 +18,15 @@
 
 using namespace std;
 using namespace cv;
+
+
+
 namespace SLAM {
 
-cv::FileStorage fileStore("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints.txt",cv::FileStorage::WRITE);
-cv::FileStorage fileStore2("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/keypoints2.txt",cv::FileStorage::WRITE);
-  
+cv::FileStorage fileStore("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/match1.txt",cv::FileStorage::WRITE);
+cv::FileStorage fileStore2("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/match2.txt",cv::FileStorage::WRITE);
+cv::FileStorage fileConsensus("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/consensus.txt",cv::FileStorage::WRITE);
+
 
 Mapping::Mapping(
 		IFeatures* aFDEM,
@@ -58,11 +62,6 @@ void Mapping::run(RosHandler& lpe)
 //	std::cout << "Mapping::start called!" << std::endl;
 	double totalTime = 0;
 	double relTime;
-	
-
-	Matrix4f 			  tm_lpe; 
-	Matrix<float, 6, 6>   im_lpe; 
-	double 				  dt_lpe; 
 
 	// initialize variables
 	bestInforamtionValue = 0;
@@ -75,67 +74,15 @@ void Mapping::run(RosHandler& lpe)
 	{
 		// cout << "bad feature!"<< endl;
 		++badFrameCounter;
-
-		if ((badFrameCounter == 1)||(!lastFrame.getBadFrameFlag()))
-		{
-		 //first time enter bad frame counter
-
-			cout << "first time here babe!" << endl; 
-			currentFrame.setBadFrameFlag(true);
-			lpe.updateLpeCam(); // note down current time and lpe
-
-		}
-		else{
-			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
-			validTrafo[0] 	 = 1;
-			enoughMatches[0] = 1;
-			transformationMatrices[0] = tm_lpe.cast<double>();
-			informationMatrices[0] =  im_lpe.cast<double>();
-			
-			if (nodes.size()==0){
-				addFirstNode();
-				return;
-			}
-			else
-				graphIds[0] = nodes.size()-1;
-			
-
-			deltaT[0] = dt_lpe;
-
-			tryToAddNode(0); 		// try to add one sequential node
-
-			currentFrame.setBadFrameFlag(true);
-			currentFrame.setKeyFrameFlag(false);// ensure bad frame is not key frame
-
-			// currentFrame.setNewNodeFlag(false); // it can be new node but can't be key frame
-			lpe.updateLpeCam();
-		}
+		fusePX4LPE(lpe,badFrame);
 	
 		return;
 	}
 	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()))
 	{
 
-		// cout << "last frame is a badframe" << endl;
-		lpe.getTm(tm_lpe,im_lpe,dt_lpe);
-		currentPosition = (poseGraph->getPositionOfId(nodes.size()-1)) * tm_lpe.cast<double>(); // last node 			
-		
-		poseGraph->addNode(currentPosition);
-		
-		const Eigen::Isometry3d recoverTm(tm_lpe.cast<double>());
-
-		poseGraph->addEdgeFromIdToCurrent(recoverTm, im_lpe.cast<double>(), nodes.size()-1);
-		currentFrame.setId(poseGraph->getCurrentId());		
-		currentFrame.setDummyFrameFlag(true);
-		nodes.push_back(currentFrame);
-
-		currentFrame.setBadFrameFlag(false);
-
-		// deltaT[0] = dt_lpe;
-		// tryToAddNode(0); 	
-
-		// try to add one sequential node
-
+		// cout << "recover from badframe" << endl;
+		fusePX4LPE(lpe,recoverFrame);
 		return;
 	}
 
@@ -151,12 +98,8 @@ void Mapping::run(RosHandler& lpe)
 	}
 
 	time.tic();
-
-
- 	//need recovery handling
-
 	parallelMatching();
-
+	
 	relTime = time.toc();
 	totalTime += relTime;
 	// cout << "Parallel matching took " << relTime << "ms" << endl;
@@ -170,6 +113,10 @@ void Mapping::run(RosHandler& lpe)
 		if (currentFrame.getId() < 0)
 		{	
 			tryToAddNode(thread); // now thread should be 0
+			
+			if (currentFrame.getNewNodeFlag()){
+				lpe.updateLpeCam(); //update lpe pose if new node if camera frame
+			}
 		}
 		else
 		{	
@@ -182,7 +129,6 @@ void Mapping::run(RosHandler& lpe)
 
 	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && lcRandomMatching == 0)
 	{
-		
 		lcHandler.join();
 
 		if(lcBestIndex > 0 && currentFrame.getId() >= 0) // (need lcBestIndex > 0)
@@ -201,7 +147,7 @@ void Mapping::run(RosHandler& lpe)
 	 
 	relTime = time.toc();
 	totalTime += relTime;
-//	cout << "Graph processing took " << relTime << "ms" << endl;
+	// cout << "Graph processing took " << relTime << "ms" << endl;
 
 	if(loopClosureFound)
 	{
@@ -212,19 +158,22 @@ void Mapping::run(RosHandler& lpe)
 
 	//
 	// print
-	// cout << "SLAM of frame nr " << frameCounter << " was ";
+	
 	if(currentFrame.getId() < 0)
 	{
 		// if(currentFrame.getDummyFrameFlag())
 		// 	// cout << "dropped (transformation too small or too big) " << endl;
 		// else
 		// 	cout << "dropped (added as dummy) " << endl;
+
 		if(!currentFrame.getDummyFrameFlag())
 			cout << "dropped (added as dummy) " << endl;
 
 	}
-	else
-		// cout << "added ";
+	// else
+	// {
+	// 	cout << "SLAM of frame nr " << frameCounter << " was processed" << endl;	
+	// }
 
 	//
 	// key frame, map and optimization
@@ -242,8 +191,8 @@ void Mapping::run(RosHandler& lpe)
 			// setting a dummy node is needed, otherwise the track of frames can be lost
 			if(addDummyNodeFlag)
 			{
-				++sequenceOfLostFramesCntr;
-				setDummyNode();
+				++sequenceOfLostFramesCntr; // here should use IMU data 
+				setDummyNode(lpe);
 			}
 		}
 	}
@@ -259,8 +208,11 @@ void Mapping::run(RosHandler& lpe)
 	{
 		sequenceOfLostFramesCntr = 0;
 
+		// cout << "[SLAM] error search key frame" << endl;
 		// search key frame
 		bool addedKeyFrame = searchKeyFrames();
+
+		// cout << "[SLAM] error search after key frame" << endl;
 
 		// optimize graph once
 		optimizeGraph(false);
@@ -279,8 +231,6 @@ void Mapping::run(RosHandler& lpe)
 				}
 				loopClosureFound = false; // reset loop closure flag ONLY when new key frame is added
 			}
-
-			//
 			// update map
 			// updateMap();
 		}
@@ -288,8 +238,8 @@ void Mapping::run(RosHandler& lpe)
 
 	relTime = time.toc();
 	totalTime += relTime;
-//	cout << "Optimization and map update took " << relTime << "ms" << endl;
-
+	// cout << "Optimization and map update took " << relTime << "ms" << endl;
+	
 	// cout << " and took " << totalTime << "ms"<< endl;
 
 	++nframeProc;
@@ -333,13 +283,11 @@ void Mapping::matchTwoFrames(
 
 	if ((frame2.getBadFrameFlag())||frame2.getKeypoints().empty())
 	{
-		cout << "just recover from a bad frame!" << endl; 
+		// cout << "just recover from a bad frame!" << endl; 
 		validTrafo = false;
 		enoughMatches = false;
 		return;
 	}
-
-	// cv::FileStorage storage("test.yml", cv::FileStorage::WRITE);
 
 	//
 	// feature detecting, extracting and matching
@@ -362,28 +310,6 @@ void Mapping::matchTwoFrames(
 			matchesIdx2.push_back(matches[i].trainIdx);
 		}
 
-		if(( nodes.size() == 5)&& (frame2.getId() == 4)){ // sequential node
-
-			cv::Mat imgMatch;
-			cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
-			imgMatch,Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
-		 	// cv::namedWindow("Matching", WINDOW_NORMAL);
-			// cv::imshow("Matching",imgMatch);
-
-			// sprintf(logName,"Matching %d ",currentFrame.getId()); // new frame 
-			// cv::write(fileStore, logName, matchesIdx1);
-
-			// sprintf(logName,"Matching %d ", frame2.getId());	  // old frame
-			// cv::write(fileStore2,logName, matchesIdx2);
-			
-			// cv::waitKey(0);
-		
-		 }
-		 else if (nodes.size()>5)
-		 {
-		 	// fileStore.release();
-		 	// fileStore2.release();
-		 }
 
 		// estimate transformation matrix
 		//
@@ -394,24 +320,48 @@ void Mapping::matchTwoFrames(
 				  1,0,0,0,
 				  0,0,0,1).finished();
 
-		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix);
-		// 
+		std::vector<int> consensus;
+		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix,consensus);
+		
 
+		if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD) && validTrafo){ // sequential node
+
+			// cv::Mat imgMatch;
+			// cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+			// imgMatch,Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+		 	// cv::namedWindow("Matching", WINDOW_NORMAL);
+			// cv::imshow("Matching",imgMatch);
+
+			sprintf(logName,"Matching %d ",currentFrame.getId()); // new frame 
+			cv::write(fileStore, logName, matchesIdx1);
+
+			sprintf(logName,"Matching %d ", frame2.getId());	  // old frame
+			cv::write(fileStore2,logName, matchesIdx2);
+			
+
+			sprintf(logName,"Consensus");	  // old frame
+			cv::write(fileConsensus,logName, consensus);
+			
+			cout << " enter matching " << endl; 
+			cv::waitKey(30);
+		
+		 }
+		 else if (nodes.size()>DEBUG_NEW)
+		 {
+		 	fileStore.release();
+		 	fileStore2.release();
+		 	fileConsensus.release();
+		 }
+
+		// align with lpe frame
 		tm_temp = tm; 
-
 		tm.row(0) = tm_temp.row(2) * rot;
-		
 		tm.row(1) = tm_temp.row(0) * rot;
-		
 		tm.row(2) = tm_temp.row(1) * rot;
-
 		tm.col(3) =	rot.inverse() * tm_temp.col(3);
 
-		// tm_temp = tm.transpose(); // leave it this way and do conversion when feeding into pixhawk
-		// tm.topLeftCorner(3,3) = tm_temp.topLeftCorner(3,3);
-	
-		transformationMatrix.matrix() = tm.cast<double>();
 
+		transformationMatrix.matrix() = tm.cast<double>();
 	}
 	else
 		validTrafo = false;
@@ -440,20 +390,24 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				nodes.push_back(currentFrame);
+				// here note down camera pose
+
 			}
 			else
-			{ // still update current position
-			    currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix; 
+			{ // still update current position: important
 
+				currentFrame.setNewNodeFlag(false); 
+			    currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix; 
 				return trafoToSmall;
 			}
 		}
 		else if(possibleLoopClosure){
+			
 			// cout << "found  loop closure!" <<  endl; 
 			loopClosureFound = true;
 		}
 
-		// add edge to current node
+		// add edge to current node (only add edges)
 		poseGraph->addEdgeFromIdToCurrent(transformationMatrix, informationMatrix, prevId);
 
 		return trafoValid;
@@ -472,11 +426,9 @@ bool Mapping::featureDetectionAndExtraction()
 	currentFrame.setKeypoints( fdem->detect(currentFrame.getGray()) );
 
 	// extract descriptors
-	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints
-		()) );
+	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );
 
 	if (currentFrame.getKeypoints().size() < minNumberOfKeyPoints){
-		// cout << currentFrame.getKeypoints().size() << " keypoints detected" << endl;
 		return false;
 	}
 	else
@@ -492,7 +444,6 @@ void Mapping::exchangeFirstFrame()
 			// map3d->clearMap();
 			// map3d->clearTrajectory();
 			currentPosition = poseGraph->getCurrentPosition();
-
 			// updateMap();
 		}
 }
@@ -532,7 +483,6 @@ void Mapping::parallelMatching()
 
 
 		}
-		// cout << "finished matching continuous" << endl; 
 	}
 
 	if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 )
@@ -542,7 +492,7 @@ void Mapping::parallelMatching()
 		poseGraph->getEdgeNeighborsToCurrentNode(contFramesToMatch, neighborIds);
 
 		// match graph neighbors (sequential nodes are excluded)
-		
+
 		if (neighborsToMatch > 0 && neighborIds.size() > 0)
 		{
 			int tmpPrev = -1;
@@ -560,7 +510,7 @@ void Mapping::parallelMatching()
 
 				if (nodes.at(nodesId).getBadFrameFlag())
 					continue; // don't match bad frames
-
+				
 				// match frames
 				deltaT[frames] = currentFrame.getTime() - nodes.at(nodesId).getTime();
 				handler[frames] = boost::thread(&Mapping::matchTwoFrames, this,
@@ -571,8 +521,6 @@ void Mapping::parallelMatching()
 						boost::ref(transformationMatrices[frames]),
 						boost::ref(informationMatrices[frames]) );
 			}
-
-		   // cout << "finished matching neighbors " << endl; 
 		}
 	}
 
@@ -709,58 +657,70 @@ void Mapping::addEdges(int thread)
 	}
 }
 
-void Mapping::setDummyNode()
+void Mapping::setDummyNode(RosHandler& lpe)
 {
+
 	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
 	{
 		
-		if(!nodes.back().getDummyFrameFlag())
-		{
-			// add node
-			const Eigen::Isometry3d dummyTm = Eigen::Isometry3d::Identity();
-			const Eigen::Matrix<double, 6, 6> dummyInfoMat = Eigen::Matrix<double, 6, 6>::Identity() * 1e-100;
-			poseGraph->addNode(currentPosition);
-			poseGraph->addEdgeFromIdToCurrent(dummyTm, dummyInfoMat, nodes.back().getId());
-			currentFrame.setId(poseGraph->getCurrentId());		
-			currentFrame.setDummyFrameFlag(true);
-			nodes.push_back(currentFrame);
 
-			++dummyNodeCounter; //debug
-		}
-		else if (currentFrame.getKeypoints().size() > nodes.back().getKeypoints().size())
-		{
+		fusePX4LPE(lpe,dummyFrame);
 
-			currentFrame.setDummyFrameFlag(true);
-			currentFrame.setId(nodes.back().getId());
-			nodes.back() = currentFrame;
-		}
+		// if(!nodes.back().getDummyFrameFlag())
+		// {
+		// 	// add node
+		// 	const Eigen::Isometry3d dummyTm = Eigen::Isometry3d::Identity();
+		// 	const Eigen::Matrix<double, 6, 6> dummyInfoMat = Eigen::Matrix<double, 6, 6>::Identity() * 1e-100;
+		// 	poseGraph->addNode(currentPosition);
+		// 	poseGraph->addEdgeFromIdToCurrent(dummyTm, dummyInfoMat, nodes.back().getId());
+		// 	currentFrame.setId(poseGraph->getCurrentId());		
+		// 	currentFrame.setDummyFrameFlag(true);
+		// 	nodes.push_back(currentFrame);
+
+		// 	++dummyNodeCounter; //debug
+		// }
+		// else if (currentFrame.getKeypoints().size() > nodes.back().getKeypoints().size())
+		// {
+
+		// 	currentFrame.setDummyFrameFlag(true);
+		// 	currentFrame.setId(nodes.back().getId());
+		// 	nodes.back() = currentFrame;
+		// }
 	}
 }
 
 bool Mapping::searchKeyFrames()
 {
 	bool ret = false;
+
+	if (keyFrames.size() == 0)
+	{
+		return false; // can be the case if first frame is bad frame
+	}
+
 	if (smallestId > keyFrames.back().getId())
 	{
 		for(int thread = 0; thread < frames; ++thread)
 		{
 			if (validTrafo[thread] &&  isVelocitySmallEnough(transformationMatrices[thread], deltaT[thread]))
 			{
-					Frame& keyFrame = nodes.back();
+				Frame& keyFrame = nodes.back();
+				if (!keyFrame.getBadFrameFlag()) // bad frame should never be key frame
+				{
 					keyFrame.setKeyFrameFlag(true);
 					keyFrames.push_back(keyFrame);
 					cout << "Added id " << keyFrame.getId() << " as key frame nr " << keyFrames.size() << "==========================================" << endl;
-
 					ret = true;
 					break;
+				}
 			}
 		}
 	}
 
 	// delete images
-	// nodes.back().deleteRgb();
-	// nodes.back().deleteDepth();
-	// nodes.back().deleteGray();
+	nodes.back().deleteRgb();
+	nodes.back().deleteDepth();
+	nodes.back().deleteGray();
 
 	return ret;
 }
@@ -843,12 +803,74 @@ void Mapping::addFirstNode()
 	currentFrame.setId(poseGraph->getCurrentId());
 	nodes.push_back(currentFrame);
 	nodes.back().setKeyFrameFlag(true);
-	keyFrames.push_back(nodes.back());
+	keyFrames.push_back(nodes.back()); 
+
 	// nodes.back().deleteDepth();
 	// nodes.back().deleteRgb();
 	// nodes.back().deleteGray();
 
 }
+
+
+void Mapping::fusePX4LPE(RosHandler& lpe, int frameType)
+{
+
+
+		Matrix4f 			  tm_lpe; 
+		Matrix<float, 6, 6>   im_lpe; 
+		double 				  dt_lpe; 
+
+		imuCompensateCounter++;
+
+		lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+		validTrafo[0] 	 = 1;
+		enoughMatches[0] = 1;
+		transformationMatrices[0] = tm_lpe.cast<double>();
+		informationMatrices[0] =  im_lpe.cast<double>();
+		
+		if (nodes.size()==0){
+			cout << " add first node" << endl; 
+			nodes.clear();
+			keyFrames.clear();
+			poseGraph->addFirstNode();
+			currentFrame.setId(poseGraph->getCurrentId());
+			nodes.push_back(currentFrame);
+			nodes.back().setKeyFrameFlag(true);
+
+			return;
+		}
+		
+
+		graphIds[0] = nodes.size()-1;
+		deltaT[0] = dt_lpe;
+
+		tryToAddNode(0); 		// try to add one sequential node
+
+		switch(frameType)
+		{
+			case badFrame:
+				currentFrame.setBadFrameFlag(true);
+				currentFrame.setKeyFrameFlag(false);
+			break;
+
+			case recoverFrame:
+				currentFrame.setBadFrameFlag(false);
+			break;
+
+			case dummyFrame:
+				currentFrame.setBadFrameFlag(false);
+				currentFrame.setDummyFrameFlag(false);
+			break;
+		}
+
+		if (currentFrame.getNewNodeFlag()){
+			cout << "frame type " << frameType << " compensated by LPE" << endl;
+			lpe.updateLpeCam();
+		}
+
+		return; 
+}
+
 
 void Mapping::printPosition(const Eigen::Isometry3d& position)
 {
@@ -894,7 +916,6 @@ void Mapping::loopClosureDetection()
 
 		}
 	}
-
 
 	if(lcBestIndex >= 0)
 	{

@@ -56,6 +56,7 @@ bool RANSACBasedTME::estimateTransformationMatrix(  // return true if transforma
 
 		float df = (keys3D1.at(matchIdx1.at(curCons)) - keys3D1.at(matchIdx1.at(prevCons))).norm();//distance to the previous query point
 		float dt = (keys3D2.at(matchIdx2.at(curCons)) - keys3D2.at(matchIdx2.at(prevCons))).norm();//distance from one to the next train point
+		
 		if ( fabs(df-dt) > thresholdAbsolutDistanceTest )
 			return false;
 	}
@@ -167,7 +168,8 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 				const std::vector<Eigen::Vector3f>& keys3D2, // in: 3D keypoints of image 2
 				const std::vector<int>& matchIdx2, // in: matched keypoint index of image 2
 				Eigen::Matrix4f& transformMat, // out: transformation matrix to transform the input to the target
-				Eigen::Matrix<double, 6, 6>& informationMat // out: information matrix of the transformation
+				Eigen::Matrix<double, 6, 6>& informationMat, // out: information matrix of the transformation
+				std::vector<int>& finalConsensus
 				) const // Note: This function must be thread safe!!!
 {
 	assert(matchIdx1.size() == matchIdx2.size());
@@ -194,13 +196,14 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 		if (inlier > minInlier && mse < squaredMaxDistInlier)
 		{
 			optMse = mse;
-			optInlier = inlier;
+			optInlier = inlier; //shouldn' here return ? 
 		}
 	}
 
 	std::vector<int> consensus;
 	Eigen::Matrix4f transfMat;
 	Eigen::Matrix4f refinedTransfMat;
+
 	for (int n = 0; n < iter; ++n)
 	{
 		int idx[3] = { };
@@ -216,6 +219,7 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 		}
 
 		consensus.clear();
+		// every iteration start by three points and refine it 
 		consensus.push_back(idx[0]);
 		consensus.push_back(idx[1]);
 		consensus.push_back(idx[2]);
@@ -224,6 +228,7 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 			continue; //if the three point doesn't work out 
 
 		int inlierRefined = 0;
+		bool refinedSucceed = false;
 		float mseRefined = std::numeric_limits<float>::infinity();
 
 		// refining the RANSAC ? 
@@ -231,15 +236,19 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 		{
 			float mse;
 			int inlier = computeSquaredDistance(keys3D1, matchIdx1, keys3D2, matchIdx2, transfMat, squaredMaxDistInlier*(4.0f/static_cast<float>(refine)), consensus, mse);
+			Eigen::Matrix4f tmOld = transfMat;
 
 			if (inlier < minInlier || mse > squaredMaxDistInlier)
-				break; // no refinement needed in this case
+				break; // no refinement needed in this case (not worth it)
 
 			if (inlier > inlierRefined && mse < mseRefined)
 			{
-				if (!estimateTransformationMatrix(keys3D1, matchIdx1, keys3D2, matchIdx2, consensus, transfMat))
+				refinedSucceed = estimateTransformationMatrix(keys3D1, matchIdx1, keys3D2, matchIdx2, consensus, transfMat);			
+				if (!refinedSucceed){ 
+					// std::cout << "transfo failed in refinement stage  " << consensus.size()<<std::endl; //shouldn't be terminated? 
 					break; // transformation matrix estimation failed
-
+				}
+				
 				// save refined parameters
 				inlierRefined = inlier;
 				mseRefined = mse;
@@ -247,27 +256,39 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 			}
 			else
 				break;
+
 		}
 
-		if (inlierRefined > optInlier && mseRefined < optMse)
+
+
+		if (inlierRefined > optInlier && mseRefined < optMse) // iterative update 
 		{
+			// std::cout  << " iteration consensus size "<< consensus.size() << std::endl;
 			optInlier = inlierRefined;
 			optMse = mseRefined;
-			transformMat = refinedTransfMat;
-			if (termInlierPct < static_cast<float>(optInlier)*invNrOfPtsF)
+			transformMat = refinedTransfMat; // last one 
+
+			if (termInlierPct < static_cast<float>(optInlier)*invNrOfPtsF){
+				// std::cout <<"# of iteration: " << n << std::endl;
 				break;
+			}
+
 		}
 	}
 
 	informationMat = Eigen::Matrix<double, 6, 6>::Identity() * static_cast<double>(static_cast<float>(optInlier) / optMse);
 
+	// end of the day not necessarily preserved inlier. 
 	if (optInlier >= minInlier && squaredMaxDistInlier > optMse)
 	{
 		// std::cout << "Inlier = " << optInlier << " RMSE = " << sqrt(optMse) << std::endl;
+		// finalConsensus = consensus;
+		// std::cout << "final consensus size " << consensus.size() << std::endl; 
 		return true;
 	}
 	else
 	{
+
 //		std::cout << "Failed to estimate the transformation matrix: Inlier = " << optInlier << " RMSE = " << sqrt(optMse) << std::endl;
 		return false;
 	}
