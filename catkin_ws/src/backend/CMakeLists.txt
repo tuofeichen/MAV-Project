@@ -153,7 +153,7 @@ add_executable(backend src/main.cpp) # src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-frontend src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp)
+frontend src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp)
 
 target_link_libraries(frontend 
 ${catkin_LIBRARIES}

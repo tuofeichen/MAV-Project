@@ -31,10 +31,12 @@ cv::FileStorage fileConsensus("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/b
 Mapping::Mapping(
 		IFeatures* aFDEM,
 		ITransformMatEst* aTME,
-		IPoseGraph* aGO)
+		IPoseGraph* aGO,
+		RosHandler* aRos
+		)
 		//IMap* aMap
 		
- : fdem(aFDEM), tme(aTME), poseGraph(aGO) //, map3d(aMap)
+ : fdem(aFDEM), tme(aTME), poseGraph(aGO), px4(aRos)//, map3d(aMap)
 {
 	// check element are not pointing to 0
 	assert(fdem);
@@ -55,11 +57,13 @@ Mapping::Mapping(
 Mapping::~Mapping()
 { }
 
-void Mapping::run(RosHandler& lpe) 
-
+// void Mapping::run(RosHandler& px4) 
+void Mapping::run()
 {
 	
-//	std::cout << "Mapping::start called!" << std::endl;
+	// std::cout << "Mapping::start called!" << std::endl;
+	// cout << px4->getLpe()<< endl;
+
 	double totalTime = 0;
 	double relTime;
 
@@ -74,15 +78,17 @@ void Mapping::run(RosHandler& lpe)
 	{
 		// cout << "bad feature!"<< endl;
 		++badFrameCounter;
-		fusePX4LPE(lpe,badFrame);
-	
+		// fusePX4LPE(px4,badFrame);
+		fusePX4LPE(badFrame);
+
 		return;
 	}
 	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()))
 	{
 
 		// cout << "recover from badframe" << endl;
-		fusePX4LPE(lpe,recoverFrame);
+		// fusePX4LPE(px4,recoverFrame);
+		fusePX4LPE(recoverFrame);
 		return;
 	}
 
@@ -114,8 +120,8 @@ void Mapping::run(RosHandler& lpe)
 		{	
 			tryToAddNode(thread); // now thread should be 0
 			
-			if (currentFrame.getNewNodeFlag()){
-				lpe.updateLpeCam(); //update lpe pose if new node if camera frame
+			if (currentFrame.getNewNodeFlag()) {
+				px4->updateLpeCam(); //update px4 pose if new node if camera frame
 			}
 		}
 		else
@@ -159,17 +165,18 @@ void Mapping::run(RosHandler& lpe)
 	//
 	// print
 	
-	if(currentFrame.getId() < 0)
-	{
-		// if(currentFrame.getDummyFrameFlag())
-		// 	// cout << "dropped (transformation too small or too big) " << endl;
-		// else
-		// 	cout << "dropped (added as dummy) " << endl;
+	// if(currentFrame.getId() < 0)
+	// {
+	// 	// if(currentFrame.getDummyFrameFlag())
+	// 	// 	// cout << "dropped (transformation too small or too big) " << endl;
+	// 	// else
+	// 	// 	cout << "dropped (added as dummy) " << endl;
 
-		if(!currentFrame.getDummyFrameFlag())
-			cout << "dropped (added as dummy) " << endl;
+	// 	if(!currentFrame.getDummyFrameFlag())
+	// 		cout << "dropped (added as dummy) " << endl;
 
-	}
+	// }
+
 	// else
 	// {
 	// 	cout << "SLAM of frame nr " << frameCounter << " was processed" << endl;	
@@ -192,7 +199,7 @@ void Mapping::run(RosHandler& lpe)
 			if(addDummyNodeFlag)
 			{
 				++sequenceOfLostFramesCntr; // here should use IMU data 
-				setDummyNode(lpe);
+				setDummyNode();
 			}
 		}
 	}
@@ -353,7 +360,7 @@ void Mapping::matchTwoFrames(
 		 	fileConsensus.release();
 		 }
 
-		// align with lpe frame
+		// align with px4 frame
 		tm_temp = tm; 
 		tm.row(0) = tm_temp.row(2) * rot;
 		tm.row(1) = tm_temp.row(0) * rot;
@@ -381,12 +388,21 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			if(isMovementBigEnough(transformationMatrix))
 			{
 				currentFrame.setNewNodeFlag(true); 
+
 				// cout << "current delta yaw from " << prevId << " is ";
 				// Matrix3d t = transformationMatrix.matrix().topLeftCorner(3,3);
 				// cout << atan2(t(1,0),t(0,0)); 
 				// cout << " delta y is " <<  transformationMatrix.matrix()(1,3) << endl;
 
-				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;				
+				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
+				
+				if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder 
+					Matrix4d pos = currentPosition.matrix(); // fuse height with LPE constantly
+					double height = pos(2,3);
+					pos(2,3) = 0.1*height + 0.9*px4->getLpe()(2,3);
+					currentPosition.matrix() = pos; 
+				}
+
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				nodes.push_back(currentFrame);
@@ -657,14 +673,16 @@ void Mapping::addEdges(int thread)
 	}
 }
 
-void Mapping::setDummyNode(RosHandler& lpe)
+// void Mapping::setDummyNode(RosHandler& px4)
+void Mapping::setDummyNode()
 {
 
 	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
 	{
 		
+		fusePX4LPE(dummyFrame);
 
-		fusePX4LPE(lpe,dummyFrame);
+		// fusePX4LPE(px4,dummyFrame);
 
 		// if(!nodes.back().getDummyFrameFlag())
 		// {
@@ -717,10 +735,10 @@ bool Mapping::searchKeyFrames()
 		}
 	}
 
-	// delete images
-	nodes.back().deleteRgb();
-	nodes.back().deleteDepth();
-	nodes.back().deleteGray();
+	// // delete images
+	// nodes.back().deleteRgb();
+	// nodes.back().deleteDepth();
+	// nodes.back().deleteGray();
 
 	return ret;
 }
@@ -751,13 +769,13 @@ void Mapping::optimizeGraph(bool tillConvergenz)
 
 void Mapping::updateMap()
 {
-	// pcl::PointCloud<pcl::PointXYZRGB> cloud;
-	// FrameToPcConverter::getColorPC(keyFrames.back(), cloud);
-	// map3d->addMapPart(cloud, poseGraph->getPositionOfId(keyFrames.back().getId()));
+	pcl::PointCloud<pcl::PointXYZRGB> cloud;
+	FrameToPcConverter::getColorPC(keyFrames.back(), cloud);
+	map3d->addMapPart(cloud, poseGraph->getPositionOfId(keyFrames.back().getId()));
 
 	// // TODO when is a good time to update poses?
-	// for(int i = 0; i < keyFrames.size(); ++i)
-	// 	map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
+	for(int i = 0; i < keyFrames.size(); ++i)
+		map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
 
 	// delete images out of the stored frames
 	keyFrames.back().deleteRgb();
@@ -812,7 +830,8 @@ void Mapping::addFirstNode()
 }
 
 
-void Mapping::fusePX4LPE(RosHandler& lpe, int frameType)
+// void Mapping::fusePX4LPE(RosHandler& px4, int frameType)
+void Mapping::fusePX4LPE(int frameType)
 {
 
 
@@ -822,7 +841,7 @@ void Mapping::fusePX4LPE(RosHandler& lpe, int frameType)
 
 		imuCompensateCounter++;
 
-		lpe.getTm(tm_lpe,im_lpe,dt_lpe);
+		px4->getTm(tm_lpe,im_lpe,dt_lpe);
 		validTrafo[0] 	 = 1;
 		enoughMatches[0] = 1;
 		transformationMatrices[0] = tm_lpe.cast<double>();
@@ -864,8 +883,8 @@ void Mapping::fusePX4LPE(RosHandler& lpe, int frameType)
 		}
 
 		if (currentFrame.getNewNodeFlag()){
-			cout << "frame type " << frameType << " compensated by LPE" << endl;
-			lpe.updateLpeCam();
+			// cout << "frame type " << frameType << " compensated by px4" << endl;
+			px4->updateLpeCam();
 		}
 
 		return; 

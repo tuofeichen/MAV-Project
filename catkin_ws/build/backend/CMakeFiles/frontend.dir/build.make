@@ -417,6 +417,54 @@ CMakeFiles/frontend.dir/src/RosHandler.cpp.o.provides: CMakeFiles/frontend.dir/s
 CMakeFiles/frontend.dir/src/RosHandler.cpp.o.provides.build: CMakeFiles/frontend.dir/src/RosHandler.cpp.o
 
 
+CMakeFiles/frontend.dir/src/Backend.cpp.o: CMakeFiles/frontend.dir/flags.make
+CMakeFiles/frontend.dir/src/Backend.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/backend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/frontend.dir/src/Backend.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/frontend.dir/src/Backend.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp
+
+CMakeFiles/frontend.dir/src/Backend.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/frontend.dir/src/Backend.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp > CMakeFiles/frontend.dir/src/Backend.cpp.i
+
+CMakeFiles/frontend.dir/src/Backend.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/frontend.dir/src/Backend.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp -o CMakeFiles/frontend.dir/src/Backend.cpp.s
+
+CMakeFiles/frontend.dir/src/Backend.cpp.o.requires:
+
+.PHONY : CMakeFiles/frontend.dir/src/Backend.cpp.o.requires
+
+CMakeFiles/frontend.dir/src/Backend.cpp.o.provides: CMakeFiles/frontend.dir/src/Backend.cpp.o.requires
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/Backend.cpp.o.provides.build
+.PHONY : CMakeFiles/frontend.dir/src/Backend.cpp.o.provides
+
+CMakeFiles/frontend.dir/src/Backend.cpp.o.provides.build: CMakeFiles/frontend.dir/src/Backend.cpp.o
+
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.o: CMakeFiles/frontend.dir/flags.make
+CMakeFiles/frontend.dir/src/TcpServer.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/TcpServer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/backend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/frontend.dir/src/TcpServer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/frontend.dir/src/TcpServer.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/TcpServer.cpp
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/frontend.dir/src/TcpServer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/TcpServer.cpp > CMakeFiles/frontend.dir/src/TcpServer.cpp.i
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/frontend.dir/src/TcpServer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/TcpServer.cpp -o CMakeFiles/frontend.dir/src/TcpServer.cpp.s
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.o.requires:
+
+.PHONY : CMakeFiles/frontend.dir/src/TcpServer.cpp.o.requires
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.o.provides: CMakeFiles/frontend.dir/src/TcpServer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/TcpServer.cpp.o.provides.build
+.PHONY : CMakeFiles/frontend.dir/src/TcpServer.cpp.o.provides
+
+CMakeFiles/frontend.dir/src/TcpServer.cpp.o.provides.build: CMakeFiles/frontend.dir/src/TcpServer.cpp.o
+
+
 # Object files for target frontend
 frontend_OBJECTS = \
 "CMakeFiles/frontend.dir/src/AnalyticBasedTME.cpp.o" \
@@ -433,7 +481,9 @@ frontend_OBJECTS = \
 "CMakeFiles/frontend.dir/src/UavComProtocolHandler.cpp.o" \
 "CMakeFiles/frontend.dir/src/Frontend.cpp.o" \
 "CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o" \
-"CMakeFiles/frontend.dir/src/RosHandler.cpp.o"
+"CMakeFiles/frontend.dir/src/RosHandler.cpp.o" \
+"CMakeFiles/frontend.dir/src/Backend.cpp.o" \
+"CMakeFiles/frontend.dir/src/TcpServer.cpp.o"
 
 # External object files for target frontend
 frontend_EXTERNAL_OBJECTS =
@@ -453,6 +503,8 @@ frontend_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Frontend.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/RosHandler.cpp.o
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/Backend.cpp.o
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/src/TcpServer.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/build.make
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: /opt/ros/indigo/lib/libroscpp.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
@@ -472,7 +524,7 @@ frontend_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so: CMakeFiles/frontend.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/backend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/backend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX shared library /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/frontend.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -495,6 +547,8 @@ CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/UavComProtocolHand
 CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/Frontend.cpp.o.requires
 CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o.requires
 CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/RosHandler.cpp.o.requires
+CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/Backend.cpp.o.requires
+CMakeFiles/frontend.dir/requires: CMakeFiles/frontend.dir/src/TcpServer.cpp.o.requires
 
 .PHONY : CMakeFiles/frontend.dir/requires
 

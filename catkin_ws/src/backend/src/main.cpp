@@ -22,23 +22,24 @@
 #include "AsusProLiveOpenNI2.h"
 
 
+#include "Backend.h"
 #include "RosHandler.h" // Ros stuff 
 // 
 
 using namespace std;
 using namespace SLAM;
 
-// #define DEBUG
+#define DEBUG
 
 // 
 //
 // settings
 //
-static constexpr char frontEndIp[] = "192.168.144.1"; // WLAN
+static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
 
 enum {
-	frontEndPortNr = 11000, ///< port of the front end
+	backendPort = 11000, ///< port of the front end
 	minMatches = 25, ///< minimal number of matches
 	maxNrOfFeatures = 600, ///< maximal number of features to detect (only needed for OrbDetSurfDesc)
 	sufficientMatches = 600, ///< sufficient number of matches to return
@@ -71,6 +72,7 @@ static std::ofstream logLPE;
 static std::ofstream logKpts;
 static std::ofstream logKpts3D;
 
+static bool valid_update = 0;
 static int frameNum = 0;
 
 static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
@@ -80,12 +82,7 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 	Matrix3d t = trafo.rotation();
 
 	double r, p, y; 
-	
-	bool new_node = frame.getNewNodeFlag();
 
-
-	// if ((new_node || (frame.getId() == 0))&&(!frame.getBadFrameFlag())){
-	if(new_node){
 	r = atan2(t(2,1),t(2,2)); // roll (around x)
 	p = atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
 	y = atan2(t(1,0),t(0,0)); // yaw (around z)
@@ -96,12 +93,11 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 		 << pose.translation().z() << ","
 		 << r << ","
 		 << p << ","
-		 << y  << "," << frameNum << endl; // note down quaternion or rpy? (should probably note down quaternion)
+		 << y  << "," << frameNum << "," << valid_update << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
 	// cout << fixed << setprecision(6);
 	// cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
 	// cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
-	}
 	
 }
 
@@ -162,10 +158,17 @@ bool readImage(Frame& frame, int id) // implemented for playback debug
 
 int main(int argc, char **argv)
 {
+
 	//
 	// init
 	ros::init(argc,argv,"rgbd_backend");
 	RosHandler px4;  // pixhawk communication via mavros
+
+	boost::mutex backendMutex;
+	Backend backend(backendPort,backendMutex);
+
+
+
 
 	Frame frame, frame_prev;
 	int toNode = 1; // node id
@@ -192,17 +195,18 @@ int main(int argc, char **argv)
 #else
 
 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
-	logPos << "time,x,y,z,roll,pitch,yaw" <<endl;
+	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 
 	logLPE.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/LPE.csv", std::ofstream::out | std::ofstream::trunc);
-	logLPE << "x,y,z" <<endl;
+	logLPE << "x,y,z,valid" <<endl;
 
 #endif	
 
 	// setup mapping class
 
-	Mapping slam(&fdem, &tme, &graph); //, &pointCloudMap);
-
+	Mapping slam(&fdem, &tme, &graph, &px4); //, &pointCloudMap);
+	// slam.setRosHandler(px4);
+	
 	
 	// pointCloudMap.startMapViewer();
 
@@ -258,19 +262,17 @@ int main(int argc, char **argv)
 			// cv::imshow("RGB Image", frame.getRgb());
 			// cout << "process node " << toNode << endl; 
 			// cv::imshow("Gray Image", frame.getGray());
-			const float scaleFactor = 0.05f;
+			// const float scaleFactor = 0.05f;
 			// cv::Mat depthMap;
 			// frame.getDepth().convertTo( depthMap, CV_8UC1, scaleFactor );
 			// cv::imshow("Depth Image", depthMap);
 
 			frameNum = toNode - 1;
 			
-			// stop |= (cv::waitKey(10) >= 0); //stop when key pressed
-			
 			// start slam
 			
 			slam.addFrame(frame);
-			slam.run(px4);
+			slam.run();
 
 			sprintf(fileName,"Keypoint Frame `%d", toNode);
 			logKpts3D << fileName  << endl;
@@ -278,6 +280,7 @@ int main(int argc, char **argv)
 			
 			Eigen::Vector3f kpts3D ;
 			cv::KeyPoint kpts;
+
 			if ((frame.getKeypoints().size()>0)&&((frame.getId()== DEBUG_NEW)||(frame.getId()==DEBUG_OLD)))
 			{	
 				// cout << "start logging keypoints of size " <<frame.getKeypoints().size()<< endl;
@@ -298,13 +301,14 @@ int main(int argc, char **argv)
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 
 				// if valid frame, keep updating
-				cout << "[main] valid frame" << endl; 
+				// cout << "[main] valid frame " << frame.getId() << endl; 
+				valid_update = 1;
 				tm = slam.getCurrentPosition();
-				// px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
+				px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
 			else	
 			{
-				// frame.setBadFrameFlag(true); // not a visual SLAM processed frame
+				valid_update = 0;
 				badFrameCnt = slam.getImuCompensateCounter();
 			}
 
@@ -320,14 +324,18 @@ int main(int argc, char **argv)
 		cv::waitKey(0);
 #endif
 
+			cv::imshow("rgb2", frame.getGray());
+			if(frame.getNewNodeFlag()||(frame.getId() == 0)){
+			backend.setNewNode(frame, Eigen::Matrix4f::Identity(),Eigen::Matrix<float, 6, 6>::Identity(),1);
 			logPoseGraphNode(frame, slam.getCurrentPosition());
+			
+			}
 			Matrix4f lpe = px4.getLpe();
-			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << endl;
+			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<<valid_update<< endl;
 
-
+			// cout << lpe(0,3) << " , " << lpe(1,3) << " , " << lpe(2,3) << endl;
 			// if((!frame.getBadFrameFlag())&&(frame.getNewNodeFlag()))
 			// 	cout << " [main] valid VSLAM frame get" << endl;
-
 
 			// if(frame.getNewNodeFlag())
 			// {

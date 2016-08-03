@@ -14,6 +14,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/frontend.dir/src/Frontend.cpp.o"
   "CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.o"
   "CMakeFiles/frontend.dir/src/RosHandler.cpp.o"
+  "CMakeFiles/frontend.dir/src/Backend.cpp.o"
+  "CMakeFiles/frontend.dir/src/TcpServer.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.pdb"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libfrontend.so"
 )

@@ -9,7 +9,6 @@ CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/Pose.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/PoseStamped.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/geometry_msgs/Quaternion.h
-CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/advertise_options.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/advertise_service_options.h
 CMakeFiles/rgbd_slam.dir/src/RosHandler.cpp.o: /opt/ros/indigo/include/ros/assert.h
@@ -351,7 +350,6 @@ CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/P
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Pose.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/PoseStamped.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Quaternion.h
-CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/mavros_msgs/BatteryStatus.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/advertise_options.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/advertise_service_options.h
 CMakeFiles/rgbd_slam.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/assert.h

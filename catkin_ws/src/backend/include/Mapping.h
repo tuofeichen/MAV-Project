@@ -26,6 +26,7 @@
 #define DEBUG_NEW 14
 #define DEBUG_OLD 13
 
+
 namespace SLAM {
 
 /**
@@ -52,7 +53,8 @@ public:
 	Mapping(
 			IFeatures* aFDEM,
 			ITransformMatEst* aTME,
-			IPoseGraph* aGO);
+			IPoseGraph* aGO,
+			RosHandler* aRos);
 
 			//IMap* aMap );
 
@@ -64,7 +66,9 @@ public:
 	/**
 	 * @brief processes the new frame
 	 */
-	void run(RosHandler& lpe);
+	// void run(RosHandler& lpe);
+	 void run();
+
 
 	/**
 	 * @brief adds a new frame
@@ -79,6 +83,11 @@ public:
 	 * @return current position
 	 */
 	const Eigen::Isometry3d& getCurrentPosition() { return currentPosition; }
+
+	/**
+	 * @brief add ros handler to the class
+	 */
+	 // void setRosHandler(RosHandler& rosnode){ px4 = rosnode;}
 
 	//
 	// debug
@@ -138,7 +147,8 @@ private:
 	void parallelMatching();
 	void tryToAddNode(int thread);
 	void addEdges(int thread);
-	void setDummyNode(RosHandler& lpe);
+	// void setDummyNode(RosHandler& lpe);
+	void setDummyNode();
 	bool searchKeyFrames();
 	void optimizeGraph(bool tillConvergenz);
 	void updateMap();
@@ -162,7 +172,9 @@ private:
 	enum ComparisonResult {noTimeStamp, succeed, failed};
 	ComparisonResult compareCurrentPosition(const Frame& frame, const Eigen::Isometry3d& pose);
 	void loopClosureDetection();
-	void fusePX4LPE(RosHandler& lpe, int frameType);
+	// void fusePX4LPE(RosHandler& lpe, int frameType);
+	void fusePX4LPE(int frameType);
+
 
 	//
 	// variables
@@ -171,6 +183,7 @@ private:
 	ITransformMatEst* tme;
 	IPoseGraph* poseGraph;
 	IMap* map3d;
+	RosHandler* px4; // pixhawk communication via mavros
 
 	volatile bool initDone = false;
 	volatile bool loopClosureFound = false;

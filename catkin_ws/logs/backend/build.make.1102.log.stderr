@@ -1,0 +1,11 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp: In member function ‘void Backend::setNewNode(const SLAM::Frame&, const Matrix4f&, const Eigen::Matrix<float, 6, 6>&, uint8_t)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp:61:30: error: ‘sGrayImg’ was not declared in this scope
+  encodeImage(frame.getGray(),sGrayImg);
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp:62:23: error: ‘GRAY’ is not a member of ‘UavComProtocol::CMD1’
+  protocolHandler.send(UavComProtocol::CMD1::GRAY, sGrayImg);
+                       ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Backend.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

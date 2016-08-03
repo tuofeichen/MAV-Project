@@ -6,7 +6,6 @@ using namespace std;
 
 RosHandler::RosHandler()
 {	
-	
 	Matrix4f yaw_offset;
 	yaw_offset.setZero();
 
@@ -16,20 +15,13 @@ RosHandler::RosHandler()
 	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
 	_bat_sub = _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
   
-
 	// served more as a flag for lpe valid;
-
 	_lpe.setIdentity();
 	_lpe_cam.setIdentity(); 
 	_time = 0.0 ;
 	_time_cam = 0.0; 
 
 	_lpe_valid = false;
-	// frame transformation between UAV and Camera
-	// _lpe2cam = (Matrix4f() << 0,0,1,0,
-				  			// 1,0,0,0,
-				  			// 0,1,0,0,
-						   //  0,0,0,1).finished();
 
 };
 
@@ -53,7 +45,6 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 
 	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
 
-	
 }
 
 void RosHandler::gpeCallback(const std_msgs::Float64 data)

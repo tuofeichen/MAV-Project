@@ -492,6 +492,33 @@ src/AsusProLiveOpenNI2.cpp.s:
 	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/AsusProLiveOpenNI2.cpp.s
 .PHONY : src/AsusProLiveOpenNI2.cpp.s
 
+src/Backend.o: src/Backend.cpp.o
+
+.PHONY : src/Backend.o
+
+# target to build an object file
+src/Backend.cpp.o:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/Backend.cpp.o
+.PHONY : src/Backend.cpp.o
+
+src/Backend.i: src/Backend.cpp.i
+
+.PHONY : src/Backend.i
+
+# target to preprocess a source file
+src/Backend.cpp.i:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/Backend.cpp.i
+.PHONY : src/Backend.cpp.i
+
+src/Backend.s: src/Backend.cpp.s
+
+.PHONY : src/Backend.s
+
+# target to generate assembly for a file
+src/Backend.cpp.s:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/Backend.cpp.s
+.PHONY : src/Backend.cpp.s
+
 src/Frame.o: src/Frame.cpp.o
 
 .PHONY : src/Frame.o
@@ -816,6 +843,33 @@ src/TcpClient.cpp.s:
 	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/TcpClient.cpp.s
 .PHONY : src/TcpClient.cpp.s
 
+src/TcpServer.o: src/TcpServer.cpp.o
+
+.PHONY : src/TcpServer.o
+
+# target to build an object file
+src/TcpServer.cpp.o:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/TcpServer.cpp.o
+.PHONY : src/TcpServer.cpp.o
+
+src/TcpServer.i: src/TcpServer.cpp.i
+
+.PHONY : src/TcpServer.i
+
+# target to preprocess a source file
+src/TcpServer.cpp.i:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/TcpServer.cpp.i
+.PHONY : src/TcpServer.cpp.i
+
+src/TcpServer.s: src/TcpServer.cpp.s
+
+.PHONY : src/TcpServer.s
+
+# target to generate assembly for a file
+src/TcpServer.cpp.s:
+	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/src/TcpServer.cpp.s
+.PHONY : src/TcpServer.cpp.s
+
 src/UavComProtocolHandler.o: src/UavComProtocolHandler.cpp.o
 
 .PHONY : src/UavComProtocolHandler.o
@@ -910,6 +964,9 @@ help:
 	@echo "... src/AsusProLiveOpenNI2.o"
 	@echo "... src/AsusProLiveOpenNI2.i"
 	@echo "... src/AsusProLiveOpenNI2.s"
+	@echo "... src/Backend.o"
+	@echo "... src/Backend.i"
+	@echo "... src/Backend.s"
 	@echo "... src/Frame.o"
 	@echo "... src/Frame.i"
 	@echo "... src/Frame.s"
@@ -946,6 +1003,9 @@ help:
 	@echo "... src/TcpClient.o"
 	@echo "... src/TcpClient.i"
 	@echo "... src/TcpClient.s"
+	@echo "... src/TcpServer.o"
+	@echo "... src/TcpServer.i"
+	@echo "... src/TcpServer.s"
 	@echo "... src/UavComProtocolHandler.o"
 	@echo "... src/UavComProtocolHandler.i"
 	@echo "... src/UavComProtocolHandler.s"
