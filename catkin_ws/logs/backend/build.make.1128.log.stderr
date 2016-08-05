@@ -1,0 +1,25 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:278:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < frame.getKeypoints3D().size();i++)
+                                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:284:50: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i< frame.getKeypoints().size();i++)
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:292:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:324:43: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for (int i = 0; i<slam.getNodes().size();i++)
+                                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:327:78: error: no matching function for call to ‘Backend::sendUpdateGraph(Eigen::internal::cast_return_type<Eigen::Matrix<double, 4, 4>, const Eigen::CwiseUnaryOp<Eigen::internal::scalar_cast_op<double, float>, const Eigen::Matrix<double, 4, 4> > >::type, int)’
+     backend.sendUpdateGraph(graph.getPositionOfId(i).matrix().cast<float>(),1);
+                                                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:327:78: note: candidate is:
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:25:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Backend.h:28:7: note: void Backend::sendUpdateGraph(const Matrix4f&)
+  void sendUpdateGraph(const Eigen::Matrix4f& tm);
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Backend.h:28:7: note:   candidate expects 1 argument, 2 provided
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2

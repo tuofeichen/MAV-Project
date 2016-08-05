@@ -1,0 +1,10 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp:67:6: error: prototype for ‘void Backend::sendUpdateGraph(const SLAM::Frame&, const Matrix4f&, const Eigen::Matrix<float, 6, 6>&, uint8_t)’ does not match any in class ‘Backend’
+ void Backend::sendUpdateGraph(const Frame& frame, const Eigen::Matrix4f& tm, const Eigen::Matrix<float, 6, 6>& im, uint8_t toNode)
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp:13:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Backend.h:28:7: error: candidate is: void Backend::sendUpdateGraph(const SLAM::Frame&, const Matrix4f&, const Eigen::Matrix<float, 6, 6>&, int)
+  void sendUpdateGraph(const Frame& frame, const Eigen::Matrix4f& tm, const Eigen::Matrix<float, 6, 6>& im, int toNode);
+       ^
+make[2]: *** [CMakeFiles/frontend.dir/src/Backend.cpp.o] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

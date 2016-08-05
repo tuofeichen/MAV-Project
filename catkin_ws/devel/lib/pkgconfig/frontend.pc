@@ -1,0 +1,8 @@
+prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
+
+Name: frontend
+Description: Description of frontend
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib 
+Requires: 

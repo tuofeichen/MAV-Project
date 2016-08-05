@@ -1,0 +1,23 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:278:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < frame.getKeypoints3D().size();i++)
+                                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:284:50: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i< frame.getKeypoints().size();i++)
+                                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:292:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:322:4: error: ‘backend’ was not declared in this scope
+    backend.setNewNode(frame, pos.cast<float>, Eigen::Matrix<float, 6, 6>::Identity(),1);
+    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:322:4: note: suggested alternative:
+In file included from /opt/ros/indigo/include/ros/console.h:35:0,
+                 from /opt/ros/indigo/include/ros/ros.h:40,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:13:
+/opt/ros/indigo/include/ros/console_backend.h:54:1: note:   ‘ros::console::backend’
+ {
+ ^
+make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/backend.dir/all] Error 2
+make: *** [all] Error 2
