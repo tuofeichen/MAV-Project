@@ -240,7 +240,7 @@ int main(int argc, char **argv)
 		{
 
 // visualization
-			cv::imshow("RGB Image", frame.getRgb());
+			// cv::imshow("RGB Image", frame.getRgb());
 			// cout << "process node " << nodeId << endl; 
 			// cv::imshow("Gray Image", frame.getGray());
 			// const float scaleFactor = 0.05f;
@@ -253,29 +253,30 @@ int main(int argc, char **argv)
 			// start slam
 			slam.addFrame(frame);
 			slam.run();
+ 
 // Debug 
-			sprintf(fileName,"Keypoint Frame `%d", nodeId);
-			logKpts3D << fileName  << endl;
-			logKpts << fileName  << endl;
+			// sprintf(fileName,"Keypoint Frame `%d", nodeId);
+			// logKpts3D << fileName  << endl;
+			// logKpts << fileName  << endl;
 			
-			Eigen::Vector3f kpts3D ;
-			cv::KeyPoint kpts;
+			// Eigen::Vector3f kpts3D ;
+			// cv::KeyPoint kpts;
 
-			if ((frame.getKeypoints().size()>0)&&((frame.getId()== DEBUG_NEW)||(frame.getId()==DEBUG_OLD)))
-			{	
-				for (int i = 0; i < frame.getKeypoints3D().size();i++)
-				{
-					kpts3D = frame.getKeypoints3D().at(i);	
-					logKpts3D << kpts3D.x() << "," << kpts3D.y() << "," << kpts3D.z()<<endl;
-				}
+			// if ((frame.getKeypoints().size()>0)&&((frame.getId()== DEBUG_NEW)||(frame.getId()==DEBUG_OLD)))
+			// {	
+			// 	for (int i = 0; i < frame.getKeypoints3D().size();i++)
+			// 	{
+			// 		kpts3D = frame.getKeypoints3D().at(i);	
+			// 		logKpts3D << kpts3D.x() << "," << kpts3D.y() << "," << kpts3D.z()<<endl;
+			// 	}
 
-				for (int i = 0; i< frame.getKeypoints().size();i++)
-				{
-					kpts = frame.getKeypoints().at(i);
-					logKpts << kpts.pt.x << "," << kpts.pt.y << endl;
-				}
+			// 	for (int i = 0; i< frame.getKeypoints().size();i++)
+			// 	{
+			// 		kpts = frame.getKeypoints().at(i);
+			// 		logKpts << kpts.pt.x << "," << kpts.pt.y << endl;
+			// 	}
 
-			}
+			// }
 // Debug
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 

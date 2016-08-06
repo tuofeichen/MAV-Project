@@ -1,4 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘bool readImage(SLAM::Frame, int)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:138:1: warning: no return statement in function returning non-void [-Wreturn-type]
- }
- ^

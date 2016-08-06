@@ -6,7 +6,7 @@
 <include file="$(find mavros)/launch/px4.launch"> </include>
 </group>
 
-<node pkg="backend" type="backend" name="rgbd_backend" output="screen">
+<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">
 
 <param name ="sim" type="bool" value="$(arg sim)"  />
 

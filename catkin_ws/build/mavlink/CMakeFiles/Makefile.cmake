@@ -15,10 +15,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/pc.in"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/pymavlink/CMakeLists.txt"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/pymavlink/python_distutils_install.sh.in"
+  "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeDetermineSystem.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeGenericSystem.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeParseArguments.cmake"
+  "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeSystem.cmake.in"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeUnixFindMake.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/FindPackageHandleStandardArgs.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/FindPackageMessage.cmake"
   "/opt/cmake-3.3.2/share/cmake-3.3/Modules/FindPythonInterp.cmake"
@@ -35,6 +38,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/3.3.2/CMakeSystem.cmake"
   "config.h"
   "mavlink-config.cmake"
   "mavlink.pc"

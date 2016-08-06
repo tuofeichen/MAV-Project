@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::run(RosHandler&)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:50:18: error: no match for call to ‘(pcl::console::TicToc) (NULL)’
-  srand (time(NULL)); // regenerate seed for rand (); 
-                  ^
-make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

@@ -8,6 +8,11 @@ Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_defin
 [35m[1mScanning dependencies of target ardupilotmega.xml-v1.0[0m
 [ 18%] [34m[1mGenerating include/v1.0/ardupilotmega/ardupilotmega.h[0m
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ardupilotmega.xml
+Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
@@ -30,25 +35,45 @@ Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can c
 Merged enum MAV_CMD
 Found 139 MAVLink message types in 2 XML files
 Generating C implementation in directory include/v1.0/ASLUAV
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ardupilotmega.xml
 Generating C implementation in directory include/v1.0/common
-Note: message DATA64 is longer than 64 bytes long (74 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message DATA96 is longer than 64 bytes long (106 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message REMOTE_LOG_DATA_BLOCK is longer than 64 bytes long (214 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Copying fixed headers
 [ 18%] Built target ASLUAV.xml-v1.0
 [35m[1mScanning dependencies of target autoquad.xml-v1.0[0m
 [ 27%] [34m[1mGenerating include/v1.0/autoquad/autoquad.h[0m
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/autoquad.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/autoquad.xml
+Note: message AQ_TELEMETRY_F is longer than 64 bytes long (90 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (193 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (237 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Merged enum MAV_CMD
+Found 177 MAVLink message types in 2 XML files
+Generating C implementation in directory include/v1.0/ardupilotmega
+Generating C implementation in directory include/v1.0/common
 [35m[1mScanning dependencies of target common.xml-v1.0[0m
 [ 36%] Built target common.xml-v1.0
 [35m[1mScanning dependencies of target matrixpilot.xml-v1.0[0m
 [ 45%] [34m[1mGenerating include/v1.0/matrixpilot/matrixpilot.h[0m
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/matrixpilot.xml
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/autoquad.xml
-Note: message AQ_TELEMETRY_F is longer than 64 bytes long (90 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+Copying fixed headers
+[ 45%] Built target ardupilotmega.xml-v1.0
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/matrixpilot.xml
 Note: message FLEXIFUNCTION_BUFFER_FUNCTION is longer than 64 bytes long (66 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message SERIAL_UDB_EXTRA_F2_A is longer than 64 bytes long (71 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
@@ -76,39 +101,41 @@ Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), whi
 Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Merged enum MAV_CMD
-Found 177 MAVLink message types in 2 XML files
-Generating C implementation in directory include/v1.0/ardupilotmega
-Generating C implementation in directory include/v1.0/common
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
-Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (193 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message LOCAL_POSITION_NED_COV is longer than 64 bytes long (237 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message HIGHRES_IMU is longer than 64 bytes long (70 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message HIL_SENSOR is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message SIM_STATE is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message FILE_TRANSFER_PROTOCOL is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message HIL_STATE_QUATERNION is longer than 64 bytes long (72 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message LOG_DATA is longer than 64 bytes long (105 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message GPS_INJECT_DATA is longer than 64 bytes long (121 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message SERIAL_CONTROL is longer than 64 bytes long (87 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message ENCAPSULATED_DATA is longer than 64 bytes long (263 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message RESOURCE_REQUEST is longer than 64 bytes long (251 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message FOLLOW_TARGET is longer than 64 bytes long (101 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message CONTROL_SYSTEM_STATE is longer than 64 bytes long (108 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message AUTOPILOT_VERSION is longer than 64 bytes long (68 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Merged enum MAV_CMD
 Merged enum MAV_DATA_STREAM
 Note: An enum value was auto-generated: AQ_MAVLINK_DEFS_VERSION_1 = 1
 Note: An enum value was auto-generated: MAV_DATA_STREAM_PROPULSION = 13
 Found 130 MAVLink message types in 2 XML files
 Generating C implementation in directory include/v1.0/autoquad
-Copying fixed headers
 Generating C implementation in directory include/v1.0/common
-[ 45%] Built target ardupilotmega.xml-v1.0
 Copying fixed headers
 [ 45%] Built target autoquad.xml-v1.0
+[35m[1mScanning dependencies of target minimal.xml-v1.0[0m
+[ 54%] [34m[1mGenerating include/v1.0/minimal/minimal.h[0m
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/minimal.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/minimal.xml
+Note: An enum value was auto-generated: MAV_STATE_BOOT = 1
+Note: An enum value was auto-generated: MAV_STATE_CALIBRATING = 2
+Note: An enum value was auto-generated: MAV_STATE_STANDBY = 3
+Note: An enum value was auto-generated: MAV_STATE_ACTIVE = 4
+Note: An enum value was auto-generated: MAV_STATE_CRITICAL = 5
+Note: An enum value was auto-generated: MAV_STATE_EMERGENCY = 6
+Note: An enum value was auto-generated: MAV_STATE_POWEROFF = 7
+Found 1 MAVLink message types in 1 XML files
+Generating C implementation in directory include/v1.0/minimal
+Copying fixed headers
+[ 54%] Built target minimal.xml-v1.0
+[35m[1mScanning dependencies of target paparazzi.xml-v1.0[0m
+[ 63%] [34m[1mGenerating include/v1.0/paparazzi/paparazzi.h[0m
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/paparazzi.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/paparazzi.xml
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+[35m[1mScanning dependencies of target python_array_test.xml-v1.0[0m
+[ 72%] [34m[1mGenerating include/v1.0/python_array_test/python_array_test.h[0m
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/python_array_test.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/python_array_test.xml
+Note: message ARRAY_TEST_6 is longer than 64 bytes long (99 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Note: message ARRAY_TEST_7 is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
@@ -133,42 +160,15 @@ Found 149 MAVLink message types in 2 XML files
 Generating C implementation in directory include/v1.0/matrixpilot
 Generating C implementation in directory include/v1.0/common
 Copying fixed headers
-[ 45%] Built target matrixpilot.xml-v1.0
-[35m[1mScanning dependencies of target minimal.xml-v1.0[0m
-[ 54%] [34m[1mGenerating include/v1.0/minimal/minimal.h[0m
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/minimal.xml
-[35m[1mScanning dependencies of target paparazzi.xml-v1.0[0m
-[ 63%] [34m[1mGenerating include/v1.0/paparazzi/paparazzi.h[0m
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/paparazzi.xml
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/minimal.xml
-Note: An enum value was auto-generated: MAV_STATE_BOOT = 1
-Note: An enum value was auto-generated: MAV_STATE_CALIBRATING = 2
-Note: An enum value was auto-generated: MAV_STATE_STANDBY = 3
-Note: An enum value was auto-generated: MAV_STATE_ACTIVE = 4
-Note: An enum value was auto-generated: MAV_STATE_CRITICAL = 5
-Note: An enum value was auto-generated: MAV_STATE_EMERGENCY = 6
-Note: An enum value was auto-generated: MAV_STATE_POWEROFF = 7
-Found 1 MAVLink message types in 1 XML files
-Generating C implementation in directory include/v1.0/minimal
-Copying fixed headers
-[ 63%] Built target minimal.xml-v1.0
-[35m[1mScanning dependencies of target python_array_test.xml-v1.0[0m
-[ 72%] [34m[1mGenerating include/v1.0/python_array_test/python_array_test.h[0m
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/python_array_test.xml
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/paparazzi.xml
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+[ 72%] Built target matrixpilot.xml-v1.0
 [35m[1mScanning dependencies of target slugs.xml-v1.0[0m
 [ 81%] [34m[1mGenerating include/v1.0/slugs/slugs.h[0m
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/slugs.xml
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/python_array_test.xml
-Note: message ARRAY_TEST_6 is longer than 64 bytes long (99 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Note: message ARRAY_TEST_7 is longer than 64 bytes long (92 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/slugs.xml
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 [35m[1mScanning dependencies of target test.xml-v1.0[0m
 [ 90%] [34m[1mGenerating include/v1.0/test/test.h[0m
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/test.xml
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/slugs.xml
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/test.xml
 Note: message TEST_TYPES is longer than 64 bytes long (187 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Found 1 MAVLink message types in 1 XML files
@@ -177,8 +177,8 @@ Copying fixed headers
 [ 90%] Built target test.xml-v1.0
 [35m[1mScanning dependencies of target ualberta.xml-v1.0[0m
 [100%] [34m[1mGenerating include/v1.0/ualberta/ualberta.h[0m
-Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ualberta.xml
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ualberta.xml
 Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (193 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
@@ -200,9 +200,11 @@ Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can c
 Found 133 MAVLink message types in 2 XML files
 Generating C implementation in directory include/v1.0/paparazzi
 Generating C implementation in directory include/v1.0/common
-Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+Copying fixed headers
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/ualberta.xml
 Validating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
+[100%] Built target paparazzi.xml-v1.0
+Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml
 Note: message GPS_STATUS is longer than 64 bytes long (109 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message ATTITUDE_QUATERNION_COV is longer than 64 bytes long (76 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
 Note: message GLOBAL_POSITION_INT_COV is longer than 64 bytes long (193 bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit.
@@ -224,8 +226,6 @@ Note: message V2_EXTENSION is longer than 64 bytes long (262 bytes), which can c
 Found 136 MAVLink message types in 2 XML files
 Generating C implementation in directory include/v1.0/python_array_test
 Generating C implementation in directory include/v1.0/common
-Copying fixed headers
-[100%] Built target paparazzi.xml-v1.0
 Copying fixed headers
 [100%] Built target python_array_test.xml-v1.0
 Parsing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/message_definitions/v1.0/common.xml

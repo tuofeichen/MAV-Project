@@ -1,4 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp: In member function ‘virtual bool SLAM::RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, std::vector<int>&) const’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:239:20: warning: variable ‘tmOld’ set but not used [-Wunused-but-set-variable]
-    Eigen::Matrix4f tmOld = transfMat;
-                    ^

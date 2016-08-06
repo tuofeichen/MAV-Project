@@ -42,8 +42,7 @@ Mapping::Mapping(
 	assert(fdem);
 	assert(tme);
 	assert(poseGraph);
-
-	// assert(map3d);
+	srand(std::time(NULL));
 
 	PosDebug.setIdentity();
 	currentPosition = Eigen::Isometry3d::Identity();
@@ -89,6 +88,7 @@ void Mapping::run()
 	if(!initDone)
 	{
 		addFirstNode();
+		// updateMap();
 		return;
 	}
 
@@ -199,7 +199,6 @@ void Mapping::run()
 	{
 		sequenceOfLostFramesCntr = 0;
 		bool addedKeyFrame = searchKeyFrames();
-		// optimize graph once
 		optimizeGraph(false);
 //		boost::thread(&Mapping::optimizeGraph,this,false);
 
@@ -262,9 +261,6 @@ void Mapping::matchTwoFrames(
 	
 	assert(frame1.getId() != frame2.getId());
 
-	// assert(!frame1.getKeypoints().empty());
-	// assert(!frame2.getKeypoints().empty());
-
 	if ((frame2.getBadFrameFlag())||frame2.getKeypoints().empty())
 	{
 		// just recover from a bad frame
@@ -282,8 +278,9 @@ void Mapping::matchTwoFrames(
 	std::vector<int> matchesIdx1;
 	std::vector<int> matchesIdx2;
 	std::vector< DMatch > matches;
-	// enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matchesIdx1, matchesIdx2);
 
+	// if we want to show matches or not 
+	// enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matchesIdx1, matchesIdx2);
 	enoughMatches = fdem->match(frame1.getKeypoints(), frame1.getDescriptors(), frame2.getKeypoints(), frame2.getDescriptors(), matches);
 	
 	if (enoughMatches)
@@ -293,7 +290,6 @@ void Mapping::matchTwoFrames(
 			matchesIdx1.push_back(matches[i].queryIdx);
 			matchesIdx2.push_back(matches[i].trainIdx);
 		}
-
 
 		// estimate transformation matrix
 		//
@@ -307,36 +303,36 @@ void Mapping::matchTwoFrames(
 		std::vector<int> consensus;
 		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix,consensus);
 		
-#ifdef DEBUG
-		if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD) && validTrafo){ // sequential node
+// #ifdef DEBUG
+// 		if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD) && validTrafo){ // sequential node
+// 		// if (validTrafo)s
+// 			cv::Mat imgMatch;
+// 			cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+// 			imgMatch,Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+// 		 	cv::namedWindow("Matching", WINDOW_NORMAL);
+// 			cv::imshow("Matching",imgMatch);
 
-			// cv::Mat imgMatch;
-			// cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
-			// imgMatch,Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
-		 	// cv::namedWindow("Matching", WINDOW_NORMAL);
-			// cv::imshow("Matching",imgMatch);
+// 			sprintf(logName,"Matching %d ",currentFrame.getId()); // new frame 
+// 			cv::write(fileStore, logName, matchesIdx1);
 
-			sprintf(logName,"Matching %d ",currentFrame.getId()); // new frame 
-			cv::write(fileStore, logName, matchesIdx1);
-
-			sprintf(logName,"Matching %d ", frame2.getId());	  // old frame
-			cv::write(fileStore2,logName, matchesIdx2);
+// 			sprintf(logName,"Matching %d ", frame2.getId());	  // old frame
+// 			cv::write(fileStore2,logName, matchesIdx2);
 			
 
-			sprintf(logName,"Consensus");	  // old frame
-			cv::write(fileConsensus,logName, consensus);
+// 			sprintf(logName,"Consensus");	  // old frame
+// 			cv::write(fileConsensus,logName, consensus);
 			
-			cout << " enter matching " << endl; 
-			cv::waitKey(30);
+// 			cout << " enter matching " << endl; 
+// 			cv::waitKey(30);
 		
-		 }
-		 else if (nodes.size()>DEBUG_NEW)
-		 {
-		 	fileStore.release();
-		 	fileStore2.release();
-		 	fileConsensus.release();
-		 }
-#endif
+// 		 }
+// 		 else if (nodes.size()>DEBUG_NEW)
+// 		 {
+// 		 	fileStore.release();
+// 		 	fileStore2.release();
+// 		 	fileConsensus.release();
+// 		 }
+// #endif
 
 		// align with px4 frame
 		tm_temp = tm; 
@@ -355,7 +351,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 
 	assert(prevId >= 0);
 	assert(!(tryToAddNode && possibleLoopClosure));
-	// cout << "processing graph" << endl; 
 	if(isVelocitySmallEnough(transformationMatrix, deltaTime)) 
 	{
 		// try to add current node
@@ -469,12 +464,10 @@ void Mapping::parallelMatching()
 
 	if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 )
 	{
-		//
 		// find neighbors of current node, exclude continuous nodes
 		poseGraph->getEdgeNeighborsToCurrentNode(contFramesToMatch, neighborIds);
 
 		// match graph neighbors (sequential nodes are excluded)
-
 		if (neighborsToMatch > 0 && neighborIds.size() > 0)
 		{
 			int tmpPrev = -1;
@@ -506,7 +499,6 @@ void Mapping::parallelMatching()
 		}
 	}
 
-	//
 	// loop closures
 	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && keyFrames.size() > lcRandomMatching)
 	{
@@ -639,7 +631,6 @@ void Mapping::addEdges(int thread)
 	}
 }
 
-// void Mapping::setDummyNode(RosHandler& px4)
 void Mapping::setDummyNode()
 {
 
@@ -701,7 +692,7 @@ bool Mapping::searchKeyFrames()
 		}
 	}
 
-	// // delete images
+	// delete images
 	// nodes.back().deleteRgb();
 	// nodes.back().deleteDepth();
 	// nodes.back().deleteGray();
@@ -744,9 +735,9 @@ void Mapping::updateMap()
 		map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
 
 	// delete images out of the stored frames
-	keyFrames.back().deleteRgb();
-	keyFrames.back().deleteDepth(); // ?
-	keyFrames.back().deleteGray();
+	// keyFrames.back().deleteRgb();
+	// keyFrames.back().deleteDepth(); // ?
+	// keyFrames.back().deleteGray();
 }
 
 void Mapping::convertRotMatToEulerAngles(const Eigen::Matrix3d& t, double& roll, double& pitch, double& yaw) const
@@ -796,7 +787,6 @@ void Mapping::addFirstNode()
 }
 
 
-// void Mapping::fusePX4LPE(RosHandler& px4, int frameType)
 void Mapping::fusePX4LPE(int frameType)
 {
 
@@ -849,7 +839,7 @@ void Mapping::fusePX4LPE(int frameType)
 		}
 
 		if (currentFrame.getNewNodeFlag()){
-			// cout << "frame type " << frameType << " compensated by px4" << endl;
+			cout << "frame type " << frameType << " compensated by px4" << endl;
 			px4->updateLpeCam();
 		}
 
@@ -872,8 +862,6 @@ void Mapping::loopClosureDetection()
 {
 	// need to change here? 
 	lcBestIndex = -1;
-	
-	// std::vector<Frame>::const_iterator pNode = nodes.end() - 1;
 
 	double bestDist = loopClosureDetectionThreshold;
 

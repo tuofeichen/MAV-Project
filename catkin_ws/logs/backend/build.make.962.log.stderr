@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp: In member function ‘virtual bool SLAM::RANSACBasedTME::estimateTrafo(const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, const std::vector<Eigen::Matrix<float, 3, 1> >&, const std::vector<int>&, Eigen::Matrix4f&, Eigen::Matrix<double, 6, 6>&, std::vector<int>&) const’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RANSACBasedTME.cpp:243:5: error: expected ‘;’ before ‘if’
-     if (!refinedSucceed){
-     ^
-make[2]: *** [CMakeFiles/frontend.dir/src/RANSACBasedTME.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

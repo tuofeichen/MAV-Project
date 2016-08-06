@@ -11,10 +11,10 @@
 [100%] Built target ualberta.xml-v1.0
 [36mInstall the project...[0m
 -- Install configuration: ""
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/config.h
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/config.h
 -- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV/mavlink_msg_sens_batmon.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV/version.h
@@ -31,13 +31,13 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV/mavlink_msg_asl_obctrl.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ASLUAV/mavlink_msg_sens_mppt.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/checksum.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test/test.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test/version.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test/testsuite.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/test/mavlink_msg_test_types.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_log_erase.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_extended_sys_state.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_mission_request_list.h
@@ -170,7 +170,7 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_set_position_target_global_int.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_raw_pressure.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/common/mavlink_msg_gps_inject_data.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega/mavlink_msg_fence_point.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega/mavlink_msg_digicam_control.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega/mavlink_msg_gopro_set_request.h
@@ -225,7 +225,7 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega/mavlink_msg_led_control.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ardupilotmega/mavlink_msg_wind.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/protocol.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/mavlink_msg_ctrl_srfc_pt.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/version.h
@@ -250,7 +250,7 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/mavlink_msg_slugs_mobile_location.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/mavlink_msg_volt_sensor.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/slugs/mavlink_msg_novatel_diag.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi/mavlink_msg_script_current.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi/mavlink_msg_script_request.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi/mavlink.h
@@ -261,14 +261,14 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi/mavlink_msg_script_item.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/paparazzi/mavlink_msg_script_request_list.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/mavlink_types.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal/mavlink_msg_heartbeat.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal/version.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal/testsuite.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/minimal/minimal.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/mavlink_helpers.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/mavlink_msg_array_test_8.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/version.h
@@ -281,7 +281,7 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/mavlink_msg_array_test_0.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/mavlink_msg_array_test_1.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/python_array_test/mavlink_msg_array_test_7.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink_msg_flexifunction_read_req.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink_msg_serial_udb_extra_f2_a.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink.h
@@ -307,14 +307,14 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink_msg_flexifunction_command_ack.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink_msg_serial_udb_extra_f4.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/matrixpilot/mavlink_msg_airspeeds.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/version.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/testsuite.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/mavlink_msg_aq_esc_telemetry.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/mavlink_msg_aq_telemetry_f.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/autoquad/autoquad.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta/mavlink.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta/version.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta/mavlink_msg_radio_calibration.h
@@ -323,9 +323,9 @@
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta/mavlink_msg_nav_filter_bias.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/ualberta/mavlink_msg_ualberta_sys_status.h
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavlink/v1.0/mavlink_conversions.h
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavlink/cmake/mavlink-config.cmake
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/pkgconfig/mavlink.pc
--- Up-to-date: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavlink/COPYING.txt
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavlink/cmake/mavlink-config.cmake
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/pkgconfig/mavlink.pc
+-- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavlink/COPYING.txt
 -- Installing: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavlink/package.xml
 + [ -n  ]
 + /usr/bin/env /usr/bin/python /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavlink/pymavlink/setup.py build --build-base /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild install --install-layout=deb --prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
@@ -527,299 +527,34 @@ changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymav
 changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavsummarize.py from 664 to 775
 changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/MPU6KSearch.py from 664 to 775
 running install
-running bdist_egg
-running egg_info
-creating pymavlink.egg-info
-writing pymavlink.egg-info/PKG-INFO
-writing top-level names to pymavlink.egg-info/top_level.txt
-writing dependency_links to pymavlink.egg-info/dependency_links.txt
-writing manifest file 'pymavlink.egg-info/SOURCES.txt'
-reading manifest file 'pymavlink.egg-info/SOURCES.txt'
-writing manifest file 'pymavlink.egg-info/SOURCES.txt'
-installing library code to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg
-running install_lib
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/rotmat.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavnative
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavnative/mavlink_defaults.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavnative
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/fgFDM.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/DFReader.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavparm.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/quaternion.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavextra.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_java.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavparse.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_c.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavtemplate.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/datatypes.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/minixsvWrapper.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalErrorHandler.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/XMLSchema.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/pyxsval.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalXmlIf.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalBase.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/XMLSchema-instance.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xml.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalUtils.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalSchema.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/xsvalSimpleTypes.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/minixsv/XInclude.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifUtils.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlif4Dom.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifDom.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifApi.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifBase.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifElementTree.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmliftest.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifODict.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/lib/genxmlif/xmlifMinidom.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_cs.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v0.9
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v0.9/checksum.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v0.9
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v0.9/protocol.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v0.9
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v0.9/mavlink_types.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v0.9
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v0.9/mavlink_helpers.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v0.9
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v1.0/checksum.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v1.0/protocol.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v1.0/mavlink_types.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v1.0/mavlink_helpers.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/C/include_v1.0/mavlink_conversions.h -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/C/include_v1.0
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavcrc.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_swift.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_javascript.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_python.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavschema.xsd -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_wlua.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib/Messages
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/java/lib/Messages/MAVLinkStats.java -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib/Messages
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/java/lib/Messages/MAVLinkMessage.java -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib/Messages
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/java/lib/Messages/MAVLinkPayload.java -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib/Messages
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/java/lib/Parser.java -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/java/lib
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavtestgen.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/generator/mavgen_objc.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavexpression.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ardupilotmega.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ASLUAV.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/paparazzi.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/matrixpilot.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ualberta.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/minimal.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ualberta.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/paparazzi.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/common.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/common.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/minimal.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/slugs.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/autoquad.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/autoquad.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/test.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ardupilotmega.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/python_array_test.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/ASLUAV.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/test.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/matrixpilot.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/slugs.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v10/python_array_test.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/ardupilotmega.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/ualberta.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/minimal.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/ualberta.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/__init__.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/common.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/common.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/minimal.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/slugs.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/test.xml -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/ardupilotmega.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/test.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/dialects/v09/slugs.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavutil.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/mavwp.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/mavnative.so -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/rotmat.py to rotmat.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/fgFDM.py to fgFDM.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/DFReader.py to DFReader.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavparm.py to mavparm.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/quaternion.py to quaternion.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavextra.py to mavextra.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_java.py to mavgen_java.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavparse.py to mavparse.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_c.py to mavgen_c.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavtemplate.py to mavtemplate.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/minixsvWrapper.py to minixsvWrapper.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalErrorHandler.py to xsvalErrorHandler.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/pyxsval.py to pyxsval.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalXmlIf.py to xsvalXmlIf.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalBase.py to xsvalBase.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalUtils.py to xsvalUtils.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalSchema.py to xsvalSchema.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/minixsv/xsvalSimpleTypes.py to xsvalSimpleTypes.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifUtils.py to xmlifUtils.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlif4Dom.py to xmlif4Dom.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifDom.py to xmlifDom.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifApi.py to xmlifApi.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifBase.py to xmlifBase.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifElementTree.py to xmlifElementTree.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmliftest.py to xmliftest.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifODict.py to xmlifODict.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/lib/genxmlif/xmlifMinidom.py to xmlifMinidom.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_cs.py to mavgen_cs.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen.py to mavgen.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavcrc.py to mavcrc.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_swift.py to mavgen_swift.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_javascript.py to mavgen_javascript.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_python.py to mavgen_python.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_wlua.py to mavgen_wlua.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavtestgen.py to mavtestgen.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/generator/mavgen_objc.py to mavgen_objc.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavexpression.py to mavexpression.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/matrixpilot.py to matrixpilot.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/ualberta.py to ualberta.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/paparazzi.py to paparazzi.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/common.py to common.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/minimal.py to minimal.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/autoquad.py to autoquad.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/ardupilotmega.py to ardupilotmega.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/python_array_test.py to python_array_test.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/ASLUAV.py to ASLUAV.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/test.py to test.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v10/slugs.py to slugs.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/ualberta.py to ualberta.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/__init__.py to __init__.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/common.py to common.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/minimal.py to minimal.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/ardupilotmega.py to ardupilotmega.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/test.py to test.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/dialects/v09/slugs.py to slugs.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavutil.py to mavutil.pyc
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink/mavwp.py to mavwp.pyc
-creating stub loader for mavnative.so
-byte-compiling /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/mavnative.py to mavnative.pyc
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO
-installing scripts to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-running install_scripts
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavsummarize.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavkml.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavplayback.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/MPU6KSearch.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/magfit_gps.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavtomfile.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavloss.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavparms.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavsigloss.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavmission.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavgraph.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavparmdiff.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavgen.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavfft.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavsearch.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavgpslock.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavflightmodes.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/magfit_motors.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/magfit.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavflighttime.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavlogdump.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavextract.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/mavtogpx.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/scripts-2.7/magfit_delta.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavsummarize.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavkml.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavplayback.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/MPU6KSearch.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/magfit_gps.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavtomfile.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavloss.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavparms.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavsigloss.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavmission.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavgraph.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavparmdiff.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavgen.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavfft.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavsearch.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavgpslock.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavflightmodes.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/magfit_motors.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/magfit.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavflighttime.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavlogdump.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavextract.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/mavtogpx.py to 775
-changing mode of /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/scripts/magfit_delta.py to 775
-copying pymavlink.egg-info/PKG-INFO -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO
-copying pymavlink.egg-info/SOURCES.txt -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO
-copying pymavlink.egg-info/dependency_links.txt -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO
-copying pymavlink.egg-info/top_level.txt -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO
-writing /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/EGG-INFO/native_libs.txt
-zip_safe flag not set; analyzing archive contents...
-pymavlink.generator.mavgen: module references __file__
-pymavlink.generator.mavgen_c: module references __file__
-pymavlink.generator.mavgen_java: module references __file__
-pymavlink.generator.mavgen_swift: module references __file__
-pymavlink.generator.lib.minixsv.__init__: module references __file__
-pymavlink.generator.lib.genxmlif.__init__: module references __file__
-creating dist
-creating 'dist/pymavlink-1.1.72-py2.7-linux-x86_64.egg' and adding '/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg' to it
-removing '/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg' (and everything under it)
-Creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/site.py
-Processing pymavlink-1.1.72-py2.7-linux-x86_64.egg
-creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/pymavlink-1.1.72-py2.7-linux-x86_64.egg
-Extracting pymavlink-1.1.72-py2.7-linux-x86_64.egg to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages
-Adding pymavlink 1.1.72 to easy-install.pth file
-Installing mavsummarize.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavkml.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavplayback.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing MPU6KSearch.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing magfit_gps.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavtomfile.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavloss.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavparms.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavsigloss.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavmission.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavgraph.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavparmdiff.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavgen.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavfft.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavsearch.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavgpslock.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavflightmodes.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing magfit_motors.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing magfit.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavflighttime.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavlogdump.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavextract.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing mavtogpx.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
-Installing magfit_delta.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
+Checking .pth file support in /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/
+/usr/bin/python -E -c pass
+TEST FAILED: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/ does NOT support .pth files
+error: bad install directory or PYTHONPATH
 
-Installed /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/pymavlink-1.1.72-py2.7-linux-x86_64.egg
-Processing dependencies for pymavlink==1.1.72
-Finished processing dependencies for pymavlink==1.1.72
+You are attempting to install a package to a directory that is not
+on PYTHONPATH and which Python does not read ".pth" files from.  The
+installation directory you specified (via --install-dir, --prefix, or
+the distutils default setting) was:
+
+    /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/
+
+and your PYTHONPATH environment variable currently contains:
+
+    '/opt/ros/indigo/lib/python2.7/dist-packages'
+
+Here are some of your options for correcting the problem:
+
+* You can choose a different installation directory, i.e., one that is
+  on PYTHONPATH or supports .pth files
+
+* You can add the installation directory to the PYTHONPATH environment
+  variable.  (It must then also be on PYTHONPATH whenever you run
+  Python and want to use the package(s) you are installing.)
+
+* You can set up the installation directory to support ".pth" files by
+  using one of the approaches described here:
+
+  https://pythonhosted.org/setuptools/easy_install.html#custom-installation-locations
+
+Please make the appropriate changes for your system and try again.

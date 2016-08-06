@@ -4,10 +4,32 @@ mavnative/mavnative.c: In function ‘py_mavlink_parse_char’:
 mavnative/mavnative.c:155:5: warning: enumeration value ‘MAVLINK_PARSE_STATE_GOT_BAD_CRC1’ not handled in switch [-Wswitch]
      switch (status->parse_state)
      ^
-zip_safe flag not set; analyzing archive contents...
-pymavlink.generator.mavgen: module references __file__
-pymavlink.generator.mavgen_c: module references __file__
-pymavlink.generator.mavgen_java: module references __file__
-pymavlink.generator.mavgen_swift: module references __file__
-pymavlink.generator.lib.minixsv.__init__: module references __file__
-pymavlink.generator.lib.genxmlif.__init__: module references __file__
+TEST FAILED: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/ does NOT support .pth files
+error: bad install directory or PYTHONPATH
+
+You are attempting to install a package to a directory that is not
+on PYTHONPATH and which Python does not read ".pth" files from.  The
+installation directory you specified (via --install-dir, --prefix, or
+the distutils default setting) was:
+
+    /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/
+
+and your PYTHONPATH environment variable currently contains:
+
+    '/opt/ros/indigo/lib/python2.7/dist-packages'
+
+Here are some of your options for correcting the problem:
+
+* You can choose a different installation directory, i.e., one that is
+  on PYTHONPATH or supports .pth files
+
+* You can add the installation directory to the PYTHONPATH environment
+  variable.  (It must then also be on PYTHONPATH whenever you run
+  Python and want to use the package(s) you are installing.)
+
+* You can set up the installation directory to support ".pth" files by
+  using one of the approaches described here:
+
+  https://pythonhosted.org/setuptools/easy_install.html#custom-installation-locations
+
+Please make the appropriate changes for your system and try again.

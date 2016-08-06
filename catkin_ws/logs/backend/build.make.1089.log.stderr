@@ -1,9 +1,0 @@
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Backend.cpp:13:0:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/include/Backend.h:16:23: fatal error: TcpServer.h: No such file or directory
- #include "TcpServer.h"
-                       ^
-compilation terminated.
-make[2]: *** [CMakeFiles/frontend.dir/src/Backend.cpp.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

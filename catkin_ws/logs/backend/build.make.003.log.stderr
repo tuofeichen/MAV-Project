@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:15:22: fatal error: Eigen/core: No such file or directory
- #include <Eigen/core>
-                      ^
-compilation terminated.
-make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

@@ -394,6 +394,7 @@ reading manifest file 'pymavlink.egg-info/SOURCES.txt'
 writing manifest file 'pymavlink.egg-info/SOURCES.txt'
 installing library code to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg
 running install_lib
+creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64
 creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg
 creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
 copying /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/lib.linux-x86_64-2.7/pymavlink/rotmat.py -> /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg/pymavlink
@@ -644,11 +645,11 @@ pymavlink.generator.lib.minixsv.__init__: module references __file__
 pymavlink.generator.lib.genxmlif.__init__: module references __file__
 creating 'dist/pymavlink-1.1.72-py2.7-linux-x86_64.egg' and adding '/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg' to it
 removing '/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavlink/pymavlink/pybuild/bdist.linux-x86_64/egg' (and everything under it)
+Creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/site.py
 Processing pymavlink-1.1.72-py2.7-linux-x86_64.egg
-removing '/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/pymavlink-1.1.72-py2.7-linux-x86_64.egg' (and everything under it)
 creating /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/pymavlink-1.1.72-py2.7-linux-x86_64.egg
 Extracting pymavlink-1.1.72-py2.7-linux-x86_64.egg to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages
-pymavlink 1.1.72 is already the active version in easy-install.pth
+Adding pymavlink 1.1.72 to easy-install.pth file
 Installing mavsummarize.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
 Installing mavkml.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin
 Installing mavplayback.py script to /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/bin

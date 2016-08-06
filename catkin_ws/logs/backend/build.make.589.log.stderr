@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/main.cpp:279:33: error: ‘class SLAM::G2oPoseGraph’ has no member named ‘getgetPositionOfId’
-   logPoseGraphNode(frame, graph.getgetPositionOfId(toNode));
-                                 ^
-make[2]: *** [CMakeFiles/backend.dir/src/main.cpp.o] Error 1
-make[1]: *** [CMakeFiles/backend.dir/all] Error 2
-make: *** [all] Error 2

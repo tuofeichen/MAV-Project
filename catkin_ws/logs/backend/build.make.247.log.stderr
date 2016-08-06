@@ -1,7 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘SLAM::Mapping::GraphProcessingResult SLAM::Mapping::processGraph(const Isometry3d&, const Eigen::Matrix<double, 6, 6>&, int, double, bool, bool)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:318:18: error: ‘class SLAM::Frame’ has no member named ‘setNewNode’
-     currentFrame.setNewNode(); 
-                  ^
-make[2]: *** [CMakeFiles/frontend.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

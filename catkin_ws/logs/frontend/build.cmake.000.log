@@ -35,15 +35,6 @@ Not searching for unused variables given on the command line.
 [36m--[0m Found gtest sources under '/usr/src/gtest': gtests will be built
 [36m--[0m Using Python nosetests: /usr/bin/nosetests-2.7
 [36m--[0m catkin 0.6.18
-[31m[1mCMake Error[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/CMakeLists.txt:189 (add_dependencies):
-  Cannot add target-level dependencies to non-existent target "backend".
-
-  The add_dependencies works for top-level logical targets created by the
-  add_executable, add_library, or add_custom_target commands.  If you want to
-  add file-level dependencies see the DEPENDS option of the add_custom_target
-  and add_custom_command commands.
-
-
-[36m--[0m Configuring incomplete, errors occurred!
-See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeOutput.log".
-See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeError.log".
+[36m--[0m Configuring done
+[36m--[0m Generating done
+[36m--[0m Build files have been written to: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend

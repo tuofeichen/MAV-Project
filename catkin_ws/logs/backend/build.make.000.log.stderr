@@ -1,4 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/Mapping.cpp:456:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
-    int prevId = -1;
-        ^

@@ -159,8 +159,8 @@ clean: CMakeFiles/_run_tests_libmavconn_gtest.dir/clean
 # Target rules for target CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir
 
 # All Build rule for target.
-CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/all: CMakeFiles/tests.dir/all
 CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/all: CMakeFiles/mavconn-test.dir/all
+CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/all: CMakeFiles/tests.dir/all
 CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/all: CMakeFiles/clean_test_results_libmavconn.dir/all
 	$(MAKE) -f CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/build.make CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/depend
 	$(MAKE) -f CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/build.make CMakeFiles/_run_tests_libmavconn_gtest_mavconn-test.dir/build
@@ -358,9 +358,9 @@ clean: CMakeFiles/mavconn.dir/clean
 # Target rules for target CMakeFiles/mavconn-test.dir
 
 # All Build rule for target.
-CMakeFiles/mavconn-test.dir/all: gtest/CMakeFiles/gtest.dir/all
-CMakeFiles/mavconn-test.dir/all: gtest/CMakeFiles/gtest_main.dir/all
 CMakeFiles/mavconn-test.dir/all: CMakeFiles/mavconn.dir/all
+CMakeFiles/mavconn-test.dir/all: gtest/CMakeFiles/gtest_main.dir/all
+CMakeFiles/mavconn-test.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/mavconn-test.dir/build.make CMakeFiles/mavconn-test.dir/depend
 	$(MAKE) -f CMakeFiles/mavconn-test.dir/build.make CMakeFiles/mavconn-test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/libmavconn/CMakeFiles --progress-num=11,12 "Built target mavconn-test"

@@ -1,6 +1,9 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:320:4: warning: multi-line comment [-Wcomment]
-    // cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
-    ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:5:39: fatal error: mavros_msgs/BatteryStatus.h: No such file or directory
+ #include <mavros_msgs/BatteryStatus.h>
+                                       ^
+compilation terminated.
 In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:247:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
@@ -16,31 +19,7 @@ In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/s
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RANSACBasedTME.cpp:239:20: warning: variable ‘tmOld’ set but not used [-Wunused-but-set-variable]
     Eigen::Matrix4f tmOld = transfMat;
                     ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:286:14: warning: unused variable ‘logName’ [-Wunused-variable]
-  static char logName [50];
-              ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:525:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
-    int prevId = -1;
-        ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::updateMap()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:749:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-  for(int i = 0; i < keyFrames.size(); ++i)
-                                    ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:278:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int i = 0; i < frame.getKeypoints3D().size();i++)
-                                                     ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:284:50: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int i = 0; i< frame.getKeypoints().size();i++)
-                                                  ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:292:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-    if (slam.getImuCompensateCounter()== badFrameCnt)
-                                         ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:324:43: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-    for (int i = 0; i<slam.getNodes().size();i++)
-                                           ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:321:13: warning: variable ‘pos’ set but not used [-Wunused-but-set-variable]
-    Matrix4d pos = slam.getCurrentPosition().matrix();
-             ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

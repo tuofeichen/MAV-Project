@@ -2,8 +2,8 @@
 [  0%] Built target mavros_msgs_generate_messages_cpp
 [35m[1mScanning dependencies of target mavros[0m
 [  2%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_data.cpp.o[0m
-[  5%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_timesync.cpp.o[0m
-[  7%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_stringify.cpp.o[0m
+[  5%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_stringify.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_timesync.cpp.o[0m
 [ 10%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_sensor_orientation.cpp.o[0m
 [ 13%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_frame_conversions.cpp.o[0m
 [ 15%] [32mBuilding CXX object CMakeFiles/mavros.dir/src/lib/uas_quaternion_utils.cpp.o[0m

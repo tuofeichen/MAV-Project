@@ -1,4 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp: In constructor ‘RosHandler::RosHandler()’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/src/RosHandler.cpp:10:37: warning: ‘argv’ may be used uninitialized in this function [-Wmaybe-uninitialized]
-  ros::init(argc,argv,"rgbd_backend");
-                                     ^
