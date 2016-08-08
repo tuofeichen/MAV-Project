@@ -107,8 +107,9 @@ Matrix4f RosHandler::getLpe() {
 
 void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 {
-	tm =  _lpe_cam.inverse() * _lpe;
-	im = Matrix<float, 6, 6>::Identity() * 2000; // should get dynamic matrix from 
+	tm =  _lpe_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
+	
+	im = Matrix<float, 6, 6>::Identity() * 5000; // should get dynamic matrix from 
 	
 	// Matrix3f rot = tm.topLeftCorner(3,3);
 	// rot = rot * 

@@ -107,7 +107,8 @@ void Mapping::run()
 	{
 		if (currentFrame.getId() < 0)
 		{	
-			tryToAddNode(thread); 
+			// cout << "enter try to add node with id " << nodes.back().getId()-1 << endl;
+			tryToAddNode(thread);
 			if (currentFrame.getNewNodeFlag()) {
 				px4->updateLpeCam(); //update px4 pose if new node if camera frame
 			}
@@ -170,7 +171,7 @@ void Mapping::run()
 	
 	// key frame, map and optimization
 	time.tic();
-	if((currentFrame.getId() < 0) && !currentFrame.getDummyFrameFlag())
+	if((currentFrame.getId() < 0) && !currentFrame.getDummyFrameFlag()) //(never got an ID)
 	{ 
 		if(exchangeFirstNode && nodes.size() == 1)
 		{
@@ -189,7 +190,7 @@ void Mapping::run()
 	else if(currentFrame.getDummyFrameFlag())
 	{ 
 		// trafo to small or to big
-		sequenceOfLostFramesCntr = 0;
+		sequenceOfLostFramesCntr = 0; // reset counter
 		if(exchangeFirstNode && nodes.size() == 1)
 		{
 			exchangeFirstFrame();
@@ -197,8 +198,7 @@ void Mapping::run()
 	}
 	else
 	{
-		sequenceOfLostFramesCntr = 0;
-		// cout << "searching  key frame" << endl;
+		sequenceOfLostFramesCntr = 0; 
 		bool addedKeyFrame = searchKeyFrames();
 		optimizeGraph(false);
 //		boost::thread(&Mapping::optimizeGraph,this,false);
@@ -637,8 +637,6 @@ void Mapping::setDummyNode()
 		
 		fusePX4LPE(dummyFrame);
 
-		// fusePX4LPE(px4,dummyFrame);
-
 		// if(!nodes.back().getDummyFrameFlag())
 		// {
 		// 	// add node
@@ -888,8 +886,7 @@ void Mapping::loopClosureDetection()
 		if (lcEnoughMatches && lcValidTrafo)
 		{
 
-			// cout << nodes.size() << " is node size = " << pNode->getId() << endl;
-
+			cout << "validate loop closure" << endl;
 			// Eigen::Isometry3d prevPos = poseGraph->getPositionOfId(pNode->getId(); // previous node position
 			Eigen::Isometry3d prevPos = poseGraph->getPositionOfId(nodes.size()-1);
 

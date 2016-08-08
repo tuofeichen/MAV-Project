@@ -236,7 +236,6 @@ bool RANSACBasedTME::estimateTrafo( // return false if estimation failed and els
 		{
 			float mse;
 			int inlier = computeSquaredDistance(keys3D1, matchIdx1, keys3D2, matchIdx2, transfMat, squaredMaxDistInlier*(4.0f/static_cast<float>(refine)), consensus, mse);
-			Eigen::Matrix4f tmOld = transfMat;
 
 			if (inlier < minInlier || mse > squaredMaxDistInlier)
 				break; // no refinement needed in this case (not worth it)

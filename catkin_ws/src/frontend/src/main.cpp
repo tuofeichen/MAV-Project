@@ -48,7 +48,7 @@ enum {
 };
 
 static constexpr float maxDistanceForInlier = 0.01f; ///< maximal distance for inlier in meter (RANSAC)
-static constexpr float thresholdAbsolutDistanceTest = 0.03f; ///< threshold for the absolute distance test in meter (RANSAC)
+static constexpr float thresholdAbsolutDistanceTest = 0.02f; ///< threshold for the absolute distance test in meter (RANSAC)
 static constexpr float sufficentPercentageOfInlier = 0.65f; ///< percentage of inlier to terminate the RANSAC
 static constexpr float descriptorRatio = 0.5f; ///< feature match ratio
 static constexpr float voxelSize = 0.02f; ///< voxel grid size
@@ -96,7 +96,7 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 		 << y  << "," << frameNum << "," << valid_update << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
 	// cout << fixed << setprecision(6);
-	// cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
+	cout << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
 	// cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
 	
 }
@@ -286,13 +286,13 @@ int main(int argc, char **argv)
 			valid_update = frame.getBadFrameFlag();
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 
-				// cout << "[main] valid frame " << frame.getId() << endl; 
+				// cout << "publish setpoint" << endl;
 				tm = slam.getCurrentPosition();
 				px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
 			else	
 			{
-				// valid_update = 0;
+				// cout << "skip frame due to " << valid_update << endl;
 				badFrameCnt = slam.getImuCompensateCounter();
 			}
 
@@ -310,24 +310,25 @@ int main(int argc, char **argv)
 
 			if(frame.getNewNodeFlag()||(frame.getId() == 0))
 			{
-				backend.setNewNode(frame);
+				if (frame.getKeyFrameFlag())
+					backend.setNewNode(frame);
+
 				for (int i = 0; i<slam.getNodes().size();i++)
 				{
 					// update optimized graph
 					if(slam.getNodes().at(i).getKeyFrameFlag()){
 						backend.sendCurrentPos(graph.getPositionOfId(i).matrix().cast<float>());
-						boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+						boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 					}
 					// maybe redesign this communication
 				}
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
-
 				logPoseGraphNode(frame, slam.getCurrentPosition());		
 			}
 
 			Matrix4f lpe = px4.getLpe();
-			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<<valid_update<< endl;
 
+			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<<valid_update<< endl;
 			timeDiff = time.toc();			
 		}
 

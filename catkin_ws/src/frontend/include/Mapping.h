@@ -108,7 +108,7 @@ public:
 	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
 		  neighborsToMatch = 4, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
-		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
+		  dummyFrameAfterLostFrames = 3 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
 	enum{ badFrame = 0, recoverFrame = 1, dummyFrame = 2};
