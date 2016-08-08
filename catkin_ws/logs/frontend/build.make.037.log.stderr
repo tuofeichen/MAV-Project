@@ -1,0 +1,36 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:247:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
+  boost::shared_ptr<bool> newNodeFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:246:26: warning:   ‘boost::shared_ptr<bool> SLAM::Frame::dummyFrameFlag’ [-Wreorder]
+  boost::shared_ptr<bool> dummyFrameFlag; 
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:307:1: warning: multi-line comment [-Wcomment]
+ //    cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:273:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:508:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::updateMap()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:731:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < keyFrames.size(); ++i)
+                                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:286:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:314:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i<slam.getNodes().size();i++)
+                                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:173:9: warning: variable ‘timeDiff’ set but not used [-Wunused-but-set-variable]
+  double timeDiff = 0; // debug processing time
+         ^

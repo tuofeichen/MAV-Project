@@ -74,20 +74,21 @@ void Mapping::run()
 
 		return;
 	}
-	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()))
+	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()==1))
 	{
-		// cout << "recover from badframe" << endl;
+		cout << "recover from badframe" << endl;
 		fusePX4LPE(recoverFrame);
 		return;
 	}
 
 	relTime = time.toc();
 	totalTime += relTime;
-//	cout << "Feature detection and extraction took " << relTime << "ms" << endl;
+	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
 	
 	if(!initDone)
 	{
 		addFirstNode();
+		initDone = true;
 		// updateMap();
 		return;
 	}
@@ -107,7 +108,6 @@ void Mapping::run()
 		if (currentFrame.getId() < 0)
 		{	
 			tryToAddNode(thread); 
-			
 			if (currentFrame.getNewNodeFlag()) {
 				px4->updateLpeCam(); //update px4 pose if new node if camera frame
 			}
@@ -198,6 +198,7 @@ void Mapping::run()
 	else
 	{
 		sequenceOfLostFramesCntr = 0;
+		// cout << "searching  key frame" << endl;
 		bool addedKeyFrame = searchKeyFrames();
 		optimizeGraph(false);
 //		boost::thread(&Mapping::optimizeGraph,this,false);
@@ -235,19 +236,16 @@ void Mapping::addFrame(Frame& frame)
 {
 	++frameCounter;
 
-	if (!initDone)
-	{
-		if (!nodes.empty())
-			initDone = true;
-	}
+	// if (!initDone) // init done shouldn't be set here 
+	// {
+	// 	if (!nodes.empty())
+	// 		initDone = true;
+	// }
 
 	lastFrame = currentFrame;
 	currentFrame = frame;
 
-
 }
-
-
 
 void Mapping::matchTwoFrames(
 		const Frame& frame1, // in: new frame
@@ -261,9 +259,10 @@ void Mapping::matchTwoFrames(
 	
 	assert(frame1.getId() != frame2.getId());
 
-	if ((frame2.getBadFrameFlag())||frame2.getKeypoints().empty())
+	if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
 	{
 		// just recover from a bad frame
+		cout << "error matching" << endl;
 		validTrafo = false;
 		enoughMatches = false;
 		return;
@@ -428,19 +427,18 @@ void Mapping::exchangeFirstFrame()
 void Mapping::parallelMatching()
 {
 	std::vector<int> neighborIds;
-	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
+	// const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
 
-	//
 	// match continuous
 	if(contFramesToMatch > 0 && nodes.size() > 0)
 	{
-		const int nrOfContFramesToMatch = std::min<int>(nodes.size(), contFramesToMatchTmp);
+	
+		// const int nrOfContFramesToMatch = std::min<int>(nodes.size(), contFramesToMatchTmp);
+		const int nrOfContFramesToMatch = std::min<int>(nodes.size(),contFramesToMatch);
 		std::vector<Frame>::const_iterator pNode = nodes.end() - 1;
-
 		for (int frame = 0; frame < nrOfContFramesToMatch; ++frame, ++frames, --pNode)
 		{
-
-			if (pNode->getBadFrameFlag()) // skip bad frames (should we match more? )
+			if (pNode->getBadFrameFlag()==1) // skip bad frames (should we match more?)
 				continue;
 
 			// reinitialize graph id every time new processing occus
@@ -466,15 +464,15 @@ void Mapping::parallelMatching()
 	{
 		// find neighbors of current node, exclude continuous nodes
 		poseGraph->getEdgeNeighborsToCurrentNode(contFramesToMatch, neighborIds);
-
+		
 		// match graph neighbors (sequential nodes are excluded)
 		if (neighborsToMatch > 0 && neighborIds.size() > 0)
 		{
+			// cout << "match neighbor" << endl;
 			int tmpPrev = -1;
 			const int tmpNeighborsToMatch = std::min<int>(neighborIds.size(), neighborsToMatch);
 			for(int i = 0; i < tmpNeighborsToMatch; ++i, ++frames)
 			{
-
 				int tmp;
 				do { tmp = rand() % neighborIds.size(); } while( tmpPrev == tmp ); //TODO how to choose randomly? with weights?
 				graphIds[frames] = neighborIds.at(tmp);
@@ -483,7 +481,7 @@ void Mapping::parallelMatching()
 
 				const int nodesId = nodes.size() - 1 - (poseGraph->getCurrentId() - graphIds[frames]);
 
-				if (nodes.at(nodesId).getBadFrameFlag())
+				if (nodes.at(nodesId).getBadFrameFlag()==1)
 					continue; // don't match bad frames
 				
 				// match frames
@@ -500,7 +498,7 @@ void Mapping::parallelMatching()
 	}
 
 	// loop closures
-	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && keyFrames.size() > lcRandomMatching)
+	if( (currentFrame.getBadFrameFlag()!=1) && searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && keyFrames.size() > lcRandomMatching)
 	{
 		if(lcRandomMatching == 0)
 		{
@@ -794,49 +792,41 @@ void Mapping::fusePX4LPE(int frameType)
 		Matrix4f 			  tm_lpe; 
 		Matrix<float, 6, 6>   im_lpe; 
 		double 				  dt_lpe; 
-
 		imuCompensateCounter++;
 
+		switch(frameType)
+		{
+			case badFrame:
+				currentFrame.setBadFrameFlag(1);
+				// currentFrame.setKeyFrameFlag(false); // allow bad frame as key frame for PCL
+			break;
+
+			case recoverFrame:
+				currentFrame.setBadFrameFlag(2);
+			break;
+
+			case dummyFrame:
+				currentFrame.setBadFrameFlag(3);
+			break;
+		}
+
+
+		if (!initDone){
+			cout << " add first node" << endl; 
+			addFirstNode();
+			initDone = true;
+			return;
+		}
+		
 		px4->getTm(tm_lpe,im_lpe,dt_lpe);
 		validTrafo[0] 	 = 1;
 		enoughMatches[0] = 1;
 		transformationMatrices[0] = tm_lpe.cast<double>();
 		informationMatrices[0] =  im_lpe.cast<double>();
-		
-		if (nodes.size()==0){
-			cout << " add first node" << endl; 
-			nodes.clear();
-			keyFrames.clear();
-			poseGraph->addFirstNode();
-			currentFrame.setId(poseGraph->getCurrentId());
-			nodes.push_back(currentFrame);
-			nodes.back().setKeyFrameFlag(true);
-
-			return;
-		}
-		
-
 		graphIds[0] = nodes.size()-1;
 		deltaT[0] = dt_lpe;
 
 		tryToAddNode(0); 		// try to add one sequential node
-
-		switch(frameType)
-		{
-			case badFrame:
-				currentFrame.setBadFrameFlag(true);
-				currentFrame.setKeyFrameFlag(false);
-			break;
-
-			case recoverFrame:
-				currentFrame.setBadFrameFlag(false);
-			break;
-
-			case dummyFrame:
-				currentFrame.setBadFrameFlag(false);
-				currentFrame.setDummyFrameFlag(false);
-			break;
-		}
 
 		if (currentFrame.getNewNodeFlag()){
 			cout << "frame type " << frameType << " compensated by px4" << endl;
@@ -880,9 +870,10 @@ void Mapping::loopClosureDetection()
 	for (int n = 0; n < nrOfKeyFramesToMatch; ++n)
 	{
 
-		if (!keyFrames.at(n).getBadFrameFlag()){ // filter out bad frames there
-			double dist = cv::norm(keyFrames.at(n).getAverageDescriptors(), currentFrame.getAverageDescriptors(), cv::NORM_L2);
-			if (dist < bestDist)
+		if (keyFrames.at(n).getBadFrameFlag()!=1){ 
+		// filter out bad frames there
+		double dist = cv::norm(keyFrames.at(n).getAverageDescriptors(), currentFrame.getAverageDescriptors(), cv::NORM_L2);
+		if (dist < bestDist)
 			{
 				lcBestIndex = n; // loop through to find the best index 
 				bestDist = dist;
@@ -892,11 +883,8 @@ void Mapping::loopClosureDetection()
 
 	if(lcBestIndex >= 0)
 	{
-
 		matchTwoFrames(currentFrame, keyFrames.at(lcBestIndex), lcEnoughMatches, lcValidTrafo, lcTm, lcIm);
-
 		// impose constraint here  
-
 		if (lcEnoughMatches && lcValidTrafo)
 		{
 

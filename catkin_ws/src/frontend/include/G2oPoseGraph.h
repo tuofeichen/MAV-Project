@@ -64,11 +64,11 @@ public:
 	void save() { 
 
 		std::string buffer;
-		const char origFile [100] = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/g.g2o";
+		const char origFile [100] = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/g.g2o";
 		std::ofstream ofs(origFile);
 		std::ifstream ifs(origFile);
-		std::ofstream edgeLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/edge.g2o");
-		std::ofstream vertexLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/vertex.g2o");
+		std::ofstream edgeLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/edge.g2o");
+		std::ofstream vertexLog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/vertex.g2o");
 
 
 		optimizer.save(ofs);

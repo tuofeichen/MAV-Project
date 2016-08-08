@@ -10,6 +10,7 @@
 #include <string>
 
 #include "opencv2/highgui.hpp" // debug
+
 #include <ros/ros.h>
 #include "Frontend.h"
 #include "Mapping.h"
@@ -71,7 +72,7 @@ static std::ofstream logLPE;
 static std::ofstream logKpts;
 static std::ofstream logKpts3D;
 
-static bool valid_update = 0;
+static int valid_update = 0;
 static int frameNum = 0;
 
 static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
@@ -107,9 +108,9 @@ void saveImage(Frame frame, int id)
     	params.push_back(cv::IMWRITE_PNG_COMPRESSION);
    		params.push_back(9);   // that's compression level, 9 == full , 0 == none
 
-		sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/Frames/rgb_%d.png",id);
+		sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Frames/rgb_%d.png",id);
 		cv::imwrite(imgName,frame.getGray(),params);
-		sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/Frames/dep_%d.png",id);
+		sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Frames/dep_%d.png",id);
 		cv::imwrite(imgName,frame.getDepth(),params);
 
 }
@@ -122,16 +123,16 @@ bool readImage(Frame& frame, int id) // implemented for playback debug
 	string value;  
 	double timeStamp; 
 
-	ifstream mylog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/position.csv");
+	ifstream mylog("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/position.csv");
 
 	boost::shared_ptr<double> time_ptr (new double);
 	boost::shared_ptr<cv::Mat> rgb_ptr(new cv::Mat);
 	boost::shared_ptr<cv::Mat> gray_ptr(new cv::Mat);
 	boost::shared_ptr<cv::Mat> dep_ptr(new cv::Mat);
 
-	sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/Frames/rgb_%d.png",id);
+	sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Frames/rgb_%d.png",id);
 	cv::Mat img1 = cv::imread(imgName, CV_LOAD_IMAGE_GRAYSCALE);
-	sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/Frames/dep_%d.png",id);
+	sprintf(imgName, "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Frames/dep_%d.png",id);
 	cv::Mat map1 = cv::imread(imgName, CV_LOAD_IMAGE_ANYCOLOR | CV_LOAD_IMAGE_ANYDEPTH);
 
 	img1.copyTo(*gray_ptr);
@@ -162,10 +163,14 @@ int main(int argc, char **argv)
 	RosHandler px4;  // pixhawk communication via mavros
 	boost::mutex backendMutex;
 	Backend backend(backendPort,backendMutex);
+	
+	pcl::console::TicToc time; // debug 
+
 
 	Frame frame, frame_prev;
 	int nodeId = 1; // node id
 	int badFrameCnt = 0;
+	double timeDiff = 0; // debug processing time
 
 	Eigen::Isometry3d tm;
 	Eigen::Matrix<double,6,6> im;
@@ -176,21 +181,21 @@ int main(int argc, char **argv)
 
 	// start camera
 	AsusProLiveOpenNI2::start();
-	logKpts3D.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/keypoints3D.csv", std::ofstream::out | std::ofstream::trunc);
-	logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/matlab_util/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
+	logKpts3D.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints3D.csv", std::ofstream::out | std::ofstream::trunc);
+	logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
 
 
 	// start viewer and logger
 #ifdef DEBUG
-	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/position_debug.csv", std::ofstream::out | std::ofstream::trunc);
+	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/position_debug.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 
 #else
 
-	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
+	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 
-	logLPE.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/backend/LPE.csv", std::ofstream::out | std::ofstream::trunc);
+	logLPE.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/LPE.csv", std::ofstream::out | std::ofstream::trunc);
 	logLPE << "x,y,z,valid" <<endl;
 
 #endif	
@@ -217,6 +222,7 @@ int main(int argc, char **argv)
 	while(!stop && ros::ok())
 	{
 		ros::spinOnce(); // get up-to-date lpe regardless 
+		time.tic();
 
 #ifdef DEBUG
 
@@ -238,7 +244,6 @@ int main(int argc, char **argv)
 		
 		if(nodeId > -1)
 		{
-
 // visualization
 			// cv::imshow("RGB Image", frame.getRgb());
 			// cout << "process node " << nodeId << endl; 
@@ -253,7 +258,7 @@ int main(int argc, char **argv)
 			// start slam
 			slam.addFrame(frame);
 			slam.run();
- 
+
 // Debug 
 			// sprintf(fileName,"Keypoint Frame `%d", nodeId);
 			// logKpts3D << fileName  << endl;
@@ -278,16 +283,16 @@ int main(int argc, char **argv)
 
 			// }
 // Debug
+			valid_update = frame.getBadFrameFlag();
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 
 				// cout << "[main] valid frame " << frame.getId() << endl; 
-				valid_update = 1;
 				tm = slam.getCurrentPosition();
 				px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
 			else	
 			{
-				valid_update = 0;
+				// valid_update = 0;
 				badFrameCnt = slam.getImuCompensateCounter();
 			}
 
@@ -302,25 +307,30 @@ int main(int argc, char **argv)
 		cv::waitKey(0);
 #endif
 
+
 			if(frame.getNewNodeFlag()||(frame.getId() == 0))
 			{
-				Matrix4d pos = slam.getCurrentPosition().matrix();
-				backend.setNewNode(frame);//, pos.cast<float>(), Eigen::Matrix<float, 6, 6>::Identity(),1);
+				backend.setNewNode(frame);
 				for (int i = 0; i<slam.getNodes().size();i++)
 				{
 					// update optimized graph
-					cout<< slam.getNodes().size() << " nodes sent" <<endl;
-					backend.sendCurrentPos(graph.getPositionOfId(i).matrix().cast<float>());
+					if(slam.getNodes().at(i).getKeyFrameFlag()){
+						backend.sendCurrentPos(graph.getPositionOfId(i).matrix().cast<float>());
+						boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+					}
+					// maybe redesign this communication
 				}
-
+				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 
 				logPoseGraphNode(frame, slam.getCurrentPosition());		
 			}
 
 			Matrix4f lpe = px4.getLpe();
 			logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<<valid_update<< endl;
-			
+
+			timeDiff = time.toc();			
 		}
+
 		else
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));

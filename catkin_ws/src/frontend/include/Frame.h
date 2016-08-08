@@ -232,9 +232,9 @@ public:
 	bool getNewNodeFlag() const { return *newNodeFlag; }
 
 
-	void setBadFrameFlag(bool flag) { *badFrameFlag = flag; }
+	void setBadFrameFlag(int flag) { *badFrameFlag = flag; }
 
-	bool getBadFrameFlag() const { return *badFrameFlag; }
+	int getBadFrameFlag() const { return *badFrameFlag; }
 
 
 
@@ -245,7 +245,7 @@ private:
 	boost::shared_ptr<bool> keyFrameFlag;
 	boost::shared_ptr<bool> dummyFrameFlag;	
 	boost::shared_ptr<bool> newNodeFlag;
-	boost::shared_ptr<bool> badFrameFlag;
+	boost::shared_ptr<int> badFrameFlag;
 
 	boost::shared_ptr<double> time;
 	boost::shared_ptr<cv::Mat> rgb;

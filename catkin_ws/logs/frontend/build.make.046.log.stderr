@@ -1,0 +1,18 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:309:1: warning: multi-line comment [-Wcomment]
+ //    cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:275:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:438:43: error: ‘nrOfcontFramesToMatch’ was not declared in this scope
+   cout << "continuous frame to match " << nrOfcontFramesToMatch << endl;
+                                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::updateMap()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:737:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < keyFrames.size(); ++i)
+                                    ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

@@ -66,7 +66,7 @@ void Backend::setNewNode(const Frame& frame)
 
 void Backend::sendCurrentPos(const Eigen::Matrix4f& tm)
 {
-	// boost::mutex::scoped_lock lock(backendMutex);
+	boost::mutex::scoped_lock lock(backendMutex);
 	sEdge.clear();
 	serializeTm(tm, sEdge);
 	protocolHandler.send(UavComProtocol::CMD1::CURRENT_NODE, sEdge);
