@@ -1,0 +1,16 @@
+<launch>
+
+<arg name="sim" default="0"/>
+
+<group if="$(arg sim)">
+<include file="$(find px4_offboard)/launch/SLAM.launch"> </include>
+</group>
+
+<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">
+
+<param name ="sim" type="bool" value="$(arg sim)"  />
+
+</node>
+
+</launch>
+

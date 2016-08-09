@@ -52,7 +52,7 @@ private:
 };
 
 TeleopPx4::TeleopPx4()
-    : linear_(0.4), angular_(0.3), l_scale_(1), a_scale_(0.5) {
+    : linear_(0.4), angular_(0.15), l_scale_(1), a_scale_(0.5) {
   nh_.param("scale_angular", a_scale_, a_scale_);
   nh_.param("scale_linear", l_scale_, l_scale_);
   vel_pub_ = nh_.advertise<px4_offboard::JoyCommand>("/joy/cmd_mav", 100);

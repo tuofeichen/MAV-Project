@@ -1,0 +1,19 @@
+<launch>
+
+<arg name="sim" default="0" />
+<arg name="ctrl" default="0"/>
+
+<group unless="$(arg sim)"> 
+	<include file="$(find mavros)/launch/px4.launch"> </include>
+</group>
+
+<group if="$(arg sim)">
+<include file="$(find mavros)/launch/px4_sitl.launch"> </include>
+</group>
+
+<node pkg="obj_test" type="test01" name="test01" output="screen">
+</node>
+
+
+</launch>
+

@@ -86,7 +86,7 @@ private:
   ros::Subscriber joy_sub_;
   ros::Subscriber april_sub_;
   ros::Subscriber bat_sub_;
-  ros::Subscriber findobj_sub_;
+  ros::Subscriber findobj_sub_
 
   // publishing msgs
   mavros_msgs::SetMode set_mode_;
