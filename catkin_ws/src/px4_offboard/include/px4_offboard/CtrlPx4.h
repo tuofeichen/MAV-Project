@@ -1,7 +1,7 @@
 #ifndef CtrlPx4_H_
 #define CtrlPx4_H_
 
-
+#include "px4_offboard/PID.h"
 
 enum flightmode_t {  MANUAL=0, ALTCTL, POSCTL, AUTO_MISSION, AUTO_LOITER, AUTO_RTL, AUTO_ACRO, OFFBOARD }; // following px4 convention
 
@@ -14,6 +14,8 @@ public:
 
   bool takeoff(double altitude, double velcity);
   bool land(double velocity);
+  void hover();
+
   void forward(float distance);
   void backward(float distance);
   void left (float distance);
@@ -22,8 +24,7 @@ public:
   void down(float distance);
   void yawLeft(float radian);
   void yawRight(float radian);
-
-  void hover();
+  
 
 private:
   // subscriber callbacks from MAV
@@ -31,17 +32,21 @@ private:
   void radioCallback(const mavros_msgs::RCIn);
   void poseCallback(const geometry_msgs::PoseStamped);
   void velCallback(const geometry_msgs::TwistStamped);
+  void batCallback(const mavros_msgs::BatteryStatus);
+  void FindObjectCallback(const px4_offboard::MoveCommand move_cmd);
+
   // subscriber callback from joystick
   void joyCallback(const px4_offboard::JoyCommand); 
   void aprilCallback(const px4_offboard::JoyCommand joy);
+
   // flight controller
 
-  void moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
+  void  moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
+  bool  setMode(int mode);
+  bool  setArm (bool arm);
+  //float calibrateYaw();
 
-  bool setMode(int mode);
-  bool setArm (bool arm);
-
-  bool stateCmp();
+  // bool stateCmp();
 
   // state of vehile
   int ctrl_;
@@ -49,6 +54,9 @@ private:
   bool off_en_;
   bool auto_tl_;
 
+  PID pid_takeoff;
+  PID pid_land;
+  PID pid_object;
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_; 
@@ -77,6 +85,8 @@ private:
   ros::Subscriber radio_sub_;
   ros::Subscriber joy_sub_;
   ros::Subscriber april_sub_;
+  ros::Subscriber bat_sub_;
+  ros::Subscriber findobj_sub_;
 
   // publishing msgs
   mavros_msgs::SetMode set_mode_;

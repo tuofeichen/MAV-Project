@@ -16,6 +16,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/SLAM.dir/src/RosHandler.cpp.o"
   "CMakeFiles/SLAM.dir/src/Backend.cpp.o"
   "CMakeFiles/SLAM.dir/src/TcpServer.cpp.o"
+  "CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.pdb"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so"
 )

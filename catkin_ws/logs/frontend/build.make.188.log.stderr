@@ -1,0 +1,23 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:311:1: warning: multi-line comment [-Wcomment]
+ //    cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+ ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h: In member function ‘bool RosHandler::isValid()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:25:41: error: expected ‘;’ before ‘}’ token
+  bool   isValid()    { return _lpe_valid};
+                                         ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h: In member function ‘bool RosHandler::isValid()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:25:41: error: expected ‘;’ before ‘}’ token
+  bool   isValid()    { return _lpe_valid};
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:277:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

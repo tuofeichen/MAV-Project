@@ -53,7 +53,7 @@ public:
 	enum{
 		rows = 240,
 		cols = 320,
-		depthMode = 0, // 0.1 mm? 0, // select index=0  320x240, 30 fps, 1mm
+		depthMode = 0, // select index=0  320x240, 30 fps, 1mm
 		colorMode = 0, // select index 0: 320x240, 30 fps, 200 format (RGB)
 	};
 	
@@ -105,7 +105,7 @@ public:
 	 *
 	 * @return returns the id
 	 */
-	int getId() const { assert(id); return *id; }
+	int getId() const {assert(id); return *id; }
 
 	/**
 	 * @breif sets the id of the frame in the pose graph
@@ -236,6 +236,9 @@ public:
 
 	int getBadFrameFlag() const { return *badFrameFlag; }
 
+	void setPosition(Eigen::Matrix4f lpe) { *pos = lpe; }
+
+	Eigen::Matrix4f getPosition() const {return *pos;} 
 
 
 private:
@@ -251,10 +254,14 @@ private:
 	boost::shared_ptr<cv::Mat> rgb;
 	boost::shared_ptr<cv::Mat> gray;
 	boost::shared_ptr<cv::Mat> depth;
+	boost::shared_ptr<Eigen::Matrix4f> pos;
+
 	boost::shared_ptr<std::vector<cv::KeyPoint>> keypoints;
 	boost::shared_ptr<std::vector<Eigen::Vector3f>> keypoints3D;
 	boost::shared_ptr<cv::Mat> descriptors;
 	boost::shared_ptr<cv::Mat> averageFeatureDescriptor;
+
+
 
 	static constexpr float ifx = 1.0/fx;
 	static constexpr float ify = 1.0/fy;

@@ -1,0 +1,14 @@
+<launch>
+
+<arg name="sim" default="0" />
+<arg name="ctrl" default="0"/>
+
+<node pkg="obj_test" type="test01" name="test01" output="screen">
+</node>
+
+
+<node pkg="obj_test" type="TestFly1" name="TestFly1" output="screen">
+</node>
+
+</launch>
+

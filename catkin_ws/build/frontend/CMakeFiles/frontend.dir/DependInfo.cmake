@@ -19,6 +19,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include"
   "/opt/ros/indigo/include"
   "/usr/include/pcl-1.7"
+  "/usr/include/vtk-5.8"
   "/home/tuofeichen/g2o"
   "/home/tuofeichen/g2o/EXTERNAL/csparse"
   "/usr/include/eigen3"

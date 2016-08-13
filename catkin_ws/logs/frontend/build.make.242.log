@@ -1,0 +1,47 @@
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[ 90%] Built target SLAM
+[35m[1mScanning dependencies of target frontend[0m
+[ 95%] [32mBuilding CXX object CMakeFiles/frontend.dir/src/main.cpp.o[0m
+In file included from /usr/include/c++/4.8/backward/strstream:51:0,
+                 from /usr/include/vtk-5.8/vtkIOStream.h:112,
+                 from /usr/include/vtk-5.8/vtkSystemIncludes.h:40,
+                 from /usr/include/vtk-5.8/vtkIndent.h:24,
+                 from /usr/include/vtk-5.8/vtkObjectBase.h:43,
+                 from /usr/include/vtk-5.8/vtkSmartPointerBase.h:26,
+                 from /usr/include/vtk-5.8/vtkSmartPointer.h:23,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_geometry_handlers.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_handlers.h:41,
+                 from /usr/include/pcl-1.7/pcl/visualization/common/actor_map.h:40,
+                 from /usr/include/pcl-1.7/pcl/visualization/pcl_visualizer.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/cloud_viewer.h:39,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/PointCloudMap.h:10,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:20:
+/usr/include/c++/4.8/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:294:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:344:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:385:45: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:173:9: warning: variable ‘timeDiff’ set but not used [-Wunused-but-set-variable]
+  double timeDiff = 0; // debug processing time
+         ^
+[100%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/frontend/frontend[0m
+[100%] Built target frontend

@@ -1,0 +1,23 @@
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:311:1: warning: multi-line comment [-Wcomment]
+ //    cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+ ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp: In constructor ‘RosHandler::RosHandler()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp:15:73: error: ‘flowValidCallBack’ is not a member of ‘RosHandler’
+  _flow_valid_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::flowValidCallBack,this);
+                                                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp: At global scope:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp:49:64: error: no ‘void RosHandler::flowValidCallBack(std_msgs::Float64)’ member function declared in class ‘RosHandler’
+ void RosHandler::flowValidCallBack(const std_msgs::Float64 data)
+                                                                ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:277:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:512:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

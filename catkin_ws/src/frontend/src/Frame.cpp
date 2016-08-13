@@ -16,7 +16,7 @@ Frame::Frame()
 { }
 
 Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
-: id(new int), keyFrameFlag(new bool), newNodeFlag(new bool), dummyFrameFlag(new bool), badFrameFlag(new int), time(timeStamp),
+: id(new int), keyFrameFlag(new bool), newNodeFlag(new bool), dummyFrameFlag(new bool), badFrameFlag(new int), pos(new Eigen::Matrix4f),time(timeStamp),
   rgb(rgbImage), gray(grayImage), depth(depthImage),
   keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>())
 {
@@ -25,6 +25,7 @@ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& g
 	*keyFrameFlag = false;
 	*dummyFrameFlag = false;
 	*badFrameFlag = 0;
+	*pos = Eigen::Matrix<float, 4, 4>::Identity();
 
 }
 
@@ -65,7 +66,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 			}
 
 
-			if ((abs(static_cast<uint16_t>(depthSum / (NEIGHBOR_X*NEIGHBOR_Y))) > 100))
+			if ((abs(static_cast<uint16_t>(depthSum / (NEIGHBOR_X*NEIGHBOR_Y))) >= 0))
 			{
 			// std::cout << "keypoint threshold is " << (depthSum / (NEIGHBOR*NEIGHBOR)) << std::endl;
 			// std::cout << "  keypoint depth is " << depthVal << std::endl;

@@ -19,22 +19,23 @@ public:
 	void 	 updateLpeCam() {_lpe_cam = _lpe; _time_cam = _time; }; // note down new lpe (for next edge calculation)
 
 	Matrix4f getLpe();
+	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
 	double   getTime() 				{ return _time; };
 
-	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
-	
+	bool 	 isValid()				{ return _lpe_valid; };
+
 
 private: 
 	ros::NodeHandle 			_nh;
 	ros::Publisher 				_rgbd_slam_pub;
 	ros::Subscriber				_lpe_sub;
-	ros::Subscriber				_gpe_sub;
+	ros::Subscriber				_flow_valid_sub;
 	ros::Subscriber				_bat_sub;
 	
 	bool 						_lpe_valid;    // valid flag
 	
 	double						_timeout;  
-	double 						_time;     // time stamp
+	double 						_time;     	// time stamp
 	double						_time_cam; 
 	Matrix4f 					_lpe;			// curren lpe
 	Matrix4f					_lpe_cam; 		// last camera node lpe
@@ -47,7 +48,7 @@ private:
 	geometry_msgs::PoseStamped 	_rgbd_slam_pos;
 	 
 	void lpeCallback(const geometry_msgs::PoseStamped pos_read);
-	void gpeCallback(const std_msgs::Float64 data);
+	void flowValidCallback(const std_msgs::Float64 data);
 	void batCallback(const mavros_msgs::BatteryStatus bat);
 
 	

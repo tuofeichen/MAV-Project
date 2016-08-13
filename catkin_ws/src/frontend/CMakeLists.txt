@@ -131,6 +131,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
   /usr/include/pcl-1.7
+  /usr/include/vtk-5.8
   /home/tuofeichen/g2o
   /home/tuofeichen/g2o/EXTERNAL/csparse
   /usr/include/eigen3
@@ -145,6 +146,7 @@ link_directories(
 /home/tuofeichen/g2o/lib
 /home/tuofeichen/OpenNI-Linux-x64-2.2/Redist
 /opt/ros/indigo/lib/
+
 )
 
 
@@ -153,13 +155,16 @@ add_executable(frontend src/main.cpp) # src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-SLAM src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp)
+SLAM src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp src/PointCloudMap.cpp)
 
 target_link_libraries(SLAM
 ${catkin_LIBRARIES}
 g2o_core
 g2o_csparse_extension
 g2o_types_slam3d
+pcl_common
+pcl_visualization
+pcl_filters
 jpeg
 png
 boost_system

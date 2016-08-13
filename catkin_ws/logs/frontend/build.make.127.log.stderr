@@ -1,0 +1,97 @@
+In file included from /usr/include/c++/4.8/backward/strstream:51:0,
+                 from /usr/include/vtk-5.8/vtkIOStream.h:112,
+                 from /usr/include/vtk-5.8/vtkSystemIncludes.h:40,
+                 from /usr/include/vtk-5.8/vtkIndent.h:24,
+                 from /usr/include/vtk-5.8/vtkObjectBase.h:43,
+                 from /usr/include/vtk-5.8/vtkSmartPointerBase.h:26,
+                 from /usr/include/vtk-5.8/vtkSmartPointer.h:23,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_geometry_handlers.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_handlers.h:41,
+                 from /usr/include/pcl-1.7/pcl/visualization/common/actor_map.h:40,
+                 from /usr/include/pcl-1.7/pcl/visualization/pcl_visualizer.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/cloud_viewer.h:39,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/PointCloudMap.h:10,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp:10:
+/usr/include/c++/4.8/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp: In member function ‘void SLAM::PointCloudMap::updateMap()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp:78:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for(int id = 0; id < pointCloudLocationInMap.size(); ++id)
+                                                     ^
+In file included from /usr/include/c++/4.8/backward/strstream:51:0,
+                 from /usr/include/vtk-5.8/vtkIOStream.h:112,
+                 from /usr/include/vtk-5.8/vtkSystemIncludes.h:40,
+                 from /usr/include/vtk-5.8/vtkIndent.h:24,
+                 from /usr/include/vtk-5.8/vtkObjectBase.h:43,
+                 from /usr/include/vtk-5.8/vtkSmartPointerBase.h:26,
+                 from /usr/include/vtk-5.8/vtkSmartPointer.h:23,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_geometry_handlers.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/point_cloud_handlers.h:41,
+                 from /usr/include/pcl-1.7/pcl/visualization/common/actor_map.h:40,
+                 from /usr/include/pcl-1.7/pcl/visualization/pcl_visualizer.h:48,
+                 from /usr/include/pcl-1.7/pcl/visualization/cloud_viewer.h:39,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/PointCloudMap.h:10,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:20:
+/usr/include/c++/4.8/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:288:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:319:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:173:9: warning: variable ‘timeDiff’ set but not used [-Wunused-but-set-variable]
+  double timeDiff = 0; // debug processing time
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCDWriter::writeASCII(std::string const&, pcl::PCLPointCloud2 const&, Eigen::Matrix<float, 4, 1, 0, 4, 1> const&, Eigen::Quaternion<float, 0> const&, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::setIndices(boost::shared_ptr<pcl::PointIndices const> const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::vtkSmartPointerBase(vtkObjectBase*, vtkSmartPointerBase::NoReference const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::setIndices(boost::shared_ptr<std::vector<int, std::allocator<int> > > const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkDataSetAttributes::SetScalars(vtkDataArray*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::updateCells(vtkSmartPointer<vtkIdTypeArray>&, vtkSmartPointer<vtkIdTypeArray>&, long long)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::initCompute()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::setIndices(unsigned long, unsigned long, unsigned long, unsigned long)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::vtkSmartPointerBase(vtkObjectBase*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::deinitCompute()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkProp3D::SetUserMatrix(vtkMatrix4x4*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::PCLBase()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCDWriter::writeBinary(std::string const&, pcl::PCLPointCloud2 const&, Eigen::Matrix<float, 4, 1, 0, 4, 1> const&, Eigen::Quaternion<float, 0> const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkCellArray::SetCells(long long, vtkIdTypeArray*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PointCloudGeometryHandlerXYZ<pcl::PointXYZRGB>::PointCloudGeometryHandlerXYZ(boost::shared_ptr<pcl::PointCloud<pcl::PointXYZRGB> const> const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::setSize(int, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCDWriter::setLockingPermissions(std::string const&, boost::interprocess::file_lock&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::operator=(vtkSmartPointerBase const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::setIndices(boost::shared_ptr<std::vector<int, std::allocator<int> > const> const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::vtkSmartPointerBase()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::addActorToRenderer(vtkSmartPointer<vtkProp> const&, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkCellArray::New()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PointCloudGeometryHandlerXYZ<pcl::PointXYZRGB>::getGeometry(vtkSmartPointer<vtkPoints>&) const'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::PCLVisualizer(std::string const&, bool)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkPolyDataMapper::SetInput(vtkPolyData*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::setCameraPosition(double, double, double, double, double, double, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::convertToVtkMatrix(Eigen::Matrix<float, 4, 1, 0, 4, 1> const&, Eigen::Quaternion<float, 0> const&, vtkSmartPointer<vtkMatrix4x4>&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkPolyDataMapper::GetInput()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkPolyData::GetVerts()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::wasStopped() const'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::setBackgroundColor(double const&, double const&, double const&, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::VoxelGrid<pcl::PointXYZRGB>::applyFilter(pcl::PointCloud<pcl::PointXYZRGB>&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkUnsignedCharArray::New()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::~vtkSmartPointerBase()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkSmartPointerBase::operator=(vtkObjectBase*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCDWriter::resetLockingPermissions(std::string const&, boost::interprocess::file_lock&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::setPointCloudRenderingProperties(int, double, std::string const&, int)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::PCLBase<pcl::PointXYZRGB>::setInputCloud(boost::shared_ptr<pcl::PointCloud<pcl::PointXYZRGB> const> const&)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkMatrix4x4::New()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::close()'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::spinOnce(int, bool)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::createActorFromVTKDataSet(vtkSmartPointer<vtkDataSet> const&, vtkSmartPointer<vtkLODActor>&, bool)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `vtkPolyData::SetVerts(vtkCellArray*)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::console::print(pcl::console::VERBOSITY_LEVEL, char const*, ...)'
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::visualization::PCLVisualizer::allocVtkPolyData(vtkSmartPointer<vtkPolyData>&)'
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/frontend/frontend] Error 1
+make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+make: *** [all] Error 2

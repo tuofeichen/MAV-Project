@@ -1,0 +1,21 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:250:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
+  boost::shared_ptr<bool> newNodeFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:249:26: warning:   ‘boost::shared_ptr<bool> SLAM::Frame::dummyFrameFlag’ [-Wreorder]
+  boost::shared_ptr<bool> dummyFrameFlag; 
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:257:37: warning: ‘SLAM::Frame::pos’ will be initialized after [-Wreorder]
+  boost::shared_ptr<Eigen::Matrix4f> pos;
+                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:253:28: warning:   ‘boost::shared_ptr<double> SLAM::Frame::time’ [-Wreorder]
+  boost::shared_ptr<double> time;
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^

@@ -7,6 +7,7 @@
 #include <math.h>
 #include <Eigen/Dense>
 #include <mavros_msgs/State.h>
+#include <mavros_msgs/BatteryStatus.h>
 #include <mavros_msgs/ManualControl.h>
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/CommandTOL.h>
@@ -19,6 +20,7 @@
 #include "geometry_msgs/Vector3Stamped.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "px4_offboard/JoyCommand.h"
+#include "px4_offboard/MoveCommand.h"
 #include <sstream>
 #include <string.h>
 
@@ -37,6 +39,8 @@ typedef struct pos_s {
   double px; // current POSITION + yaw
   double py;
   double pz;
+  double roll;
+  double pitch;
   double yaw;
   Vector4f q; // current rotation
 } my_pos;

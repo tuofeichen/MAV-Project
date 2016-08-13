@@ -32,19 +32,20 @@ Mapping::Mapping(
 		IFeatures* aFDEM,
 		ITransformMatEst* aTME,
 		IPoseGraph* aGO,
-		RosHandler* aRos
+		RosHandler* aRos//,
+		// IMap* aMap
 		)
 		//IMap* aMap
 		
  : fdem(aFDEM), tme(aTME), poseGraph(aGO), px4(aRos)//, map3d(aMap)
 {
 	// check element are not pointing to 0
+	// assert(map3d);
 	assert(fdem);
 	assert(tme);
 	assert(poseGraph);
 	srand(std::time(NULL));
 
-	PosDebug.setIdentity();
 	currentPosition = Eigen::Isometry3d::Identity();
 	keyFrames.clear();
 	nodes.clear();
@@ -89,7 +90,7 @@ void Mapping::run()
 	{
 		addFirstNode();
 		initDone = true;
-		// updateMap();
+		updateMap();
 		return;
 	}
 
@@ -110,6 +111,7 @@ void Mapping::run()
 			// cout << "enter try to add node with id " << nodes.back().getId()-1 << endl;
 			tryToAddNode(thread);
 			if (currentFrame.getNewNodeFlag()) {
+				// cout << "updated new lpe node " << currentFrame.getId() << endl;
 				px4->updateLpeCam(); //update px4 pose if new node if camera frame
 			}
 		}
@@ -124,7 +126,7 @@ void Mapping::run()
 	{
 		lcHandler.join();
 
-		if(lcBestIndex > 0 && currentFrame.getId() >= 0) // (need lcBestIndex > 0 ?)
+		if(lcBestIndex > 0 && currentFrame.getId() >= 0)
 		{
 			if(lcValidTrafo && lcEnoughMatches)
 			{
@@ -143,9 +145,12 @@ void Mapping::run()
 
 	if(loopClosureFound)
 	{
-		loopClosureFound = false; // avoid stuck in wrong loop closure for too long 
 		++detLoopClsrsCounter;
+		
+		if(!(detLoopClsrsCounter%20)){ // suppress some printing
 		std::cout << "<---------------------------------------------- loop detected!" << std::endl;
+		}
+
 	}
 
 	//
@@ -190,7 +195,7 @@ void Mapping::run()
 	else if(currentFrame.getDummyFrameFlag())
 	{ 
 		// trafo to small or to big
-		sequenceOfLostFramesCntr = 0; // reset counter
+		sequenceOfLostFramesCntr = 0; 
 		if(exchangeFirstNode && nodes.size() == 1)
 		{
 			exchangeFirstFrame();
@@ -205,6 +210,7 @@ void Mapping::run()
 
 		if(addedKeyFrame)
 		{
+
 			if(loopClosureFound)
 			{
 				if(optimizeTillConvergence) // never actually enters
@@ -216,7 +222,7 @@ void Mapping::run()
 				loopClosureFound = false; // reset loop closure flag ONLY when new key frame is added
 			}
 			// update map
-			// updateMap();
+			updateMap();
 		}
 	}
 
@@ -357,16 +363,18 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 		{
 			if(isMovementBigEnough(transformationMatrix))
 			{
-				currentFrame.setNewNodeFlag(true); 
+				currentFrame.setNewNodeFlag(true);
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				
-				if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder 
-					Matrix4d pos = currentPosition.matrix(); // fuse height with LPE constantly
-					double height = pos(2,3);
-					pos(2,3) = 0.1*height + 0.9*px4->getLpe()(2,3);
-					currentPosition.matrix() = pos; 
-				}
+				// if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder 
+				// 	cout << "fuse with rangefinder" << endl;
+				// 	Matrix4d pos = currentPosition.matrix(); // fuse height with LPE constantly
+				// 	double height = pos(2,3);
+				// 	pos(2,3) = 0.1*height + 0.9*px4->getLpe()(2,3);
+				// 	currentPosition.matrix() = pos; 
+				// }
 
+				currentFrame.setPosition(currentPosition.matrix().cast<float>()); // note down LPE
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				nodes.push_back(currentFrame);
@@ -420,21 +428,21 @@ void Mapping::exchangeFirstFrame()
 			// map3d->clearMap();
 			// map3d->clearTrajectory();
 			currentPosition = poseGraph->getCurrentPosition();
-			// updateMap();
+			updateMap();
 		}
 }
 
 void Mapping::parallelMatching()
 {
 	std::vector<int> neighborIds;
-	// const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
+	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
 
 	// match continuous
 	if(contFramesToMatch > 0 && nodes.size() > 0)
 	{
 	
-		// const int nrOfContFramesToMatch = std::min<int>(nodes.size(), contFramesToMatchTmp);
-		const int nrOfContFramesToMatch = std::min<int>(nodes.size(),contFramesToMatch);
+		const int nrOfContFramesToMatch = std::min<int>(nodes.size(), contFramesToMatchTmp);
+		// const int nrOfContFramesToMatch = std::min<int>(nodes.size(),contFramesToMatch);
 		std::vector<Frame>::const_iterator pNode = nodes.end() - 1;
 		for (int frame = 0; frame < nrOfContFramesToMatch; ++frame, ++frames, --pNode)
 		{
@@ -622,6 +630,7 @@ void Mapping::addEdges(int thread)
 			// update current position if the estimate is better
 			if(bestInforamtionValue < informationMatrices[thread](0,0))
 			{
+				// cout << "replace with a better edge" << endl;
 				bestInforamtionValue = informationMatrices[thread](0,0);
 				currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
 			}
@@ -676,14 +685,15 @@ bool Mapping::searchKeyFrames()
 			if (validTrafo[thread] &&  isVelocitySmallEnough(transformationMatrices[thread], deltaT[thread]))
 			{
 				Frame& keyFrame = nodes.back();
-				// if (!keyFrame.getBadFrameFlag()) // bad frame should never be key frame ? but how then to build entire map ?
-				// {
+				if (keyFrame.getBadFrameFlag() == 0) // bad key frames handled in fusion
+				{
 					keyFrame.setKeyFrameFlag(true);
 					keyFrames.push_back(keyFrame);
 					cout << "Added id " << keyFrame.getId() << " as key frame nr " << keyFrames.size() << "==========================================" << endl;
 					ret = true;
 					break;
-				// }
+				}
+
 			}
 		}
 	}
@@ -724,15 +734,17 @@ void Mapping::updateMap()
 {
 	pcl::PointCloud<pcl::PointXYZRGB> cloud;
 	FrameToPcConverter::getColorPC(keyFrames.back(), cloud);
-	map3d->addMapPart(cloud, poseGraph->getPositionOfId(keyFrames.back().getId()));
+	// map3d->addMapPart(cloud, poseGraph->getPositionOfId(keyFrames.back().getId()));
 
-	// // TODO when is a good time to update poses?
-	for(int i = 0; i < keyFrames.size(); ++i)
-		map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
+	// //TODO when is a good time to update poses? (this is pretty good)
+	// for(int i = 0; i < keyFrames.size(); ++i)
+	// {
+	// 	map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
+	// }
 
 	// delete images out of the stored frames
 	// keyFrames.back().deleteRgb();
-	// keyFrames.back().deleteDepth(); // ?
+	// keyFrames.back().deleteDepth(); 
 	// keyFrames.back().deleteGray();
 }
 
@@ -762,7 +774,6 @@ bool Mapping::isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double dt) c
     convertRotMatToEulerAngles(trafo.rotation(),roll,pitch,yaw);
     double maxAngle = std::max(fabs(roll),std::max(fabs(pitch),fabs(yaw)));
     double dist = trafo.translation().norm();
-    // cout << "vel is " << maxVelocity << " ang is  " << maxAngularVelocity << endl; 
     return ((dist/dt) < maxVelocity && (maxAngle/dt) < maxAngularVelocity); // velocity
 }
 
@@ -785,10 +796,12 @@ void Mapping::addFirstNode()
 
 void Mapping::fusePX4LPE(int frameType)
 {
+		Matrix4f 			  tm_lpe, lpe; 
 
-
-		Matrix4f 			  tm_lpe; 
+		Vector3f			  lpe_disp;
+		
 		Matrix<float, 6, 6>   im_lpe; 
+
 		double 				  dt_lpe; 
 		imuCompensateCounter++;
 
@@ -816,18 +829,66 @@ void Mapping::fusePX4LPE(int frameType)
 			return;
 		}
 		
+
 		px4->getTm(tm_lpe,im_lpe,dt_lpe);
-		validTrafo[0] 	 = 1;
-		enoughMatches[0] = 1;
-		transformationMatrices[0] = tm_lpe.cast<double>();
-		informationMatrices[0] =  im_lpe.cast<double>();
-		graphIds[0] = nodes.size()-1;
-		deltaT[0] = dt_lpe;
+		lpe = px4->getLpe();
 
-		tryToAddNode(0); 		// try to add one sequential node
+		
+		// if (nodes.size()> contFramesToMatch){ // match more conseq frame? 
+		// 	for (int frame = 0; frame < contFramesToMatch; ++frame)
+		// 	{
+		// 		int graphId = nodes.size()-frame-1;
+		// 		tm_lpe = nodes.at(graphId).getPosition().inverse() * lpe;
+		// 		validTrafo[frame] 	 = 1;
+		// 		enoughMatches[frame] = 1;
+		// 		transformationMatrices[frame] = tm_lpe.cast<double>();
+		// 		informationMatrices[frame] =  im_lpe.cast<double>();
+		// 		graphIds[frame] = graphId;
+		// 		deltaT[frame] = dt_lpe;
 
+		// 		if(frame == 0)
+		// 			tryToAddNode(0); 		// try to add 4 sequential node
+		// 		else
+		// 			addEdges(frame);
+		// 	}
+			
+		// }
+		// else
+		{
+			px4->getTm(tm_lpe,im_lpe,dt_lpe);
+			validTrafo[0] 	 = 1;
+			enoughMatches[0] = 1;
+			transformationMatrices[0] = tm_lpe.cast<double>();
+			informationMatrices[0] =  im_lpe.cast<double>();
+			graphIds[0] = nodes.size()-1;
+			deltaT[0] = dt_lpe;
+			tryToAddNode(0);
+		}
+
+		
 		if (currentFrame.getNewNodeFlag()){
-			cout << "frame type " << frameType << " compensated by px4" << endl;
+
+			Eigen::Isometry3d prevKey = poseGraph->getPositionOfId(keyFrames.back().getId());
+			Eigen::Matrix4d keyTm = prevKey.matrix().inverse()*currentPosition.matrix();
+			
+			// double maxDisp  = keyTm.topRightCorner(3,1).norm();
+			// double roll, pitch, yaw; 
+			
+			// convertRotMatToEulerAngles(keyTm.topLeftCorner(3,3),roll,pitch,yaw);
+			// double maxAngle = std::max(fabs(roll),std::max(fabs(pitch),fabs(yaw)));
+
+			// // if (maxAngle > 30 * minRotation || maxDisp > 30 * minTranslation)
+			// // {
+			// // 	Frame& keyFrame = nodes.back();
+			// // 	keyFrame.setKeyFrameFlag(true);
+			// // 	keyFrames.push_back(keyFrame);
+			// // 	cout << "Added bad id " << keyFrames.back().getId() << " as key frame------------------- " << keyFrames.size() << endl;
+			// // 	updateMap();
+			// // }
+
+			if (!(currentFrame.getId()%10))
+				cout << "frame type " << frameType << " compensated by px4" << endl;
+			// cout << "update lpe cam pose in bad frame" << endl; 
 			px4->updateLpeCam();
 		}
 
@@ -886,16 +947,12 @@ void Mapping::loopClosureDetection()
 		if (lcEnoughMatches && lcValidTrafo)
 		{
 
-			cout << "validate loop closure" << endl;
-			// Eigen::Isometry3d prevPos = poseGraph->getPositionOfId(pNode->getId(); // previous node position
 			Eigen::Isometry3d prevPos = poseGraph->getPositionOfId(nodes.size()-1);
-
 			Eigen::Isometry3d keyPos  = poseGraph->getPositionOfId(keyFrames.at(lcBestIndex).getId()); //current position
-
-			Eigen::Matrix4d graphTm = keyPos.matrix() * prevPos.matrix().inverse(); // make the jump 
+			Eigen::Matrix4d graphTm = keyPos.matrix().inverse() * prevPos.matrix(); // make the jump 
 			
 			// double dt  = currentFrame.getTime()- pNode->getTime();
-			
+		
 			// only check distance (angle can have drastic change)
 			
 			// double roll, pitch, yaw; 
@@ -909,10 +966,10 @@ void Mapping::loopClosureDetection()
 			if (maxDisp > maxVelocity){ 
 				lcBestIndex = -1; 
 			}
-			else
-			{
-				// cout << "valid! match to key frame nr " << lcBestIndex << endl;   
-			}
+			// else
+			// {
+			// 	// cout << "valid! match to key frame nr " << lcBestIndex << endl;   
+			// }
 		}
 
 	}

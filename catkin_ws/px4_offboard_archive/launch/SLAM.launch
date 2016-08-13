@@ -1,0 +1,30 @@
+<launch>
+
+       <!-- launch offboard control node -->
+
+
+<arg name="sim" default="0"/>
+<arg name="ctrl" default="0"/>
+<arg name="v_takeoff" default="3"/>
+
+<group unless="$(arg sim)"> 
+	<include file="$(find mavros)/launch/px4.launch"> </include>
+</group>
+
+<group if="$(arg sim)">
+<include file="$(find mavros)/launch/px4_sitl.launch"> </include>
+</group>
+
+<node pkg="px4_offboard" type="teleop" name="teleop" output="screen"> 
+<param name ="sim" type="bool" value="$(arg sim)"  />
+<param name ="ctrl" type="int" value="$(arg ctrl)" />
+</node>
+
+<node pkg="px4_offboard" type="SLAM" name="fcu" output="screen">
+<param name ="sim" type="bool" value="$(arg sim)"  />
+<param name ="ctrl" type="int" value="$(arg ctrl)" />
+<param name ="v_takeoff" type="int" value="$(arg v_takeoff)" />
+
+</node>
+
+</launch>

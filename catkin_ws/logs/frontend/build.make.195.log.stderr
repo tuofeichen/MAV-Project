@@ -1,0 +1,71 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:19: error: ‘igen’ has not been declared
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:34: error: expected ‘,’ or ‘...’ before ‘lpe’
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In member function ‘void SLAM::Frame::setPosition(int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:48: error: ‘lpe’ was not declared in this scope
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:250:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
+  boost::shared_ptr<bool> newNodeFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:249:26: warning:   ‘boost::shared_ptr<bool> SLAM::Frame::dummyFrameFlag’ [-Wreorder]
+  boost::shared_ptr<bool> dummyFrameFlag; 
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Frame.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:311:1: warning: multi-line comment [-Wcomment]
+ //    cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
+ ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/FrameToPcConverter.h:14:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/FrameToPcConverter.cpp:7:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:19: error: ‘igen’ has not been declared
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:34: error: expected ‘,’ or ‘...’ before ‘lpe’
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In member function ‘void SLAM::Frame::setPosition(int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:48: error: ‘lpe’ was not declared in this scope
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                                ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frontend.h:18:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frontend.cpp:13:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:19: error: ‘igen’ has not been declared
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:34: error: expected ‘,’ or ‘...’ before ‘lpe’
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In member function ‘void SLAM::Frame::setPosition(int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:48: error: ‘lpe’ was not declared in this scope
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                                ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/FrameToPcConverter.cpp.o] Error 1
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:21:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:19: error: ‘igen’ has not been declared
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:34: error: expected ‘,’ or ‘...’ before ‘lpe’
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In member function ‘void SLAM::Frame::setPosition(int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:239:48: error: ‘lpe’ was not declared in this scope
+  void setPosition(igen::Matrix4f lpe) { *pos = lpe; }
+                                                ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Frontend.cpp.o] Error 1
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp: In member function ‘void SLAM::Mapping::matchTwoFrames(const SLAM::Frame&, const SLAM::Frame&, bool&, bool&, Eigen::Isometry3d&, Eigen::Matrix<double, 6, 6>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:277:14: warning: unused variable ‘logName’ [-Wunused-variable]
+  static char logName [50];
+              ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

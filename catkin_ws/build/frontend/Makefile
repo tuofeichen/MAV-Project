@@ -708,6 +708,33 @@ src/OrbDetSurfDesc.cpp.s:
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/OrbDetSurfDesc.cpp.s
 .PHONY : src/OrbDetSurfDesc.cpp.s
 
+src/PointCloudMap.o: src/PointCloudMap.cpp.o
+
+.PHONY : src/PointCloudMap.o
+
+# target to build an object file
+src/PointCloudMap.cpp.o:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o
+.PHONY : src/PointCloudMap.cpp.o
+
+src/PointCloudMap.i: src/PointCloudMap.cpp.i
+
+.PHONY : src/PointCloudMap.i
+
+# target to preprocess a source file
+src/PointCloudMap.cpp.i:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.i
+.PHONY : src/PointCloudMap.cpp.i
+
+src/PointCloudMap.s: src/PointCloudMap.cpp.s
+
+.PHONY : src/PointCloudMap.s
+
+# target to generate assembly for a file
+src/PointCloudMap.cpp.s:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.s
+.PHONY : src/PointCloudMap.cpp.s
+
 src/RANSACBasedTME.o: src/RANSACBasedTME.cpp.o
 
 .PHONY : src/RANSACBasedTME.o
@@ -988,6 +1015,9 @@ help:
 	@echo "... src/OrbDetSurfDesc.o"
 	@echo "... src/OrbDetSurfDesc.i"
 	@echo "... src/OrbDetSurfDesc.s"
+	@echo "... src/PointCloudMap.o"
+	@echo "... src/PointCloudMap.i"
+	@echo "... src/PointCloudMap.s"
 	@echo "... src/RANSACBasedTME.o"
 	@echo "... src/RANSACBasedTME.i"
 	@echo "... src/RANSACBasedTME.s"

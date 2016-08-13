@@ -12,16 +12,15 @@ RosHandler::RosHandler()
 	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/mavros/vision_pose/pose",1000);
 
 	_lpe_sub = _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
-	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
+	_flow_valid_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::flowValidCallback,this);
 	_bat_sub = _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
   
-	// served more as a flag for lpe valid;
 	_lpe.setIdentity();
 	_lpe_cam.setIdentity(); 
 	_time = 0.0 ;
 	_time_cam = 0.0; 
 
-	_lpe_valid = false;
+	_lpe_valid = false; // flag to know if LPE is valid
 
 };
 
@@ -47,7 +46,7 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 
 }
 
-void RosHandler::gpeCallback(const std_msgs::Float64 data)
+void RosHandler::flowValidCallback(const std_msgs::Float64 data)
 {	
 	_lpe_valid   = true; // not used at this point
 	_timeout = _time; 
@@ -108,11 +107,8 @@ Matrix4f RosHandler::getLpe() {
 void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 {
 	tm =  _lpe_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
-	
-	im = Matrix<float, 6, 6>::Identity() * 5000; // should get dynamic matrix from 
-	
-	// Matrix3f rot = tm.topLeftCorner(3,3);
-	// rot = rot * 
+	im = Matrix<float, 6, 6>::Identity() * 5000; 
+	// TODO, get actual covariance matrix from mavlink (need to modify mavros to subscribe)
 
 	dt = _time - _time_cam;
 }
