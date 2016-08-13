@@ -56,8 +56,6 @@ int main(int argc, char **argv)
 	{
 		std::cout << "angle degrees: " << angle_rad*180/PI<<std::endl; 
 		
-
-		
 			if(angle_rad==-5000 || angle_rad > 0.785 || angle_rad < -0.785)
 			{
 //				ROS_INFO("Hovering!");						// if the depth values are bigger than threshold (3500), keep spinning

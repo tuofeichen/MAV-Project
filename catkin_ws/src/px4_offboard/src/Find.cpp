@@ -83,13 +83,16 @@ int main(int argc, char* argv[])
 	ros::Rate loop_rate(10);
 	ros::Publisher FindObjectPub = nh.advertise<geometry_msgs::Point>("FindObjectSub", 1000);
 	geometry_msgs::Point PublishPoint;
+
+	// image 
+
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/book_cover_1.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/witch.jpeg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/coke.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/tide.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/tide_box.jpg", IMREAD_GRAYSCALE );	
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/box.jpg", IMREAD_GRAYSCALE );
-	TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/book.jpg", IMREAD_GRAYSCALE );
+	TEMPLATE = imread( "/home/tuofeichen/SLAM/MAV_Project/catkin_ws/src/obj_test/book.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/logo.png", IMREAD_GRAYSCALE );
 	
 	if(camera_depth) AsusProLiveOpenNI2::start();
