@@ -6,6 +6,8 @@
  */
 
 #include "SIFT.h"
+#include "opencv2/highgui.hpp"
+#include "opencv2/core.hpp"
 
 namespace SLAM {
 
@@ -28,6 +30,14 @@ boost::shared_ptr<cv::Mat> SIFT::extract(const cv::Mat& img, const std::vector<c
 {
 	boost::shared_ptr<cv::Mat> descriptors(new cv::Mat);
 	detecterExtracter->compute(img, const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
+
+	cv::Mat img_key;
+
+	cv::namedWindow("SIFT",CV_WINDOW_AUTOSIZE);
+	cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
+	cv::imshow("SIFT", img_key);
+
+
 	return descriptors;
 }
 

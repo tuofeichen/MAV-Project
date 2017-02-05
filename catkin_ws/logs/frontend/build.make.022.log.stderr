@@ -1,19 +1,41 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:222:8: error: request for member ‘tic’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-   time.tic();
-        ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:283:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-    if (slam.getImuCompensateCounter()== badFrameCnt)
-                                         ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:311:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int i = 0; i<slam.getNodes().size();i++)
-                                            ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:326:20: error: request for member ‘toc’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-    timeDiff = time.toc() - time.tic(); 
-                    ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:326:33: error: request for member ‘tic’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-    timeDiff = time.toc() - time.tic(); 
-                                 ^
-make[2]: *** [CMakeFiles/frontend.dir/src/main.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:23: fatal error: CtrlState.h: No such file or directory
+ #include "CtrlState.h"
+                       ^
+compilation terminated.
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h: In constructor ‘SLAM::Frame::Frame(boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<cv::Mat>&, boost::shared_ptr<double>&)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:249:26: warning: ‘SLAM::Frame::newNodeFlag’ will be initialized after [-Wreorder]
+  boost::shared_ptr<bool> newNodeFlag;
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:248:26: warning:   ‘boost::shared_ptr<bool> SLAM::Frame::dummyFrameFlag’ [-Wreorder]
+  boost::shared_ptr<bool> dummyFrameFlag; 
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:256:37: warning: ‘SLAM::Frame::pos’ will be initialized after [-Wreorder]
+  boost::shared_ptr<Eigen::Matrix4f> pos;
+                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:252:28: warning:   ‘boost::shared_ptr<double> SLAM::Frame::time’ [-Wreorder]
+  boost::shared_ptr<double> time;
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:7:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:260:29: warning: ‘SLAM::Frame::descriptors’ will be initialized after [-Wreorder]
+  boost::shared_ptr<cv::Mat> descriptors;
+                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Frame.h:258:47: warning:   ‘boost::shared_ptr<std::vector<cv::KeyPoint> > SLAM::Frame::keypoints’ [-Wreorder]
+  boost::shared_ptr<std::vector<cv::KeyPoint>> keypoints;
+                                               ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Frame.cpp:18:1: warning:   when initialized here [-Wreorder]
+ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
+ ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
 make: *** [all] Error 2

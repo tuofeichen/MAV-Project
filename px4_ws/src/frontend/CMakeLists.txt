@@ -3,22 +3,13 @@ project(frontend)
 add_definitions("-x c++")
 
 ## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
+  message_generation
 )
 
-## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
-
-
-## Uncomment this if the package has a setup.py. This macro ensures
-## modules and global scripts declared therein get installed
-## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -45,31 +36,16 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
-
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
-
-## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
+ add_message_files(
+   FILES
+   CtrlState.msg
+ )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -103,7 +79,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rgbd_slam
-#  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS roscpp std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -113,18 +89,12 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
-
 
 
 set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
-
 # -ftree-vectorizer-verbose=9
-
 set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/odroid/OpenNI-Linux-Arm-2.2/Redist")
-
 configure_file(/home/odroid/g2o/config.h.in /home/odroid/g2o/g2o/config.h)
-
 include_directories(
   include
   ${catkin_SOURCE_DIRS}
@@ -139,7 +109,6 @@ include_directories(
 )
 
 link_directories(
-
 /opt/opencv3/lib
 /usr/lib
 /home/odroid/codes/g2o/lib
@@ -153,15 +122,14 @@ add_executable(frontend src/main.cpp) # src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-SLAM src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp)
+SLAM
+src/Debug.cpp src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp src/ObjDetection.cpp)
 
 target_link_libraries(SLAM
 ${catkin_LIBRARIES}
 g2o_core
 g2o_csparse_extension
 g2o_types_slam3d
-jpeg
-png
 boost_system
 boost_thread
 pthread
@@ -169,6 +137,7 @@ OpenNI2
 opencv_core
 opencv_xfeatures2d
 opencv_features2d
+opencv_calib3d
 opencv_flann
 opencv_highgui
 opencv_videoio
@@ -179,7 +148,7 @@ opencv_imgcodecs
 
 target_link_libraries(frontend
 ${catkin_LIBRARIES}
-jpeg 
+jpeg
 png
 SLAM
 )

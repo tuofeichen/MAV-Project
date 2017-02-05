@@ -39,10 +39,14 @@ public:
 	// see IFeatures.h for description
 	virtual boost::shared_ptr<std::vector<cv::KeyPoint>> detect(const cv::Mat& img);
 	virtual boost::shared_ptr<cv::Mat> extract(const cv::Mat& img, const std::vector<cv::KeyPoint>& kpts);
-	virtual bool match(
-			const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+	// virtual bool match(
+	// 		const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+	// 		const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
+	// 		std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const; // must be thread safe
+
+	virtual bool match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
-			std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const; // must be thread safe
+			std::vector<cv::DMatch>& matches) const;
 
 private:
 	const float ratio;

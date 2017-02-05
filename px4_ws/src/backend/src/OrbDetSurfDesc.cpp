@@ -6,7 +6,8 @@
  */
 
 #include "opencv2/imgproc/imgproc.hpp"
-
+#include "opencv2/highgui.hpp"
+ 
 #include "OrbDetSurfDesc.h"
 
 
@@ -30,8 +31,14 @@ boost::shared_ptr<std::vector<cv::KeyPoint>> OrbDetSurfDesc::detect(const cv::Ma
 
 boost::shared_ptr<cv::Mat> OrbDetSurfDesc::extract(const cv::Mat& img, const std::vector<cv::KeyPoint>& kpts)
 {
+	cv::Mat img_key;
 	boost::shared_ptr<cv::Mat> descriptors(new cv::Mat);
 	extracter->compute(img,const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
+	
+	cv::namedWindow("ORB",CV_WINDOW_AUTOSIZE);
+	cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
+	cv::imshow("ORB", img_key);
+
 	return descriptors;
 }
 

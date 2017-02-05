@@ -54,7 +54,7 @@ RM = /opt/cmake-3.3.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras

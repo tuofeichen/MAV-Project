@@ -1,0 +1,8 @@
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'void CtrlPx4::moveToPoint(float, float, float, float)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:454:3: error: expected '(' before 'fcu_pos_setpoint_'
+   fcu_pos_setpoint_.pose.orientation.w = qw; // TODO add local
+   ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

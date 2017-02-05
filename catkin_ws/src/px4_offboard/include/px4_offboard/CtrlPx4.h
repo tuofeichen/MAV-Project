@@ -2,11 +2,15 @@
 #define CtrlPx4_H_
 
 #include "px4_offboard/PID.h"
+#include "px4_offboard/CtrlState.h"
 
-enum flightmode_t {  MANUAL=0, ALTCTL, POSCTL, AUTO_MISSION, AUTO_LOITER, AUTO_RTL, AUTO_ACRO, OFFBOARD }; // following px4 convention
+#define AUTO_FLIGHT
+
+enum flightmode_t { MANUAL=0, ALTCTL, POSCTL, AUTO_MISSION, AUTO_LOITER, AUTO_RTL, AUTO_ACRO, OFFBOARD }; // following px4 convention
 
 
 class CtrlPx4 {
+
 public:
   CtrlPx4();
 
@@ -24,7 +28,7 @@ public:
   void down(float distance);
   void yawLeft(float radian);
   void yawRight(float radian);
-  
+  bool getTakeoffSignal() {return state_set_.takeoff;};
 
 private:
   // subscriber callbacks from MAV
@@ -33,34 +37,35 @@ private:
   void poseCallback(const geometry_msgs::PoseStamped);
   void velCallback(const geometry_msgs::TwistStamped);
   void batCallback(const mavros_msgs::BatteryStatus);
-  void FindObjectCallback(const px4_offboard::MoveCommand move_cmd);
+  
 
   // subscriber callback from joystick
   void joyCallback(const px4_offboard::JoyCommand); 
-  void aprilCallback(const px4_offboard::JoyCommand joy);
+  void aprilCallback(const px4_offboard::JoyCommand);
+  void objCallback(const px4_offboard::JoyCommand);
+
+  // void findObjectCallback(const px4_offboard::MoveCommand move_cmd);
+  
+  void updateState();
 
   // flight controller
-
   void  moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
   bool  setMode(int mode);
   bool  setArm (bool arm);
-  //float calibrateYaw();
-
-  // bool stateCmp();
 
   // state of vehile
   int ctrl_;
   bool sim_;
   bool off_en_;
   bool auto_tl_;
-
+  
+  // controller
   PID pid_takeoff;
   PID pid_land;
   PID pid_object;
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_; 
-
   my_pos pos_read_;
   // my_pos pos_set_; technially no need
   my_pos prev_pos_read_;
@@ -69,10 +74,13 @@ private:
 
   // node initialization
   ros::NodeHandle nh_;
+  
   // Publisher
   ros::Publisher mavros_vel_pub_;
   ros::Publisher mavros_pos_pub_;
   ros::Publisher mavros_acc_pub_;
+
+  ros::Publisher px4_offboard_pub_;
 
   // mode change service
   ros::ServiceClient mavros_set_mode_client_;
@@ -86,13 +94,17 @@ private:
   ros::Subscriber joy_sub_;
   ros::Subscriber april_sub_;
   ros::Subscriber bat_sub_;
-  ros::Subscriber findobj_sub_;
+  ros::Subscriber obj_sub_;
+  ros::Subscriber wall_sub;// = nh.subscribe("/PerpendicularWallFind", 100, &wallCallback);
 
   // publishing msgs
   mavros_msgs::SetMode set_mode_;
   mavros_msgs::CommandBool set_armed_;
   geometry_msgs::TwistStamped fcu_vel_setpoint_;
   geometry_msgs::PoseStamped fcu_pos_setpoint_;
+
+  px4_offboard::CtrlState controller_state_;
+
 };
 
 #endif

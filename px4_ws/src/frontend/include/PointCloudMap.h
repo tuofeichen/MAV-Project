@@ -7,7 +7,7 @@
 #ifndef POINTCLOUDMAP_H_
 #define POINTCLOUDMAP_H_
 
-//#include "pcl/visualization/cloud_viewer.h"
+#include "pcl/visualization/cloud_viewer.h"
 #include "pcl/filters/voxel_grid.h"
 #include "pcl/io/pcd_io.h"
 
@@ -41,10 +41,10 @@ public:
 	virtual void clearMap();
 	virtual void updateTrajectory(const Eigen::Isometry3d& pose);
 	virtual void clearTrajectory();
-	//virtual void startMapViewer();
-	//virtual void stopMapViewer();
-	//virtual void updateMapViewer();
-	//virtual void showMap();
+	virtual void startMapViewer();
+	virtual void stopMapViewer();
+	virtual void updateMapViewer();
+	virtual void showMap();
 	virtual void saveMap(const std::string& file);
 	virtual void saveTrajectory(const std::string& file) { pcl::io::savePCDFile (file, *trajectory); }
 	virtual const pcl::PointCloud<pcl::PointXYZRGB>& getMapAsPointCloud() { updateMap(); return *map; }
@@ -55,7 +55,7 @@ private:
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr map;
 	pcl::VoxelGrid<pcl::PointXYZRGB> sor;
 
-	//pcl::visualization::PCLVisualizer::Ptr viewer;
+	pcl::visualization::PCLVisualizer::Ptr viewer;
 
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr trajectory;
 

@@ -1,0 +1,53 @@
+[35m[1mScanning dependencies of target SURF
+[  0%] [  0%] [  0%] Built target geometry_msgs_generate_messages_lisp
+Built target geometry_msgs_generate_messages_cpp
+Built target geometry_msgs_generate_messages_py
+[  0%] [  0%] Built target std_msgs_generate_messages_cpp
+Built target std_msgs_generate_messages_lisp
+[  0%] Built target _obj_test_generate_messages_check_deps_MoveCommand
+[  0%] Built target _obj_test_generate_messages_check_deps_JoyCommand
+[0m[  0%] Built target std_msgs_generate_messages_py
+[  5%] [ 11%] [ 23%] [ 35%] [ 41%] [ 47%] [32mBuilding CXX object CMakeFiles/SURF.dir/src/SURF.cpp.o
+Built target obj_test_generate_messages_lisp
+[0mBuilt target obj_test_generate_messages_cpp
+[ 52%] [ 70%] [32mBuilding CXX object CMakeFiles/SURF.dir/src/SIFT.cpp.o
+[32mBuilding CXX object CMakeFiles/SURF.dir/src/OrbDetSurfDesc.cpp.o
+[0m[0m[32mBuilding CXX object CMakeFiles/SURF.dir/src/AsusProLiveOpenNI2.cpp.o
+[0mBuilt target obj_test_generate_messages_py
+[32mBuilding CXX object CMakeFiles/SURF.dir/src/Frame.cpp.o
+[0m[ 70%] Built target obj_test_generate_messages
+[31m[1mLinking CXX shared library /home/odroid/MAV-Project/px4_ws/devel/lib/libSURF.so
+[0m[ 70%] Built target SURF
+[35m[1mScanning dependencies of target TestFly3
+[35m[1mScanning dependencies of target test01
+[0m[ 76%] [0m[32mBuilding CXX object CMakeFiles/TestFly3.dir/src/TestFly3.cpp.o
+[0m[ 82%] [ 88%] [ 94%] [100%] [32mBuilding CXX object CMakeFiles/test01.dir/src/test01.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/test01.dir/src/Frame.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/test01.dir/src/SURF.cpp.o
+[0m[32mBuilding CXX object CMakeFiles/test01.dir/src/AsusProLiveOpenNI2.cpp.o
+[0m[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/lib/obj_test/TestFly3
+[0m[100%] Built target TestFly3
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp: In function 'int main(int, char**)':
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:214:50: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for(int i=0; i<TEMPLATE_KEYPOINTS_INDICES.size(),i<SCENE_KEYPOINTS_INDICES.size(); i++)
+                                                  ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:214:83: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for(int i=0; i<TEMPLATE_KEYPOINTS_INDICES.size(),i<SCENE_KEYPOINTS_INDICES.size(); i++)
+                                                                                   ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:214:17: warning: value computed is not used [-Wunused-value]
+   for(int i=0; i<TEMPLATE_KEYPOINTS_INDICES.size(),i<SCENE_KEYPOINTS_INDICES.size(); i++)
+                 ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:226:12: warning: variable 'point_TEMPLATE' set but not used [-Wunused-but-set-variable]
+    Point2f point_TEMPLATE = (*TEMPLATE_KEYPOINTS)[i].pt;
+            ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:228:12: warning: variable 'point_SCENE_IMAGE' set but not used [-Wunused-but-set-variable]
+    Point2f point_SCENE_IMAGE = (*SCENE_IMAGE_KEYPOINTS)[i].pt;
+            ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:247:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for( int i = 0; i < matches.size(); i++ )
+                                    ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/test01.cpp:382:91: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+      if(PublishPoint.z = (48.9599122 - 6.61309228E-4*area + (2.345900306E-9)*area*area)!=0)
+                                                                                           ^
+[31m[1mLinking CXX executable /home/odroid/MAV-Project/px4_ws/devel/lib/obj_test/test01
+[0m[100%] Built target test01

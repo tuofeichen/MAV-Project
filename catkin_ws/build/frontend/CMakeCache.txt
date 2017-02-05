@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for //.
+"//_DIR":PATH=//_DIR-NOTFOUND
+
 //Build shared libraries (DLLs).
 BUILD_SHARED_LIBS:BOOL=ON
 
@@ -232,7 +235,7 @@ RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
 
 //Dependencies for the target
-SLAM_LIB_DEPENDS:STATIC=general;/opt/ros/indigo/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/opt/ros/indigo/lib/librosconsole.so;general;/opt/ros/indigo/lib/librosconsole_log4cxx.so;general;/opt/ros/indigo/lib/librosconsole_backend_interface.so;general;/usr/lib/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;/opt/ros/indigo/lib/libxmlrpcpp.so;general;/opt/ros/indigo/lib/libroscpp_serialization.so;general;/opt/ros/indigo/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/opt/ros/indigo/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so;general;g2o_core;general;g2o_csparse_extension;general;g2o_types_slam3d;general;pcl_common;general;pcl_visualization;general;pcl_filters;general;jpeg;general;png;general;boost_system;general;boost_thread;general;pthread;general;OpenNI2;general;opencv_core;general;opencv_xfeatures2d;general;opencv_features2d;general;opencv_flann;general;opencv_highgui;general;opencv_videoio;general;opencv_imgproc;general;opencv_imgcodecs;
+SLAM_LIB_DEPENDS:STATIC=general;/opt/ros/indigo/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/opt/ros/indigo/lib/librosconsole.so;general;/opt/ros/indigo/lib/librosconsole_log4cxx.so;general;/opt/ros/indigo/lib/librosconsole_backend_interface.so;general;/usr/lib/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;/opt/ros/indigo/lib/libxmlrpcpp.so;general;/opt/ros/indigo/lib/libroscpp_serialization.so;general;/opt/ros/indigo/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/opt/ros/indigo/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so;general;g2o_core;general;g2o_csparse_extension;general;g2o_types_slam3d;general;boost_system;general;boost_thread;general;pthread;general;OpenNI2;general;opencv_core;general;opencv_xfeatures2d;general;opencv_features2d;general;opencv_calib3d;general;opencv_flann;general;opencv_highgui;general;opencv_videoio;general;opencv_imgproc;general;opencv_imgcodecs;
 
 //LSB Distrib tag
 UBUNTU:BOOL=TRUE
@@ -257,6 +260,18 @@ frontend_BINARY_DIR:STATIC=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fro
 
 //Value Computed by CMake
 frontend_SOURCE_DIR:STATIC=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend
+
+//The directory containing a CMake configuration file for gencpp.
+gencpp_DIR:PATH=/opt/ros/indigo/share/gencpp/cmake
+
+//The directory containing a CMake configuration file for genlisp.
+genlisp_DIR:PATH=/opt/ros/indigo/share/genlisp/cmake
+
+//The directory containing a CMake configuration file for genmsg.
+genmsg_DIR:PATH=/opt/ros/indigo/share/genmsg/cmake
+
+//The directory containing a CMake configuration file for genpy.
+genpy_DIR:PATH=/opt/ros/indigo/share/genpy/cmake
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/indigo/share/geometry_msgs/cmake
@@ -289,8 +304,14 @@ gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 //Path to a library.
 lib:FILEPATH=/opt/ros/indigo/lib/libxmlrpcpp.so
 
+//The directory containing a CMake configuration file for message_generation.
+message_generation_DIR:PATH=/opt/ros/indigo/share/message_generation/cmake
+
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/indigo/share/message_runtime/cmake
+
+//The directory containing a CMake configuration file for px4_offboard.
+px4_offboard_DIR:PATH=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/px4_offboard/cmake
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/indigo/share/rosconsole/cmake

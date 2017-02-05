@@ -8,6 +8,6 @@
   :components ((:file "_package")
     (:file "JoyCommand" :depends-on ("_package_JoyCommand"))
     (:file "_package_JoyCommand" :depends-on ("_package"))
-    (:file "MoveCommand" :depends-on ("_package_MoveCommand"))
-    (:file "_package_MoveCommand" :depends-on ("_package"))
+    (:file "CtrlState" :depends-on ("_package_CtrlState"))
+    (:file "_package_CtrlState" :depends-on ("_package"))
   ))

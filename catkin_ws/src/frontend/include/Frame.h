@@ -9,7 +9,6 @@
 
 #include <assert.h>
 #include <vector>
-
 #include <boost/smart_ptr/shared_ptr.hpp>
 
 #include "opencv2/core.hpp"
@@ -211,7 +210,7 @@ public:
 	 *
 	 * @param keys found feature descriptors of the image (input)
 	 */
-	void setDescriptors(boost::shared_ptr<cv::Mat> descs) { descriptors = descs; setAverageDescriptors(); }
+	void setDescriptors(boost::shared_ptr<cv::Mat> descs) { *descriptors = *descs; setAverageDescriptors(); }
 
 	/**
 	 * @breif getDescriptors gets feature descriptors of the image

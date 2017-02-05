@@ -1,0 +1,22 @@
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In constructor 'CtrlPx4::CtrlPx4()':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:20:3: error: 'yaw_prev_' was not declared in this scope
+   yaw_prev_ = 0;
+   ^
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'void CtrlPx4::moveToPoint(float, float, float, float)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:416:16: error: 'yaw_prev_' was not declared in this scope
+   if( fabs(yaw-yaw_prev_)<0.2){
+                ^
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:423:3: error: 'yaw_prev_' was not declared in this scope
+   yaw_prev_ = yaw + dyaw_sp;
+   ^
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:454:3: error: expected '(' before 'fcu_pos_setpoint_'
+   fcu_pos_setpoint_.pose.orientation.w = qw; // TODO add local
+   ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

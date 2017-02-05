@@ -1,0 +1,10 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: In member function 'void Mission::obstCallback(geometry_msgs::Point)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:318:40: error: expected primary-expression before '<' token
+    if (_vel(1)*_vel(1)+_vel(0)*_vel(0))<0.1)
+                                        ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:318:44: error: expected ';' before ')' token
+    if (_vel(1)*_vel(1)+_vel(0)*_vel(0))<0.1)
+                                            ^
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2

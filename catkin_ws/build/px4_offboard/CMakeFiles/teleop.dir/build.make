@@ -90,7 +90,7 @@ teleop_EXTERNAL_OBJECTS =
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: CMakeFiles/teleop.dir/src/teleop.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: CMakeFiles/teleop.dir/build.make
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /usr/lib/libPocoFoundation.so
@@ -100,7 +100,7 @@ teleop_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libactionlib.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libmessage_filters.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libtf2.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/teleop: /opt/ros/indigo/lib/libroscpp.so

@@ -117,7 +117,7 @@ endif()
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/px4_offboard/msg" TYPE FILE FILES
     "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg"
-    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg"
+    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg"
     )
 endif()
 

@@ -1,0 +1,14 @@
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'void CtrlPx4::moveToPoint(float, float, float, float)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:418:54: error: 'my_pos' has no member named 'position'
+   std::cout << "current x y z estimate" << pos_read_.position.x << " " << pos_read_.position.y <<" "<<pos_read_.position.z << std:: endl;
+                                                      ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:418:85: error: 'my_pos' has no member named 'position'
+   std::cout << "current x y z estimate" << pos_read_.position.x << " " << pos_read_.position.y <<" "<<pos_read_.position.z << std:: endl;
+                                                                                     ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:418:113: error: 'my_pos' has no member named 'position'
+   std::cout << "current x y z estimate" << pos_read_.position.x << " " << pos_read_.position.y <<" "<<pos_read_.position.z << std:: endl;
+                                                                                                                 ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

@@ -90,7 +90,7 @@ apriltag_EXTERNAL_OBJECTS =
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: CMakeFiles/apriltag.dir/src/apriltag.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: CMakeFiles/apriltag.dir/build.make
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /usr/lib/libPocoFoundation.so
@@ -100,7 +100,7 @@ apriltag_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libactionlib.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libmessage_filters.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libtf2.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/px4_offboard/apriltag: /opt/ros/indigo/lib/libroscpp.so

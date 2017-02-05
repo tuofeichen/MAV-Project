@@ -1,0 +1,11 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: In member function 'void Mission::obstCallback(geometry_msgs::Point)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:288:4: error: expected '}' before 'else'
+    else if (msg.y < _safe_dist)
+    ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: At global scope:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:326:1: error: expected declaration before '}' token
+ }
+ ^
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2

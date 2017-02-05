@@ -20,7 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
     FILES
     JoyCommand.msg
-    MoveCommand.msg
+    CtrlState.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -85,6 +85,10 @@ include_directories(
 add_executable(apriltag src/apriltag.cpp)
 target_link_libraries(apriltag ${catkin_LIBRARIES})
 
+add_executable(mission src/Mission.cpp)
+target_link_libraries(mission ${catkin_LIBRARIES})
+
+
 add_executable(checker src/checker.cpp)
 target_link_libraries(checker ${catkin_LIBRARIES})
 
@@ -93,9 +97,12 @@ target_link_libraries(teleop ${catkin_LIBRARIES})
 
 add_executable(SLAM src/SLAM.cpp)
 target_link_libraries(SLAM ${catkin_LIBRARIES})
-add_dependencies(SLAM ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 add_dependencies(checker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(apriltag ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(mission ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(SLAM ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 
 

@@ -43,7 +43,7 @@ RM = /opt/cmake-3.3.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras
@@ -67,6 +67,6 @@ CMakeFiles/visualization_msgs_generate_messages_cpp.dir/clean:
 .PHONY : CMakeFiles/visualization_msgs_generate_messages_cpp.dir/clean
 
 CMakeFiles/visualization_msgs_generate_messages_cpp.dir/depend:
-	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/visualization_msgs_generate_messages_cpp.dir/depend
 

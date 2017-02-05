@@ -192,6 +192,19 @@ _catkin_empty_exported_target/fast:
 .PHONY : _catkin_empty_exported_target/fast
 
 #=============================================================================
+# Target rules for targets named _px4_offboard_generate_messages_check_deps_CtrlState
+
+# Build rule for target.
+_px4_offboard_generate_messages_check_deps_CtrlState: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _px4_offboard_generate_messages_check_deps_CtrlState
+.PHONY : _px4_offboard_generate_messages_check_deps_CtrlState
+
+# fast build rule for target.
+_px4_offboard_generate_messages_check_deps_CtrlState/fast:
+	$(MAKE) -f CMakeFiles/_px4_offboard_generate_messages_check_deps_CtrlState.dir/build.make CMakeFiles/_px4_offboard_generate_messages_check_deps_CtrlState.dir/build
+.PHONY : _px4_offboard_generate_messages_check_deps_CtrlState/fast
+
+#=============================================================================
 # Target rules for targets named _px4_offboard_generate_messages_check_deps_JoyCommand
 
 # Build rule for target.
@@ -203,19 +216,6 @@ _px4_offboard_generate_messages_check_deps_JoyCommand: cmake_check_build_system
 _px4_offboard_generate_messages_check_deps_JoyCommand/fast:
 	$(MAKE) -f CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/build.make CMakeFiles/_px4_offboard_generate_messages_check_deps_JoyCommand.dir/build
 .PHONY : _px4_offboard_generate_messages_check_deps_JoyCommand/fast
-
-#=============================================================================
-# Target rules for targets named _px4_offboard_generate_messages_check_deps_MoveCommand
-
-# Build rule for target.
-_px4_offboard_generate_messages_check_deps_MoveCommand: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _px4_offboard_generate_messages_check_deps_MoveCommand
-.PHONY : _px4_offboard_generate_messages_check_deps_MoveCommand
-
-# fast build rule for target.
-_px4_offboard_generate_messages_check_deps_MoveCommand/fast:
-	$(MAKE) -f CMakeFiles/_px4_offboard_generate_messages_check_deps_MoveCommand.dir/build.make CMakeFiles/_px4_offboard_generate_messages_check_deps_MoveCommand.dir/build
-.PHONY : _px4_offboard_generate_messages_check_deps_MoveCommand/fast
 
 #=============================================================================
 # Target rules for targets named actionlib_generate_messages_cpp
@@ -476,6 +476,19 @@ mavros_msgs_generate_messages_py: cmake_check_build_system
 mavros_msgs_generate_messages_py/fast:
 	$(MAKE) -f CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make CMakeFiles/mavros_msgs_generate_messages_py.dir/build
 .PHONY : mavros_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named mission
+
+# Build rule for target.
+mission: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mission
+.PHONY : mission
+
+# fast build rule for target.
+mission/fast:
+	$(MAKE) -f CMakeFiles/mission.dir/build.make CMakeFiles/mission.dir/build
+.PHONY : mission/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_cpp
@@ -867,6 +880,33 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/Mission.o: src/Mission.cpp.o
+
+.PHONY : src/Mission.o
+
+# target to build an object file
+src/Mission.cpp.o:
+	$(MAKE) -f CMakeFiles/mission.dir/build.make CMakeFiles/mission.dir/src/Mission.cpp.o
+.PHONY : src/Mission.cpp.o
+
+src/Mission.i: src/Mission.cpp.i
+
+.PHONY : src/Mission.i
+
+# target to preprocess a source file
+src/Mission.cpp.i:
+	$(MAKE) -f CMakeFiles/mission.dir/build.make CMakeFiles/mission.dir/src/Mission.cpp.i
+.PHONY : src/Mission.cpp.i
+
+src/Mission.s: src/Mission.cpp.s
+
+.PHONY : src/Mission.s
+
+# target to generate assembly for a file
+src/Mission.cpp.s:
+	$(MAKE) -f CMakeFiles/mission.dir/build.make CMakeFiles/mission.dir/src/Mission.cpp.s
+.PHONY : src/Mission.cpp.s
+
 src/SLAM.o: src/SLAM.cpp.o
 
 .PHONY : src/SLAM.o
@@ -1001,6 +1041,7 @@ help:
 	@echo "... px4_offboard_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_cpp"
+	@echo "... run_tests"
 	@echo "... doxygen"
 	@echo "... mavros_msgs_generate_messages_lisp"
 	@echo "... download_extra_data"
@@ -1013,13 +1054,12 @@ help:
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... list_install_components"
 	@echo "... diagnostic_msgs_generate_messages_lisp"
+	@echo "... mission"
 	@echo "... mavros_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... px4_offboard_generate_messages"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... clean_test_results"
-	@echo "... run_tests"
-	@echo "... _px4_offboard_generate_messages_check_deps_MoveCommand"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_py"
@@ -1034,6 +1074,7 @@ help:
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... mavros_msgs_generate_messages_py"
+	@echo "... _px4_offboard_generate_messages_check_deps_CtrlState"
 	@echo "... _px4_offboard_generate_messages_check_deps_JoyCommand"
 	@echo "... test"
 	@echo "... geometry_msgs_generate_messages_cpp"
@@ -1042,6 +1083,9 @@ help:
 	@echo "... px4_offboard_genlisp"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... src/Mission.o"
+	@echo "... src/Mission.i"
+	@echo "... src/Mission.s"
 	@echo "... src/SLAM.o"
 	@echo "... src/SLAM.i"
 	@echo "... src/SLAM.s"

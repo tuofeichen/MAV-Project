@@ -17,4 +17,6 @@
           TAKEOFF
           LAND-VAL
           LAND
+          AUTOSTATE-VAL
+          AUTOSTATE
 ))

@@ -1,0 +1,398 @@
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:35:28: error: ‘mavros_msgs’ does not name a type
+   void stateCallback(const mavros_msgs::State);
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:35:46: error: expected unqualified-id before ‘)’ token
+   void stateCallback(const mavros_msgs::State);
+                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:36:28: error: ‘mavros_msgs’ does not name a type
+   void radioCallback(const mavros_msgs::RCIn);
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:36:45: error: expected unqualified-id before ‘)’ token
+   void radioCallback(const mavros_msgs::RCIn);
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:37:27: error: ‘geometry_msgs’ does not name a type
+   void poseCallback(const geometry_msgs::PoseStamped);
+                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:37:53: error: expected unqualified-id before ‘)’ token
+   void poseCallback(const geometry_msgs::PoseStamped);
+                                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:38:26: error: ‘geometry_msgs’ does not name a type
+   void velCallback(const geometry_msgs::TwistStamped);
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:38:53: error: expected unqualified-id before ‘)’ token
+   void velCallback(const geometry_msgs::TwistStamped);
+                                                     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:39:26: error: ‘mavros_msgs’ does not name a type
+   void batCallback(const mavros_msgs::BatteryStatus);
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:39:52: error: expected unqualified-id before ‘)’ token
+   void batCallback(const mavros_msgs::BatteryStatus);
+                                                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:43:26: error: ‘JoyCommand’ in namespace ‘px4_offboard’ does not name a type
+   void joyCallback(const px4_offboard::JoyCommand); 
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:43:40: error: ISO C++ forbids declaration of ‘parameter’ with no type [-fpermissive]
+   void joyCallback(const px4_offboard::JoyCommand); 
+                                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:44:28: error: ‘JoyCommand’ in namespace ‘px4_offboard’ does not name a type
+   void aprilCallback(const px4_offboard::JoyCommand);
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:44:42: error: ISO C++ forbids declaration of ‘parameter’ with no type [-fpermissive]
+   void aprilCallback(const px4_offboard::JoyCommand);
+                                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:45:26: error: ‘JoyCommand’ in namespace ‘px4_offboard’ does not name a type
+   void objCallback(const px4_offboard::JoyCommand);
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:45:40: error: ISO C++ forbids declaration of ‘parameter’ with no type [-fpermissive]
+   void objCallback(const px4_offboard::JoyCommand);
+                                        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:67:3: error: ‘my_state’ does not name a type
+   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:67:34: error: expected unqualified-id before ‘,’ token
+   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
+                                  ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:68:3: error: ‘my_pos’ does not name a type
+   my_pos home_; 
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:69:3: error: ‘my_pos’ does not name a type
+   my_pos pos_read_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:71:3: error: ‘my_pos’ does not name a type
+   my_pos prev_pos_read_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:72:3: error: ‘my_vel’ does not name a type
+   my_vel vel_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:76:3: error: ‘NodeHandle’ in namespace ‘ros’ does not name a type
+   ros::NodeHandle nh_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:79:3: error: ‘Publisher’ in namespace ‘ros’ does not name a type
+   ros::Publisher mavros_vel_pub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:80:3: error: ‘Publisher’ in namespace ‘ros’ does not name a type
+   ros::Publisher mavros_pos_pub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:81:3: error: ‘Publisher’ in namespace ‘ros’ does not name a type
+   ros::Publisher mavros_acc_pub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:83:3: error: ‘Publisher’ in namespace ‘ros’ does not name a type
+   ros::Publisher px4_offboard_pub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:86:3: error: ‘ServiceClient’ in namespace ‘ros’ does not name a type
+   ros::ServiceClient mavros_set_mode_client_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:87:3: error: ‘ServiceClient’ in namespace ‘ros’ does not name a type
+   ros::ServiceClient mavros_armed_client_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:90:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber local_pos_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:91:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber local_vel_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:92:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber state_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:93:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber radio_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:94:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber joy_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:95:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber april_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:96:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber bat_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:97:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber obj_sub_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:98:3: error: ‘Subscriber’ in namespace ‘ros’ does not name a type
+   ros::Subscriber wall_sub;// = nh.subscribe("/PerpendicularWallFind", 100, &wallCallback);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:101:3: error: ‘mavros_msgs’ does not name a type
+   mavros_msgs::SetMode set_mode_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:102:3: error: ‘mavros_msgs’ does not name a type
+   mavros_msgs::CommandBool set_armed_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:103:3: error: ‘geometry_msgs’ does not name a type
+   geometry_msgs::TwistStamped fcu_vel_setpoint_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:104:3: error: ‘geometry_msgs’ does not name a type
+   geometry_msgs::PoseStamped fcu_pos_setpoint_;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h: In member function ‘bool CtrlPx4::getTakeoffSignal()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:31:35: error: ‘state_set_’ was not declared in this scope
+   bool getTakeoffSignal() {return state_set_.takeoff;};
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In constructor ‘CtrlPx4::CtrlPx4()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:9:3: error: ‘nh_’ was not declared in this scope
+   nh_.getParam("/fcu/sim",sim_); 
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:30:3: error: ‘mavros_pos_pub_’ was not declared in this scope
+   mavros_pos_pub_ = nh_.advertise<geometry_msgs::PoseStamped>(
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:30:61: error: expected primary-expression before ‘>’ token
+   mavros_pos_pub_ = nh_.advertise<geometry_msgs::PoseStamped>(
+                                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:32:3: error: ‘mavros_vel_pub_’ was not declared in this scope
+   mavros_vel_pub_ = nh_.advertise<geometry_msgs::TwistStamped>(
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:32:62: error: expected primary-expression before ‘>’ token
+   mavros_vel_pub_ = nh_.advertise<geometry_msgs::TwistStamped>(
+                                                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:35:3: error: ‘px4_offboard_pub_’ was not declared in this scope
+   px4_offboard_pub_ = nh_.advertise<px4_offboard::CtrlState>("/px4_offboard/state",100);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:35:60: error: expected primary-expression before ‘>’ token
+   px4_offboard_pub_ = nh_.advertise<px4_offboard::CtrlState>("/px4_offboard/state",100);
+                                                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:38:3: error: ‘mavros_set_mode_client_’ was not declared in this scope
+   mavros_set_mode_client_ =
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:39:45: error: expected primary-expression before ‘>’ token
+       nh_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
+                                             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:40:3: error: ‘mavros_armed_client_’ was not declared in this scope
+   mavros_armed_client_ =
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:41:49: error: expected primary-expression before ‘>’ token
+       nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
+                                                 ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:43:3: error: ‘bat_sub_’ was not declared in this scope
+   bat_sub_ = nh_.subscribe("/mavros/battery",10,&CtrlPx4::batCallback, this);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:45:3: error: ‘local_vel_sub_’ was not declared in this scope
+   local_vel_sub_ = nh_.subscribe("/mavros/local_position/velocity", 100,
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:47:3: error: ‘local_pos_sub_’ was not declared in this scope
+   local_pos_sub_ = nh_.subscribe("/mavros/local_position/pose", 100,
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:49:3: error: ‘state_sub_’ was not declared in this scope
+   state_sub_ =
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:51:3: error: ‘radio_sub_’ was not declared in this scope
+   radio_sub_ =
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:57:3: error: ‘joy_sub_’ was not declared in this scope
+   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:60:3: error: ‘obj_sub_’ was not declared in this scope
+   obj_sub_ = nh_.subscribe("/obj/cmd_mav",100,&CtrlPx4::objCallback,this); 
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘bool CtrlPx4::commandUpdate()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:72:9: error: ‘state_set_’ was not declared in this scope
+     if((state_set_.takeoff)&&(!state_read_.takeoff)){
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:72:32: error: ‘state_read_’ was not declared in this scope
+     if((state_set_.takeoff)&&(!state_read_.takeoff)){
+                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:80:10: error: ‘state_set_’ was not declared in this scope
+     if ((state_set_.arm!=state_read_.arm)&&(!state_set_.land))
+          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:80:26: error: ‘state_read_’ was not declared in this scope
+     if ((state_set_.arm!=state_read_.arm)&&(!state_set_.land))
+                          ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:84:9: error: ‘state_set_’ was not declared in this scope
+     if (state_set_.mode != state_read_.mode)
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:84:28: error: ‘state_read_’ was not declared in this scope
+     if (state_set_.mode != state_read_.mode)
+                            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:88:9: error: ‘state_set_’ was not declared in this scope
+     if (state_set_.arm) {
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:89:52: error: ‘state_read_’ was not declared in this scope
+       if(( auto_tl_> 0 )&&((state_set_.takeoff)&&(!state_read_.takeoff))||((state_set_.land)&&(state_read_.arm))){
+                                                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:92:11: error: ‘mavros_pos_pub_’ was not declared in this scope
+           mavros_pos_pub_.publish(fcu_pos_setpoint_);
+           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:92:35: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+           mavros_pos_pub_.publish(fcu_pos_setpoint_);
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:94:11: error: ‘mavros_vel_pub_’ was not declared in this scope
+           mavros_vel_pub_.publish(fcu_vel_setpoint_);
+           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:94:35: error: ‘fcu_vel_setpoint_’ was not declared in this scope
+           mavros_vel_pub_.publish(fcu_vel_setpoint_);
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:97:12: error: ‘mavros_pos_pub_’ was not declared in this scope
+            mavros_pos_pub_.publish(fcu_pos_setpoint_);
+            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:97:36: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+            mavros_pos_pub_.publish(fcu_pos_setpoint_);
+                                    ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:107:11: error: ‘pos_read_’ was not declared in this scope
+   if(fabs(pos_read_.roll) > (M_PI/4) || fabs(pos_read_.pitch) > (M_PI/4)){ // disarm by angle desbalance
+           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:111:3: error: ‘state_set_’ was not declared in this scope
+   state_set_.arm = false;
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:118:6: error: ‘state_set_’ was not declared in this scope
+   if(state_set_.failsafe)
+      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:122:5: error: ‘state_read_’ was not declared in this scope
+     state_read_.takeoff = 0;
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: At global scope:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:138:6: error: prototype for ‘void CtrlPx4::joyCallback(px4_offboard::JoyCommand)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:43:8: error: candidate is: void CtrlPx4::joyCallback(int)
+   void joyCallback(const px4_offboard::JoyCommand); 
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:153:6: error: prototype for ‘void CtrlPx4::objCallback(px4_offboard::JoyCommand)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::objCallback(const px4_offboard::JoyCommand joy)
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:45:8: error: candidate is: void CtrlPx4::objCallback(int)
+   void objCallback(const px4_offboard::JoyCommand);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:169:6: error: prototype for ‘void CtrlPx4::aprilCallback(px4_offboard::JoyCommand)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:44:8: error: candidate is: void CtrlPx4::aprilCallback(int)
+   void aprilCallback(const px4_offboard::JoyCommand);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:178:6: error: prototype for ‘void CtrlPx4::batCallback(mavros_msgs::BatteryStatus)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:39:8: error: candidate is: void CtrlPx4::batCallback(...)
+   void batCallback(const mavros_msgs::BatteryStatus);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:189:6: error: prototype for ‘void CtrlPx4::stateCallback(mavros_msgs::State)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:35:8: error: candidate is: void CtrlPx4::stateCallback(...)
+   void stateCallback(const mavros_msgs::State);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:206:6: error: prototype for ‘void CtrlPx4::radioCallback(mavros_msgs::RCIn)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::radioCallback(const mavros_msgs::RCIn rc_in) {
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:36:8: error: candidate is: void CtrlPx4::radioCallback(...)
+   void radioCallback(const mavros_msgs::RCIn);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:211:6: error: prototype for ‘void CtrlPx4::poseCallback(geometry_msgs::PoseStamped)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::poseCallback(const geometry_msgs::PoseStamped pos_read) {
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:37:8: error: candidate is: void CtrlPx4::poseCallback(...)
+   void poseCallback(const geometry_msgs::PoseStamped);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:230:6: error: prototype for ‘void CtrlPx4::velCallback(geometry_msgs::TwistStamped)’ does not match any in class ‘CtrlPx4’
+ void CtrlPx4::velCallback(const geometry_msgs::TwistStamped vel_read) {
+      ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include/px4_offboard/CtrlPx4.h:38:8: error: candidate is: void CtrlPx4::velCallback(...)
+   void velCallback(const geometry_msgs::TwistStamped);
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘void CtrlPx4::updateState()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:239:35: error: ‘state_read_’ was not declared in this scope
+   controller_state_.arm         = state_read_.arm;
+                                   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:244:3: error: ‘px4_offboard_pub_’ was not declared in this scope
+   px4_offboard_pub_.publish(controller_state_);
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘bool CtrlPx4::takeoff(double, double)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:250:27: error: ‘pos_read_’ was not declared in this scope
+   double current_height = pos_read_.pz;
+                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:259:8: error: ‘state_read_’ was not declared in this scope
+   if (!state_read_.arm)
+        ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:261:9: error: ‘set_armed_’ was not declared in this scope
+         set_armed_.request.value = true; // send arm request
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:262:9: error: ‘mavros_armed_client_’ was not declared in this scope
+         mavros_armed_client_.call(set_armed_);
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:270:7: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+       fcu_pos_setpoint_.pose.position.z = altitude; //directly publish pos setpoint
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:277:9: error: ‘fcu_vel_setpoint_’ was not declared in this scope
+         fcu_vel_setpoint_.twist.linear.z   = 0;
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:280:9: error: ‘fcu_vel_setpoint_’ was not declared in this scope
+         fcu_vel_setpoint_.twist.linear.z = velocity;
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:283:9: error: ‘fcu_vel_setpoint_’ was not declared in this scope
+         fcu_vel_setpoint_.twist.linear.z = vel_sp;
+         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:291:5: error: ‘state_set_’ was not declared in this scope
+     state_set_.takeoff = 0;
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:295:3: error: ‘state_read_’ was not declared in this scope
+   state_read_.takeoff = (fabs(pid_takeoff.getDerivate()) <= 0.05) && (current_height > (TAKEOFF_RATIO *altitude));
+   ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘bool CtrlPx4::land(double)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:302:27: error: ‘pos_read_’ was not declared in this scope
+   double current_height = pos_read_.pz;
+                           ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:310:6: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+      fcu_pos_setpoint_.pose.position.z = 0.1;
+      ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:313:7: error: ‘fcu_vel_setpoint_’ was not declared in this scope
+       fcu_vel_setpoint_.twist.linear.z = pid_land.update(); // a rough p controller for velocity
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:314:7: error: ‘mavros_vel_pub_’ was not declared in this scope
+       mavros_vel_pub_.publish(fcu_vel_setpoint_);
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:319:5: error: ‘state_set_’ was not declared in this scope
+     state_set_.land = 0;
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:320:5: error: ‘state_read_’ was not declared in this scope
+     state_read_.land = 0;
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘void CtrlPx4::hover()’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:330:25: error: ‘pos_read_’ was not declared in this scope
+   double yaw = atan2(2*(pos_read_.q[0] * pos_read_.q[3]+ pos_read_.q[1]*pos_read_.q[2]), \
+                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:333:7: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+       fcu_pos_setpoint_.pose.position.x = pos_read_.px;
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘bool CtrlPx4::setMode(int)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:348:7: error: ‘state_set_’ was not declared in this scope
+       state_set_.prev_mode = state_read_.mode; //note down mode before arming
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:348:30: error: ‘state_read_’ was not declared in this scope
+       state_set_.prev_mode = state_read_.mode; //note down mode before arming
+                              ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:349:7: error: ‘set_mode_’ was not declared in this scope
+       set_mode_.request.custom_mode = "MANUAL";
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:350:7: error: ‘mavros_set_mode_client_’ was not declared in this scope
+       mavros_set_mode_client_.call(set_mode_);
+       ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘bool CtrlPx4::setArm(bool)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:381:5: error: ‘set_armed_’ was not declared in this scope
+     set_armed_.request.value = arm; // forcefully send disarm request
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:382:5: error: ‘mavros_armed_client_’ was not declared in this scope
+     mavros_armed_client_.call(set_armed_);
+     ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:383:12: error: ‘state_read_’ was not declared in this scope
+     return state_read_.arm;
+            ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function ‘void CtrlPx4::moveToPoint(float, float, float, float)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:391:16: error: ‘pos_read_’ was not declared in this scope
+   double yaw = pos_read_.yaw;
+                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:397:13: error: ‘fcu_pos_setpoint_’ was not declared in this scope
+   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
+             ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/src/CtrlPx4.cpp:424:3: error: ‘prev_pos_read_’ was not declared in this scope
+   prev_pos_read_.px = pos_read_.px;
+   ^
+make[2]: *** [CMakeFiles/px4_offboard.dir/src/CtrlPx4.cpp.o] Error 1
+make[1]: *** [CMakeFiles/px4_offboard.dir/all] Error 2
+make: *** [all] Error 2

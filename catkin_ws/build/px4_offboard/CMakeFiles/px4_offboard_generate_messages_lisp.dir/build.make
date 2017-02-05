@@ -53,15 +53,14 @@ CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboar
 # Include the progress variables for this target.
 include CMakeFiles/px4_offboard_generate_messages_lisp.dir/progress.make
 
-CMakeFiles/px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/MoveCommand.lisp
+CMakeFiles/px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/CtrlState.lisp
 CMakeFiles/px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp
 
 
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/MoveCommand.lisp: /opt/ros/indigo/lib/genlisp/gen_lisp.py
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/MoveCommand.lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/MoveCommand.lisp: /opt/ros/indigo/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from px4_offboard/MoveCommand.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/CtrlState.lisp: /opt/ros/indigo/lib/genlisp/gen_lisp.py
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/CtrlState.lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from px4_offboard/CtrlState.msg"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp: /opt/ros/indigo/lib/genlisp/gen_lisp.py
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg
@@ -72,7 +71,7 @@ CMakeFiles/px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Projec
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg
 
 px4_offboard_generate_messages_lisp: CMakeFiles/px4_offboard_generate_messages_lisp
-px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/MoveCommand.lisp
+px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/CtrlState.lisp
 px4_offboard_generate_messages_lisp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/px4_offboard/msg/JoyCommand.lisp
 px4_offboard_generate_messages_lisp: CMakeFiles/px4_offboard_generate_messages_lisp.dir/build.make
 

@@ -1,0 +1,13 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: In member function 'void Mission::obstCallback(geometry_msgs::Point)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:331:25: error: 'mod' was not declared in this scope
+     if (!mod(_obst_cnt,2)) // prior knowledge
+                         ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:333:1065: error: 'Calibrate' was not declared in this scope
+      ROS_INFO (Calibrate)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:334:6: error: expected ';' before '_objCommand'
+      _objCommand.yaw = - 0.3 * angle_rad;
+      ^
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2

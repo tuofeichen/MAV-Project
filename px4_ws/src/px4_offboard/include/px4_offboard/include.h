@@ -20,7 +20,7 @@
 #include "geometry_msgs/Vector3Stamped.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "px4_offboard/JoyCommand.h"
-#include "px4_offboard/MoveCommand.h"
+// #include "px4_offboard/MoveCommand.h"
 #include <sstream>
 #include <string.h>
 

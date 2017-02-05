@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 	
 	
 // Initialize variables
-	SURF feature_detector_obj(SURF_RADIUS, 50, 600);
+	SURF feature_detector_obj(SURF_RADIUS, 20, 600);
 	//SIFT feature_detector_obj(SURF_RADIUS, 50, 600);
 	//OrbDetSurfDesc feature_detector_obj(SURF_RADIUS, 50,600, 600);
 
@@ -95,20 +95,20 @@ int main(int argc, char* argv[])
 	TEMPLATE = imread( "/home/tuofeichen/SLAM/MAV_Project/catkin_ws/src/obj_test/book.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/logo.png", IMREAD_GRAYSCALE );
 	
-	if(camera_depth) AsusProLiveOpenNI2::start();
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 	if(camera_depth) AsusProLiveOpenNI2::start();
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	if(camera_depth){
-		for(int i = 0; i <5 ; ++i){
-			if (!AsusProLiveOpenNI2::grab(frame))
-			{	
-				cout << " init " << endl; 	
-				boost::this_thread::sleep(boost::posix_time::milliseconds(10));
-				i--;
-			}
-								   } 
+// 	if(camera_depth){
+// 		for(int i = 0; i <5 ; ++i){
+// 			if (!AsusProLiveOpenNI2::grab(frame))
+// 			{	
+// 				cout << " init " << endl; 	
+// 				boost::this_thread::sleep(boost::posix_time::milliseconds(10));
+// 				i--;
+// 			}
+// 								   } 
 			
-					}
+// 					}
 		
 
 

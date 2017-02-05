@@ -1,4 +1,4 @@
-# Install script for directory: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+# Install script for directory: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -126,13 +126,13 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/mavros_extras" TYPE PROGRAM FILES
-    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/scripts/mavteleop"
-    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/scripts/mavftpfuse"
+    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/scripts/mavteleop"
+    "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/scripts/mavftpfuse"
     )
 endif()
 
@@ -191,11 +191,11 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/mavros_plugins.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/mavros_plugins.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras/launch" TYPE DIRECTORY FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/launch/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mavros_extras/launch" TYPE DIRECTORY FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/launch/")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

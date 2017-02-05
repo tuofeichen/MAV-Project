@@ -31,12 +31,19 @@ public:
 	// Asus
 	static constexpr float depthScale = 1000.0; ///< Depth scale factor for the asus xtion pro live sensor
 
-	// VGA
-//	static constexpr float fx = 570.0; ///< focal length in x direction in pixel
-//	static constexpr float fy = 570.0; ///< focal length in y direction in pixel
-//	static constexpr float cx = 319.5; ///< center point in x direction in pixel
-//	static constexpr float cy = 239.5; ///< center point in y direction in pixel
-
+	// // VGA
+	// static constexpr float fx = 570.0; ///< focal length in x direction in pixel
+	// static constexpr float fy = 570.0; ///< focal length in y direction in pixel
+	// static constexpr float cx = 319.5; ///< center point in x direction in pixel
+	// static constexpr float cy = 239.5; ///< center point in y direction in pixel
+	
+	// enum{
+	// 	rows = 480,
+	// 	cols = 640,
+	// 	depthMode = 4, // select index=0  320x240, 30 fps, 1mm
+	// 	colorMode = 9, // select index 0: 320x240, 30 fps, 200 format (RGB)
+	// };
+	
 	// QVGA
 	static constexpr float fx = 285.0; ///< focal length in x direction in pixel
 	static constexpr float fy = 285.0; ///< focal length in y direction in pixel
@@ -46,7 +53,7 @@ public:
 	enum{
 		rows = 240,
 		cols = 320,
-		depthMode = 0, // select index=0 320x240, 30 fps, 1mm
+		depthMode = 0, // 0.1 mm? 0, // select index=0  320x240, 30 fps, 1mm
 		colorMode = 0, // select index 0: 320x240, 30 fps, 200 format (RGB)
 	};
 	
@@ -220,12 +227,26 @@ public:
 	 */
 	const cv::Mat& getAverageDescriptors() const { assert(averageFeatureDescriptor); return *averageFeatureDescriptor; }
 
+	void setNewNodeFlag(bool flag) { *newNodeFlag = flag; }
+
+	bool getNewNodeFlag() const { return *newNodeFlag; }
+
+
+	void setBadFrameFlag(bool flag) { *badFrameFlag = flag; }
+
+	bool getBadFrameFlag() const { return *badFrameFlag; }
+
+
+
 private:
 	void setAverageDescriptors();
 
 	boost::shared_ptr<int> id;
 	boost::shared_ptr<bool> keyFrameFlag;
-	boost::shared_ptr<bool> dummyFrameFlag;
+	boost::shared_ptr<bool> dummyFrameFlag;	
+	boost::shared_ptr<bool> newNodeFlag;
+	boost::shared_ptr<bool> badFrameFlag;
+
 	boost::shared_ptr<double> time;
 	boost::shared_ptr<cv::Mat> rgb;
 	boost::shared_ptr<cv::Mat> gray;

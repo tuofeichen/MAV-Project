@@ -3,6 +3,6 @@ prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install
 Name: frontend
 Description: Description of frontend
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install/include
 Libs: -L/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install/lib 
-Requires: 
+Requires: roscpp std_msgs message_runtime

@@ -70,7 +70,6 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 		}
 		else{
 			lpe.getTm(tm_lpe,im_lpe,dt_lpe);
-			//if 
 		}
 		
 
@@ -79,7 +78,7 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 		return;
 	}
 
-	cout << "LPE reading is " << endl << lpe.getLpe() << endl; 
+	// cout << "LPE reading is " << endl << lpe.getLpe() << endl; 
 
 	relTime = time.toc();
 	totalTime += relTime;
@@ -98,7 +97,7 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 	parallelMatching();
 	relTime = time.toc();
 	totalTime += relTime;
-	cout << "Parallel matching took " << relTime << "ms" << endl;
+	// cout << "Parallel matching took " << relTime << "ms" << endl;
 
 	
 	// process graph
@@ -131,10 +130,9 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 	}
 
 
-	// cout << "process graph" << endl; 
 	relTime = time.toc();
 	totalTime += relTime;
-//	cout << "Graph processing took " << relTime << "ms" << endl;
+	// cout << "Graph processing took " << relTime << "ms" << endl;
 
 	if(loopClosureFound)
 	{
@@ -217,7 +215,7 @@ void Mapping::run(RosHandler& lpe) // fusing with lpe
 
 	relTime = time.toc();
 	totalTime += relTime;
-//	cout << "Optimization and map update took " << relTime << "ms" << endl;
+	//cout << "Optimization and map update took " << relTime << "ms" << endl;
 
 	cout << " and took " << totalTime << "ms"<< endl;
 
@@ -281,12 +279,15 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 		// try to add current node
 		if (tryToAddNode)
 		{
+			cout << "try to add new node buddy" << endl;
 			if(isMovementBigEnough(transformationMatrix))
 			{
+				cout << " transformation matrix is" << endl << transformationMatrix.matrix() << endl; 
 				currentPosition =  (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				nodes.push_back(currentFrame);
+				cout << "valid big transform" <<endl; 
 			}
 			else
 			{ // transformation too  small
@@ -294,8 +295,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				return trafoToSmall;
 			}
 		}
-		else if(possibleLoopClosure){
-			// cout << "found  loop closure!" <<  endl; 
+		else if(possibleLoopClosure){ 
 			loopClosureFound = true;
 		}
 
@@ -409,6 +409,7 @@ void Mapping::parallelMatching()
 	{
 		if(lcRandomMatching == 0)
 		{
+			// cout << "looop closure mode" << endl;
 			lcHandler = boost::thread(&Mapping::loopClosureDetection,this);
 		}
 		else
@@ -475,6 +476,7 @@ void Mapping::tryToAddNode(int thread)
 		}
 		else if(result == trafoToSmall)
 		{
+			// cout << "transform too small!!" << endl; as long as transform valid ?  
 			currentFrame.setDummyFrameFlag(true);
 			++trafoToSmallCounter; // debug
 		}
@@ -660,7 +662,7 @@ void Mapping::loopClosureDetection()
 	double bestDist = loopClosureDetectionThreshold;
 
 	int nrOfKeyFramesToMatch = keyFrames.size();
-	cout << "key frame size " << keyFrames.size() << endl; 
+	// cout << "key frame size " << keyFrames.size() << endl; 
 	while(nrOfKeyFramesToMatch > 0)
 	{
 		if(lcSmallestId > keyFrames.at(nrOfKeyFramesToMatch-1).getId())
@@ -686,7 +688,7 @@ void Mapping::loopClosureDetection()
 		matchTwoFrames(currentFrame, keyFrames.at(lcBestIndex), lcEnoughMatches, lcValidTrafo, lcTm, lcIm);
 	}
 
-	cout << lcBestIndex << "is the number of best index?" << endl; 
+	//cout << lcBestIndex << "is the number of best index?" << endl; 
 }
 
 } /* namespace SLAM */

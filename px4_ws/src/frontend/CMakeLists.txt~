@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(backend)
+project(frontend)
 add_definitions("-x c++")
 
 ## Find catkin macros and libraries
@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -45,11 +46,12 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
+ add_message_files(
+   FILES
+   CtrlState.msg  
 #   Message1.msg
 #   Message2.msg
-# )
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -66,10 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -117,22 +119,24 @@ catkin_package(
 
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize -ftree-vectorizer-verbose=9 -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
+set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
 
-set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist")
+# -ftree-vectorizer-verbose=9
 
-configure_file(/home/tuofeichen/g2o/config.h.in /home/tuofeichen/g2o/g2o/config.h)
+set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/odroid/OpenNI-Linux-Arm-2.2/Redist")
+
+configure_file(/home/odroid/g2o/config.h.in /home/odroid/g2o/g2o/config.h)
 
 include_directories(
   include
   ${catkin_SOURCE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
-  /usr/include/pcl-1.7
-  /home/tuofeichen/g2o
-  /home/tuofeichen/g2o/EXTERNAL/csparse
+  /usr/local/include/pcl-1.8
+  /home/odroid/codes/g2o
+  /home/odroid/codes/g2o/EXTERNAL/csparse
   /usr/include/eigen3
-  /home/tuofeichen/OpenNI-Linux-x64-2.2/Include
+  /home/odroid/OpenNI-Linux-Arm-2.2/Include
   /opt/opencv3/include
 )
 
@@ -140,26 +144,24 @@ link_directories(
 
 /opt/opencv3/lib
 /usr/lib
-/home/tuofeichen/g2o/lib
-/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist
+/home/odroid/codes/g2o/lib
+/home/odroid/OpenNI-Linux-Arm-2.2/Redist
 /opt/ros/indigo/lib/
 )
 
 
 ## Declare a C++ executable
-add_executable(backend src/main.cpp) # src/RosHandler.cpp)
+add_executable(frontend src/main.cpp) # src/RosHandler.cpp)
 # add_executable(rgbd_slam ${SOURCES})
 
 add_library(
-frontend src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp)
+SLAM src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp src/ObjDetection.cpp)
 
-target_link_libraries(frontend 
+target_link_libraries(SLAM
 ${catkin_LIBRARIES}
 g2o_core
 g2o_csparse_extension
 g2o_types_slam3d
-jpeg
-png
 boost_system
 boost_thread
 pthread
@@ -167,6 +169,7 @@ OpenNI2
 opencv_core
 opencv_xfeatures2d
 opencv_features2d
+opencv_calib3d
 opencv_flann
 opencv_highgui
 opencv_videoio
@@ -175,16 +178,16 @@ opencv_imgcodecs
 
 )
 
-target_link_libraries(backend 
+target_link_libraries(frontend
 ${catkin_LIBRARIES}
 jpeg 
 png
-frontend
+SLAM
 )
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(backend ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(frontend ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
 ## Specify libraries to link a library or executable target against

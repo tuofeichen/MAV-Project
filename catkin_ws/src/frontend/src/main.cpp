@@ -17,7 +17,7 @@
 #include "OrbDetSurfDesc.h"
 #include "SURF.h"
 #include "SIFT.h"
-#include "PointCloudMap.h"
+// #include "PointCloudMap.h"
 #include "RANSACBasedTME.h"
 #include "G2oPoseGraph.h"
 #include "AsusProLiveOpenNI2.h"
@@ -25,18 +25,21 @@
 
 #include "Backend.h"
 #include "RosHandler.h" // Ros stuff 
-// 
+#include "ObjDetection.h"
+
 
 using namespace std;
 using namespace SLAM;
 
 
-// 
-//
+
 // settings
 //
+
 static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
+
+// some clean up for these variables here
 
 enum {
 	backendPort = 11000, ///< port of the front end
@@ -57,18 +60,20 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 // static objects
 //
 static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
+static SURF objdem(0.7, 35, sufficientMatches);
 // static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+
+
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
 static G2oPoseGraph graph;
+
 // static PointCloudMap pointCloudMap(voxelSize);
 
-//
+
 // log position
 //
 static std::ofstream logPos;
-static std::ofstream logLPE;
-
 static std::ofstream logKpts;
 static std::ofstream logKpts3D;
 
@@ -96,8 +101,8 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 		 << y  << "," << frameNum << "," << valid_update <<",";// << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
 	cout << fixed << setprecision(4);
-	cout << endl << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
-	cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
+	// cout << endl << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl; 
+	// cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
 	
 }
 
@@ -162,12 +167,15 @@ int main(int argc, char **argv)
 	ros::init(argc,argv,"rgbd_backend");
 	RosHandler px4;  // pixhawk communication via mavros
 	boost::mutex backendMutex;
+	// start camera
+	AsusProLiveOpenNI2::start();
+
 	Backend backend(backendPort,backendMutex);
 	
 	pcl::console::TicToc time; // debug 
 
 
-	Frame frame, frame_prev;
+	Frame frame; //, frame_prev; // only init once 
 	int nodeId = 1; // node id
 	int badFrameCnt = 0;
 	double timeDiff = 0; // debug processing time
@@ -186,8 +194,7 @@ int main(int argc, char **argv)
 	Eigen::Matrix4f lpe_prev; 	
 	char fileName[100];
 
-	// start camera
-	AsusProLiveOpenNI2::start();
+
 	logKpts3D.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints3D.csv", std::ofstream::out | std::ofstream::trunc);
 	logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
 
@@ -202,17 +209,15 @@ int main(int argc, char **argv)
 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
 	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid,x_lpe,y_lpe,z_lpe,r_lpe,p_lpe,y_lpe" <<endl;
 
-	logLPE.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/LPE.csv", std::ofstream::out | std::ofstream::trunc);
-	logLPE << "x,y,z,roll,pitch,yaw,valid" <<endl;
-
 #endif	
 
 	// setup mapping class
 	Mapping slam(&fdem, &tme, &graph, &px4);//,&pointCloudMap); //, &pointCloudMap);
-	// pointCloudMap.startMapViewer();
+	ObjDetection obj(&objdem,&px4); 
+
+	// pointCloudMap.startMapViecheckwer();
  
 	// process frames
-	bool stop = false;
 	bool noError = false; 
 	
 #ifndef DEBUG // initialize camera
@@ -227,7 +232,7 @@ int main(int argc, char **argv)
 #endif
 	
 
-	while(!stop && ros::ok())
+	while(ros::ok())
 	{
 		ros::spinOnce(); // get up-to-date lpe regardless 
 		time.tic();
@@ -261,10 +266,10 @@ int main(int argc, char **argv)
 			// cv::imshow("Depth Image", depthMap);
 
 			frameNum = nodeId - 1;
-			
 			// start slam
 			slam.addFrame(frame);
 			slam.run();
+			obj.processFrame(frame);
 
 // Debug 
 			// sprintf(fileName,"Keypoint Frame `%d", nodeId);
@@ -284,22 +289,23 @@ int main(int argc, char **argv)
 
 			// 	for (int i = 0; i< frame.getKeypoints().size();i++)
 			// 	{
-			// 		kpts = frame.getKeypoints().at(i);
+					// kpts = frame.getKeypoints().at(i);
 			// 		logKpts << kpts.pt.x << "," << kpts.pt.y << endl;
 			// 	}
 
 			// }
 // Debug
+
+
 			valid_update = frame.getBadFrameFlag();
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{ 
-				// cout << "publish setpoint" << endl;
 				tm = slam.getCurrentPosition();
-				// px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
+				if (!px4.getTakeoffFlag())
+					px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
 			else	
 			{
-				// cout << "skip frame due to " << valid_update << endl;
 				badFrameCnt = slam.getImuCompensateCounter();
 			}
 
@@ -321,24 +327,21 @@ int main(int argc, char **argv)
 				r_lpe = atan2(lpe(2,1),lpe(2,2)); 									// roll (around x)
 				p_lpe = atan2(-lpe(2,0),sqrt(lpe(2,1)*lpe(2,1)+lpe(2,2)*lpe(2,2))); // pitch (around y)
 				y_lpe = atan2(lpe(1,0),lpe(0,0)); 									// yaw (around z)
-				
-				// logLPE << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<< r_lpe << "," <<p_lpe <<","<<y_lpe<<",";
-				// logLPE << valid_update << endl;
 
 				logPoseGraphNode(frame, slam.getCurrentPosition());	
-				logPos << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<< r_lpe << "," <<p_lpe <<","<<y_lpe<<endl;
-			
-				cout << "[LPE] roll  " <<  r_lpe << "  pitch  " << p_lpe << " yaw " << y_lpe << endl; 
-				cout << "[LPE] x " <<  lpe(0,3)  << "  y " << lpe(1,3) << " z " << lpe(2,3) << endl; 
+				logPos << lpe(0,3) << "," << lpe(1,3) << "," << lpe(2,3) << ","<< r_lpe << "," <<p_lpe <<","<<y_lpe<<endl;	
+				// cout << "[LPE] roll  " <<  r_lpe << "  pitch  " << p_lpe << " yaw " << y_lpe << endl; 
+				// cout << "[LPE] x " <<  lpe(0,3)  << "  y " << lpe(1,3) << " z " << lpe(2,3) << endl; 
 
-			timeDiff = time.toc();			
-			// cout << "total processing time " << timeDiff << endl; 
-	
+				timeDiff = time.toc();		
+				if (frame.getKeyFrameFlag())	
+					cout << "total processing time " << timeDiff << endl; 
+		
 			}
 
 			if(frame.getKeyFrameFlag()||(frame.getId() == 0)) // send back key frame for PCL
 			{
-				// backend.setNewNode(frame, tm.matrix().cast<float>(), im.cast<float>(), 1);
+				
 				backend.setNewNode(frame);
 				
 				for (int i = 0; i<slam.getKeyFrames().size();i++)
@@ -402,7 +405,6 @@ int main(int argc, char **argv)
 
 	graph.save();
 	logPos.close();
-	logLPE.close();
 	
 	// pointCloudMap.updateMapViewer();
 	// pointCloudMap.saveMap("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Map.pcd");

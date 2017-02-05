@@ -1,0 +1,8 @@
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In constructor 'CtrlPx4::CtrlPx4()':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:18:28: error: 'cali_' was not declared in this scope
+   nh_.getParam("/fcu/ctrl",cali_);
+                            ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

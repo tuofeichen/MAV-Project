@@ -1,0 +1,27 @@
+[36m--[0m Using CATKIN_DEVEL_PREFIX: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
+[36m--[0m Using CMAKE_PREFIX_PATH: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel;/opt/ros/indigo
+[36m--[0m This workspace overlays: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel;/opt/ros/indigo
+[36m--[0m Using PYTHON_EXECUTABLE: /usr/bin/python
+[36m--[0m Using Debian Python package layout
+[36m--[0m Using empy: /usr/bin/empy
+[36m--[0m Using CATKIN_ENABLE_TESTING: ON
+[36m--[0m Call enable_testing()
+[36m--[0m Using CATKIN_TEST_RESULTS_DIR: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/test_results
+[36m--[0m Found gtest sources under '/usr/src/gtest': gtests will be built
+[36m--[0m Using Python nosetests: /usr/bin/nosetests-2.7
+[36m--[0m catkin 0.6.18
+[36m--[0m Using these message generators: gencpp;genlisp;genpy
+[31m[1mCMake Error[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/px4_offboard/cmake/px4_offboardConfig.cmake:141 (message):
+  Project 'frontend' tried to find library 'px4_offboard'.  The library is
+  neither a target nor built/installed properly.  Did you compile project
+  'px4_offboard'? Did you find_package() it before the subdirectory
+  containing its code is included?
+[36mCall Stack (most recent call first):[0m
+  /opt/ros/indigo/share/catkin/cmake/catkinConfig.cmake:76 (find_package)
+  CMakeLists.txt:9 (find_package)
+
+
+[36m--[0m Configuring incomplete, errors occurred!
+See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeOutput.log".
+See also "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeError.log".
+make: *** [cmake_check_build_system] Error 1

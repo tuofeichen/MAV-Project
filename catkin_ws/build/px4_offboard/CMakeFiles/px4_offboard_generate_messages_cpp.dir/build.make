@@ -53,16 +53,15 @@ CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboar
 # Include the progress variables for this target.
 include CMakeFiles/px4_offboard_generate_messages_cpp.dir/progress.make
 
-CMakeFiles/px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h
+CMakeFiles/px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/CtrlState.h
 CMakeFiles/px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/JoyCommand.h
 
 
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h: /opt/ros/indigo/lib/gencpp/gen_cpp.py
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h: /opt/ros/indigo/share/std_msgs/msg/Header.msg
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h: /opt/ros/indigo/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from px4_offboard/MoveCommand.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard -e /opt/ros/indigo/share/gencpp/cmake/..
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/CtrlState.h: /opt/ros/indigo/lib/gencpp/gen_cpp.py
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/CtrlState.h: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/CtrlState.h: /opt/ros/indigo/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from px4_offboard/CtrlState.msg"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard -e /opt/ros/indigo/share/gencpp/cmake/..
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/JoyCommand.h: /opt/ros/indigo/lib/gencpp/gen_cpp.py
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/JoyCommand.h: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg
@@ -74,7 +73,7 @@ CMakeFiles/px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard -e /opt/ros/indigo/share/gencpp/cmake/..
 
 px4_offboard_generate_messages_cpp: CMakeFiles/px4_offboard_generate_messages_cpp
-px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/MoveCommand.h
+px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/CtrlState.h
 px4_offboard_generate_messages_cpp: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/px4_offboard/JoyCommand.h
 px4_offboard_generate_messages_cpp: CMakeFiles/px4_offboard_generate_messages_cpp.dir/build.make
 

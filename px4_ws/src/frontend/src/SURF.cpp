@@ -6,9 +6,7 @@
  */
 
 #include <iostream>
-#include "opencv2/highgui.hpp"
-#include "opencv2/core.hpp"
-#include "opencv2/features2d.hpp"
+
 #include "SURF.h"
 
 namespace SLAM {
@@ -40,6 +38,7 @@ boost::shared_ptr<cv::Mat> SURF::extract(const cv::Mat& img, const std::vector<c
 	
 	boost::shared_ptr<cv::Mat> descriptors(new cv::Mat);
 	detecterExtracter->compute(img,const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
+
 	// cv::namedWindow("SURF",CV_WINDOW_AUTOSIZE);
 	// cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
 	// cv::imshow("SURF", img_key);
@@ -59,8 +58,11 @@ bool SURF::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 	
 
 	cv::flann::Index tree(descs1, cv::flann::KDTreeIndexParams(4), cvflann::FLANN_DIST_EUCLIDEAN);
+	
 	cv::Mat indices, dists;
+	
 	tree.knnSearch(descs2, indices, dists, 2, cv::flann::SearchParams(16));
+
 	cv::DMatch match;
 
 	// matchesIdx1.clear();
@@ -83,8 +85,8 @@ bool SURF::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 		}
 	}
 
-
 	// if (static_cast<int>(matchesIdx1.size()) < minNrOfMatches)
+
 	if (static_cast<int>(matches.size()) < minNrOfMatches)
 		return false;
 	else

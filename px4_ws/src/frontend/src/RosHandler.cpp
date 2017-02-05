@@ -9,19 +9,26 @@ RosHandler::RosHandler()
 	Matrix4f yaw_offset;
 	yaw_offset.setZero();
 
-	_rgbd_slam_pub = _nh.advertise<geometry_msgs::PoseStamped>("/mavros/vision_pose/pose",1000);
+	_rgbd_slam_pub  = _nh.advertise<geometry_msgs::PoseStamped>("/mavros/vision_pose/pose",1000);
 
-	_lpe_sub = _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
-	_gpe_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::gpeCallback,this);
-	_bat_sub = _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
+	_object_pub 	= _nh.advertise<geometry_msgs::Point>("/objDetect/obj_pose", 100);
+	_wall_pub  		= _nh.advertise<geometry_msgs::Point>("/objDetect/wall_pose", 100);
+	_obst_pub		= _nh.advertise<geometry_msgs::Point>("/objDetect/obst_dist",100);
+
+	_state_sub 		= _nh.subscribe("/px4_offboard/state",  10,  &RosHandler::stateCallback, this);
+	_lpe_sub 		= _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);
+	_flow_valid_sub = _nh.subscribe("/mavros/global_position/rel_alt",100,&RosHandler::flowValidCallback,this);
+	_bat_sub 		= _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
   
-	// served more as a flag for lpe valid;
 	_lpe.setIdentity();
 	_lpe_cam.setIdentity(); 
 	_time = 0.0 ;
 	_time_cam = 0.0; 
 
-	_lpe_valid = false;
+	_is_takeoff   = 0;
+	_is_land = 0;
+	_is_fail = 0;
+	_lpe_valid = false; // flag to know if LPE is valid
 
 };
 
@@ -47,7 +54,7 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 
 }
 
-void RosHandler::gpeCallback(const std_msgs::Float64 data)
+void RosHandler::flowValidCallback(const std_msgs::Float64 data)
 {	
 	_lpe_valid   = true; // not used at this point
 	_timeout = _time; 
@@ -62,6 +69,20 @@ void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
 	}
 }
 
+void RosHandler::updateObstacleDistance(geometry_msgs::Point obsDist)
+{
+	_obst_pub.publish(obsDist);
+}
+
+void RosHandler::updateObjPos(geometry_msgs::Point objPos)
+{
+	_object_pub.publish(objPos);
+}
+
+void RosHandler::updateWallPos(geometry_msgs::Point wallPos)
+{
+	_wall_pub.publish(wallPos);
+}
 
 // everthing aligned in camera frame
 void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME)
@@ -108,11 +129,8 @@ Matrix4f RosHandler::getLpe() {
 void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 {
 	tm =  _lpe_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
-	
-	im = Matrix<float, 6, 6>::Identity() * 5000; // should get dynamic matrix from 
-	
-	// Matrix3f rot = tm.topLeftCorner(3,3);
-	// rot = rot * 
+	im = Matrix<float, 6, 6>::Identity() * 5000; 
+	// TODO, get actual covariance matrix from mavlink (need to modify mavros to subscribe)
 
 	dt = _time - _time_cam;
 }
@@ -127,7 +145,7 @@ void RosHandler::q2rpy(Quaternionf q, float& r, float& p, float& y)
 
 }
 
-Matrix3f RosHandler::rpy2rot(float r, float p, float y)
+inline Matrix3f RosHandler::rpy2rot(float r, float p, float y)
 {
 	Matrix3f roll, pitch, yaw;
 	roll.setIdentity();
@@ -141,7 +159,7 @@ Matrix3f RosHandler::rpy2rot(float r, float p, float y)
 
 }
 
-void RosHandler::rot2rpy(Matrix3f R,float& r, float& p, float& y)
+inline void RosHandler::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 {
 	float beta, alpha, gamma;
 	beta = atan2(-R(2,0), sqrt(R(0,0)*R(0,0)+R(1,0)*R(1,0)));
@@ -162,7 +180,6 @@ void RosHandler::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 	y = alpha ;
 	p = beta  ;
 	r = gamma ;
-
 }
 
 

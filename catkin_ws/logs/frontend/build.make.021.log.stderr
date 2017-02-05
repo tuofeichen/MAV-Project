@@ -1,19 +1,23 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:243:9: error: request for member ‘tic’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-    time.tic();
-         ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:283:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-    if (slam.getImuCompensateCounter()== badFrameCnt)
-                                         ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:311:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int i = 0; i<slam.getNodes().size();i++)
-                                            ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:326:20: error: request for member ‘toc’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-    timeDiff = time.toc() - time.tic(); 
-                    ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:326:33: error: request for member ‘tic’ in ‘time’, which is of non-class type ‘time_t(time_t*)throw () {aka long int(long int*)throw ()}’
-    timeDiff = time.toc() - time.tic(); 
-                                 ^
-make[2]: *** [CMakeFiles/frontend.dir/src/main.cpp.o] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/ObjDetection.h:7:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp:1:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:23: fatal error: CtrlState.h: No such file or directory
+ #include "CtrlState.h"
+                       ^
+compilation terminated.
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:23: fatal error: CtrlState.h: No such file or directory
+ #include "CtrlState.h"
+                       ^
+compilation terminated.
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:23: fatal error: CtrlState.h: No such file or directory
+ #include "CtrlState.h"
+                       ^
+compilation terminated.
+make[2]: *** [CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/SLAM.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
 make: *** [all] Error 2

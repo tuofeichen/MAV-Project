@@ -19,9 +19,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/include"
   "/usr/include/eigen3"
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/libmavconn/include"
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_msgs/include"
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include"
   "/opt/ros/indigo/include"
   )
 

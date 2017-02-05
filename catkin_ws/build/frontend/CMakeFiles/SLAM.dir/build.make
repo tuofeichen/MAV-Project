@@ -465,28 +465,28 @@ CMakeFiles/SLAM.dir/src/TcpServer.cpp.o.provides: CMakeFiles/SLAM.dir/src/TcpSer
 CMakeFiles/SLAM.dir/src/TcpServer.cpp.o.provides.build: CMakeFiles/SLAM.dir/src/TcpServer.cpp.o
 
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o: CMakeFiles/SLAM.dir/flags.make
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o: CMakeFiles/SLAM.dir/flags.make
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp > CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.i
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SLAM.dir/src/ObjDetection.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp > CMakeFiles/SLAM.dir/src/ObjDetection.cpp.i
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp -o CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.s
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SLAM.dir/src/ObjDetection.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp -o CMakeFiles/SLAM.dir/src/ObjDetection.cpp.s
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.requires:
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.requires:
 
-.PHONY : CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.requires
+.PHONY : CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.requires
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.provides: CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.requires
-	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.provides.build
-.PHONY : CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.provides
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.provides: CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.requires
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.provides.build
+.PHONY : CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.provides
 
-CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.provides.build: CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o
+CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.provides.build: CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o
 
 
 # Object files for target SLAM
@@ -508,7 +508,7 @@ SLAM_OBJECTS = \
 "CMakeFiles/SLAM.dir/src/RosHandler.cpp.o" \
 "CMakeFiles/SLAM.dir/src/Backend.cpp.o" \
 "CMakeFiles/SLAM.dir/src/TcpServer.cpp.o" \
-"CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o"
+"CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o"
 
 # External object files for target SLAM
 SLAM_EXTERNAL_OBJECTS =
@@ -530,7 +530,7 @@ SLAM_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/src/RosHandler.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/src/Backend.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/src/TcpServer.cpp.o
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: CMakeFiles/SLAM.dir/build.make
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: /opt/ros/indigo/lib/libroscpp.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
@@ -575,7 +575,7 @@ CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/AsusProLiveOpenNI2.cpp.o.r
 CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/RosHandler.cpp.o.requires
 CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/Backend.cpp.o.requires
 CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/TcpServer.cpp.o.requires
-CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o.requires
+CMakeFiles/SLAM.dir/requires: CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o.requires
 
 .PHONY : CMakeFiles/SLAM.dir/requires
 

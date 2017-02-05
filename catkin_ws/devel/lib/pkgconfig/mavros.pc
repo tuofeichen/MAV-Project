@@ -1,8 +1,0 @@
-prefix=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel
-
-Name: mavros
-Description: Description of mavros
-Version: 0.17.4
-Cflags: -I/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros/include -I/usr/include -I/usr/include/eigen3
-Libs: -L/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib -lmavros -l:/usr/lib/x86_64-linux-gnu/libboost_system.so
-Requires: diagnostic_msgs diagnostic_updater pluginlib roscpp sensor_msgs nav_msgs std_msgs tf2_ros geometry_msgs libmavconn message_runtime eigen_conversions mavros_msgs

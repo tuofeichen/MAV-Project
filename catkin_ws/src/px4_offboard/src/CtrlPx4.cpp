@@ -1,7 +1,7 @@
 #include "px4_offboard/CtrlPx4.h"
 #include "px4_offboard/include.h"
 
-#define TAKEOFF_RATIO 0.85
+#define TAKEOFF_RATIO 0.7
 //#define M_PI 3.1415926
 
 CtrlPx4::CtrlPx4() {
@@ -12,6 +12,8 @@ CtrlPx4::CtrlPx4() {
 
   off_en_ = sim_;     // initialize off_en_to be 1 always if in simulation mode
   auto_tl_ = ctrl_;
+
+  controller_state_.fail  = 0;
 
 //PID pid - Take off;
   pid_takeoff.setKp(1);
@@ -30,6 +32,9 @@ CtrlPx4::CtrlPx4() {
   mavros_vel_pub_ = nh_.advertise<geometry_msgs::TwistStamped>(
       "/mavros/setpoint_velocity/cmd_vel", 100);
 
+  px4_offboard_pub_ = nh_.advertise<px4_offboard::CtrlState>("/px4_offboard/state",100);
+
+
   mavros_set_mode_client_ =
       nh_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
   mavros_armed_client_ =
@@ -46,10 +51,14 @@ CtrlPx4::CtrlPx4() {
   radio_sub_ =
       nh_.subscribe("/mavros/rc/in", 10, &CtrlPx4::radioCallback, this);
 
+  // wall_sub = nh_.subscribe("/objDetect/wall_pose", 100, &wallCallback);
+
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
-  april_sub_ = nh_.subscribe("april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
-  findobj_sub_ = nh_.subscribe("/mov_cmd",100,&CtrlPx4::FindObjectCallback,this); 
+  // april_sub_ = nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
+
+  obj_sub_ = nh_.subscribe("/obj/cmd_mav",100,&CtrlPx4::objCallback,this); 
+
   // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100, &CtrlPx4::checkerCallback, this);
 };
 
@@ -60,12 +69,13 @@ bool CtrlPx4::commandUpdate() {
     // check if in auto takeoff landing mode
     if (auto_tl_>0){	
 
-     if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(1,2); //takeoff to 1.3 m at 2m/s initially
+    if((state_set_.takeoff)&&(!state_read_.takeoff)){
+        takeoff(1.5,2); //takeoff to 2 m at 2m/s initially // to adjust to the wall 
   	}
-      else if((state_set_.land)&&(state_read_.arm))
+    else if((state_set_.land)&&(state_read_.arm))
         land(1);    // land at 1m/s
     }
+    
     // arm check
     if ((state_set_.arm!=state_read_.arm)&&(!state_set_.land))
       setArm(state_set_.arm);
@@ -77,27 +87,27 @@ bool CtrlPx4::commandUpdate() {
     // controller input
     if (state_set_.arm) {
       if(( auto_tl_> 0 )&&((state_set_.takeoff)&&(!state_read_.takeoff))||((state_set_.land)&&(state_read_.arm))){
+        
         if(auto_tl_ == 1) // pos control takeoff/landing
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
         else // vel control takeoff/landing
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
-	 }
-
+	   }
       else { 
-//		ROS_INFO("Height after takeoff %f", pos_read_.pz);
-//		ROS_INFO("fcu pos setpoint %f", fcu_pos_setpoint_.pose.position.z);
-	        mavros_pos_pub_.publish(fcu_pos_setpoint_);
+	          mavros_pos_pub_.publish(fcu_pos_setpoint_);
   	  }
     }
-
+    updateState(); // brodcast state of the drone 
    }
-   else
-	hover(); 
 
-// regardless always check for failsafe
+   else
+	   hover(); // always note down the most recent position
+
+// regardless always check for failsafe 
   if(fabs(pos_read_.roll) > (M_PI/4) || fabs(pos_read_.pitch) > (M_PI/4)){ // disarm by angle desbalance
-  
-  ROS_WARN("Lost balance!");
+  controller_state_.fail = 1;
+
+  ROS_WARN("[PX4 CTRL] Lost balance! Disarm!");
   state_set_.arm = false;
   state_set_.mode = MANUAL;
 	state_set_.takeoff = 0;
@@ -107,6 +117,7 @@ bool CtrlPx4::commandUpdate() {
 
   if(state_set_.failsafe)
   {
+    controller_state_.fail = 1;
     state_set_.takeoff = 0;
     state_read_.takeoff = 0;
     state_set_.land = 0;
@@ -136,12 +147,30 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
   state_set_.takeoff  = joy.takeoff;
   state_set_.land     = joy.land;
   state_set_.failsafe = joy.failsafe;
+
 }
+
+void CtrlPx4::objCallback(const px4_offboard::JoyCommand joy)
+{
+   
+  moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+     // state_set_.offboard = joy.offboard;
+  if (joy.offboard)
+     state_set_.mode = OFFBOARD;
+
+  state_set_.arm      = joy.arm;
+  state_set_.takeoff  = joy.takeoff;
+  state_set_.land     = joy.land;
+  state_set_.failsafe = joy.failsafe;
+
+}
+
 
 void CtrlPx4::aprilCallback(const px4_offboard::JoyCommand joy)
 {
- ROS_INFO("Current Yaw command is %f",joy.yaw);
+ // ROS_INFO("Current Yaw command is %f",joy.yaw);
  moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
+
 
 }
 
@@ -150,7 +179,7 @@ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 {
 	if (bat.voltage < 14)
 	{
-	  ROS_WARN("Low battery!");
+	  ROS_WARN("[PX4 CTRL] Low battery!");
 	  // state_set_.land = 1;
 	}
 
@@ -160,7 +189,7 @@ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
   
   state_read_.arm = (vehicle_state.armed == 128);
-  
+
   if (strcmp(vehicle_state.mode.c_str(), "OFFBOARD") == 0)
     state_read_.mode = OFFBOARD;
 
@@ -205,58 +234,25 @@ void CtrlPx4::velCallback(const geometry_msgs::TwistStamped vel_read) {
 };
 
 
-
-void CtrlPx4::FindObjectCallback(const px4_offboard::MoveCommand move_cmd)
+void CtrlPx4::updateState()
 {
- 
- switch(move_cmd.code){
-	 
-	case 0:
-		forward(move_cmd.distance);
-	break;	 
-	
-	case 1:
-		right(move_cmd.distance);
-	break;
-	 
-	case 2:
-		ROS_INFO("yaw right %f", move_cmd.distance);
-		yawRight(move_cmd.distance);
-	break;
-	
-	case 3:
-		yawLeft(move_cmd.distance);
-	break;
-	
-	case 4: 
-		down(move_cmd.distance);
-	break;
-	
-	case 5:
-		state_set_.land = 1;
-	break; 
-		 
-	case 6:
-		hover(); 
-	break;
-	
-	default:
-		ROS_INFO("Code input error ! ");
-	break;
-	 
- }
+  controller_state_.arm         = state_read_.arm;
+  controller_state_.takeoff     = state_read_.takeoff;
+  controller_state_.land        = state_read_.land;
+  controller_state_.offboard    = state_read_.offboard;
+  
+  px4_offboard_pub_.publish(controller_state_);
 }
 
 
-
-
 bool CtrlPx4::takeoff(double altitude, double velocity) {
+  
   double current_height = pos_read_.pz;
   double vel_sp =  0;
   pid_takeoff.setInput(altitude);
 
  if (fabs(current_height - altitude)>5){
-	ROS_INFO("Takeoff height too far!");
+	ROS_INFO("[PX4 CTRL] Takeoff height too far!");
 	return 0;
   }
  
@@ -267,7 +263,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   }
 
 
-  if (fabs(pid_takeoff.getDerivate()) > 0.05 || current_height < 0.9*altitude) { 
+  if (fabs(pid_takeoff.getDerivate()) > 0.05 || current_height < (TAKEOFF_RATIO * altitude)) { 
     
     // sensor read 
     if(auto_tl_ == 1)
@@ -276,9 +272,6 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     {
       pid_takeoff.setSensor(pos_read_.pz);
       vel_sp = pid_takeoff.update();
-      // ROS_INFO("Current output is %f",vel_sp);
-      // ROS_INFO("Height: %f",pos_read_.pz);
-      // ROS_INFO("Current Derivative is %f", pid_takeoff.getDerivate());
       // velocity saturation
       if(vel_sp < 0) {
         fcu_vel_setpoint_.twist.linear.z   = 0;
@@ -294,14 +287,12 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   }  
 
   else{
-    ROS_INFO("[Takeoff] Current Height: %f", current_height);
-    ROS_INFO("Finished Taking off");
+    ROS_INFO("[PX4 CTRL] Finished Takeoff at Height: %f", current_height);
     state_set_.takeoff = 0;
     hover();
   }
 
-  state_read_.takeoff = (fabs(pid_takeoff.getDerivate()) <= 0.05) && (current_height > 0.9*altitude);
-
+  state_read_.takeoff = (fabs(pid_takeoff.getDerivate()) <= 0.05) && (current_height > (TAKEOFF_RATIO *altitude));
   return state_read_.takeoff;
 }
 
@@ -314,9 +305,9 @@ bool CtrlPx4::land(double velocity)
 
   if(current_height > 0.11 || fabs(pid_land.getDerivate()) > 0.1 )
   {
-   // ROS_INFO("[Land] PID derivative term is %f", pid_land.getDerivate());
+   ROS_INFO("[Land] PID derivative term is %f", pid_land.getDerivate());
     if (auto_tl_ == 1)
-    	fcu_pos_setpoint_.pose.position.z = 0;
+    	fcu_pos_setpoint_.pose.position.z = 0.1;
     else
     {
       fcu_vel_setpoint_.twist.linear.z = pid_land.update(); // a rough p controller for velocity
@@ -353,7 +344,7 @@ bool CtrlPx4::setMode(int mode)
   switch(mode)
   {
     case MANUAL:
-      ROS_INFO("set manual");
+      ROS_INFO("[PX4 CTRL] set manual");
       state_set_.prev_mode = state_read_.mode; //note down mode before arming
       set_mode_.request.custom_mode = "MANUAL";
       mavros_set_mode_client_.call(set_mode_);
@@ -362,7 +353,7 @@ bool CtrlPx4::setMode(int mode)
       break;
 
     case POSCTL:
-      ROS_INFO("set position control");
+      ROS_INFO("[PX4 CTRL] set position control");
       state_set_.prev_mode = state_read_.mode; //note down mode before arming
       set_mode_.request.custom_mode = "POSCTL";
       mavros_set_mode_client_.call(set_mode_);
@@ -371,7 +362,7 @@ bool CtrlPx4::setMode(int mode)
 
 
     case OFFBOARD:
-      ROS_INFO("set offboard");
+      ROS_INFO("[PX4 CTRL] set offboard");
       state_set_.prev_mode = state_read_.mode; //note down mode before arming
       set_mode_.request.custom_mode = "OFFBOARD";
       mavros_set_mode_client_.call(set_mode_);
@@ -379,7 +370,7 @@ bool CtrlPx4::setMode(int mode)
       break;
 
     default:
-      ROS_INFO("Mode not implemented, current mode is %d", state_read_.mode);
+      ROS_INFO("[PX4 CTRL] Mode not implemented, current mode is %d", state_read_.mode);
       return 0;
 
   }
@@ -413,7 +404,7 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   if ((fabs(pos_read_.px + pos_nav(0) - x) + fabs(pos_read_.py + pos_nav(1)-y)) > 1){
     fcu_pos_setpoint_.pose.position.x =   pos_read_.px;
     fcu_pos_setpoint_.pose.position.y =   pos_read_.py;
-    ROS_INFO("Reset xy");
+    ROS_INFO("[PX4 CTRL] Reset xy");
   } else {
      fcu_pos_setpoint_.pose.position.x =  x; 
      fcu_pos_setpoint_.pose.position.y  = y;
@@ -421,7 +412,7 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > 3){
   fcu_pos_setpoint_.pose.position.z =  pos_read_.pz;
-  ROS_INFO("Reset z"); 
+  ROS_INFO("[PX4 CTRL] Reset z"); 
   } else {
     fcu_pos_setpoint_.pose.position.z = z;
   }

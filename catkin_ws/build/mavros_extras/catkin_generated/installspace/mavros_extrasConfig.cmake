@@ -67,7 +67,7 @@ set(mavros_extras_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(mavros_extras_SOURCE_PREFIX /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras)
+  set(mavros_extras_SOURCE_PREFIX /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras)
   set(mavros_extras_DEVEL_PREFIX /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel)
   set(mavros_extras_INSTALL_PREFIX "")
   set(mavros_extras_PREFIX ${mavros_extras_DEVEL_PREFIX})

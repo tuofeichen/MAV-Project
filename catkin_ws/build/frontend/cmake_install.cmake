@@ -115,7 +115,35 @@ file(INSTALL DESTINATION "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/install" T
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/frontend/msg" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/msg/CtrlState.msg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/frontend/cmake" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/catkin_generated/installspace/frontend-msg-paths.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/frontend")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/common-lisp/ros/frontend")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/frontend")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/frontend")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/catkin_generated/installspace/frontend.pc")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/frontend/cmake" TYPE FILE FILES "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/catkin_generated/installspace/frontend-msg-extras.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")

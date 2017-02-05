@@ -43,7 +43,7 @@ RM = /opt/cmake-3.3.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras
@@ -58,17 +58,17 @@ include CMakeFiles/mavros_extras.dir/progress.make
 include CMakeFiles/mavros_extras.dir/flags.make
 
 CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/distance_sensor.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/distance_sensor.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/distance_sensor.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/distance_sensor.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/distance_sensor.cpp > CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/distance_sensor.cpp > CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/distance_sensor.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/distance_sensor.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o.requires:
 
@@ -82,17 +82,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/distance_sensor.cpp.o.provides.build: C
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/px4flow.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/px4flow.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/px4flow.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/px4flow.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/px4flow.cpp > CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/px4flow.cpp > CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/px4flow.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/px4flow.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o.requires:
 
@@ -106,17 +106,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/px4flow.cpp.o.provides.build: CMakeFile
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/image_pub.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/image_pub.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/image_pub.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/image_pub.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/image_pub.cpp > CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/image_pub.cpp > CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/image_pub.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/image_pub.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o.requires:
 
@@ -130,17 +130,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/image_pub.cpp.o.provides.build: CMakeFi
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/mocap_pose_estimate.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/mocap_pose_estimate.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/mocap_pose_estimate.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/mocap_pose_estimate.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/mocap_pose_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/mocap_pose_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/mocap_pose_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/mocap_pose_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o.requires:
 
@@ -154,17 +154,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/mocap_pose_estimate.cpp.o.provides.buil
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_pose_estimate.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_pose_estimate.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_pose_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_pose_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_pose_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o.requires:
 
@@ -178,17 +178,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/vision_pose_estimate.cpp.o.provides.bui
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_speed_estimate.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_speed_estimate.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_speed_estimate.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_speed_estimate.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_speed_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_speed_estimate.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vision_speed_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vision_speed_estimate.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o.requires:
 
@@ -202,17 +202,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/vision_speed_estimate.cpp.o.provides.bu
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vibration.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vibration.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vibration.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vibration.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vibration.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vibration.cpp > CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/vibration.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/vibration.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o.requires:
 
@@ -226,17 +226,17 @@ CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o.provides.build: CMakeFi
 
 
 CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o: CMakeFiles/mavros_extras.dir/flags.make
-CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/cam_imu_sync.cpp
+CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/cam_imu_sync.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/cam_imu_sync.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/cam_imu_sync.cpp
 
 CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/cam_imu_sync.cpp > CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/cam_imu_sync.cpp > CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.i
 
 CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/plugins/cam_imu_sync.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/plugins/cam_imu_sync.cpp -o CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.s
 
 CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o.requires:
 
@@ -272,7 +272,7 @@ mavros_extras_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: CMakeFiles/mavros_extras.dir/src/plugins/vibration.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: CMakeFiles/mavros_extras.dir/src/plugins/cam_imu_sync.cpp.o
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: CMakeFiles/mavros_extras.dir/build.make
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/libPocoFoundation.so
@@ -291,7 +291,7 @@ mavros_extras_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libxmlrpcpp.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libtf2.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libroscpp_serialization.so
@@ -321,13 +321,13 @@ mavros_extras_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.8
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.8
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.2.4.8
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/libPocoFoundation.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libdl.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libroslib.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/liburdf.so
@@ -358,13 +358,13 @@ mavros_extras_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/libPocoFoundation.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /usr/lib/x86_64-linux-gnu/libdl.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libroslib.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros_extras.so: /opt/ros/indigo/lib/libimage_transport.so
@@ -418,6 +418,6 @@ CMakeFiles/mavros_extras.dir/clean:
 .PHONY : CMakeFiles/mavros_extras.dir/clean
 
 CMakeFiles/mavros_extras.dir/depend:
-	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/mavros_extras.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/mavros_extras.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/mavros_extras.dir/depend
 

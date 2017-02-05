@@ -1,9 +1,10 @@
-In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
-                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:5:39: fatal error: mavros_msgs/BatteryStatus.h: No such file or directory
- #include <mavros_msgs/BatteryStatus.h>
-                                       ^
-compilation terminated.
-make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
-make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
-make: *** [all] Error 2
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:300:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:346:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                                ^
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:387:45: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                             ^

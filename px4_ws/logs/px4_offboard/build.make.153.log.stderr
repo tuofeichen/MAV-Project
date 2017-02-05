@@ -1,0 +1,11 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: In member function 'void Mission::obstCallback(geometry_msgs::Point)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:298:3: error: expected ';' before 'if'
+   if(crash_cnt>5){
+   ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:440:1: error: expected '}' at end of input
+ }
+ ^
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:440:1: error: expected '}' at end of input
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2

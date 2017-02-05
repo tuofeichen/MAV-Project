@@ -1,5 +1,0 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libSLAM.so: undefined reference to `pcl::VoxelGrid<pcl::PointXYZRGB>::applyFilter(pcl::PointCloud<pcl::PointXYZRGB>&)'
-collect2: error: ld returned 1 exit status
-make[2]: *** [/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/frontend/frontend] Error 1
-make[1]: *** [CMakeFiles/frontend.dir/all] Error 2
-make: *** [all] Error 2

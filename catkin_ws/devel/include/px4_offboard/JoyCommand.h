@@ -35,7 +35,8 @@ struct JoyCommand_
     , arm(false)
     , offboard(false)
     , takeoff(false)
-    , land(false)  {
+    , land(false)
+    , autostate(0)  {
     }
   JoyCommand_(const ContainerAllocator& _alloc)
     : header(_alloc)
@@ -46,7 +47,8 @@ struct JoyCommand_
     , arm(false)
     , offboard(false)
     , takeoff(false)
-    , land(false)  {
+    , land(false)
+    , autostate(0)  {
   (void)_alloc;
     }
 
@@ -78,6 +80,9 @@ struct JoyCommand_
 
    typedef uint8_t _land_type;
   _land_type land;
+
+   typedef int8_t _autostate_type;
+  _autostate_type autostate;
 
 
 
@@ -156,12 +161,12 @@ struct MD5Sum< ::px4_offboard::JoyCommand_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "1ff5c348546b7bfead04686358bc531d";
+    return "dee1f7c5569586cf7ca47c22ff97902c";
   }
 
   static const char* value(const ::px4_offboard::JoyCommand_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x1ff5c348546b7bfeULL;
-  static const uint64_t static_value2 = 0xad04686358bc531dULL;
+  static const uint64_t static_value1 = 0xdee1f7c5569586cfULL;
+  static const uint64_t static_value2 = 0x7ca47c22ff97902cULL;
 };
 
 template<class ContainerAllocator>
@@ -188,8 +193,8 @@ bool failsafe\n\
 bool arm \n\
 bool offboard\n\
 bool takeoff\n\
-bool  land\n\
-\n\
+bool land\n\
+byte autostate\n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
 # Standard metadata for higher-level stamped data types.\n\
@@ -250,6 +255,7 @@ namespace serialization
       stream.next(m.offboard);
       stream.next(m.takeoff);
       stream.next(m.land);
+      stream.next(m.autostate);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -289,6 +295,8 @@ struct Printer< ::px4_offboard::JoyCommand_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.takeoff);
     s << indent << "land: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.land);
+    s << indent << "autostate: ";
+    Printer<int8_t>::stream(s, indent + "  ", v.autostate);
   }
 };
 

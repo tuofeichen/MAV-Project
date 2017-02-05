@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/opt/cmake-3.3.2/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -89,15 +78,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/opt/cmake-3.3.2/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/opt/cmake-3.3.2/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -121,17 +112,26 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/cmake-3.3.2/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/cmake-3.3.2/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/opt/cmake-3.3.2/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -177,6 +177,19 @@ SLAM: cmake_check_build_system
 SLAM/fast:
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/build
 .PHONY : SLAM/fast
+
+#=============================================================================
+# Target rules for targets named _frontend_generate_messages_check_deps_CtrlState
+
+# Build rule for target.
+_frontend_generate_messages_check_deps_CtrlState: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _frontend_generate_messages_check_deps_CtrlState
+.PHONY : _frontend_generate_messages_check_deps_CtrlState
+
+# fast build rule for target.
+_frontend_generate_messages_check_deps_CtrlState/fast:
+	$(MAKE) -f CMakeFiles/_frontend_generate_messages_check_deps_CtrlState.dir/build.make CMakeFiles/_frontend_generate_messages_check_deps_CtrlState.dir/build
+.PHONY : _frontend_generate_messages_check_deps_CtrlState/fast
 
 #=============================================================================
 # Target rules for targets named clean_test_results
@@ -229,6 +242,97 @@ frontend: cmake_check_build_system
 frontend/fast:
 	$(MAKE) -f CMakeFiles/frontend.dir/build.make CMakeFiles/frontend.dir/build
 .PHONY : frontend/fast
+
+#=============================================================================
+# Target rules for targets named frontend_gencpp
+
+# Build rule for target.
+frontend_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_gencpp
+.PHONY : frontend_gencpp
+
+# fast build rule for target.
+frontend_gencpp/fast:
+	$(MAKE) -f CMakeFiles/frontend_gencpp.dir/build.make CMakeFiles/frontend_gencpp.dir/build
+.PHONY : frontend_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named frontend_generate_messages
+
+# Build rule for target.
+frontend_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_generate_messages
+.PHONY : frontend_generate_messages
+
+# fast build rule for target.
+frontend_generate_messages/fast:
+	$(MAKE) -f CMakeFiles/frontend_generate_messages.dir/build.make CMakeFiles/frontend_generate_messages.dir/build
+.PHONY : frontend_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named frontend_generate_messages_cpp
+
+# Build rule for target.
+frontend_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_generate_messages_cpp
+.PHONY : frontend_generate_messages_cpp
+
+# fast build rule for target.
+frontend_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/frontend_generate_messages_cpp.dir/build.make CMakeFiles/frontend_generate_messages_cpp.dir/build
+.PHONY : frontend_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named frontend_generate_messages_lisp
+
+# Build rule for target.
+frontend_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_generate_messages_lisp
+.PHONY : frontend_generate_messages_lisp
+
+# fast build rule for target.
+frontend_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/frontend_generate_messages_lisp.dir/build.make CMakeFiles/frontend_generate_messages_lisp.dir/build
+.PHONY : frontend_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named frontend_generate_messages_py
+
+# Build rule for target.
+frontend_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_generate_messages_py
+.PHONY : frontend_generate_messages_py
+
+# fast build rule for target.
+frontend_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/frontend_generate_messages_py.dir/build.make CMakeFiles/frontend_generate_messages_py.dir/build
+.PHONY : frontend_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named frontend_genlisp
+
+# Build rule for target.
+frontend_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_genlisp
+.PHONY : frontend_genlisp
+
+# fast build rule for target.
+frontend_genlisp/fast:
+	$(MAKE) -f CMakeFiles/frontend_genlisp.dir/build.make CMakeFiles/frontend_genlisp.dir/build
+.PHONY : frontend_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named frontend_genpy
+
+# Build rule for target.
+frontend_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frontend_genpy
+.PHONY : frontend_genpy
+
+# fast build rule for target.
+frontend_genpy/fast:
+	$(MAKE) -f CMakeFiles/frontend_genpy.dir/build.make CMakeFiles/frontend_genpy.dir/build
+.PHONY : frontend_genpy/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_cpp
@@ -681,6 +785,33 @@ src/ORB.cpp.s:
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/ORB.cpp.s
 .PHONY : src/ORB.cpp.s
 
+src/ObjDetection.o: src/ObjDetection.cpp.o
+
+.PHONY : src/ObjDetection.o
+
+# target to build an object file
+src/ObjDetection.cpp.o:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o
+.PHONY : src/ObjDetection.cpp.o
+
+src/ObjDetection.i: src/ObjDetection.cpp.i
+
+.PHONY : src/ObjDetection.i
+
+# target to preprocess a source file
+src/ObjDetection.cpp.i:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/ObjDetection.cpp.i
+.PHONY : src/ObjDetection.cpp.i
+
+src/ObjDetection.s: src/ObjDetection.cpp.s
+
+.PHONY : src/ObjDetection.s
+
+# target to generate assembly for a file
+src/ObjDetection.cpp.s:
+	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/ObjDetection.cpp.s
+.PHONY : src/ObjDetection.cpp.s
+
 src/OrbDetSurfDesc.o: src/OrbDetSurfDesc.cpp.o
 
 .PHONY : src/OrbDetSurfDesc.o
@@ -707,33 +838,6 @@ src/OrbDetSurfDesc.s: src/OrbDetSurfDesc.cpp.s
 src/OrbDetSurfDesc.cpp.s:
 	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/OrbDetSurfDesc.cpp.s
 .PHONY : src/OrbDetSurfDesc.cpp.s
-
-src/PointCloudMap.o: src/PointCloudMap.cpp.o
-
-.PHONY : src/PointCloudMap.o
-
-# target to build an object file
-src/PointCloudMap.cpp.o:
-	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o
-.PHONY : src/PointCloudMap.cpp.o
-
-src/PointCloudMap.i: src/PointCloudMap.cpp.i
-
-.PHONY : src/PointCloudMap.i
-
-# target to preprocess a source file
-src/PointCloudMap.cpp.i:
-	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.i
-.PHONY : src/PointCloudMap.cpp.i
-
-src/PointCloudMap.s: src/PointCloudMap.cpp.s
-
-.PHONY : src/PointCloudMap.s
-
-# target to generate assembly for a file
-src/PointCloudMap.cpp.s:
-	$(MAKE) -f CMakeFiles/SLAM.dir/build.make CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.s
-.PHONY : src/PointCloudMap.cpp.s
 
 src/RANSACBasedTME.o: src/RANSACBasedTME.cpp.o
 
@@ -957,10 +1061,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... frontend_genpy"
+	@echo "... frontend"
+	@echo "... frontend_generate_messages_py"
 	@echo "... list_install_components"
+	@echo "... frontend_genlisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... clean_test_results"
@@ -968,8 +1078,11 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... run_tests"
-	@echo "... doxygen"
+	@echo "... test"
+	@echo "... frontend_generate_messages_lisp"
+	@echo "... SLAM"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... _frontend_generate_messages_check_deps_CtrlState"
 	@echo "... download_extra_data"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... tests"
@@ -977,12 +1090,11 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... frontend"
-	@echo "... install/local"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... SLAM"
-	@echo "... install/strip"
-	@echo "... install"
+	@echo "... frontend_generate_messages_cpp"
+	@echo "... frontend_generate_messages"
+	@echo "... run_tests"
+	@echo "... doxygen"
+	@echo "... frontend_gencpp"
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... src/AnalyticBasedTME.o"
@@ -1012,12 +1124,12 @@ help:
 	@echo "... src/ORB.o"
 	@echo "... src/ORB.i"
 	@echo "... src/ORB.s"
+	@echo "... src/ObjDetection.o"
+	@echo "... src/ObjDetection.i"
+	@echo "... src/ObjDetection.s"
 	@echo "... src/OrbDetSurfDesc.o"
 	@echo "... src/OrbDetSurfDesc.i"
 	@echo "... src/OrbDetSurfDesc.s"
-	@echo "... src/PointCloudMap.o"
-	@echo "... src/PointCloudMap.i"
-	@echo "... src/PointCloudMap.s"
 	@echo "... src/RANSACBasedTME.o"
 	@echo "... src/RANSACBasedTME.i"
 	@echo "... src/RANSACBasedTME.s"

@@ -1,4 +1,4 @@
-[33m[1mCMake Warning[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/CMakeLists.txt:24 (find_package):
+[33m[1mCMake Warning[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/CMakeLists.txt:24 (find_package):
   By not providing "FindEigen3.cmake" in CMAKE_MODULE_PATH this project has
   asked CMake to find a package configuration file provided by "Eigen3", but
   CMake did not find one.

@@ -9,7 +9,7 @@ import geometry_msgs.msg
 import std_msgs.msg
 
 class JoyCommand(genpy.Message):
-  _md5sum = "1ff5c348546b7bfead04686358bc531d"
+  _md5sum = "dee1f7c5569586cf7ca47c22ff97902c"
   _type = "px4_offboard/JoyCommand"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -20,8 +20,8 @@ bool failsafe
 bool arm 
 bool offboard
 bool takeoff
-bool  land
-
+bool land
+byte autostate
 ================================================================================
 MSG: std_msgs/Header
 # Standard metadata for higher-level stamped data types.
@@ -56,8 +56,8 @@ float64 y
 float64 z
 float64 w
 """
-  __slots__ = ['header','position','yaw','orientation','failsafe','arm','offboard','takeoff','land']
-  _slot_types = ['std_msgs/Header','geometry_msgs/Point','float64','geometry_msgs/Quaternion','bool','bool','bool','bool','bool']
+  __slots__ = ['header','position','yaw','orientation','failsafe','arm','offboard','takeoff','land','autostate']
+  _slot_types = ['std_msgs/Header','geometry_msgs/Point','float64','geometry_msgs/Quaternion','bool','bool','bool','bool','bool','byte']
 
   def __init__(self, *args, **kwds):
     """
@@ -67,7 +67,7 @@ float64 w
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,position,yaw,orientation,failsafe,arm,offboard,takeoff,land
+       header,position,yaw,orientation,failsafe,arm,offboard,takeoff,land,autostate
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -94,6 +94,8 @@ float64 w
         self.takeoff = False
       if self.land is None:
         self.land = False
+      if self.autostate is None:
+        self.autostate = 0
     else:
       self.header = std_msgs.msg.Header()
       self.position = geometry_msgs.msg.Point()
@@ -104,6 +106,7 @@ float64 w
       self.offboard = False
       self.takeoff = False
       self.land = False
+      self.autostate = 0
 
   def _get_types(self):
     """
@@ -129,7 +132,7 @@ float64 w
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_8d5B.pack(_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land))
+      buff.write(_struct_8d5Bb.pack(_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land, _x.autostate))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -161,8 +164,8 @@ float64 w
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 69
-      (_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land,) = _struct_8d5B.unpack(str[start:end])
+      end += 70
+      (_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land, _x.autostate,) = _struct_8d5Bb.unpack(str[start:end])
       self.failsafe = bool(self.failsafe)
       self.arm = bool(self.arm)
       self.offboard = bool(self.offboard)
@@ -192,7 +195,7 @@ float64 w
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_8d5B.pack(_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land))
+      buff.write(_struct_8d5Bb.pack(_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land, _x.autostate))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -225,8 +228,8 @@ float64 w
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 69
-      (_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land,) = _struct_8d5B.unpack(str[start:end])
+      end += 70
+      (_x.position.x, _x.position.y, _x.position.z, _x.yaw, _x.orientation.x, _x.orientation.y, _x.orientation.z, _x.orientation.w, _x.failsafe, _x.arm, _x.offboard, _x.takeoff, _x.land, _x.autostate,) = _struct_8d5Bb.unpack(str[start:end])
       self.failsafe = bool(self.failsafe)
       self.arm = bool(self.arm)
       self.offboard = bool(self.offboard)
@@ -238,4 +241,4 @@ float64 w
 
 _struct_I = genpy.struct_I
 _struct_3I = struct.Struct("<3I")
-_struct_8d5B = struct.Struct("<8d5B")
+_struct_8d5Bb = struct.Struct("<8d5Bb")

@@ -1,0 +1,8 @@
+c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/obj_test/src/SURF.cpp:1:0: error: bad value (cortex-a8) for -mtune= switch
+ /**
+ ^
+make[2]: *** [CMakeFiles/SURF.dir/src/SURF.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SURF.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

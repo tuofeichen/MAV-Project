@@ -1,0 +1,14 @@
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp: In member function 'bool ObjDetection::objectDetect()':
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:73:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
+                                            ^
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:76:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int j = 0; j < forward_matches.size();j++)
+                                            ^
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp: In member function 'void ObjDetection::checkObjAngle(cv::Mat)':
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:228:8: warning: unused variable 'distance' [-Wunused-variable]
+  float distance = 0;
+        ^
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:229:6: warning: unused variable 'distance_counter' [-Wunused-variable]
+  int   distance_counter = 0;
+      ^

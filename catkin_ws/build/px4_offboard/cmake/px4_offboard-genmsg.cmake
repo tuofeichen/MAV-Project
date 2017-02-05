@@ -15,9 +15,9 @@ add_custom_target(px4_offboard_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg" NAME_WE)
+get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg" NAME_WE)
 add_custom_target(_px4_offboard_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "px4_offboard" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg" "std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "px4_offboard" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg" ""
 )
 
 get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg" NAME_WE)
@@ -32,9 +32,9 @@ add_custom_target(_px4_offboard_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(px4_offboard
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg"
+  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/px4_offboard
 )
 _generate_msg_cpp(px4_offboard
@@ -58,7 +58,7 @@ add_custom_target(px4_offboard_generate_messages_cpp
 add_dependencies(px4_offboard_generate_messages px4_offboard_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg" NAME_WE)
+get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_cpp _px4_offboard_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_cpp _px4_offboard_generate_messages_check_deps_${_filename})
@@ -73,9 +73,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS px4_offboard_generate_messages_cpp)
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(px4_offboard
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg"
+  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/px4_offboard
 )
 _generate_msg_lisp(px4_offboard
@@ -99,7 +99,7 @@ add_custom_target(px4_offboard_generate_messages_lisp
 add_dependencies(px4_offboard_generate_messages px4_offboard_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg" NAME_WE)
+get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_lisp _px4_offboard_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_lisp _px4_offboard_generate_messages_check_deps_${_filename})
@@ -114,9 +114,9 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS px4_offboard_generate_messages_lisp
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(px4_offboard
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg"
+  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/indigo/share/std_msgs/cmake/../msg/Header.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/px4_offboard
 )
 _generate_msg_py(px4_offboard
@@ -140,7 +140,7 @@ add_custom_target(px4_offboard_generate_messages_py
 add_dependencies(px4_offboard_generate_messages px4_offboard_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg" NAME_WE)
+get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_py _px4_offboard_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg" NAME_WE)
 add_dependencies(px4_offboard_generate_messages_py _px4_offboard_generate_messages_check_deps_${_filename})

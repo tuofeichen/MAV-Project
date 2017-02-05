@@ -1,0 +1,10 @@
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/main.cpp: In function 'int main(int, char**)':
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/main.cpp:300:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (slam.getImuCompensateCounter()== badFrameCnt)
+                                         ^
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/main.cpp:346:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                                ^
+/home/odroid/MAV-Project/px4_ws/src/frontend/src/main.cpp:387:45: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (int i = 0; i<slam.getKeyFrames().size();i++)
+                                             ^

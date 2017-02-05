@@ -1,0 +1,10 @@
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/AsusProLiveOpenNI2.cpp: In static member function 'static bool AsusProLiveOpenNI2::grab(SLAM::Frame&)':
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/AsusProLiveOpenNI2.cpp:232:31: error: 'colorFlag' was not declared in this scope
+   cout << "color flag is " << colorFlag << endl;
+                               ^
+/home/odroid/MAV-Project/px4_ws/src/obj_test/src/AsusProLiveOpenNI2.cpp:233:31: error: 'depthFlag' was not declared in this scope
+   cout << "depth flag is " << depthFlag << endl; 
+                               ^
+make[2]: *** [CMakeFiles/SURF.dir/src/AsusProLiveOpenNI2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SURF.dir/all] Error 2
+make: *** [all] Error 2

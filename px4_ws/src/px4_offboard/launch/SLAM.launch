@@ -4,7 +4,7 @@
 
 <arg name="sim" default="0"/>
 <arg name="ctrl" default="1"/>
-<arg name = "v_takeoff" default = "3"/>
+<arg name = "cali" default = "0.002"/>
 
 <!-- 1 for position takeoff, 2 for velocity takeoff-->
 
@@ -24,7 +24,7 @@
 <node pkg="px4_offboard" type="SLAM" name="fcu" output="screen">
 <param name ="sim" type="bool" value="$(arg sim)"  />
 <param name ="ctrl" type="int" value="$(arg ctrl)" />
-<param name ="v_takeoff" type="int" value="$(arg v_takeoff)" />
+<param name ="cali" type="double" value="$(arg cali)" />
 
 </node>
 

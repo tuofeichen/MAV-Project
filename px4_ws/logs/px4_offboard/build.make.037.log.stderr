@@ -1,0 +1,8 @@
+In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'void CtrlPx4::objCallback(px4_offboard::JoyCommand)':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:162:70: error: 'my_pos' has no member named 'z'
+   cout << "yaw delta is " <<  joy.yaw << " current yaw " << pos_read_.z << endl;
+                                                                      ^
+make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

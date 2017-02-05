@@ -13,8 +13,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/G2oPoseGraph.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/G2oPoseGraph.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/Mapping.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ORB.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/ORB.cpp.o"
+  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/OrbDetSurfDesc.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/OrbDetSurfDesc.cpp.o"
-  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/PointCloudMap.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RANSACBasedTME.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/RANSACBasedTME.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/RosHandler.cpp.o"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/SIFT.cpp" "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/SLAM.dir/src/SIFT.cpp.o"
@@ -33,10 +33,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include"
   "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include"
   "/opt/ros/indigo/include"
   "/usr/include/pcl-1.7"
-  "/usr/include/vtk-5.8"
   "/home/tuofeichen/g2o"
   "/home/tuofeichen/g2o/EXTERNAL/csparse"
   "/usr/include/eigen3"

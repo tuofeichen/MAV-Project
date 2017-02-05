@@ -1,12 +1,21 @@
 <launch>
 
 <arg name="sim" default="0"/>
+<arg name="fly" default="0"/>
+<arg name = "cali" default = "0.002"/>
 
 <group if="$(arg sim)">
-<include file="$(find px4_offboard)/launch/SLAM.launch"> </include>
+<include file="$(find mavros)/launch/px4.launch"> </include>
 </group>
 
-<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">
+<group if="$(arg fly)">
+<include file="$(find px4_offboard)/launch/SLAM.launch"> 
+<arg name="cali" value="$( arg cali)" />
+</include>
+	
+</group>
+
+<node pkg="frontend" type="frontend" name="rgbd_backend" output="log">
 
 <param name ="sim" type="bool" value="$(arg sim)"  />
 

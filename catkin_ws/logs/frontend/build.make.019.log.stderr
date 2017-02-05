@@ -1,10 +1,23 @@
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp: In function ‘int main(int, char**)’:
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:281:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-    if (slam.getImuCompensateCounter()== badFrameCnt)
-                                         ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:310:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int i = 0; i<slam.getNodes().size();i++)
-                                            ^
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/main.cpp:308:14: warning: variable ‘pos’ set but not used [-Wunused-but-set-variable]
-     Matrix4d pos = slam.getCurrentPosition().matrix();
-              ^
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/RosHandler.cpp:1:0:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:34: fatal error: px4_offboard/CtrlPx4.h: No such file or directory
+ #include "px4_offboard/CtrlPx4.h"
+                                  ^
+compilation terminated.
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/ObjDetection.h:7:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/ObjDetection.cpp:1:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:34: fatal error: px4_offboard/CtrlPx4.h: No such file or directory
+ #include "px4_offboard/CtrlPx4.h"
+                                  ^
+compilation terminated.
+In file included from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/Mapping.h:24:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/src/Mapping.cpp:16:
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/include/RosHandler.h:9:34: fatal error: px4_offboard/CtrlPx4.h: No such file or directory
+ #include "px4_offboard/CtrlPx4.h"
+                                  ^
+compilation terminated.
+make[2]: *** [CMakeFiles/SLAM.dir/src/ObjDetection.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/SLAM.dir/src/RosHandler.cpp.o] Error 1
+make[2]: *** [CMakeFiles/SLAM.dir/src/Mapping.cpp.o] Error 1
+make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
+make: *** [all] Error 2

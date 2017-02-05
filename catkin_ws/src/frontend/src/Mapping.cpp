@@ -69,7 +69,7 @@ void Mapping::run()
 
 	if (!featureDetectionAndExtraction())
 	{
-		// cout << "bad feature!"<< endl;
+		cout << "bad feature!"<< endl;
 		++badFrameCounter;
 		fusePX4LPE(badFrame);
 
@@ -263,8 +263,7 @@ void Mapping::matchTwoFrames(
 		)
 {
 	
-	assert(frame1.getId() != frame2.getId());
-
+	assert(frame1.getId() != frame2.getId());	
 	if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
 	{
 		// just recover from a bad frame
@@ -404,11 +403,9 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 
 bool Mapping::featureDetectionAndExtraction()
 {
-	//
 	// run feature detection and extraction on new frame
 	//
 	currentFrame.setKeypoints( fdem->detect(currentFrame.getGray()) );
-
 	// extract descriptors
 	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );
 

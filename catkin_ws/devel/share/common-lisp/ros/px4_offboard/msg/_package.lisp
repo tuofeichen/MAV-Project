@@ -3,7 +3,7 @@
   (:export
    "<JOYCOMMAND>"
    "JOYCOMMAND"
-   "<MOVECOMMAND>"
-   "MOVECOMMAND"
+   "<CTRLSTATE>"
+   "CTRLSTATE"
   ))
 

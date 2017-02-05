@@ -43,7 +43,7 @@ RM = /opt/cmake-3.3.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+CMAKE_SOURCE_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras
@@ -58,17 +58,17 @@ include CMakeFiles/servo_state_publisher.dir/progress.make
 include CMakeFiles/servo_state_publisher.dir/flags.make
 
 CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o: CMakeFiles/servo_state_publisher.dir/flags.make
-CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/servo_state_publisher.cpp
+CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/servo_state_publisher.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/servo_state_publisher.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/servo_state_publisher.cpp
 
 CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/servo_state_publisher.cpp > CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/servo_state_publisher.cpp > CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.i
 
 CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/servo_state_publisher.cpp -o CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/servo_state_publisher.cpp -o CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.s
 
 CMakeFiles/servo_state_publisher.dir/src/servo_state_publisher.cpp.o.requires:
 
@@ -109,13 +109,13 @@ servo_state_publisher_EXTERNAL_OBJECTS =
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.8
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.8
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.2.4.8
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavros.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/libmavros.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/libclass_loader.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/libPocoFoundation.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /usr/lib/x86_64-linux-gnu/libdl.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/libroslib.so
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/libmavconn.so
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/libmavconn.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/libeigen_conversions.so
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/mavros_extras/servo_state_publisher: /opt/ros/indigo/lib/liburdf.so
@@ -164,6 +164,6 @@ CMakeFiles/servo_state_publisher.dir/clean:
 .PHONY : CMakeFiles/servo_state_publisher.dir/clean
 
 CMakeFiles/servo_state_publisher.dir/depend:
-	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/servo_state_publisher.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras/CMakeFiles/servo_state_publisher.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/servo_state_publisher.dir/depend
 

@@ -1,9 +1,15 @@
 <launch>
 
 <arg name="sim" default="0"/>
+<arg name="fly" default="0"/>
 
 <group if="$(arg sim)">
 <include file="$(find mavros)/launch/px4.launch"> </include>
+</group>
+
+
+<group if="$(arg fly)">
+<include file="$(find px4_offboard)/launch/SLAM.launch"> </include>
 </group>
 
 <node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">

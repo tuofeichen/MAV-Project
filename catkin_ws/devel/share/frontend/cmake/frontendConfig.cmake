@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(frontend_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT " " STREQUAL " ")
+if(NOT "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include " STREQUAL " ")
   set(frontend_INCLUDE_DIRS "")
-  set(_include_dirs "")
+  set(_include_dirs "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
@@ -145,7 +145,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(frontend_EXPORTED_TARGETS "")
+set(frontend_EXPORTED_TARGETS "frontend_generate_messages_cpp;frontend_generate_messages_lisp;frontend_generate_messages_py")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${frontend_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -153,7 +153,7 @@ foreach(t ${frontend_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "")
+set(depends "roscpp;std_msgs;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
@@ -182,7 +182,7 @@ foreach(depend ${depends})
   list(APPEND frontend_EXPORTED_TARGETS ${${frontend_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "")
+set(pkg_cfg_extras "frontend-msg-extras.cmake")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${frontend_DIR}/${extra})

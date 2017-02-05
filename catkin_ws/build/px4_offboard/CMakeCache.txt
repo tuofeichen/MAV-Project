@@ -320,13 +320,13 @@ gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 lib:FILEPATH=/opt/ros/indigo/lib/libeigen_conversions.so
 
 //The directory containing a CMake configuration file for libmavconn.
-libmavconn_DIR:PATH=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/libmavconn/cmake
+libmavconn_DIR:PATH=/opt/ros/indigo/share/libmavconn/cmake
 
 //The directory containing a CMake configuration file for mavros.
-mavros_DIR:PATH=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavros/cmake
+mavros_DIR:PATH=/opt/ros/indigo/share/mavros/cmake
 
 //The directory containing a CMake configuration file for mavros_msgs.
-mavros_msgs_DIR:PATH=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/share/mavros_msgs/cmake
+mavros_msgs_DIR:PATH=/opt/ros/indigo/share/mavros_msgs/cmake
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/indigo/share/message_filters/cmake
@@ -345,6 +345,9 @@ pluginlib_DIR:PATH=/opt/ros/indigo/share/pluginlib/cmake
 
 //Value Computed by CMake
 px4_offboard_BINARY_DIR:STATIC=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard
+
+//Dependencies for target
+px4_offboard_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
 px4_offboard_SOURCE_DIR:STATIC=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard

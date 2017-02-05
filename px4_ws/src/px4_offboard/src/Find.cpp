@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 	
 	
 // Initialize variables
-	SURF feature_detector_obj(SURF_RADIUS, 50, 600);
+	SURF feature_detector_obj(SURF_RADIUS, 20, 600);
 	//SIFT feature_detector_obj(SURF_RADIUS, 50, 600);
 	//OrbDetSurfDesc feature_detector_obj(SURF_RADIUS, 50,600, 600);
 
@@ -78,34 +78,37 @@ int main(int argc, char* argv[])
 	Point2f past_centroid;
 	Point2f past_centroid2;
 	cv::VideoCapture cap(0);
-	ros::init(argc, argv, "FindObjectPubb");
+	ros::init(argc, argv, "FindObjectPub");
 	ros::NodeHandle nh;
 	ros::Rate loop_rate(10);
 	ros::Publisher FindObjectPub = nh.advertise<geometry_msgs::Point>("FindObjectSub", 1000);
 	geometry_msgs::Point PublishPoint;
+
+	// image 
+
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/book_cover_1.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/witch.jpeg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/coke.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/tide.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/tide_box.jpg", IMREAD_GRAYSCALE );	
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/box.jpg", IMREAD_GRAYSCALE );
-	TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/book.jpg", IMREAD_GRAYSCALE );
+	TEMPLATE = imread( "/home/tuofeichen/SLAM/MAV_Project/catkin_ws/src/obj_test/book.jpg", IMREAD_GRAYSCALE );
 	//TEMPLATE = imread( "/home/felipe/catkin_ws/src/obj_test/logo.png", IMREAD_GRAYSCALE );
 	
-	if(camera_depth) AsusProLiveOpenNI2::start();
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 	if(camera_depth) AsusProLiveOpenNI2::start();
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	if(camera_depth){
-		for(int i = 0; i <5 ; ++i){
-			if (!AsusProLiveOpenNI2::grab(frame))
-			{	
-				cout << " init " << endl; 	
-				boost::this_thread::sleep(boost::posix_time::milliseconds(10));
-				i--;
-			}
-								   } 
+// 	if(camera_depth){
+// 		for(int i = 0; i <5 ; ++i){
+// 			if (!AsusProLiveOpenNI2::grab(frame))
+// 			{	
+// 				cout << " init " << endl; 	
+// 				boost::this_thread::sleep(boost::posix_time::milliseconds(10));
+// 				i--;
+// 			}
+// 								   } 
 			
-					}
+// 					}
 		
 
 
@@ -153,8 +156,6 @@ while(ros::ok() )
 // Matching features from TEMPLATE with SCENE_IMAGE
 		feature_detector_obj.match(*TEMPLATE_KEYPOINTS, *TEMPLATE_DESCRIPTOR, *SCENE_IMAGE_KEYPOINTS, *SCENE_IMAGE_DESCRIPTOR, TEMPLATE_KEYPOINTS_INDICES, SCENE_KEYPOINTS_INDICES);
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 // Create vector so we can use the drawMatches function

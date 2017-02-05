@@ -1,0 +1,12 @@
+[31m[1mCMake Error[0m at /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/CMakeLists.txt:114 (add_library):
+  Cannot find source file:
+
+    src/px4_offboard/CtrlPx4.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: px4_offboard
+CMake Error: Cannot determine link language for target "px4_offboard".
+make: *** [cmake_check_build_system] Error 1

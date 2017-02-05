@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg;/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg"
+messages_str = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg;/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg"
 services_str = ""
 pkg_name = "px4_offboard"
 dependencies_str = "geometry_msgs;std_msgs"

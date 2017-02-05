@@ -1,5 +1,5 @@
 # CMake generated Testfile for 
-# Source directory: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras
+# Source directory: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras
 # Build directory: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/mavros_extras
 # 
 # This file includes the relevant testing commands required for 

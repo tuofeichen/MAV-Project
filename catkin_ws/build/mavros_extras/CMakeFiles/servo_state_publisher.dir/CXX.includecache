@@ -6,25 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/include/mavros_msgs/RCOut.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-std_msgs/Header.h
--
-
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/servo_state_publisher.cpp
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/servo_state_publisher.cpp
 ros/ros.h
 -
 ros/console.h
@@ -50,6 +32,24 @@ string
 vector
 -
 time.h
+-
+
+/opt/ros/indigo/include/mavros_msgs/RCOut.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
 -
 
 /opt/ros/indigo/include/ros/advertise_options.h

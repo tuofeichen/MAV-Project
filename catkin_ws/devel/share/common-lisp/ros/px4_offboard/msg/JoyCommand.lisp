@@ -51,7 +51,12 @@
     :reader land
     :initarg :land
     :type cl:boolean
-    :initform cl:nil))
+    :initform cl:nil)
+   (autostate
+    :reader autostate
+    :initarg :autostate
+    :type cl:integer
+    :initform 0))
 )
 
 (cl:defclass JoyCommand (<JoyCommand>)
@@ -106,6 +111,11 @@
 (cl:defmethod land-val ((m <JoyCommand>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader px4_offboard-msg:land-val is deprecated.  Use px4_offboard-msg:land instead.")
   (land m))
+
+(cl:ensure-generic-function 'autostate-val :lambda-list '(m))
+(cl:defmethod autostate-val ((m <JoyCommand>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader px4_offboard-msg:autostate-val is deprecated.  Use px4_offboard-msg:autostate instead.")
+  (autostate m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <JoyCommand>) ostream)
   "Serializes a message object of type '<JoyCommand>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
@@ -125,6 +135,7 @@
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'offboard) 1 0)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'takeoff) 1 0)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'land) 1 0)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'autostate)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <JoyCommand>) istream)
   "Deserializes a message object of type '<JoyCommand>"
@@ -146,6 +157,7 @@
     (cl:setf (cl:slot-value msg 'offboard) (cl:not (cl:zerop (cl:read-byte istream))))
     (cl:setf (cl:slot-value msg 'takeoff) (cl:not (cl:zerop (cl:read-byte istream))))
     (cl:setf (cl:slot-value msg 'land) (cl:not (cl:zerop (cl:read-byte istream))))
+    (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'autostate)) (cl:read-byte istream))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<JoyCommand>)))
@@ -156,22 +168,23 @@
   "px4_offboard/JoyCommand")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<JoyCommand>)))
   "Returns md5sum for a message object of type '<JoyCommand>"
-  "1ff5c348546b7bfead04686358bc531d")
+  "dee1f7c5569586cf7ca47c22ff97902c")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'JoyCommand)))
   "Returns md5sum for a message object of type 'JoyCommand"
-  "1ff5c348546b7bfead04686358bc531d")
+  "dee1f7c5569586cf7ca47c22ff97902c")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<JoyCommand>)))
   "Returns full string definition for message of type '<JoyCommand>"
-  (cl:format cl:nil "Header header~%geometry_msgs/Point position~%float64 yaw~%geometry_msgs/Quaternion orientation~%bool failsafe~%bool arm ~%bool offboard~%bool takeoff~%bool  land~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%================================================================================~%MSG: geometry_msgs/Quaternion~%# This represents an orientation in free space in quaternion form.~%~%float64 x~%float64 y~%float64 z~%float64 w~%~%~%"))
+  (cl:format cl:nil "Header header~%geometry_msgs/Point position~%float64 yaw~%geometry_msgs/Quaternion orientation~%bool failsafe~%bool arm ~%bool offboard~%bool takeoff~%bool land~%byte autostate~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%================================================================================~%MSG: geometry_msgs/Quaternion~%# This represents an orientation in free space in quaternion form.~%~%float64 x~%float64 y~%float64 z~%float64 w~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'JoyCommand)))
   "Returns full string definition for message of type 'JoyCommand"
-  (cl:format cl:nil "Header header~%geometry_msgs/Point position~%float64 yaw~%geometry_msgs/Quaternion orientation~%bool failsafe~%bool arm ~%bool offboard~%bool takeoff~%bool  land~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%================================================================================~%MSG: geometry_msgs/Quaternion~%# This represents an orientation in free space in quaternion form.~%~%float64 x~%float64 y~%float64 z~%float64 w~%~%~%"))
+  (cl:format cl:nil "Header header~%geometry_msgs/Point position~%float64 yaw~%geometry_msgs/Quaternion orientation~%bool failsafe~%bool arm ~%bool offboard~%bool takeoff~%bool land~%byte autostate~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%================================================================================~%MSG: geometry_msgs/Quaternion~%# This represents an orientation in free space in quaternion form.~%~%float64 x~%float64 y~%float64 z~%float64 w~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <JoyCommand>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'position))
      8
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'orientation))
+     1
      1
      1
      1
@@ -190,4 +203,5 @@
     (cl:cons ':offboard (offboard msg))
     (cl:cons ':takeoff (takeoff msg))
     (cl:cons ':land (land msg))
+    (cl:cons ':autostate (autostate msg))
 ))

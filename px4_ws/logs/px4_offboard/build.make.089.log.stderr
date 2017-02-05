@@ -1,0 +1,7 @@
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp: In member function 'bool Mission::turnLeft90()':
+/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:165:3: error: 'yaw' was not declared in this scope
+   yaw += 2* M_PI; // warp around
+   ^
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2

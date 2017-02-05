@@ -1,5 +1,0 @@
-/usr/bin/ld: cannot find -lcsparse
-collect2: error: ld returned 1 exit status
-make[2]: *** [/home/odroid/MAV-Project/px4_ws/devel/lib/backend/backend] Error 1
-make[1]: *** [CMakeFiles/backend.dir/all] Error 2
-make: *** [all] Error 2

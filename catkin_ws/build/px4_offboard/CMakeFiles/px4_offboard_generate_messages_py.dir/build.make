@@ -53,16 +53,15 @@ CMAKE_BINARY_DIR = /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboar
 # Include the progress variables for this target.
 include CMakeFiles/px4_offboard_generate_messages_py.dir/progress.make
 
-CMakeFiles/px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py
+CMakeFiles/px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_CtrlState.py
 CMakeFiles/px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py
 CMakeFiles/px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py
 
 
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py: /opt/ros/indigo/lib/genpy/genmsg_py.py
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py: /opt/ros/indigo/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG px4_offboard/MoveCommand"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/MoveCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_CtrlState.py: /opt/ros/indigo/lib/genpy/genmsg_py.py
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_CtrlState.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG px4_offboard/CtrlState"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/CtrlState.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py: /opt/ros/indigo/lib/genpy/genmsg_py.py
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg
@@ -73,13 +72,13 @@ CMakeFiles/px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg/JoyCommand.msg -Ipx4_offboard:/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/px4_offboard/msg -Igeometry_msgs:/opt/ros/indigo/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/indigo/share/std_msgs/cmake/../msg -p px4_offboard -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg
 
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py: /opt/ros/indigo/lib/genpy/genmsg_py.py
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_CtrlState.py
 /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/px4_offboard/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for px4_offboard"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/indigo/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg --initpy
 
 px4_offboard_generate_messages_py: CMakeFiles/px4_offboard_generate_messages_py
-px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_MoveCommand.py
+px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_CtrlState.py
 px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/_JoyCommand.py
 px4_offboard_generate_messages_py: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/lib/python2.7/dist-packages/px4_offboard/msg/__init__.py
 px4_offboard_generate_messages_py: CMakeFiles/px4_offboard_generate_messages_py.dir/build.make

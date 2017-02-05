@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/tuofeichen/SLAM/MAV-Proj
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_84ed4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_84ed4.dir/build.make CMakeFiles/cmTC_84ed4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6e35c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6e35c.dir/build.make CMakeFiles/cmTC_6e35c.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_84ed4.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_84ed4.dir/testCCompiler.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_84ed4
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84ed4.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_84ed4.dir/testCCompiler.c.o  -o cmTC_84ed4 -rdynamic 
+Building C object CMakeFiles/cmTC_6e35c.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6e35c.dir/testCCompiler.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_6e35c
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6e35c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_6e35c.dir/testCCompiler.c.o  -o cmTC_6e35c -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_60433/fast"
-/usr/bin/make -f CMakeFiles/cmTC_60433.dir/build.make CMakeFiles/cmTC_60433.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_431a3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_431a3.dir/build.make CMakeFiles/cmTC_431a3.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_60433
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60433.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o  -o cmTC_60433 -rdynamic  
+Building C object CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_431a3
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_431a3.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o  -o cmTC_431a3 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_60433' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_60433 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_431a3' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_431a3 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -68,14 +68,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_60433/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_60433.dir/build.make CMakeFiles/cmTC_60433.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_431a3/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_431a3.dir/build.make CMakeFiles/cmTC_431a3.dir/build]
   ignore line: [make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_60433]
-  ignore line: [/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60433.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o  -o cmTC_60433 -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_431a3]
+  ignore line: [/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_431a3.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o  -o cmTC_431a3 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper]
@@ -85,8 +85,8 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_60433' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_60433 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_431a3' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_431a3 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/collect2] ==> ignore
     arg [--sysroot=/] ==> ignore
     arg [--build-id] ==> ignore
@@ -100,7 +100,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_60433] ==> ignore
+    arg [cmTC_431a3] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o] ==> ignore
@@ -112,7 +112,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..]
-    arg [CMakeFiles/cmTC_60433.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_431a3.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -146,14 +146,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b9d4e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b9d4e.dir/build.make CMakeFiles/cmTC_b9d4e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b3a65/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b3a65.dir/build.make CMakeFiles/cmTC_b3a65.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b9d4e.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_b9d4e.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
-Linking C executable cmTC_b9d4e
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b9d4e.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_b9d4e.dir/feature_tests.c.o  -o cmTC_b9d4e -rdynamic 
+Building C object CMakeFiles/cmTC_b3a65.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_b3a65.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b3a65
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3a65.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_b3a65.dir/feature_tests.c.o  -o cmTC_b3a65 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -166,14 +166,14 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5a177/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5a177.dir/build.make CMakeFiles/cmTC_5a177.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e1a10/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e1a10.dir/build.make CMakeFiles/cmTC_e1a10.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_5a177.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_5a177.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
-Linking C executable cmTC_5a177
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5a177.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_5a177.dir/feature_tests.c.o  -o cmTC_5a177 -rdynamic 
+Building C object CMakeFiles/cmTC_e1a10.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_e1a10.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
+Linking C executable cmTC_e1a10
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e1a10.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_e1a10.dir/feature_tests.c.o  -o cmTC_e1a10 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -186,14 +186,14 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_87656/fast"
-/usr/bin/make -f CMakeFiles/cmTC_87656.dir/build.make CMakeFiles/cmTC_87656.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d896c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d896c.dir/build.make CMakeFiles/cmTC_d896c.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_87656.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_87656.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
-Linking C executable cmTC_87656
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_87656.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_87656.dir/feature_tests.c.o  -o cmTC_87656 -rdynamic 
+Building C object CMakeFiles/cmTC_d896c.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_d896c.dir/feature_tests.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d896c
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d896c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_d896c.dir/feature_tests.c.o  -o cmTC_d896c -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -204,28 +204,28 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6bb7b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6bb7b.dir/build.make CMakeFiles/cmTC_6bb7b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d27b9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d27b9.dir/build.make CMakeFiles/cmTC_d27b9.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_6bb7b.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_6bb7b.dir/testCXXCompiler.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_6bb7b
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6bb7b.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_6bb7b.dir/testCXXCompiler.cxx.o  -o cmTC_6bb7b -rdynamic 
+Building CXX object CMakeFiles/cmTC_d27b9.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_d27b9.dir/testCXXCompiler.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_d27b9
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d27b9.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_d27b9.dir/testCXXCompiler.cxx.o  -o cmTC_d27b9 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d4ba4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d4ba4.dir/build.make CMakeFiles/cmTC_d4ba4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9dee1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9dee1.dir/build.make CMakeFiles/cmTC_9dee1.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_d4ba4
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4ba4.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d4ba4 -rdynamic  
+Building CXX object CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_9dee1
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9dee1.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_9dee1 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper
@@ -235,8 +235,8 @@ Thread model: posix
 gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d4ba4' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_d4ba4 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9dee1' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_9dee1 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -244,14 +244,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_d4ba4/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_d4ba4.dir/build.make CMakeFiles/cmTC_d4ba4.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_9dee1/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_9dee1.dir/build.make CMakeFiles/cmTC_9dee1.dir/build]
   ignore line: [make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_d4ba4]
-  ignore line: [/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4ba4.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d4ba4 -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_9dee1]
+  ignore line: [/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9dee1.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_9dee1 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper]
@@ -261,8 +261,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d4ba4' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_d4ba4 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9dee1' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_9dee1 /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/collect2] ==> ignore
     arg [--sysroot=/] ==> ignore
     arg [--build-id] ==> ignore
@@ -276,7 +276,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_d4ba4] ==> ignore
+    arg [cmTC_9dee1] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o] ==> ignore
@@ -288,7 +288,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..]
-    arg [CMakeFiles/cmTC_d4ba4.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_9dee1.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -320,14 +320,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1y] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f6f8f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f6f8f.dir/build.make CMakeFiles/cmTC_f6f8f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0b064/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0b064.dir/build.make CMakeFiles/cmTC_0b064.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f6f8f.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTC_f6f8f.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_f6f8f
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f6f8f.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_f6f8f.dir/feature_tests.cxx.o  -o cmTC_f6f8f -rdynamic 
+Building CXX object CMakeFiles/cmTC_0b064.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTC_0b064.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_0b064
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b064.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_0b064.dir/feature_tests.cxx.o  -o cmTC_0b064 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -393,14 +393,14 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0472a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0472a.dir/build.make CMakeFiles/cmTC_0472a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_77d97/fast"
+/usr/bin/make -f CMakeFiles/cmTC_77d97.dir/build.make CMakeFiles/cmTC_77d97.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_0472a.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_0472a.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_0472a
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0472a.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_0472a.dir/feature_tests.cxx.o  -o cmTC_0472a -rdynamic 
+Building CXX object CMakeFiles/cmTC_77d97.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_77d97.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_77d97
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77d97.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_77d97.dir/feature_tests.cxx.o  -o cmTC_77d97 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -466,14 +466,14 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3ddbe/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3ddbe.dir/build.make CMakeFiles/cmTC_3ddbe.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_68915/fast"
+/usr/bin/make -f CMakeFiles/cmTC_68915.dir/build.make CMakeFiles/cmTC_68915.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3ddbe.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_3ddbe.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_3ddbe
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ddbe.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_3ddbe.dir/feature_tests.cxx.o  -o cmTC_3ddbe -rdynamic 
+Building CXX object CMakeFiles/cmTC_68915.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_68915.dir/feature_tests.cxx.o -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_68915
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68915.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_68915.dir/feature_tests.cxx.o  -o cmTC_68915 -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
@@ -537,28 +537,28 @@ make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/fr
 Determining if files pthread.h exist passed with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b3f81/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b3f81.dir/build.make CMakeFiles/cmTC_b3f81.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7a7de/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7a7de.dir/build.make CMakeFiles/cmTC_7a7de.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b3f81.dir/CheckIncludeFiles.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_b3f81.dir/CheckIncludeFiles.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
-Linking C executable cmTC_b3f81
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3f81.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_b3f81.dir/CheckIncludeFiles.c.o  -o cmTC_b3f81 -rdynamic 
+Building C object CMakeFiles/cmTC_7a7de.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7a7de.dir/CheckIncludeFiles.c.o   -c /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_7a7de
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a7de.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_7a7de.dir/CheckIncludeFiles.c.o  -o cmTC_7a7de -rdynamic 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e1219/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e1219.dir/build.make CMakeFiles/cmTC_e1219.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c55e0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c55e0.dir/build.make CMakeFiles/cmTC_c55e0.dir/build
 make[1]: Entering directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e1219.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_e1219.dir/CheckFunctionExists.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CheckFunctionExists.c
-Linking C executable cmTC_e1219
-/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e1219.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_e1219.dir/CheckFunctionExists.c.o  -o cmTC_e1219 -rdynamic -lpthread 
+Building C object CMakeFiles/cmTC_c55e0.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_c55e0.dir/CheckFunctionExists.c.o   -c /opt/cmake-3.3.2/share/cmake-3.3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c55e0
+/opt/cmake-3.3.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c55e0.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_c55e0.dir/CheckFunctionExists.c.o  -o cmTC_c55e0 -rdynamic -lpthread 
 make[1]: Leaving directory `/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/frontend/CMakeFiles/CMakeTmp'
 
 

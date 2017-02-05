@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros/mavros_extras/src/copter_visualization.cpp
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/mavros_extras/src/copter_visualization.cpp
 vector
 -
 tf/tf.h
