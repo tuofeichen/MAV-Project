@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export ROS_HOME="/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log"
+roslaunch slam_test slam_test.launch

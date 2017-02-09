@@ -12,11 +12,20 @@ using namespace std;
 using namespace cv;
 
 
-static std::ofstream logPos;
+static std::ofstream logSlamPos;
+static std::ofstream logLpePos;
 // static std::ofstream logKpts;
 // static std::ofstream logKpts3D;
+void initLog()
+{
+		logSlamPos.open("~/MAV-Project/position_slam.csv", std::ofstream::out | std::ofstream::trunc);
+		logSlamPos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 
-void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose,int frameNum, bool validUpdate)
+		logLpePos.open("~/MAV-Project/position_lpe.csv", std::ofstream::out | std::ofstream::trunc);
+		logLpePos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
+}
+
+void logSlamNode(const Frame& frame, const Eigen::Isometry3d& pose,int frameNum, bool validUpdate)
 {
 	Eigen::Affine3d trafo(pose.affine());
 	Eigen::Quaterniond q(trafo.rotation());
@@ -28,7 +37,7 @@ void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose,int fram
 	p = atan2(-t(2,0),sqrt(t(2,1)*t(2,1)+t(2,2)*t(2,2))); // pitch (around y)
 	y = atan2(t(1,0),t(0,0)); // yaw (around z)
 
-	logPos << to_string(frame.getTime()) << ","
+	logSlamPos << to_string(frame.getTime()) << ","
 		 << pose.translation().x() << ","
 		 << pose.translation().y() << ","
 		 << pose.translation().z() << ","
@@ -42,15 +51,37 @@ void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose,int fram
 
 }
 
-// void logPoseGraphEnd(Frame frame, G2oPoseGraph graph, int nodeCnt)
-// {
-// 	frame.setNewNodeFlag(true);
-// 	for (int i = 0; i < nodeCnt; i++)
-// 	{
-// 		logPoseGraphNode(frame, graph.getPositionOfId(i));
-// 	} // log pose graph after optimization
-//
-// }
+void logLpeNode(Matrix4f lpe, double time, int frameNum, bool validUpdate)
+{
+	double r, p, y;
+	r = atan2(lpe(2,1),lpe(2,2)); 									// roll (around x)
+	p = atan2(-lpe(2,0),sqrt(lpe(2,1)*lpe(2,1)+lpe(2,2)*lpe(2,2))); // pitch (around y)
+	y = atan2(lpe(1,0),lpe(0,0));
+
+	logSlamPos << to_string(time) << ","
+		 << lpe(0,3) << ","
+		 << lpe(1,3) << ","
+		 << lpe(2,3) << ","
+		 << r << ","
+		 << p << ","
+		 << y  << "," << frameNum << "," << validUpdate <<",";// << endl; // note down quaternion or rpy? (should probably note down quaternion)
+
+	cout << fixed << setprecision(4);
+	cout << endl << "[LPE] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl;
+	cout << "[LPE] x     " <<  lpe(0,3)  << "  y     " << lpe(1,3)  <<" z   " <<lpe(2,3)  << endl;
+
+}
+
+
+void logPoseGraphEnd(Frame frame, G2oPoseGraph graph, int nodeCnt)
+{
+	frame.setNewNodeFlag(true);
+	for (int i = 0; i < nodeCnt; i++)
+	{
+		logSlamNode(frame, graph.getPositionOfId(i),i,1);
+	} // log pose graph after optimization
+
+}
 
 void showImage(Frame frame)
 {

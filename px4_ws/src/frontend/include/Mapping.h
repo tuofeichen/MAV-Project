@@ -26,7 +26,7 @@
 // #define DEBUG_NEW 14
 // #define DEBUG_OLD 13
 // #define DEBUG
- 
+
 
 namespace SLAM {
 
@@ -104,8 +104,8 @@ public:
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
-		  neighborsToMatch = 4, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 3, ///< number of sequential frames to match
+		  neighborsToMatch = 3, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
 		  dummyFrameAfterLostFrames = 3 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
@@ -124,7 +124,7 @@ public:
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
 	static constexpr double minRotation = 1 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)	
+	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
@@ -179,7 +179,7 @@ private:
 	IPoseGraph* poseGraph;
 	RosHandler* px4; // pixhawk communication via mavros
 	IMap* map3d;
-	
+
 	volatile bool initDone = false;
 	volatile bool loopClosureFound = false;
 
@@ -196,7 +196,7 @@ private:
 
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
-	
+
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	bool validTrafo[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	Eigen::Isometry3d transformationMatrices[lcRandomMatching + contFramesToMatch + neighborsToMatch];
@@ -238,7 +238,7 @@ private:
 
 
 	Matrix3d PosDebug; // rotation matrix debug
- 
+
 
 public:
 	double getOptAvrTime() { return optAvrTime / static_cast<double>(nOpt); }

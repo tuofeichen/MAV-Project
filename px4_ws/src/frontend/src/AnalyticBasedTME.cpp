@@ -72,9 +72,9 @@ void AnalyticBasedTME::estimate( // return false if estimation failed and else t
 	Eigen::JacobiSVD<Matrix3> svd(covXY, Eigen::ComputeFullU | Eigen::ComputeFullV);
 
 	Matrix3 s = Matrix3::Identity();
-	
+
 	FloatingPoint scale = 1.0/varX;
-	
+
 	const FloatingPoint detCovXY = covXY.determinant();
 
 	if(fabs(detCovXY) < 1e-12)

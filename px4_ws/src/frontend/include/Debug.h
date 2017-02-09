@@ -14,10 +14,12 @@
 
 using namespace SLAM;
 
-  void logPoseGraphNode(const Frame& , const Eigen::Isometry3d&,int, bool);
+  void initLog();
+  void logSlamNode(const Frame& , const Eigen::Isometry3d&,int, bool);
+  void logLpeNode(Matrix4f, double, int, bool);
   bool readImage(Frame& frame, int id);
   void saveImage(Frame frame, int id);
   void showImage(Frame frame);
-  // void logPoseGraphEnd(Frame frame, G2oPoseGraph graph, int nodeCnt);
+  void logPoseGraphEnd(Frame frame, G2oPoseGraph graph, int nodeCnt);
 
 #endif

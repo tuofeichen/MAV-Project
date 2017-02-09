@@ -83,7 +83,7 @@ void Mapping::run()
 
 	relTime = time.toc();
 	totalTime += relTime;
-	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
+	cout << "Feature detection and extraction took " << relTime << "ms" << endl;
 
 	if(!initDone)
 	{
@@ -98,7 +98,7 @@ void Mapping::run()
 
 	relTime = time.toc();
 	totalTime += relTime;
-	// cout << "Parallel matching took " << relTime << "ms" << endl;
+	cout << "Parallel matching took " << relTime << "ms" << endl;
 
 
 	// process graph
@@ -204,19 +204,20 @@ void Mapping::run()
 	{
 		sequenceOfLostFramesCntr = 0;
 		bool addedKeyFrame = searchKeyFrames();
-		optimizeGraph(false);
-//		boost::thread(&Mapping::optimizeGraph,this,false);
+		
+		// optimizeGraph(false); use thread to speed up the software
+		boost::thread(&Mapping::optimizeGraph,this,false);
 
 		if(addedKeyFrame)
 		{
 
 			if(loopClosureFound)
 			{
-				if(optimizeTillConvergence) // never actually enters
+				if(optimizeTillConvergence)
 				{
 					// optimize graph till convergenz
-					optimizeGraph(true);
-//					boost::thread(&Mapping::optimizeGraph,this,true);
+					// optimizeGraph(true);
+					boost::thread(&Mapping::optimizeGraph,this,true);
 				}
 				loopClosureFound = false; // reset loop closure flag ONLY when new key frame is added
 			}
@@ -228,7 +229,8 @@ void Mapping::run()
 	relTime = time.toc();
 	totalTime += relTime;
 	// cout << "Optimization and map update took " << relTime << "ms" << endl;
-
+	if (!currentFrame.getNewNodeFlag())
+  	cout << "----------------------------------" << endl << endl;
 	// cout << " and took " << totalTime << "ms"<< endl;
 
 	++nframeProc;
@@ -306,36 +308,6 @@ void Mapping::matchTwoFrames(
 		std::vector<int> consensus;
 		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix,consensus);
 
-// #ifdef DEBUG
-// 		if(( nodes.size() == DEBUG_NEW)&& (frame2.getId() == DEBUG_OLD) && validTrafo){ // sequential node
-// 		// if (validTrafo)s
-// 			cv::Mat imgMatch;
-// 			cv::drawMatches(frame1.getGray(),frame1.getKeypoints(),frame2.getGray(),frame2.getKeypoints(), matches, \
-// 			imgMatch,Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
-// 		 	cv::namedWindow("Matching", WINDOW_NORMAL);
-// 			cv::imshow("Matching",imgMatch);
-
-// 			sprintf(logName,"Matching %d ",currentFrame.getId()); // new frame
-// 			cv::write(fileStore, logName, matchesIdx1);
-
-// 			sprintf(logName,"Matching %d ", frame2.getId());	  // old frame
-// 			cv::write(fileStore2,logName, matchesIdx2);
-
-
-// 			sprintf(logName,"Consensus");	  // old frame
-// 			cv::write(fileConsensus,logName, consensus);
-
-// 			cout << " enter matching " << endl;
-// 			cv::waitKey(30);
-
-// 		 }
-// 		 else if (nodes.size()>DEBUG_NEW)
-// 		 {
-// 		 	fileStore.release();
-// 		 	fileStore2.release();
-// 		 	fileConsensus.release();
-// 		 }
-// #endif
 
 		// align with px4 frame
 		tm_temp = tm;
@@ -434,6 +406,7 @@ void Mapping::parallelMatching()
 	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
 
 	// match continuous
+
 	if(contFramesToMatch > 0 && nodes.size() > 0)
 	{
 
@@ -459,12 +432,11 @@ void Mapping::parallelMatching()
 					boost::ref(validTrafo[frames]),
 					boost::ref(transformationMatrices[frames]),
 					boost::ref(informationMatrices[frames]) );
-
-
 		}
 	}
 
-	if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 )
+
+if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 )
 	{
 		// find neighbors of current node, exclude continuous nodes
 		poseGraph->getEdgeNeighborsToCurrentNode(contFramesToMatch, neighborIds);
@@ -511,7 +483,6 @@ void Mapping::parallelMatching()
 		else
 		{
 			int prevId = -1;
-
 			for(int i = 0; i < lcRandomMatching; ++i,  ++frames)
 			{
 				// find non neighbor and sequencial nodes
@@ -576,11 +547,16 @@ void Mapping::parallelMatching()
 		}
 	}
 
+  time.tic();
+
 	// join threads
 	for (int thread = 0; thread < frames; ++thread)
 	{
 		handler[thread].join(); // sleep until all threads are finished with their work
 	}
+
+	cout << "Thread Processing took " << time.toc() << " ms"<< endl;
+
 }
 
 void Mapping::tryToAddNode(int thread)

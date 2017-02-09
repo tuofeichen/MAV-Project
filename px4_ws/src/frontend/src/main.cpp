@@ -71,6 +71,7 @@ int main(int argc, char **argv)
 {
 	// init
 	ros::init(argc,argv,"rgbd_backend");
+	initLog();
 	RosHandler px4;
 	boost::mutex backendMutex;
 	// start camera
@@ -78,47 +79,32 @@ int main(int argc, char **argv)
 
 	Backend backend(backendPort,backendMutex);
 
-	pcl::console::TicToc time; // debug
+	pcl::console::TicToc time;
 	Frame frame;
 
-	int nodeId = 1; // node id (for debug mode?)
+	int nodeId = 1; 				// node id (for debug mode?)
 	int badFrameCnt = 0;
-	bool badFrame = 0;
-	double timeDiff = 0; // debug processing time
+	bool badFrame = 0;			// bad frame flag
+	double timeDiff = 0; 		// debug processing time
+  bool noError = false;		// process frames
 
-	static Eigen::Matrix4f rot; // transform back for PCL
+	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
 		rot = (Eigen::Matrix4f() <<
 				  0,1,0,0,
 				  0,0,1,0,
 				  1,0,0,0,
 				  0,0,0,1).finished();
 
-	Eigen::Isometry3d tm;
+	Eigen::Isometry3d tm;			// slam frame tm
 	Eigen::Matrix<double,6,6> im;
 
 	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm
 	Eigen::Matrix4f lpe_prev;
-	char fileName[100];
-
-// logKpts3D.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints3D.csv", std::ofstream::out | std::ofstream::trunc);
-// logKpts.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/keypoints.csv", std::ofstream::out | std::ofstream::trunc);
-
-// start viewer and logger
-// #ifdef DEBUG
-// 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/position_debug.csv", std::ofstream::out | std::ofstream::trunc);
-// 	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid,x_lpe,y_lpe,z_lpe,r_lpe,p_lpe,y_lpe" <<endl;
-//
-// #else
-// 	logPos.open("/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/VSLAM.csv", std::ofstream::out | std::ofstream::trunc);
-// 	logPos << "time,x,y,z,roll,pitch,yaw,framenum,valid,x_lpe,y_lpe,z_lpe,r_lpe,p_lpe,y_lpe" <<endl;
-// #endif
 
 	// setup mapping class
 	Mapping slam(&fdem, &tme, &graph, &px4);//,&pointCloudMap); //, &pointCloudMap);
 	ObjDetection obj(&objdem,&px4);
 
-	// process frames
-	bool noError = false;
 
 #ifndef DEBUG // initialize camera
 	for(int i=0; i < 15; ++i) // grab a bit more frame
@@ -137,6 +123,8 @@ int main(int argc, char **argv)
 		ros::spinOnce(); // get up-to-date lpe regardless
 		time.tic();
 
+// in debug mode,read stored images (video frames)
+// otherwise use camera input
 #ifdef DEBUG
 		if(readImage(frame,nodeId))//nodeId is node number
 			nodeId ++ ;
@@ -157,8 +145,8 @@ int main(int argc, char **argv)
 			slam.addFrame(frame);
 			// slam workflow (matching -> Trafo -> pose graph)
 			slam.run();
-			// object detection
-			obj.processFrame(frame);
+
+			// obj.processFrame(frame);
 
 			badFrame = frame.getBadFrameFlag();
 			if (slam.getImuCompensateCounter()== badFrameCnt)
@@ -173,31 +161,26 @@ int main(int argc, char **argv)
 			}
 
 // Debug Mode (Use cameara infeed or dataset)
-#ifndef DEBUG
-		cv::waitKey(30);
-		if(frame.getNewNodeFlag()){
-		  saveImage(frame,nodeId);
-			nodeId ++ ; // increase id
-		}
-#else
-		cv::waitKey(0);
-#endif
+// #ifndef DEBUG
+// 		cv::waitKey(30);
+// 		if(frame.getNewNodeFlag()){
+// 		  saveImage(frame,nodeId);
+// 			nodeId ++ ; // increase id
+// 		}
+// #else
+// 		cv::waitKey(0);
+// #endif
 
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-				Matrix4f lpe = px4.getLpe();
-				double r_lpe, p_lpe, y_lpe;
-				r_lpe = atan2(lpe(2,1),lpe(2,2)); 									// roll (around x)
-				p_lpe = atan2(-lpe(2,0),sqrt(lpe(2,1)*lpe(2,1)+lpe(2,2)*lpe(2,2))); // pitch (around y)
-				y_lpe = atan2(lpe(1,0),lpe(0,0)); 									// yaw (around z)
-			  logPoseGraphNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+			  // logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
-				// if (frame.getKeyFrameFlag())
-					cout << "total processing time " << timeDiff << endl;
+				cout << "total processing time " << timeDiff << endl << endl;
 			}
 
-// Keyframe Processing (Add New Node in backend PCL)
+// Keyframe Processing (Add New Node to backend PCL)
 			if(frame.getKeyFrameFlag()||(frame.getId() == 0)) // send back key frame for PCL
 			{
 

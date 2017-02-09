@@ -1,9 +1,0 @@
-In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'void CtrlPx4::moveToPoint(float, float, float, float)':
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:407:39: error: expected ')' before ';' token
-   float qw = cos(0.5 * (yaw + dyaw_sp);
-                                       ^
-make[2]: *** [CMakeFiles/SLAM.dir/src/SLAM.cpp.o] Error 1
-make[1]: *** [CMakeFiles/SLAM.dir/all] Error 2
-make[1]: *** Waiting for unfinished jobs....
-make: *** [all] Error 2

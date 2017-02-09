@@ -1,0 +1,3 @@
+logging to /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/log/3eaba4ee-ee51-11e6-a15b-542696d8483b/rosout.log
+re-publishing aggregated messages to /rosout_agg
+subscribed to /rosout

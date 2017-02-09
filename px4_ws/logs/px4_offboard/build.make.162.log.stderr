@@ -1,5 +1,0 @@
-In file included from /home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/SLAM.cpp:3:0:
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp: In member function 'bool CtrlPx4::commandUpdate()':
-/home/odroid/MAV-Project/px4_ws/src/px4_offboard/src/CtrlPx4.cpp:120:30: warning: format '%f' expects argument of type 'float*', but argument 2 has type 'double*' [-Wformat=]
-   scanf("%f", &yaw_cali_value);
-                              ^

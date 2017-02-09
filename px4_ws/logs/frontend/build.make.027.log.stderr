@@ -1,7 +1,0 @@
-/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp: In member function 'void ObjDetection::objectDetect()':
-/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:64:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-  for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
-                                            ^
-/home/odroid/MAV-Project/px4_ws/src/frontend/src/ObjDetection.cpp:67:44: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for (int j = 0; j < forward_matches.size();j++)
-                                            ^

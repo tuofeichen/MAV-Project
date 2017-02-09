@@ -1,0 +1,7 @@
+<launch>
+
+<node pkg="slam_test" type="slam_test" name="slam_test" output="screen">
+</node>
+
+</launch>
+
