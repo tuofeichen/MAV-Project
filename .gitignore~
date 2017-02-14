@@ -1,0 +1,6 @@
+px4_ws/src/frontend/Frames
+catkin_ws/src/frontend/Frames
+catkin_ws/devel
+catkin_ws/build
+px4_ws/devel
+px4_ws/build
