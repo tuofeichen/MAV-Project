@@ -2,6 +2,7 @@
 #include <opencv2/core.hpp>
 #include <math.h>
 
+// #include <synch.h>
 #include "Frame.h"
 #include "SURF.h"
 #include "RosHandler.h"
@@ -11,7 +12,7 @@
 using namespace SLAM;
 
 class ObjDetection {
-	
+
 	public:
 	ObjDetection(IFeatures* aFDEM, RosHandler* aRos);
 	ObjDetection(int detectorThreshold, int minMathces, int maxMatches);
@@ -27,7 +28,8 @@ class ObjDetection {
 	void checkForWall(cv::Mat Depth);
 	void checkObjAngle(cv::Mat Depth);
 
-	boost::shared_ptr <Frame> frame; // initialization 
+
+	boost::shared_ptr <Frame> frame; // initialization
 
 	IFeatures* dem;  // feature detection / extraction
 	RosHandler* px4; // pixhawk communication via mavros
@@ -40,7 +42,7 @@ class ObjDetection {
 	geometry_msgs::Point objPoint;
 	geometry_msgs::Point objAngle;
 	geometry_msgs::Point wallAngle;
-	geometry_msgs::Point obstacleDistance; 
+	geometry_msgs::Point obstacleDistance;
 
 
 	cv::Point2f past_centroid;

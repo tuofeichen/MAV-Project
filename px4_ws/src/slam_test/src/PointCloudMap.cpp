@@ -116,7 +116,7 @@ void PointCloudMap::updateMapViewer()
 {
 	if(viewer)
 	{
-		std::cout << "updating map viewer" << std::endl;
+		// std::cout << "updating map viewer" << std::endl;
 		updateMap();
 		viewer->updatePointCloud (trajectory, "trajectory");
 		viewer->updatePointCloud(map, "cloud");

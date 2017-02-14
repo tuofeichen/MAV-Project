@@ -289,7 +289,7 @@ bool Mapping::featureDetectionAndExtraction()
 	//
 	// run feature detection and extraction on new frame
 	//
-	currentFrame.setKeypoints( fdem->detect(currentFrame.getGray()) );
+	currentFrame.setKeypoints(fdem->detect(currentFrame.getGray()) );
 
 	// extract descriptors
 	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );

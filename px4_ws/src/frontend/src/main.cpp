@@ -13,6 +13,10 @@
 #include <string>
 #include <ros/ros.h>
 
+
+// #include <synch.h>
+
+
 #include "Frontend.h"
 #include "Mapping.h"
 #include "OrbDetSurfDesc.h"
@@ -57,15 +61,13 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
 // static objects
-static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
+// static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
 static SURF objdem(0.7, 35, sufficientMatches);
-// static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
 static G2oPoseGraph graph;
-// static PointCloudMap pointCloudMap(voxelSize);
-
 
 int main(int argc, char **argv)
 {
@@ -76,17 +78,21 @@ int main(int argc, char **argv)
 	boost::mutex backendMutex;
 	// start camera
 	AsusProLiveOpenNI2::start();
-
 	Backend backend(backendPort,backendMutex);
+
+
+// threading for processFrame
+	boost::thread t_procFrame;
+	boost::thread t_slam;
 
 	pcl::console::TicToc time;
 	Frame frame;
-
 	int nodeId = 1; 				// node id (for debug mode?)
 	int badFrameCnt = 0;
 	bool badFrame = 0;			// bad frame flag
+  bool noError = false;		// grab frame
 	double timeDiff = 0; 		// debug processing time
-  bool noError = false;		// process frames
+
 
 	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
 		rot = (Eigen::Matrix4f() <<
@@ -131,22 +137,35 @@ int main(int argc, char **argv)
 		else
 			break;
 #else
+
 		noError = AsusProLiveOpenNI2::grab(frame);
 		if(!noError)
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 			continue;
 		}
+		//
+		// readMutex.lock();
+		// cond_signal(&readFrameDone);
+		// readMutex.unlock();
 #endif
 
 		if(nodeId > -1)
 		{
 			// start slam
-			slam.addFrame(frame);
-			// slam workflow (matching -> Trafo -> pose graph)
-			slam.run();
 
-			// obj.processFrame(frame);
+			// put object detection into separate thread， sort of dependecncy
+			slam.addFrame(frame);
+			// obj.processFrame(frame, readFrameDone);
+
+			if(slam.extractFeature()){
+				t_slam 			= boost::thread (&Mapping::run, &slam);
+				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, boost::ref(frame));
+				t_slam.join();
+				// time.tic();
+				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
+				// cout << "obj detect takes " << time.toc() << " ms " << endl;
+			}
 
 			badFrame = frame.getBadFrameFlag();
 			if (slam.getImuCompensateCounter()== badFrameCnt)
@@ -174,7 +193,7 @@ int main(int argc, char **argv)
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-			  // logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+			  logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
 				cout << "total processing time " << timeDiff << endl << endl;

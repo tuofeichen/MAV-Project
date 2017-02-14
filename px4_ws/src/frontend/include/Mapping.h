@@ -69,6 +69,8 @@ public:
 	// void run(RosHandler& lpe);
 	void run();
 
+	bool extractFeature();
+
 
 	/**
 	 * @brief adds a new frame
@@ -104,10 +106,10 @@ public:
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 3, ///< number of sequential frames to match
-		  neighborsToMatch = 3, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
+		  neighborsToMatch = 4, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
-		  dummyFrameAfterLostFrames = 3 ///< number of frames, which cannot be matched until a dummy frame is created
+		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
 	enum{ badFrame = 0, recoverFrame = 1, dummyFrame = 2};

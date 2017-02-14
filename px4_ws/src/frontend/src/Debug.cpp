@@ -18,10 +18,10 @@ static std::ofstream logLpePos;
 // static std::ofstream logKpts3D;
 void initLog()
 {
-		logSlamPos.open("~/MAV-Project/position_slam.csv", std::ofstream::out | std::ofstream::trunc);
+		logSlamPos.open("/home/odroid/MAV-Project/log/position_slam.csv", std::ofstream::out | std::ofstream::trunc);
 		logSlamPos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 
-		logLpePos.open("~/MAV-Project/position_lpe.csv", std::ofstream::out | std::ofstream::trunc);
+		logLpePos.open("/home/odroid/MAV-Project/log/position_lpe.csv", std::ofstream::out | std::ofstream::trunc);
 		logLpePos << "time,x,y,z,roll,pitch,yaw,framenum,valid" <<endl;
 }
 

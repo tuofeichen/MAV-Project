@@ -49,7 +49,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
 FILES
-CtrlState.msg  
+CtrlState.msg
 #   Message1.msg
 #   Message2.msg
  )
@@ -71,7 +71,7 @@ CtrlState.msg
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
    DEPENDENCIES
-   
+
 #   std_msgs
 )
 
@@ -136,7 +136,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
   /usr/include/pcl-1.7
-#  /usr/include/vtk-5.8
+  # /usr/include/vtk-5.8
+	# /usr/src/linux-headers-3.19.0-25/arch/powerpc/include/asm
   /home/tuofeichen/g2o
   /home/tuofeichen/g2o/EXTERNAL/csparse
   /usr/include/eigen3
@@ -186,7 +187,7 @@ opencv_imgcodecs
 
 target_link_libraries(frontend
 ${catkin_LIBRARIES}
-jpeg 
+jpeg
 png
 SLAM
 )

@@ -12,6 +12,7 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
+// #include <synch.h>
 
 #include "Mapping.h"
 #include <ctime>
@@ -53,6 +54,34 @@ Mapping::Mapping(
 Mapping::~Mapping()
 { }
 
+bool Mapping::extractFeature()
+{
+	double relTime = 0;
+	// time.tic();
+
+
+	if (!featureDetectionAndExtraction())
+	{
+		cout << "bad feature!"<< endl;
+		++badFrameCounter;
+		fusePX4LPE(badFrame);
+
+		return 0;
+	}
+	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()==1))
+	{
+		cout << "recover from badframe" << endl;
+		fusePX4LPE(recoverFrame);
+		return 0;
+	}
+
+	// relTime = time.toc();
+	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
+
+	return 1;
+}
+
+
 void Mapping::run()
 {
 
@@ -64,26 +93,6 @@ void Mapping::run()
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
 	frames = 0;
 
-	time.tic();
-
-	if (!featureDetectionAndExtraction())
-	{
-		cout << "bad feature!"<< endl;
-		++badFrameCounter;
-		fusePX4LPE(badFrame);
-
-		return;
-	}
-	else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()==1))
-	{
-		cout << "recover from badframe" << endl;
-		fusePX4LPE(recoverFrame);
-		return;
-	}
-
-	relTime = time.toc();
-	totalTime += relTime;
-	cout << "Feature detection and extraction took " << relTime << "ms" << endl;
 
 	if(!initDone)
 	{
@@ -98,7 +107,7 @@ void Mapping::run()
 
 	relTime = time.toc();
 	totalTime += relTime;
-	cout << "Parallel matching took " << relTime << "ms" << endl;
+	// cout << "Parallel matching took " << relTime << "ms" << endl;
 
 
 	// process graph
@@ -204,7 +213,7 @@ void Mapping::run()
 	{
 		sequenceOfLostFramesCntr = 0;
 		bool addedKeyFrame = searchKeyFrames();
-		
+
 		// optimizeGraph(false); use thread to speed up the software
 		boost::thread(&Mapping::optimizeGraph,this,false);
 
@@ -229,8 +238,8 @@ void Mapping::run()
 	relTime = time.toc();
 	totalTime += relTime;
 	// cout << "Optimization and map update took " << relTime << "ms" << endl;
-	if (!currentFrame.getNewNodeFlag())
-  	cout << "----------------------------------" << endl << endl;
+	// if (!currentFrame.getNewNodeFlag())
+  // 	cout << "----------------------------------" << endl << endl;
 	// cout << " and took " << totalTime << "ms"<< endl;
 
 	++nframeProc;
@@ -547,7 +556,7 @@ if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 
 		}
 	}
 
-  time.tic();
+  // time.tic();
 
 	// join threads
 	for (int thread = 0; thread < frames; ++thread)
@@ -555,7 +564,7 @@ if ( nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 
 		handler[thread].join(); // sleep until all threads are finished with their work
 	}
 
-	cout << "Thread Processing took " << time.toc() << " ms"<< endl;
+	// cout << "Thread Processing took " << time.toc() << " ms"<< endl;
 
 }
 

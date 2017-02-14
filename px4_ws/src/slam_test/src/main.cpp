@@ -2,7 +2,6 @@
  * @file TestRSLAM.cpp
  * @author Gian Danuser & Michael Eugster
  * @brief This file tests the SLAM library
- *
  */
 
 
@@ -49,14 +48,14 @@ int main()
 	// downloaded datasets
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
 	//
-	RGDBSimulator rgbdSensor("/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/");
+	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
+	RGDBSimulator rgbdSensor(folder);
 
-	//
 	// Features
 	//
-	OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
-	// SURF fdem(0.8f, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
-	// SIFT fdem(0.8f, 50, 600);
+	// OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+  //  SURF fdem(0.8f, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+	SIFT fdem(0.8f, 50, 600);
 	// ORB fdem(0.9f, 500, 50, 600);
 
 	RANSACBasedTME tme(1000, 0.02, 0.03, 0.60, 30);
@@ -155,12 +154,18 @@ int main()
 	map3d.saveTrajectory("OptTraj.pcd");
 	map3d.saveMap("OptMap.pcd");
 
-	cout << "SLAM done." << endl;
+	cout << "SLAM done." << endl << endl;
+
+	//
+		string evalCommand = "python /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/evaluate_rpe.py ";
+		evalCommand += folder;
+		evalCommand += "groundtruth.txt ";
+		evalCommand += " /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
+		cout << "evaluation result with respect to the ground truth is: " << endl;
+		system(evalCommand.c_str());
 
 	map3d.showMap();
 	map3d.stopMapViewer();
 
 	return 0;
 }
-
-

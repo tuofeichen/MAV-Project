@@ -60,7 +60,7 @@ void Backend::setNewNode(const Frame& frame)
 
 	encodeImage(frame.getRgb(),sRgbImg);
 	protocolHandler.send(UavComProtocol::CMD1::RGB, sRgbImg);
-	
+
 //	boost::this_thread::sleep(boost::posix_time::milliseconds(300));
 }
 

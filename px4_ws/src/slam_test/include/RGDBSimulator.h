@@ -46,7 +46,9 @@ public:
 private:
 	const std::string simDataPath;
 	const std::string imgList;
-	std::ifstream list;
+	const std::string depList;
+	std::ifstream rgb_file;
+	std::ifstream dep_file;
 };
 
 } /* namespace HAL */
