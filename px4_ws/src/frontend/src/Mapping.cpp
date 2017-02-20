@@ -680,9 +680,9 @@ bool Mapping::searchKeyFrames()
 	}
 
 	// delete images
-	// nodes.back().deleteRgb();
-	// nodes.back().deleteDepth();
-	// nodes.back().deleteGray();
+	nodes.back().deleteRgb();
+	nodes.back().deleteDepth();
+	nodes.back().deleteGray();
 
 	return ret;
 }
@@ -768,9 +768,9 @@ void Mapping::addFirstNode()
 	nodes.back().setKeyFrameFlag(true);
 	keyFrames.push_back(nodes.back());
 
-	// nodes.back().deleteDepth();
-	// nodes.back().deleteRgb();
-	// nodes.back().deleteGray();
+	nodes.back().deleteDepth();
+	nodes.back().deleteRgb();
+	nodes.back().deleteGray();
 
 }
 

@@ -199,10 +199,11 @@ int main(int argc, char **argv)
 				cout << "total processing time " << timeDiff << endl << endl;
 			}
 
-// Keyframe Processing (Add New Node to backend PCL)
+
+// Keyframe Processing (Add New Node to backend PCL) need thread
 			if(frame.getKeyFrameFlag()||(frame.getId() == 0)) // send back key frame for PCL
 			{
-
+				time.tic();
 				backend.setNewNode(frame);
 				for (int i = 0; i<slam.getKeyFrames().size();i++)
 				{
@@ -220,6 +221,7 @@ int main(int argc, char **argv)
 				}
 
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
+				cout <<"frame transmission " << time.toc() <<endl;
 			}
 
 		}
