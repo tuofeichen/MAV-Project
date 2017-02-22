@@ -64,10 +64,10 @@ public:
 
 private:
 	// allocating the optimizer
-	g2o::LinearSolverCSparse<g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1> >::PoseMatrixType> linearSolver;
-	g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1> > blockSolver;
+	g2o::LinearSolverCSparse<g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1> >::PoseMatrixType>* linearSolver;
+	g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1>>* blockSolver;
 //	g2o::OptimizationAlgorithmGaussNewton solver;
-	g2o::OptimizationAlgorithmLevenberg solver;
+	g2o::OptimizationAlgorithmLevenberg* solver;
 //	g2o::OptimizationAlgorithmDogleg solver;
 	g2o::SparseOptimizer optimizer;
 	enum{ optMaxIter = 1 };

@@ -16,14 +16,14 @@ SURF::SURF(float aRatio, int minMatches, int sufficientMatches)
   detecterExtracter(cv::xfeatures2d::SURF::create(100, 6, 5, false, true)) // is thread safe
 {
 	// detecterExtracter->setHessianThreshold(1000);
-	// std:: cout << "hessian threshold now is " << detecterExtracter->getHessianThreshold() << std::endl;  
+	// std:: cout << "hessian threshold now is " << detecterExtracter->getHessianThreshold() << std::endl;
 }
 
 SURF::~SURF()
 { }
 
 boost::shared_ptr<std::vector<cv::KeyPoint>> SURF::detect(const cv::Mat& img)
-{ 
+{
 
 	boost::shared_ptr<std::vector<cv::KeyPoint>> keypoints(new std::vector<cv::KeyPoint>);
 	detecterExtracter->detect(img, *keypoints);
@@ -35,7 +35,7 @@ boost::shared_ptr<std::vector<cv::KeyPoint>> SURF::detect(const cv::Mat& img)
 boost::shared_ptr<cv::Mat> SURF::extract(const cv::Mat& img, const std::vector<cv::KeyPoint>& kpts)
 {
 	cv::Mat img_key;
-	
+
 	boost::shared_ptr<cv::Mat> descriptors(new cv::Mat);
 	detecterExtracter->compute(img,const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
 
@@ -55,12 +55,12 @@ bool SURF::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			std::vector<cv::DMatch>& matches) const
 
 {
-	
+
 
 	cv::flann::Index tree(descs1, cv::flann::KDTreeIndexParams(4), cvflann::FLANN_DIST_EUCLIDEAN);
-	
+
 	cv::Mat indices, dists;
-	
+
 	tree.knnSearch(descs2, indices, dists, 2, cv::flann::SearchParams(16));
 
 	cv::DMatch match;
@@ -79,7 +79,7 @@ bool SURF::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			match.trainIdx = i;
 			match.distance = dists.at<float>(i,0);
 			matches.push_back(match);
-			
+
 			// matchesIdx1.push_back(indices.at<int>(i,0));
 			// matchesIdx2.push_back(i);
 		}

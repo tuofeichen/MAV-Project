@@ -44,8 +44,11 @@ public:
 			const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
 			std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const; // must be thread safe
 
+	void setDescriptorRatio(float aRatio) {ratio = aRatio; };
+	float getDescriptorRatio() { return ratio; };
+
 private:
-	const float ratio;
+	float ratio;
 	const int sufficientNrOfMatches;
 	const int minNrOfMatches;
 	cv::Ptr<cv::xfeatures2d::SURF> detecterExtracter;

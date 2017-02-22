@@ -37,7 +37,12 @@ Mapping::Mapping(
 }
 
 Mapping::~Mapping()
-{ }
+{
+	// delete fdem;
+	// delete tme;
+	// delete poseGraph;
+	// delete map3d;
+}
 
 void Mapping::run()
 {
@@ -59,7 +64,7 @@ void Mapping::run()
 
 	relTime = time.toc();
 	totalTime += relTime;
-	cout << "Feature detection and extraction took " << relTime << "ms" << endl;
+	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
 
 	if(!initDone)
 	{
@@ -82,17 +87,15 @@ void Mapping::run()
 	for(int thread = 0; thread < frames && !currentFrame.getDummyFrameFlag(); ++thread)
 	{
 		if (currentFrame.getId() < 0){
-			// cout << "trying to add node" << endl;
 			tryToAddNode(thread);
 		}
 		else
 			addEdges(thread);
 	}
 
-
 	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && lcRandomMatching == 0)
 	{
-		lcHandler.join();
+			lcHandler.join();
 
 		if(lcBestIndex > 0 && currentFrame.getId() >= 0)
 		{
@@ -107,12 +110,12 @@ void Mapping::run()
 	relTime = time.toc();
 	totalTime += relTime;
 
-//	cout << "Graph processing took " << relTime << "ms" << endl;
+	// cout << "Graph processing took " << relTime << "ms" << endl;
 
 	if(loopClosureFound)
 	{
 		++detLoopClsrsCounter;
-		std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
+		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
 	}
 
 	//
@@ -167,10 +170,12 @@ void Mapping::run()
 		// search key frame
 		bool addedKeyFrame = searchKeyFrames();
 
-		//
+
 		// optimize graph once
+		graphHandler.join(); // avoid overflowing
+
 		optimizeGraph(false);
-//		boost::thread(&Mapping::optimizeGraph,this,false);
+		// graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
 
 		if(addedKeyFrame)
 		{
@@ -181,7 +186,7 @@ void Mapping::run()
 					//
 					// optimize graph till convergenz
 					optimizeGraph(true);
-//					boost::thread(&Mapping::optimizeGraph,this,true);
+					// graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
 				}
 				loopClosureFound = false;
 			}
@@ -252,7 +257,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 {
 	assert(prevId >= 0);
 	assert(!(tryToAddNode && possibleLoopClosure));
-
 	if(isVelocitySmallEnough(transformationMatrix, deltaTime))
 	{
 		// try to add current node
@@ -379,12 +383,16 @@ void Mapping::parallelMatching()
 		}
 	}
 
-	//
+
+
+
+
 	// loop closures
 	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && keyFrames.size() > lcRandomMatching)
 	{
-		if(lcRandomMatching == 0)
+	if(lcRandomMatching == 0)
 		{
+
 			lcHandler = boost::thread(&Mapping::loopClosureDetection,this);
 		}
 		else
@@ -430,11 +438,11 @@ void Mapping::parallelMatching()
 		}
 	}
 
-	// join threads
-	for (int thread = 0; thread < frames; ++thread)
-	{
-		handler[thread].join(); // sleep until all threads are finished with their work
-	}
+		// join threads
+		for (int thread = 0; thread < frames; ++thread)
+		{
+			handler[thread].join(); // sleep until all threads are finished with their work
+		}
 }
 
 void Mapping::tryToAddNode(int thread)

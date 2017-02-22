@@ -1,17 +1,29 @@
 [  0%] Built target geometry_msgs_generate_messages_cpp
-[  0%] Built target std_msgs_generate_messages_cpp
-[  0%] Built target roscpp_generate_messages_py
-[  0%] Built target roscpp_generate_messages_lisp
-[  0%] Built target roscpp_generate_messages_cpp
-[  0%] Built target rosgraph_msgs_generate_messages_py
-[  0%] Built target rosgraph_msgs_generate_messages_lisp
-[  0%] Built target geometry_msgs_generate_messages_py
 [  0%] Built target rosgraph_msgs_generate_messages_cpp
-[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_lisp
 [  0%] Built target geometry_msgs_generate_messages_lisp
-[35m[1mScanning dependencies of target SLAM[0m
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
 [  0%] Built target std_msgs_generate_messages_py
-[  5%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/PointCloudMap.cpp.o[0m
+[35m[1mScanning dependencies of target SLAM[0m
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  5%] [32mBuilding CXX object CMakeFiles/SLAM.dir/src/Mapping.cpp.o[0m
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/Mapping.cpp: In member function ‘void SLAM::Mapping::parallelMatching()’:
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/Mapping.cpp:400:8: warning: variable ‘prevId’ set but not used [-Wunused-but-set-variable]
+    int prevId = -1;
+        ^
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/Mapping.cpp: In member function ‘void SLAM::Mapping::updateMap()’:
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/Mapping.cpp:584:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < keyFrames.size(); ++i)
+                                    ^
+[ 11%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/libSLAM.so[0m
+[ 88%] Built target SLAM
+[35m[1mScanning dependencies of target slam_test[0m
+[ 94%] [32mBuilding CXX object CMakeFiles/slam_test.dir/src/main.cpp.o[0m
 In file included from /usr/include/c++/4.8/backward/strstream:51:0,
                  from /usr/include/vtk-5.8/vtkIOStream.h:112,
                  from /usr/include/vtk-5.8/vtkSystemIncludes.h:40,
@@ -25,15 +37,9 @@ In file included from /usr/include/c++/4.8/backward/strstream:51:0,
                  from /usr/include/pcl-1.7/pcl/visualization/pcl_visualizer.h:48,
                  from /usr/include/pcl-1.7/pcl/visualization/cloud_viewer.h:39,
                  from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/include/PointCloudMap.h:10,
-                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/PointCloudMap.cpp:10:
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/main.cpp:23:
 /usr/include/c++/4.8/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
  #warning \
   ^
-/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/PointCloudMap.cpp: In member function ‘void SLAM::PointCloudMap::updateMap()’:
-/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/src/PointCloudMap.cpp:76:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int id = 0; id < pointCloudLocationInMap.size(); ++id)
-                                                     ^
-[ 11%] [32m[1mLinking CXX shared library /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/libSLAM.so[0m
-[ 88%] Built target SLAM
-[ 94%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/slam_test/slam_test[0m
+[100%] [32m[1mLinking CXX executable /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/slam_test/slam_test[0m
 [100%] Built target slam_test

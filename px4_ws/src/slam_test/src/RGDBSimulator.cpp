@@ -24,29 +24,22 @@ using namespace std;
 namespace HAL {
 
 RGDBSimulator::RGDBSimulator(std::string aSimDataPath)
-: simDataPath(aSimDataPath), imgList("rgb.txt"),depList("depth.txt")
+: simDataPath(aSimDataPath), imgList("rgbd.txt")
 { }
 
 RGDBSimulator::~RGDBSimulator()
 {
 	// close files
-	dep_file.close();
-	rgb_file.close();
+	list.close();
 }
 
 bool RGDBSimulator::start()
 {
 	// open files
-	rgb_file.open((simDataPath + imgList).data());
-	dep_file.open((simDataPath + depList).data());
-	if (!rgb_file.is_open())
+	list.open((simDataPath + imgList).data());
+	if (!list.is_open())
 	{
-		cerr << "Could not open image rgb_file!" << endl;
-		return false;
-	}
-	else if(!rgb_file.is_open())
-	{
-		cerr << "Could not open image dep_file!" << endl;
+		cerr << "Could not open image list file!" << endl;
 		return false;
 	}
 	else
@@ -56,8 +49,7 @@ bool RGDBSimulator::start()
 void RGDBSimulator::stop()
 {
 	// close files
-	rgb_file.close();
-	dep_file.close();
+	list.close();
 }
 
 bool RGDBSimulator::grab(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
@@ -68,46 +60,15 @@ bool RGDBSimulator::grab(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr
 	string dImgName;
 
 	string line;
-	bool noError = true;
-	int pos = 0;
-	// get depth
-	if (getline(dep_file,line))
+
+	// work with content
+	if (getline(list,line))
 	{
 		while (line.data()[0] == '#')
-			getline(dep_file,line);
-
-		pos = line.find(" ");
-		timeStamp = boost::shared_ptr<double>(new double);
-		*timeStamp = std::stod(line.substr(0, pos));
-		line = line.substr(pos+1);
-		pos = line.find(" ");
-		dImgName = line.substr(0, pos);
-		line = line.substr(pos+1);
-
-
-
-		// process depth image
-			Mat tmp =  imread((simDataPath + dImgName).data(), IMREAD_ANYDEPTH );
-			if (tmp.empty())
-			{
-				cout << "Error: Reading Depth Image failed!" << endl;
-				noError = false;
-			}
-			else
-			{
-				depthImage = boost::shared_ptr<cv::Mat>(new cv::Mat);
-				tmp.copyTo(*depthImage);
-			}
-	}
-
-	// get rgb
-	if (getline(rgb_file,line))
-	{
-		while (line.data()[0] == '#')
-			getline(rgb_file,line);
+			getline(list,line);
 
 		// rgb
-		pos = line.find(" ");
+		int pos = line.find(" ");
 		timeStamp = boost::shared_ptr<double>(new double);
 		*timeStamp = std::stod(line.substr(0, pos));
 		line = line.substr(pos+1);
@@ -115,8 +76,16 @@ bool RGDBSimulator::grab(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr
 		rgbImgName = line.substr(0, pos);
 		line = line.substr(pos+1);
 
-		// process RGB image
+		// depth
+		pos = line.find(" ");
+		line = line.substr(pos+1);
+		pos = line.find(" ");
+		dImgName = line.substr(0, pos);
+		line = line.substr(pos+1);
 
+		// process RGB image
+		bool noError = true;
+		{
 			Mat tmp = imread((simDataPath + rgbImgName).data(), IMREAD_COLOR );
 			if (tmp.empty())
 			{
@@ -134,6 +103,25 @@ bool RGDBSimulator::grab(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr
 				(cv::Mat(tmp.size(), CV_8UC1)).copyTo(*grayImage);
 				cv::cvtColor(tmp, *grayImage, CV_BGR2GRAY);
 			}
+		}
+
+
+		// process depth image
+		{
+			Mat tmp =  imread((simDataPath + dImgName).data(), IMREAD_ANYDEPTH );
+			if (tmp.empty())
+			{
+				cout << "Error: Reading RGB Image failed!" << endl;
+				noError = false;
+			}
+			else
+			{
+				depthImage = boost::shared_ptr<cv::Mat>(new cv::Mat);
+				tmp.copyTo(*depthImage);
+			}
+		}
+
+
 		return noError;
 	}
 	else

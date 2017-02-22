@@ -44,14 +44,19 @@ public:
 	// 		const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
 	// 		std::vector<int>& matchesIdx1, std::vector<int>& matchesIdx2) const; // must be thread safe
 
-virtual bool match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
+	virtual bool match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
 			std::vector<cv::DMatch>& matches) const;
+
+	void setDescriptorRatio(float aRatio) {ratio = aRatio; };
+	float getDescriptorRatio() { return ratio; };
+
+
 private:
-	cv::Mat surfImg1; 
+	cv::Mat surfImg1;
 	cv::Mat surfImg2;
 
-	const float ratio;
+	float ratio;
 	const int sufficientNrOfMatches;
 	const int minNrOfMatches;
 	cv::Ptr<cv::xfeatures2d::SURF> detecterExtracter;

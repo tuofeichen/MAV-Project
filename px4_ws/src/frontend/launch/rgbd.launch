@@ -9,17 +9,16 @@
 </group>
 
 <group if="$(arg fly)">
-<include file="$(find px4_offboard)/launch/SLAM.launch"> 
+<include file="$(find px4_offboard)/launch/SLAM.launch">
 <arg name="cali" value="$( arg cali)" />
 </include>
-	
+
 </group>
 
-<node pkg="frontend" type="frontend" name="rgbd_backend" output="log">
+<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">
 
 <param name ="sim" type="bool" value="$(arg sim)"  />
 
 </node>
 
 </launch>
-

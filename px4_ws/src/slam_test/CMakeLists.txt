@@ -70,7 +70,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #    DEPENDENCIES
-   
+
 # #   std_msgs
 # )
 
@@ -106,9 +106,9 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rgbd_slam
-  CATKIN_DEPENDS 
-  roscpp 
-  std_msgs 
+  CATKIN_DEPENDS
+  roscpp
+  std_msgs
   # message_runtime
 #  DEPENDS system_lib
 
@@ -162,24 +162,24 @@ add_executable(slam_test src/main.cpp) # src/RosHandler.cpp)
 
 add_library(
 SLAM
-src/AnalyticBasedTME.cpp 
-src/FrameToPcConverter.cpp 
-src/G2oPoseGraph.cpp 
-src/Mapping.cpp 
-src/Frame.cpp 
+src/AnalyticBasedTME.cpp
+src/FrameToPcConverter.cpp
+src/G2oPoseGraph.cpp
+src/Mapping.cpp
+src/Frame.cpp
 src/RANSACBasedTME.cpp
 src/TcpClient.cpp
-src/SIFT.cpp 
+src/SIFT.cpp
 src/PointCloudMap.cpp
-src/SURF.cpp 
-src/ORB.cpp 
-src/OrbDetSurfDesc.cpp 
-src/UavComProtocolHandler.cpp 
-src/AsusProLiveOpenNI2.cpp 
-# src/RosHandler.cpp 
-# src/Backend.cpp 
-# src/TcpServer.cpp 
-# src/ObjDetection.cpp 
+src/SURF.cpp
+src/ORB.cpp
+src/OrbDetSurfDesc.cpp
+src/UavComProtocolHandler.cpp
+src/AsusProLiveOpenNI2.cpp
+# src/RosHandler.cpp
+# src/Backend.cpp
+# src/TcpServer.cpp
+# src/ObjDetection.cpp
 src/RGDBSimulator.cpp)
 
 target_link_libraries(SLAM
@@ -209,7 +209,7 @@ opencv_imgcodecs
 
 target_link_libraries(slam_test
 ${catkin_LIBRARIES}
-jpeg 
+jpeg
 png
 SLAM
 )

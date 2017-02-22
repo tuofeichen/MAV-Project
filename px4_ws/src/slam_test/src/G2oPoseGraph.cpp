@@ -11,16 +11,22 @@
 namespace SLAM {
 
 G2oPoseGraph::G2oPoseGraph()
- : blockSolver(&linearSolver), solver(&blockSolver), currentIndex(0)
+ // : blockSolver(&linearSolver), solver(&blockSolver), currentIndex(0)
 {
-	linearSolver.setBlockOrdering(false);
-	optimizer.setAlgorithm(&solver);
+  currentIndex = 0;
+  linearSolver = new g2o::LinearSolverCSparse<g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1> >::PoseMatrixType>;
+
+  blockSolver = new g2o::BlockSolver< g2o::BlockSolverTraits<-1, -1>> (linearSolver) ;
+
+  solver = new g2o::OptimizationAlgorithmLevenberg(blockSolver);
+	linearSolver->setBlockOrdering(false);
+	optimizer.setAlgorithm(solver);
 	optimizer.setVerbose( false );
 }
 
 G2oPoseGraph::~G2oPoseGraph()
 {
-	optimizer.clear(); // freeing the graph memory
+  optimizer.clear(); // freeing the graph memory
 }
 
 int G2oPoseGraph::addFirstNode()

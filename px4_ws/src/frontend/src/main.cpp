@@ -36,8 +36,6 @@
 using namespace std;
 using namespace SLAM;
 
-
-
 // settings
 //
 
@@ -48,7 +46,7 @@ enum {
 	backendPort = 11000, ///< port of the front end
 	minMatches = 25, ///< minimal number of matches
 	maxNrOfFeatures = 600, ///< maximal number of features to detect (only needed for OrbDetSurfDesc)
-	sufficientMatches = 600, ///< sufficient number of matches to return
+	sufficientMatches = 100, ///< sufficient number of matches to return
 	maxRansacIterations = 1500, ///< maximal number of RANSAC iterations
 	minNrOfInlier = 20 ///< minimal number of inlier for the RANSAC
 };
@@ -61,9 +59,9 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
 // static objects
-// static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
+static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
 static SURF objdem(0.7, 35, sufficientMatches);
-static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+// static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
@@ -72,6 +70,7 @@ static G2oPoseGraph graph;
 int main(int argc, char **argv)
 {
 	// init
+
 	ros::init(argc,argv,"rgbd_backend");
 	initLog();
 	RosHandler px4;

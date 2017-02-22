@@ -88,8 +88,8 @@ public:
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
-		  neighborsToMatch = 4, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 2, ///< number of sequential frames to match
+		  neighborsToMatch = 2, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
@@ -167,6 +167,8 @@ private:
 
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
+  boost::thread graphHandler;
+
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	bool validTrafo[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	Eigen::Isometry3d transformationMatrices[lcRandomMatching + contFramesToMatch + neighborsToMatch];
@@ -178,9 +180,10 @@ private:
 	boost::thread lcHandler;
 	Eigen::Isometry3d lcTm;
 	Eigen::Matrix<double, 6, 6> lcIm;
-	bool lcEnoughMatches;
-	bool lcValidTrafo;
-	int lcBestIndex;
+	// this really need initialization... folks...
+	bool lcEnoughMatches = 0;
+	bool lcValidTrafo = 0;
+	int lcBestIndex = -1;
 
 	boost::mutex mapUpdateMutex;
 

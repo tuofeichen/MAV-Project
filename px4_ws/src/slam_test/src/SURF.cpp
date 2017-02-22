@@ -34,10 +34,9 @@ boost::shared_ptr<cv::Mat> SURF::extract(const cv::Mat& img, const std::vector<c
 	cv::Mat img_key;
 	detecterExtracter->compute(img,const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
 
-    cv::namedWindow("SURF KeyPoints",cv::WINDOW_NORMAL);
-	cv::drawKeypoints(img,kpts,img_key,cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
-
-	cv::imshow("SURF KeyPoints", img_key);
+  // cv::namedWindow("SURF KeyPoints",cv::WINDOW_NORMAL);
+	// cv::drawKeypoints(img,kpts,img_key,cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
+	// cv::imshow("SURF KeyPoints", img_key);
 
 
 	return descriptors;
