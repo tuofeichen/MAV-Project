@@ -80,7 +80,7 @@ void Mapping::run()
 	relTime = time.toc();
 	totalTime += relTime;
 
-	// cout << "Parallel matching took " << relTime << "ms" << endl;
+	cout << "Parallel matching took " << relTime << "ms" << endl;
 
 	// process graph
 	time.tic();
@@ -124,8 +124,8 @@ void Mapping::run()
 	if(currentFrame.getId() < 0)
 	{
 		if(currentFrame.getDummyFrameFlag()){
-			cout << "SLAM of frame nr" << frameCounter << " was ";
-			cout << "dropped (transformation to small or to big) ";
+			// cout << "SLAM of frame nr" << frameCounter << " was ";
+			// cout << "dropped (transformation to small or to big) ";
 		}
 		else {
 			cout << "SLAM of frame nr" << frameCounter << " was ";
@@ -264,6 +264,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 		{
 			if(isMovementBigEnough(transformationMatrix))
 			{
+				// add new node here
 				currentPosition =  (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
@@ -438,11 +439,15 @@ void Mapping::parallelMatching()
 		}
 	}
 
+cout << " before joining parallel matching took "<< time.toc() << endl;
+
+time.tic();
 		// join threads
 		for (int thread = 0; thread < frames; ++thread)
 		{
 			handler[thread].join(); // sleep until all threads are finished with their work
 		}
+		cout << " thread parallel matching took "<< time.toc() << endl;
 }
 
 void Mapping::tryToAddNode(int thread)

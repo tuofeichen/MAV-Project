@@ -37,10 +37,10 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose);
 int main()
 {
 	logPerf.open("param_id.csv", std::ofstream::out | std::ofstream::trunc);
-	logPerf << "descriptor ratio, ransac ratio,mean proc time, max proc time, error" <<endl;
+	logPerf << "descriptor ratio, ransac ratio, node number, min rot,min trans, mean proc time, max proc time, error_rpe, erro_ate" <<endl;
 
-	for (float aRatio = 0.5; aRatio < 1; aRatio += 0.1)
-	  for (float ransacRatio = 0.5; ransacRatio < 0.95; ransacRatio += 0.1)
+	for (float aRatio = 0.55; aRatio < 0.56; aRatio += 0.1)
+	  for (float ransacRatio = 0.7; ransacRatio < 0.71; ransacRatio += 0.1)
 		{
 			cout << "Descriptor Ratio " << aRatio << " RANSAC Ratio is " << ransacRatio << endl;
 			main_wrap(aRatio,ransacRatio);
@@ -71,7 +71,9 @@ int main_wrap(float dRatio,float rRatio)
 	// downloaded datasets
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
 	//
-	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
+
+	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
+	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
 	RGDBSimulator rgbdSensor(folder);
 
 	// Features
@@ -93,6 +95,8 @@ int main_wrap(float dRatio,float rRatio)
 	boost::shared_ptr<cv::Mat> depthImage;
 	boost::shared_ptr<double> timeStamp;
 
+	int iter = 0;
+
 	//
 	// start rgdb sensor
 	//
@@ -111,10 +115,15 @@ int main_wrap(float dRatio,float rRatio)
 		// grabb frame
 		stop = !sensor.grab(rgbImage, grayImage, depthImage, timeStamp);
 
+		// if (iter>200)
+		// 	break;
 		//
+		// iter++;
+		
+		// //
 		// imshow
 		// cv::imshow("RGB Image", *rgbImage);
-		// cv::imshow("Gray Image", *grayImage);
+		// // cv::imshow("Gray Image", *grayImage);
 		// const float scaleFactor = 0.05f;
 		// cv::Mat depthMap;
 		// depthImage->convertTo( depthMap, CV_8UC1, scaleFactor );
@@ -127,7 +136,7 @@ int main_wrap(float dRatio,float rRatio)
 		slam.run();
 
 		// map3d.updateTrajectory(slam.getCurrentPosition());
-		// logPoseGraphNode(frame, slam.getCurrentPosition());
+		// // logPoseGraphNode(frame, slam.getCurrentPosition());
 		// map3d.updateMapViewer();
 	}
 
@@ -147,7 +156,7 @@ int main_wrap(float dRatio,float rRatio)
 	cout << "Mean time for frame processing: " << slam.getFrameProcMeanTime() << endl;
 	cout << "Max time for frame processing: " << slam.getFrameProcMaxTime() << endl << endl;
 
-	// logPos.close();
+	// // logPos.close();
 	// map3d.saveMap("Map.pcd");
 	// map3d.saveTrajectory("Traj.pcd");
 	// map3d.showMap();
@@ -161,7 +170,7 @@ int main_wrap(float dRatio,float rRatio)
 
 
 	// Save optimized map and position
-	map3d.clearTrajectory();
+	// map3d.clearTrajectory();
 	cout << "start final graph optimization" << endl;
 	logPos.open("positionOpt.txt", std::ofstream::out | std::ofstream::trunc);
 	int key = 0;
@@ -183,18 +192,28 @@ int main_wrap(float dRatio,float rRatio)
 
 	//
 		string evalCommand = "python /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/evaluate_rpe.py ";
-
 		evalCommand += folder;
 		evalCommand += "groundtruth.txt ";
 		evalCommand += " /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
-		cout << "evaluation result with respect to the ground truth is: " << endl;
-		// system(evalCommand.c_str());
 		string rpe_error = exec(evalCommand.c_str());
 
-		logPerf << dRatio << "," << rRatio << "," <<  slam.getFrameProcMeanTime() << "," \
-		<< slam.getFrameProcMaxTime() << "," << rpe_error;
+		evalCommand = "python /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/evaluate_ate.py ";
+		evalCommand += folder;
+		evalCommand += "groundtruth.txt ";
+		evalCommand += " /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
 
-		cout << rpe_error << endl;
+		string ate_error = exec(evalCommand.c_str());
+
+		logPerf << dRatio << "," << rRatio << "," <<  slam.getNodes().size() << "," \
+		<< slam.minRotation << "," << slam.minTranslation <<","<< slam.getFrameProcMeanTime() << "," \
+		<< slam.getFrameProcMaxTime() << "," <<  rpe_error.substr(0,5)  << "," << ate_error.substr(0,5);
+
+
+
+		cout << "descriptor ratio, ransac ratio, node number, min rot,min trans, mean proc time, max proc time, error_rpe, erro_ate" <<endl;
+		cout << dRatio << "," << rRatio << "," <<  slam.getNodes().size() << "," \
+		<< slam.minRotation << "," << slam.minTranslation <<","<< slam.getFrameProcMeanTime() << "," \
+		<< slam.getFrameProcMaxTime() << "," << rpe_error.substr(0,5) << ","<< ate_error.substr(0,5) << endl;;
 
 	// map3d.showMap();
 	// map3d.stopMapViewer();

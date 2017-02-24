@@ -102,8 +102,8 @@ public:
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
 	static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)
 	static constexpr double minTranslation = -1.0;  ///< minimal translation  in meter(negative values to disable)
-//	static constexpr double minRotation = 5.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-//	static constexpr double minTranslation = 0.10;   ///< minimal translation in meter(negative values to disable)
+	// static constexpr double minRotation = 5.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	// static constexpr double minTranslation = 0.10;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second

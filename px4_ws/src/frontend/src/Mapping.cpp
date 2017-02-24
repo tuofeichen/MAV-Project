@@ -93,7 +93,6 @@ void Mapping::run()
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
 	frames = 0;
 
-
 	if(!initDone)
 	{
 		addFirstNode();

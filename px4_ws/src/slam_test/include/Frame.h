@@ -29,13 +29,13 @@ public:
 
 	//
 	// Asus
-//	static constexpr float depthScale = 1000.0; ///< Depth scale factor for the asus xtion pro live sensor
+	static constexpr float depthScale = 5000.0; ///< Depth scale factor for the asus xtion pro live sensor
 
-////	 VGA
-//	static constexpr float fx = 570.0; ///< focal length in x direction in pixel
-//	static constexpr float fy = 570.0; ///< focal length in y direction in pixel
-//	static constexpr float cx = 319.5; ///< center point in x direction in pixel
-//	static constexpr float cy = 239.5; ///< center point in y direction in pixel
+//	 VGA
+	static constexpr float fx = 570.0; ///< focal length in x direction in pixel
+	static constexpr float fy = 570.0; ///< focal length in y direction in pixel
+	static constexpr float cx = 319.5; ///< center point in x direction in pixel
+	static constexpr float cy = 239.5; ///< center point in y direction in pixel
 
 	// QVGA
 //	static constexpr float fx = 285.0; ///< focal length in x direction in pixel
@@ -45,11 +45,11 @@ public:
 
 	//
 	// Kinect V1 datasets
-	static constexpr float fx = 525.0; ///< focal length in x direction in pixel
-	static constexpr float fy = 525.0; ///< focal length in y direction in pixel
-	static constexpr float cx = 319.5; ///< center point in x direction in pixel
-	static constexpr float cy = 239.5; ///< center point in y direction in pixel
-	static constexpr float depthScale = 5000.0; ///< Depth scale factor for the kinect v1 datasets
+	// static constexpr float fx = 525.0; ///< focal length in x direction in pixel
+	// static constexpr float fy = 525.0; ///< focal length in y direction in pixel
+	// static constexpr float cx = 319.5; ///< center point in x direction in pixel
+	// static constexpr float cy = 239.5; ///< center point in y direction in pixel
+	// static constexpr float depthScale = 5000.0; ///< Depth scale factor for the kinect v1 datasets
 
 	//
 	// Kinect V2

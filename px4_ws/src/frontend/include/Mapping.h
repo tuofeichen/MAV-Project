@@ -210,9 +210,9 @@ private:
 	boost::thread lcHandler;
 	Eigen::Isometry3d lcTm;
 	Eigen::Matrix<double, 6, 6> lcIm;
-	bool lcEnoughMatches;
-	bool lcValidTrafo;
-	int lcBestIndex;// = -1;
+	bool lcEnoughMatches = 0;
+	bool lcValidTrafo = 0;
+	int lcBestIndex = -1;// = -1;
 
 	boost::mutex mapUpdateMutex;
 
