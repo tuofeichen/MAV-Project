@@ -8,3 +8,4 @@ catkin_ws/devel
 catkin_ws/build
 px4_ws/devel
 px4_ws/build
+*.pcd
