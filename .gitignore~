@@ -1,6 +1,11 @@
-px4_ws/src/frontend/Frames
-catkin_ws/src/frontend/Frames
-catkin_ws/devel
-catkin_ws/build
-px4_ws/devel
-px4_ws/build
+px4_ws/.catkin_tools/* 
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/Frames/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/logs/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/Map.pcd
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/Frames/*
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/devel/*
+/home/tuofeichen/SLAM/MAV-Project/catkin_ws/build/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/*
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/build/*
