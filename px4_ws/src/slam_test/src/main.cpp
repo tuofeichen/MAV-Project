@@ -72,17 +72,16 @@ int main_wrap(float dRatio,float rRatio)
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
 	//
 
-	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
-	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
+	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
+	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
 	RGDBSimulator rgbdSensor(folder);
 
 	// Features
 	//
 	// OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
-  SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+  // SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
 	// SIFT fdem(0.8f, 50, 600);
-	// ORB fdem(0.9f, 500, 50, 600);
-
+	ORB fdem(0.7f, 500, 50, 600);
 	RANSACBasedTME tme(1000, 0.02, 0.03, rRatio, 30);
 	PointCloudMap map3d(0.02f);
 	G2oPoseGraph go;
@@ -106,24 +105,24 @@ int main_wrap(float dRatio,float rRatio)
 	}
 
 	// logPos.open("position.txt", std::ofstream::out | std::ofstream::trunc);
-	// map3d.startMapViewer();
+	map3d.startMapViewer();
 
 	bool stop = false;
 	while(!stop) // endless
 	{
 
-		// grabb frame
+		// grab frame
 		stop = !sensor.grab(rgbImage, grayImage, depthImage, timeStamp);
 
 		// if (iter>200)
 		// 	break;
 		//
 		// iter++;
-		
+
 		// //
 		// imshow
 		// cv::imshow("RGB Image", *rgbImage);
-		// // cv::imshow("Gray Image", *grayImage);
+		// cv::imshow("Gray Image", *grayImage);
 		// const float scaleFactor = 0.05f;
 		// cv::Mat depthMap;
 		// depthImage->convertTo( depthMap, CV_8UC1, scaleFactor );
@@ -135,9 +134,10 @@ int main_wrap(float dRatio,float rRatio)
 		slam.addFrame(frame);
 		slam.run();
 
-		// map3d.updateTrajectory(slam.getCurrentPosition());
-		// // logPoseGraphNode(frame, slam.getCurrentPosition());
-		// map3d.updateMapViewer();
+
+		map3d.updateTrajectory(slam.getCurrentPosition());
+		// logPoseGraphNode(frame, slam.getCurrentPosition());
+		map3d.updateMapViewer();
 	}
 
 	sensor.stop();

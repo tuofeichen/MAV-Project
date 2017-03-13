@@ -67,6 +67,10 @@ public:
 	 */
 	void addFrame(Frame& frame);
 
+// in thread and execute asynchronously
+	void addNewNode();
+	void optPoseGraph();
+
 	/**
 	 * @brief returns the current position
 	 *
@@ -88,8 +92,8 @@ public:
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 2, ///< number of sequential frames to match
-		  neighborsToMatch = 2, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 3, ///< number of sequential frames to match
+		  neighborsToMatch = 3, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
@@ -100,10 +104,10 @@ public:
 	static constexpr bool searchLoopClosures = true; ///< Enables/disable loop closure search
 	static constexpr int lcRandomMatching = 0; ///< Enables/disable random loop closure matching 0 --> off (use average descriptor), else match n random key frames
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
-	static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation = -1.0;  ///< minimal translation  in meter(negative values to disable)
-	// static constexpr double minRotation = 5.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	// static constexpr double minTranslation = 0.10;   ///< minimal translation in meter(negative values to disable)
+	// static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)
+	// static constexpr double minTranslation = -1.0;  ///< minimal translation  in meter(negative values to disable)
+	static constexpr double minRotation = 1.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
@@ -119,11 +123,11 @@ private:
 	bool featureDetectionAndExtraction();
 	void initialMatching();
 	void exchangeFirstFrame();
-	void parallelMatching();
+	void parallelMatching(Frame procFrame);
 	void tryToAddNode(int thread);
-	void addEdges(int thread);
+	void addEdges(int thread,int currId);
 	void setDummyNode();
-	bool searchKeyFrames();
+	bool searchKeyFrames(Frame procFrame);
 	void optimizeGraph(bool tillConvergenz);
 	void updateMap();
 	void matchTwoFrames(
@@ -135,14 +139,15 @@ private:
 				Eigen::Matrix<double, 6, 6>& informationMatrix  // out: information matrix of the estimation
 				);
 	enum GraphProcessingResult {trafoToSmall, trafoToBig, trafoValid};
-	GraphProcessingResult processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
+	GraphProcessingResult processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, \
+		 int prevId, int currId,  double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
 	inline void convertRotMatToEulerAngles(const Eigen::Matrix3d& t, double& roll, double& pitch, double& yaw) const;
 	bool isMovementBigEnough(const Eigen::Isometry3d& trafo) const;
 	bool isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double deltaT) const;
 	void addFirstNode();
 	enum ComparisonResult {noTimeStamp, succeed, failed};
 	ComparisonResult compareCurrentPosition(const Frame& frame, const Eigen::Isometry3d& pose);
-	void loopClosureDetection();
+	void loopClosureDetection(Frame procFrame);
 
 	//
 	// variables
@@ -168,6 +173,7 @@ private:
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
   boost::thread graphHandler;
+	bool optFlag = true;
 
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	bool validTrafo[lcRandomMatching + contFramesToMatch + neighborsToMatch];
@@ -185,12 +191,13 @@ private:
 	bool lcValidTrafo = 0;
 	int lcBestIndex = -1;
 
-	boost::mutex mapUpdateMutex;
+	boost::mutex frameUpdateMutex;
 
 	int sequenceOfLostFramesCntr = 0;
 
 	// debugging
 	pcl::console::TicToc time;
+	pcl::console::TicToc time_delay;
 	unsigned int frameCounter = 0;
 	unsigned int badFrameCounter = 0;
 	unsigned int noTrafoFoundCounter = 0;

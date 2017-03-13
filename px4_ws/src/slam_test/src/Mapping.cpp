@@ -44,11 +44,181 @@ Mapping::~Mapping()
 	// delete map3d;
 }
 
+void Mapping::addNewNode()
+{
+
+	std::vector<Frame>::const_iterator lastNode = nodes.end()-1; // this is correct (vector::end is pass of end)
+	graphIds[0] 	= lastNode->getId();
+	lcSmallestId 	= std::min(lcSmallestId,graphIds[0]);
+	deltaT[0] 		= currentFrame.getTime() - lastNode->getTime();
+
+  // needs to be thread safe
+	frameUpdateMutex.lock();
+	matchTwoFrames(	boost::ref(currentFrame),
+					boost::ref(*lastNode),
+					boost::ref(enoughMatches[0]),
+					boost::ref(validTrafo[0]),
+					boost::ref(transformationMatrices[0]),
+					boost::ref(informationMatrices[0]) );
+
+	frames++; 					//  start from second node when doing parallel matching
+	tryToAddNode(0) ;	  //  also changes currentFrame
+	frameUpdateMutex.unlock();
+
+
+}
+
+void Mapping::optPoseGraph()
+{
+
+	double totalTime = 0;
+	double relTime = 0;
+
+
+	// need to be thread safe
+	frameUpdateMutex.lock();
+	Frame procFrame = currentFrame; // make local copy due to threading
+	frameUpdateMutex.unlock();
+
+	time_delay.tic();
+
+	parallelMatching(procFrame);
+	relTime = time_delay.toc();
+	totalTime += relTime;
+	// cout << "Parallel matching took " << relTime << "ms" << endl;
+
+	// process graph
+	time_delay.tic();
+	// again don't deal with immediate node
+	for(int thread = 1; thread < frames && !procFrame.getDummyFrameFlag(); ++thread)
+	{
+		if (procFrame.getId() > 0)
+			addEdges(thread,procFrame.getId());
+	}
+
+	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && lcRandomMatching == 0)
+	{
+		lcHandler.join();
+		if(lcBestIndex > 0 && procFrame.getId() >= 0)
+		{
+			if(lcValidTrafo && lcEnoughMatches)
+			{
+				GraphProcessingResult res = processGraph(lcTm, lcIm, keyFrames.at(lcBestIndex).getId(),procFrame.getId(), (procFrame.getTime()-keyFrames.at(lcBestIndex).getTime()), false, true);
+				if (res == trafoValid)
+					smallestId = std::min(smallestId, keyFrames.at(lcBestIndex).getId());
+			}
+		}
+	}
+	relTime = time_delay.toc();
+	totalTime += relTime;
+
+	// cout << "Graph processing took " << relTime << "ms" << endl;
+
+
+	if(loopClosureFound)
+	{
+		++detLoopClsrsCounter;
+		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
+	}
+
+
+	// if(procFrame.getId() < 0)
+	// {
+	// 	if(procFrame.getDummyFrameFlag()){
+	// 		cout << "SLAM of frame nr" << frameCounter << " was ";
+	// 		cout << "dropped (transformation to small or to big) ";
+	// 	}
+	// 	else {
+	// 		cout << "SLAM of frame nr" << frameCounter << " was ";
+	// 		cout << "dropped (added as dummy) " << endl;
+	// 	}
+	// }
+
+	// key frame, map and optimization
+	time_delay.tic();
+	// if(procFrame.getId() < 0)
+	// {
+	// 	// invalid frame
+	// 	if(exchangeFirstNode && nodes.size() == 1)
+	// 	{
+	// 		exchangeFirstFrame();
+	// 	}
+	// 	else
+	// 	{
+	// 		++noTrafoFoundCounter;
+	// 		// setting a dummy node is needed, otherwise the track of frames can be lost
+	// 		if(addDummyNodeFlag)
+	// 		{
+	// 			++sequenceOfLostFramesCntr;
+	// 			setDummyNode();
+	// 		}
+	// 	}
+	// }
+	// else
+
+	if(procFrame.getDummyFrameFlag())
+	{ // trafo to small or to big
+		cout << "dummy frame flag" << endl;
+		sequenceOfLostFramesCntr = 0;
+		if(exchangeFirstNode && nodes.size() == 1)
+		{
+			exchangeFirstFrame();
+		}
+	}
+	else
+	{
+
+		sequenceOfLostFramesCntr = 0;
+
+		// search key frame
+		bool addedKeyFrame = searchKeyFrames(procFrame);
+
+		// optimize graph once
+		// graphHandler.join(); // avoid overflowing
+		optimizeGraph(false);
+		// graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
+
+		if(addedKeyFrame)
+		{
+			if(loopClosureFound)
+			{
+				if(optimizeTillConvergence)
+				{
+
+					// optimize graph till convergenz
+					optimizeGraph(true);
+					// graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
+				}
+				loopClosureFound = false;
+			}
+
+			//
+			// update map
+			updateMap();
+		}
+	}
+
+	relTime = time_delay.toc();
+	totalTime += relTime;
+	// cout << "Optimization and map update took " << relTime << "ms" << endl;
+
+	cout << "graph took " << totalTime << "ms"<< endl;
+
+	++nframeProc;
+	frameProcMeanTime += totalTime;
+	if(totalTime > frameProcMaxTime)
+		frameProcMaxTime = totalTime;
+
+	optFlag = true;
+
+}
+
 void Mapping::run()
 {
-//	std::cout << "Mapping::start called!" << std::endl;
+
 	double totalTime = 0;
 	double relTime;
+	boost::thread realTimeProc,delayProc;
 
 	// initialize variables
 	bestInforamtionValue = 0;
@@ -63,8 +233,7 @@ void Mapping::run()
 	}
 
 	relTime = time.toc();
-	totalTime += relTime;
-	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
+	cout << endl << "Feature detection and extraction took " << relTime << "ms" << endl;
 
 	if(!initDone)
 	{
@@ -73,140 +242,18 @@ void Mapping::run()
 		return;
 	}
 
-	//
-	// match current frame with older frames
+	// realTimeProc = boost::thread(&Mapping::addNewNode,this);
 	time.tic();
-	parallelMatching();
-	relTime = time.toc();
-	totalTime += relTime;
+	// realTimeProc.join(); // wait for real time processing to join
+	addNewNode();
+	cout << "add node takes " << time.toc() << " ms" << endl;
 
-	cout << "Parallel matching took " << relTime << "ms" << endl;
-
-	// process graph
-	time.tic();
-	for(int thread = 0; thread < frames && !currentFrame.getDummyFrameFlag(); ++thread)
+	if (optFlag && currentFrame.getId()>0) // new node then lets do graph optimization
 	{
-		if (currentFrame.getId() < 0){
-			tryToAddNode(thread);
-		}
-		else
-			addEdges(thread);
+		optFlag 		 = false; // don't add new thread to the queue, this should be asynchronous
+		delayProc 	 = boost::thread(&Mapping::optPoseGraph,this);
 	}
 
-	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && lcRandomMatching == 0)
-	{
-			lcHandler.join();
-
-		if(lcBestIndex > 0 && currentFrame.getId() >= 0)
-		{
-			if(lcValidTrafo && lcEnoughMatches)
-			{
-				GraphProcessingResult res = processGraph(lcTm, lcIm, keyFrames.at(lcBestIndex).getId(), (currentFrame.getTime()-keyFrames.at(lcBestIndex).getTime()), false, true);
-				if (res == trafoValid)
-					smallestId = std::min(smallestId, keyFrames.at(lcBestIndex).getId());
-			}
-		}
-	}
-	relTime = time.toc();
-	totalTime += relTime;
-
-	// cout << "Graph processing took " << relTime << "ms" << endl;
-
-	if(loopClosureFound)
-	{
-		++detLoopClsrsCounter;
-		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
-	}
-
-	//
-	// print
-
-	if(currentFrame.getId() < 0)
-	{
-		if(currentFrame.getDummyFrameFlag()){
-			// cout << "SLAM of frame nr" << frameCounter << " was ";
-			// cout << "dropped (transformation to small or to big) ";
-		}
-		else {
-			cout << "SLAM of frame nr" << frameCounter << " was ";
-			cout << "dropped (added as dummy) " << endl;
-		}
-	}
-	//else
-		//cout << "added ";
-
-	//
-	// key frame, map and optimization
-	time.tic();
-	if(currentFrame.getId() < 0)
-	{ // invalid frame
-		if(exchangeFirstNode && nodes.size() == 1)
-		{
-			exchangeFirstFrame();
-		}
-		else
-		{
-			++noTrafoFoundCounter;
-			// setting a dummy node is needed, otherwise the track of frames can be lost
-			if(addDummyNodeFlag)
-			{
-				++sequenceOfLostFramesCntr;
-				setDummyNode();
-			}
-		}
-	}
-	else if(currentFrame.getDummyFrameFlag())
-	{ // trafo to small or to big
-		sequenceOfLostFramesCntr = 0;
-		if(exchangeFirstNode && nodes.size() == 1)
-		{
-			exchangeFirstFrame();
-		}
-	}
-	else
-	{
-		sequenceOfLostFramesCntr = 0;
-
-		// search key frame
-		bool addedKeyFrame = searchKeyFrames();
-
-
-		// optimize graph once
-		graphHandler.join(); // avoid overflowing
-
-		optimizeGraph(false);
-		// graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
-
-		if(addedKeyFrame)
-		{
-			if(loopClosureFound)
-			{
-				if(optimizeTillConvergence)
-				{
-					//
-					// optimize graph till convergenz
-					optimizeGraph(true);
-					// graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
-				}
-				loopClosureFound = false;
-			}
-
-			//
-			// update map
-			updateMap();
-		}
-	}
-
-	relTime = time.toc();
-	totalTime += relTime;
-//	cout << "Optimization and map update took " << relTime << "ms" << endl;
-
-//	cout << " and took " << totalTime << "ms"<< endl;
-
-	++nframeProc;
-	frameProcMeanTime += totalTime;
-	if(totalTime > frameProcMaxTime)
-		frameProcMaxTime = totalTime;
 }
 
 void Mapping::addFrame(Frame& frame)
@@ -233,6 +280,7 @@ void Mapping::matchTwoFrames(
 {
 	assert(frame1.getId() != frame2.getId());
 
+
 	//
 	// feature detecting, extracting and matching
 	//
@@ -253,7 +301,7 @@ void Mapping::matchTwoFrames(
 		validTrafo = false;
 }
 
-Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure)
+Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, int currId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure)
 {
 	assert(prevId >= 0);
 	assert(!(tryToAddNode && possibleLoopClosure));
@@ -268,19 +316,21 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentPosition =  (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
+				currId = currentFrame.getId();
 				nodes.push_back(currentFrame);
+				// cout << "---------------- add new node " << currentFrame.getId() << endl;
 			}
 			else
 			{ // transformation to small
-				currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix;
-				return trafoToSmall;
+				currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix; // still update current position
+				return trafoToSmall; // don't add node onto the pose graph but should update position
 			}
 		}
 		else if(possibleLoopClosure)
 			loopClosureFound = true;
 
 		// add edge to current node
-		poseGraph->addEdgeFromIdToCurrent(transformationMatrix, informationMatrix, prevId);
+		poseGraph->addEdgeFromIdToId(transformationMatrix, informationMatrix, prevId, currId);
 		return trafoValid;
 	}
 	else
@@ -294,7 +344,7 @@ bool Mapping::featureDetectionAndExtraction()
 	//
 	// run feature detection and extraction on new frame
 	//
-	currentFrame.setKeypoints(fdem->detect(currentFrame.getGray()) );
+	currentFrame.setKeypoints(fdem->detect(currentFrame.getGray()));
 
 	// extract descriptors
 	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );
@@ -320,27 +370,33 @@ void Mapping::exchangeFirstFrame()
 		}
 }
 
-void Mapping::parallelMatching()
+void Mapping::parallelMatching(Frame procFrame)
 {
 	std::vector<int> neighborIds;
-	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) ? contFramesToMatch : neighborsToMatch + contFramesToMatch;
 
-	//
+	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) \
+	? contFramesToMatch : neighborsToMatch + contFramesToMatch;
+
 	// match continuous
-	if(contFramesToMatch > 0 && nodes.size() > 0)
+	if(contFramesToMatch > 0 && nodes.size()-1 > 0)
 	{
-		const int nrOfContFramesToMatch = std::min<int>(nodes.size(), contFramesToMatchTmp);
-		std::vector<Frame>::const_iterator pNode = nodes.end() - 1;
+		const int nrOfContFramesToMatch = std::min<int>(nodes.size()-1, contFramesToMatchTmp);
+		std::vector<Frame>::const_iterator pNode = nodes.end() - 2;
+		// let first consecutive match be handled by addnode
 
-		for (int frame = 0; frame < nrOfContFramesToMatch; ++frame, ++frames, --pNode)
+		for (int frame = 0; frame < nrOfContFramesToMatch-1; ++frame, ++frames, --pNode)
 		{
+			//  one less continuous frame to match !!
+			//  'frame'  is the loop variables
+			// 	'frames' is the cont+neighbor+lc overall counter
+
 			graphIds[frames] = pNode->getId();
 			lcSmallestId = std::min(lcSmallestId, graphIds[frames]);
 
 			// match frames
-			deltaT[frames] = currentFrame.getTime() - pNode->getTime();
+			deltaT[frames] = procFrame.getTime() - pNode->getTime();
 			handler[frames] = boost::thread(&Mapping::matchTwoFrames, this,
-					boost::ref(currentFrame),
+					boost::ref(procFrame),
 					boost::ref(*pNode),
 					boost::ref(enoughMatches[frames]),
 					boost::ref(validTrafo[frames]),
@@ -372,9 +428,9 @@ void Mapping::parallelMatching()
 				const int nodesId = nodes.size() - 1 - (poseGraph->getCurrentId() - graphIds[frames]);
 
 				// match frames
-				deltaT[frames] = currentFrame.getTime() - nodes.at(nodesId).getTime();
+				deltaT[frames] = procFrame.getTime() - nodes.at(nodesId).getTime();
 				handler[frames] = boost::thread(&Mapping::matchTwoFrames, this,
-						boost::ref(currentFrame),
+						boost::ref(procFrame),
 						boost::ref(nodes.at(nodesId)),
 						boost::ref(enoughMatches[frames]),
 						boost::ref(validTrafo[frames]),
@@ -385,16 +441,12 @@ void Mapping::parallelMatching()
 	}
 
 
-
-
-
 	// loop closures
 	if(searchLoopClosures && nodes.size() > neighborsToMatch + contFramesToMatch && keyFrames.size() > lcRandomMatching)
 	{
 	if(lcRandomMatching == 0)
 		{
-
-			lcHandler = boost::thread(&Mapping::loopClosureDetection,this);
+			lcHandler = boost::thread(&Mapping::loopClosureDetection,this,procFrame);
 		}
 		else
 		{
@@ -426,9 +478,9 @@ void Mapping::parallelMatching()
 
 				// matching
 				graphIds[frames] = keyFrames.at(id).getId();
-				deltaT[frames] = currentFrame.getTime() - keyFrames.at(id).getTime();
+				deltaT[frames] = procFrame.getTime() - keyFrames.at(id).getTime();
 				handler[frames] = boost::thread(&Mapping::matchTwoFrames, this,
-						boost::ref(currentFrame),
+						boost::ref(procFrame),
 						boost::ref(keyFrames.at(id)),
 						boost::ref(enoughMatches[frames]),
 						boost::ref(validTrafo[frames]),
@@ -438,33 +490,29 @@ void Mapping::parallelMatching()
 			}
 		}
 	}
-
-cout << " before joining parallel matching took "<< time.toc() << endl;
-
-time.tic();
 		// join threads
 		for (int thread = 0; thread < frames; ++thread)
 		{
 			handler[thread].join(); // sleep until all threads are finished with their work
 		}
-		cout << " thread parallel matching took "<< time.toc() << endl;
 }
 
 void Mapping::tryToAddNode(int thread)
 {
+
 	if (validTrafo[thread] && enoughMatches[thread])
 	{
-		GraphProcessingResult result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], deltaT[thread], true, false);
+		GraphProcessingResult result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], currentFrame.getId(), deltaT[thread], true, false);
 		if(result == trafoValid)
 		{
 			smallestId = std::min(smallestId, graphIds[thread]);
-
 			bestInforamtionValue = informationMatrices[thread](0,0);
 			currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
 		}
 		else if(result == trafoToSmall)
 		{
 			currentFrame.setDummyFrameFlag(true);
+			currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
 			++trafoToSmallCounter; // debug
 		}
 		else if (result == trafoToBig)
@@ -475,15 +523,15 @@ void Mapping::tryToAddNode(int thread)
 	}
 }
 
-void Mapping::addEdges(int thread)
+void Mapping::addEdges(int thread, int currId)
 {
 	if (validTrafo[thread] && enoughMatches[thread])
 	{
 		GraphProcessingResult result;
 		if(lcRandomMatching == 0)
-			result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], deltaT[thread], false, false);
+			result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], currId, deltaT[thread], false, false);
 		else
-			result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], deltaT[thread], false, (thread >= contFramesToMatch + neighborsToMatch));
+			result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], currId, deltaT[thread], false, (thread >= contFramesToMatch + neighborsToMatch));
 
 		if(result == trafoValid)
 		{
@@ -493,7 +541,11 @@ void Mapping::addEdges(int thread)
 			if(bestInforamtionValue < informationMatrices[thread](0,0))
 			{
 				bestInforamtionValue = informationMatrices[thread](0,0);
+
+				frameUpdateMutex.lock();
 				currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
+				frameUpdateMutex.unlock();
+
 			}
 		}
 	}
@@ -503,9 +555,9 @@ void Mapping::setDummyNode()
 {
 	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
 	{
-		if(!nodes.back().getDummyFrameFlag())
+		if(!nodes.back().getDummyFrameFlag()) // last node is valid
 		{
-			// add node
+			// add dummy node
 			const Eigen::Isometry3d dummyTm = Eigen::Isometry3d::Identity();
 			const Eigen::Matrix<double, 6, 6> dummyInfoMat = Eigen::Matrix<double, 6, 6>::Identity() * 1e-100;
 			poseGraph->addNode(currentPosition);
@@ -525,12 +577,12 @@ void Mapping::setDummyNode()
 	}
 }
 
-bool Mapping::searchKeyFrames()
+bool Mapping::searchKeyFrames(Frame procFrame)
 {
 	bool ret = false;
 	if (smallestId > keyFrames.back().getId())
 	{
-		cout << "smallest id " << smallestId << " that match to current frame " << currentFrame.getId() << endl;
+		// cout << "smallest id " << smallestId << " that match to current frame " << procFrame.getId() << endl;
 
 		for(int thread = 0; thread < frames; ++thread)
 		{
@@ -645,7 +697,7 @@ void Mapping::printPosition(const Eigen::Isometry3d& position)
 	printf ("t = < %6.3lf, %6.3lf, %6.3lf >\n", matrix (0, 3), matrix (1, 3), matrix (2, 3));
 }
 
-void Mapping::loopClosureDetection()
+void Mapping::loopClosureDetection(Frame procFrame)
 {
 	lcBestIndex = -1;
 	double bestDist = loopClosureDetectionThreshold;
@@ -663,7 +715,7 @@ void Mapping::loopClosureDetection()
 	// search new loop closure
 	for (int n = 0; n < nrOfKeyFramesToMatch; ++n)
 	{
-		double dist = cv::norm(keyFrames.at(n).getAverageDescriptors(), currentFrame.getAverageDescriptors(), cv::NORM_L2);
+		double dist = cv::norm(keyFrames.at(n).getAverageDescriptors(), procFrame.getAverageDescriptors(), cv::NORM_L2);
 		if (dist < bestDist)
 		{
 			lcBestIndex = n;
@@ -671,9 +723,9 @@ void Mapping::loopClosureDetection()
 		}
 	}
 
-	if(lcBestIndex >= 0)
+	if(lcBestIndex >= 0) // match to best keyframe
 	{
-		matchTwoFrames(currentFrame, keyFrames.at(lcBestIndex), lcEnoughMatches, lcValidTrafo, lcTm, lcIm);
+		matchTwoFrames(procFrame, keyFrames.at(lcBestIndex), lcEnoughMatches, lcValidTrafo, lcTm, lcIm);
 	}
 }
 
