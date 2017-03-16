@@ -1,0 +1,28 @@
+So here's the deal:
+
+main code runs as follows
+
+- sensor.grab grab a frame (in this case just from a dataset but shouldn't matter)
+- instantiate Frame object with the images
+- addFrame: assign 'frame' to the 'currentFrame' to Mapping class for processing
+- slam.run()
+	- featureeDetectionAndExtraction (fill in the keypoints... stuffs in the currentFrame)
+	- addNewNode
+
+
+This addNewNode will only add a new node to the posegraph if the frame to frame transformation is big enough. 
+This threashold is set in the Mapping.h (if you make it 0) then every new frame will create a new node in the pose graph.
+The problem is: 
+
+When we skip a frame (namely, tranformation is too small and thus will not get push_back into "nodes" in processGraph),
+a memory error occur at the next addFrame call:
+
+*** Error in `/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/slam_test/slam_test': free(): invalid next size (fast): 0x00000000007cf820 ***
+
+I managed to narrow down to the next addFrame call after this slam.run. And as you can see in the frame.cpp/frame.h, I manually added the copy constructor/assignment
+and it happens to be the averageDescriptor that's causing the issue. (I cannot reset the shared_ptr and I also cannot assign new value to it). 
+
+So that's the gist of the problem. And funny enough, the only difference of processing is in processGraph (where we distinguish if the trafo is big enough), 
+and if I also push_back the node namely around line #328-329 in Mapping.cpp, add nodes.push_back(currentFrame). The memory error is fixed! Of course the program still
+cannot keep running because inherently we do not want to add that node into the pose graph. But its just weird that pushing it into a vector fix the problem. 
+
