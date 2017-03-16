@@ -1,6 +1,9 @@
 <launch>
 
-<node pkg="slam_test" type="slam_test" name="slam_test" output="screen">
+<node pkg="slam_test" type="slam_test" name="slam_test" output="screen"
+launch-prefix =  "gdb -ex run --args">
+  ## launch-prefix = "valgrind">
 </node>
+## launch-prefix = "gdb -ex run --args">
 
 </launch>

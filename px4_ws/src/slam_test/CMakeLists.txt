@@ -124,7 +124,7 @@ catkin_package(
 
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
+set (CMAKE_CXX_FLAGS "-std=c++11 -gstabs -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
 
 # -ftree-vectorizer-verbose=9
 

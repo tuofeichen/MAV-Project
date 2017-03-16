@@ -11,7 +11,7 @@
 #include <vector>
 
 #include <boost/smart_ptr/shared_ptr.hpp>
-
+#include <boost/make_shared.hpp>
 #include "opencv2/core.hpp"
 #include "opencv2/features2d.hpp"
 
@@ -75,10 +75,16 @@ public:
 	 */
 	Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp);
 
+
+	Frame(const Frame& other); // copy constructor
 	/**
 	 * @breif Destructor
 	 */
-	~Frame() { }
+
+	~Frame() {}
+	// { std::cout << "freeing frame " << *id << std::endl; }
+
+	Frame& operator=(const Frame& other);
 
 	/**
 	 * @breif getId returns the id of the frame in the pose graph
@@ -134,23 +140,56 @@ public:
 	 *
 	 * @return returns RGB image
 	 */
-	const cv::Mat& getRgb() const { assert(rgb); return *rgb; }
+
+	const cv::Mat& getRgb() const {
+		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		if (rgb == NULL)
+			return flag;
+		else
+			return *rgb;
+		}
+
+
+	// here rgb is a boost::shared_ptr to a cv::Mat
+	// Question is why do we return as a cv::Mat&?
+	// this function is not used to change rgb as far as I know, just return the
+	// value of mat
+	// also note that mat is not a matrix..its some overhead with a pointer to the matrix
+	// maybe it doesn't matter? but why would you return a reference if you are not
+	// changing the value ?
 
 	/**
 	 * @breif getGray gets gray image
 	 *
 	 * @return returns gray image
 	 */
-	const cv::Mat& getGray() const { assert(gray); return *gray; }
+	const cv::Mat& getGray() const {
+		//assert(gray);
+		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		if (gray==NULL)
+			return flag;
+		else
+			return *gray; }
 
 	/**
 	 * @breif getDepth gets depth image
 	 *
 	 * @return returns depth image
 	 */
-	const cv::Mat& getDepth() const { assert(depth); return *depth; }
+	const cv::Mat& getDepth() const {
+		//assert(depth);
+		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		if (depth==NULL)
+			return flag;
+		else
+			return *depth;
+		}
+
+
+	void deleteTime() { time.reset(); }
 
 	/**
+
 	 * @breif deletes the rgb image
 	 */
 	void deleteRgb() { rgb.reset(); }

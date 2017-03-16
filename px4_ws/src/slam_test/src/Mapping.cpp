@@ -34,6 +34,7 @@ Mapping::Mapping(
 	currentPosition = Eigen::Isometry3d::Identity();
 	keyFrames.clear();
 	nodes.clear();
+	// nodes.reserve(10);
 }
 
 Mapping::~Mapping()
@@ -53,28 +54,29 @@ void Mapping::addNewNode()
 	deltaT[0] 		= currentFrame.getTime() - lastNode->getTime();
 
   // needs to be thread safe
-	frameUpdateMutex.lock();
-	matchTwoFrames(	boost::ref(currentFrame),
+	// frameUpdateMutex.lock();
+	matchTwoFrames(boost::ref(currentFrame),
 					boost::ref(*lastNode),
 					boost::ref(enoughMatches[0]),
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
-					boost::ref(informationMatrices[0]) );
+					boost::ref(informationMatrices[0]));
+	 					//  start from second node when doing parallel matching
 
-	frames++; 					//  start from second node when doing parallel matching
-	tryToAddNode(0) ;	  //  also changes currentFrame
-	frameUpdateMutex.unlock();
-
+	tryToAddNode(0) ;	  //  chages currentFrame
+	// frameUpdateMutex.unlock();
+	cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
+	// if (currentFrame.getId()<0)
+	// {
+	// currentPosition is updated (but we should forget current node? )
 
 }
 
 void Mapping::optPoseGraph()
 {
-
+	frames = 1;
 	double totalTime = 0;
 	double relTime = 0;
-
-
 	// need to be thread safe
 	frameUpdateMutex.lock();
 	Frame procFrame = currentFrame; // make local copy due to threading
@@ -85,7 +87,7 @@ void Mapping::optPoseGraph()
 	parallelMatching(procFrame);
 	relTime = time_delay.toc();
 	totalTime += relTime;
-	// cout << "Parallel matching took " << relTime << "ms" << endl;
+	cout << "Parallel matching took " << relTime << " ms" << endl;
 
 	// process graph
 	time_delay.tic();
@@ -109,11 +111,12 @@ void Mapping::optPoseGraph()
 			}
 		}
 	}
+
 	relTime = time_delay.toc();
 	totalTime += relTime;
 
-	// cout << "Graph processing took " << relTime << "ms" << endl;
 
+	// cout << "Graph processing took " << relTime << " ms" << endl;
 
 	if(loopClosureFound)
 	{
@@ -167,9 +170,7 @@ void Mapping::optPoseGraph()
 	}
 	else
 	{
-
 		sequenceOfLostFramesCntr = 0;
-
 		// search key frame
 		bool addedKeyFrame = searchKeyFrames(procFrame);
 
@@ -192,7 +193,6 @@ void Mapping::optPoseGraph()
 				loopClosureFound = false;
 			}
 
-			//
 			// update map
 			updateMap();
 		}
@@ -202,12 +202,13 @@ void Mapping::optPoseGraph()
 	totalTime += relTime;
 	// cout << "Optimization and map update took " << relTime << "ms" << endl;
 
-	cout << "graph took " << totalTime << "ms"<< endl;
 
 	++nframeProc;
 	frameProcMeanTime += totalTime;
 	if(totalTime > frameProcMaxTime)
 		frameProcMaxTime = totalTime;
+
+	cout << "xxxxxx graph took  " << totalTime << " ms"<< endl;
 
 	optFlag = true;
 
@@ -218,12 +219,12 @@ void Mapping::run()
 
 	double totalTime = 0;
 	double relTime;
-	boost::thread realTimeProc,delayProc;
+	// cout << "=== run start " << endl;
 
 	// initialize variables
 	bestInforamtionValue = 0;
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
-	frames = 0;
+	// frames = 0; unnecessary
 
 	time.tic();
 	if (!featureDetectionAndExtraction())
@@ -233,7 +234,7 @@ void Mapping::run()
 	}
 
 	relTime = time.toc();
-	cout << endl << "Feature detection and extraction took " << relTime << "ms" << endl;
+	// cout << "==== Feature dem took " << relTime << " ms" << endl;
 
 	if(!initDone)
 	{
@@ -246,13 +247,18 @@ void Mapping::run()
 	time.tic();
 	// realTimeProc.join(); // wait for real time processing to join
 	addNewNode();
-	cout << "add node takes " << time.toc() << " ms" << endl;
+	cout << "===== add node takes " << time.toc() << " ms" << endl;
 
-	if (optFlag && currentFrame.getId()>0) // new node then lets do graph optimization
-	{
-		optFlag 		 = false; // don't add new thread to the queue, this should be asynchronous
-		delayProc 	 = boost::thread(&Mapping::optPoseGraph,this);
-	}
+	// if (optFlag && currentFrame.getId() > 0) // new node then lets do graph optimization
+	// {
+	// 	// cout << "xxx new thread xxx" << endl;
+	// 	// frameUpdateMutex.lock(); // flag is thread safe
+	// 	optFlag 		 = false; // don't add new thread to the queue, this should be asynchronous
+	// 	optPoseGraph();
+	// 	// delayProc 	 = boost::thread(&Mapping::optPoseGraph,this); //shouldn't overlap with itself
+	// 	// frameUpdateMutex.unlock();
+	// 	// delayProc.join();
+	// }
 
 }
 
@@ -266,7 +272,7 @@ void Mapping::addFrame(Frame& frame)
 			initDone = true;
 	}
 
-	currentFrame = frame;
+	currentFrame = frame;	// am I freeing anything here?
 }
 
 void Mapping::matchTwoFrames(
@@ -279,8 +285,6 @@ void Mapping::matchTwoFrames(
 		)
 {
 	assert(frame1.getId() != frame2.getId());
-
-
 	//
 	// feature detecting, extracting and matching
 	//
@@ -318,7 +322,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentFrame.setId(poseGraph->getCurrentId());
 				currId = currentFrame.getId();
 				nodes.push_back(currentFrame);
-				// cout << "---------------- add new node " << currentFrame.getId() << endl;
 			}
 			else
 			{ // transformation to small
@@ -343,13 +346,12 @@ bool Mapping::featureDetectionAndExtraction()
 {
 	//
 	// run feature detection and extraction on new frame
-	//
 	currentFrame.setKeypoints(fdem->detect(currentFrame.getGray()));
 
 	// extract descriptors
-	currentFrame.setDescriptors( fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );
+	currentFrame.setDescriptors(fdem->extract(currentFrame.getGray(), currentFrame.getKeypoints()) );
 
-	if (currentFrame.getKeypoints().size() < minNumberOfKeyPoints)
+	if (currentFrame.getKeypoints().size() < minNumberOfKeyPoints) // valid frame or not
 		return false;
 	else
 		return true;
@@ -373,7 +375,6 @@ void Mapping::exchangeFirstFrame()
 void Mapping::parallelMatching(Frame procFrame)
 {
 	std::vector<int> neighborIds;
-
 	const int contFramesToMatchTmp = (nodes.size() >= (neighborsToMatch + contFramesToMatch)) \
 	? contFramesToMatch : neighborsToMatch + contFramesToMatch;
 
@@ -404,7 +405,6 @@ void Mapping::parallelMatching(Frame procFrame)
 					boost::ref(informationMatrices[frames]) );
 		}
 	}
-
 	if (nodes.size() >= (neighborsToMatch + contFramesToMatch) && nodes.size() > 0 )
 	{
 		//
@@ -491,10 +491,13 @@ void Mapping::parallelMatching(Frame procFrame)
 		}
 	}
 		// join threads
-		for (int thread = 0; thread < frames; ++thread)
+		// cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx total of " << frames << " thread is init" << endl;
+		for (int thread = 0; thread <= frames; ++thread)
 		{
 			handler[thread].join(); // sleep until all threads are finished with their work
 		}
+		// cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx total of " << frames << " thread is joined" << endl;
+
 }
 
 void Mapping::tryToAddNode(int thread)
@@ -513,6 +516,7 @@ void Mapping::tryToAddNode(int thread)
 		{
 			currentFrame.setDummyFrameFlag(true);
 			currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
+			cout << "small trafo!!" << endl;
 			++trafoToSmallCounter; // debug
 		}
 		else if (result == trafoToBig)
@@ -572,7 +576,7 @@ void Mapping::setDummyNode()
 		{
 			currentFrame.setDummyFrameFlag(true);
 			currentFrame.setId(nodes.back().getId());
-			nodes.back() = currentFrame;
+			nodes.back() = currentFrame; // replace last frame with current frame?
 		}
 	}
 }
@@ -638,6 +642,7 @@ void Mapping::updateMap()
 	map3d->addMapPart(cloud, poseGraph->getPositionOfId(keyFrames.back().getId()));
 
 	// TODO when is a good time to update poses?
+
 	for(int i = 0; i < keyFrames.size(); ++i)
 		map3d->updatePose(i,poseGraph->getPositionOfId(keyFrames.at(i).getId()));
 
@@ -678,9 +683,9 @@ void Mapping::addFirstNode()
 	keyFrames.clear();
 	poseGraph->addFirstNode();
 	currentFrame.setId(poseGraph->getCurrentId());
-	nodes.push_back(currentFrame);
+	nodes.push_back(currentFrame);		//  1st copy constructor
 	nodes.back().setKeyFrameFlag(true);
-	keyFrames.push_back(nodes.back());
+	keyFrames.push_back(nodes.back()); // 2nd copy constrictpr
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
 	nodes.back().deleteGray();

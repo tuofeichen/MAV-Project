@@ -87,13 +87,14 @@ public:
 	unsigned int getDetLoopClsrsCounter() {return detLoopClsrsCounter;}
 	unsigned int getTrafoVelocityToBigCounter() {return trafoVelocityToBigCounter;}
 	unsigned int getDummyNodeCounter() {return dummyNodeCounter;}
+	bool 				 getOptFlag()					 {return optFlag;}
 
 	const std::vector<Frame>& getNodes() {return nodes;}
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 3, ///< number of sequential frames to match
-		  neighborsToMatch = 3, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
+		  neighborsToMatch = 4, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
@@ -106,7 +107,7 @@ public:
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
 	// static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = -1.0;  ///< minimal translation  in meter(negative values to disable)
-	static constexpr double minRotation = 1.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minRotation = 1.2*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
 	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
@@ -166,6 +167,7 @@ private:
 
 	Eigen::Isometry3d currentPosition;
 	Frame currentFrame;
+  Frame temp; 
 
 	std::vector<Frame> nodes;
 	std::vector<Frame> keyFrames;
@@ -173,6 +175,8 @@ private:
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
   boost::thread graphHandler;
+	boost::thread realTimeProc,delayProc;
+
 	bool optFlag = true;
 
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];

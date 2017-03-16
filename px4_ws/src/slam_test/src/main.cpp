@@ -89,10 +89,13 @@ int main_wrap(float dRatio,float rRatio)
 	Mapping slam(&fdem, &tme, &go, &map3d);
 	IRGBDSensor& sensor = rgbdSensor;
 
-	boost::shared_ptr<cv::Mat> rgbImage;
-	boost::shared_ptr<cv::Mat> grayImage;
-	boost::shared_ptr<cv::Mat> depthImage;
-	boost::shared_ptr<double> timeStamp;
+	boost::mutex mapMutex;
+
+
+	boost::shared_ptr<cv::Mat> rgbImage; 	 // = boost::shared_ptr<cv::Mat>(new cv::Mat);//( cv::Mat::zeros(320, 240, CV_8U) );
+	boost::shared_ptr<cv::Mat> grayImage;	 // = boost::shared_ptr<cv::Mat>(new cv::Mat);//( cv::Mat::zeros(320, 240, CV_8UC3) );
+	boost::shared_ptr<cv::Mat> depthImage; //	= boost::shared_ptr<cv::Mat>(new cv::Mat);//( cv::Mat::zeros(320, 240, CV_32F) );
+	boost::shared_ptr<double> timeStamp;   //	= boost::shared_ptr<double>(new double);
 
 	int iter = 0;
 
@@ -113,7 +116,7 @@ int main_wrap(float dRatio,float rRatio)
 
 		// grab frame
 		stop = !sensor.grab(rgbImage, grayImage, depthImage, timeStamp);
-
+		cout << endl <<  "......finish grabbing frame" << endl ;
 		// if (iter>200)
 		// 	break;
 		//
@@ -121,23 +124,33 @@ int main_wrap(float dRatio,float rRatio)
 
 		// //
 		// imshow
-		// cv::imshow("RGB Image", *rgbImage);
+
 		// cv::imshow("Gray Image", *grayImage);
 		// const float scaleFactor = 0.05f;
 		// cv::Mat depthMap;
 		// depthImage->convertTo( depthMap, CV_8UC1, scaleFactor );
 		// cv::imshow("Depth Image", depthMap);
-		stop |= (cv::waitKey(1) >= 0); //stop when key pressed
 
 		// start slam
 		Frame frame(rgbImage, grayImage, depthImage, timeStamp);
+		//
+		// cv::Mat image = frame.getRgb();
+		// 	cv::imshow("RGB Image", image);
+		//  cout << "displayed image " << endl;
+		// stop |= (cv::waitKey(10) >= 0); //stop when key pressed
+
 		slam.addFrame(frame);
+		cout <<  "..........copied new frame" << endl;
 		slam.run();
 
+		// if (slam.getOptFlag()){
+		// 	mapMutex.lock();
+		// 	map3d.updateTrajectory(slam.getCurrentPosition());
+		// // logPoseGraphNode(frame, slam.getCurrentPosition());
+		// 	map3d.updateMapViewer();
+		// 	mapMutex.unlock();
+		// }
 
-		map3d.updateTrajectory(slam.getCurrentPosition());
-		// logPoseGraphNode(frame, slam.getCurrentPosition());
-		map3d.updateMapViewer();
 	}
 
 	sensor.stop();
@@ -159,7 +172,7 @@ int main_wrap(float dRatio,float rRatio)
 	// // logPos.close();
 	// map3d.saveMap("Map.pcd");
 	// map3d.saveTrajectory("Traj.pcd");
-	// map3d.showMap();
+	map3d.showMap();
 
 	// optimize
 	go.optimizeTillConvergenz();
