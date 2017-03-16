@@ -81,8 +81,7 @@ Frame& Frame::operator=(const Frame& other)
       keypoints.reset(new std::vector<cv::KeyPoint>);
       keypoints3D.reset(new std::vector<Eigen::Vector3f>);
       descriptors.reset(new cv::Mat);
-
-      // averageFeatureDescriptor.reset(new cv::Mat);
+      averageFeatureDescriptor.reset(new cv::Mat);
       // averageFeatureDescriptor = boost::make_shared<cv::Mat>();
       // std::cout<<"whats the size of average feature "<<averageFeatureDescriptor->size()<<std::endl;
 
@@ -96,7 +95,7 @@ Frame& Frame::operator=(const Frame& other)
       *keypoints        = other.getKeypoints();
       *keypoints3D      = other.getKeypoints3D();
       *descriptors      = other.getDescriptors();
-      // *averageFeatureDescriptor = other.getAverageDescriptors();
+      *averageFeatureDescriptor = other.getAverageDescriptors();
       // averageFeatureDescriptor = other.averageFeatureDescriptor;
 
       // std::cout<<"Average Feature "<< keypoints->size()<<std::endl;
