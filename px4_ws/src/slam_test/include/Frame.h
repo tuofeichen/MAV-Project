@@ -142,21 +142,14 @@ public:
 	 */
 
 	const cv::Mat& getRgb() const {
-		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
-		if (rgb == NULL)
-			return flag;
-		else
+		assert(rgb);
+		// cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		// if (rgb == NULL)
+		// 	return flag;
+		// else
 			return *rgb;
 		}
 
-
-	// here rgb is a boost::shared_ptr to a cv::Mat
-	// Question is why do we return as a cv::Mat&?
-	// this function is not used to change rgb as far as I know, just return the
-	// value of mat
-	// also note that mat is not a matrix..its some overhead with a pointer to the matrix
-	// maybe it doesn't matter? but why would you return a reference if you are not
-	// changing the value ?
 
 	/**
 	 * @breif getGray gets gray image
@@ -164,11 +157,11 @@ public:
 	 * @return returns gray image
 	 */
 	const cv::Mat& getGray() const {
-		//assert(gray);
-		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
-		if (gray==NULL)
-			return flag;
-		else
+		assert(gray);
+		// cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		// if (gray==NULL)
+		// 	return flag;
+		// else
 			return *gray; }
 
 	/**
@@ -177,17 +170,16 @@ public:
 	 * @return returns depth image
 	 */
 	const cv::Mat& getDepth() const {
-		//assert(depth);
-		cv::Mat flag = cv::Mat(2,2,CV_8UC1);
-		if (depth==NULL)
-			return flag;
-		else
+		assert(depth);
+		// cv::Mat flag = cv::Mat(2,2,CV_8UC1);
+		// if (depth==NULL)
+		// 	return flag;
+		// else
 			return *depth;
 		}
 
 
 	void deleteTime() { time.reset(); }
-
 	/**
 
 	 * @breif deletes the rgb image

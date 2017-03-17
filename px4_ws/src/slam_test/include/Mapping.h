@@ -21,6 +21,8 @@
 #include "Frame.h"
 #include "FrameToPcConverter.h"
 
+boost::mutex mapMutex;
+
 namespace SLAM {
 
 /**
@@ -87,7 +89,7 @@ public:
 	unsigned int getDetLoopClsrsCounter() {return detLoopClsrsCounter;}
 	unsigned int getTrafoVelocityToBigCounter() {return trafoVelocityToBigCounter;}
 	unsigned int getDummyNodeCounter() {return dummyNodeCounter;}
-	bool 				 getOptFlag()					 {return optFlag;}
+	bool 				 getOptFlag()					 {return currentFrame.getId();}
 
 	const std::vector<Frame>& getNodes() {return nodes;}
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
@@ -107,8 +109,8 @@ public:
 	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
 	// static constexpr double minRotation = -1.0;  ///< minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = -1.0;  ///< minimal translation  in meter(negative values to disable)
-	static constexpr double minRotation = 1.2*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)
+	static constexpr double minRotation = 1*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minTranslation = 0.001;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
@@ -167,7 +169,7 @@ private:
 
 	Eigen::Isometry3d currentPosition;
 	Frame currentFrame;
-  Frame temp; 
+  Frame temp;
 
 	std::vector<Frame> nodes;
 	std::vector<Frame> keyFrames;
@@ -195,7 +197,7 @@ private:
 	bool lcValidTrafo = 0;
 	int lcBestIndex = -1;
 
-	boost::mutex frameUpdateMutex;
+	// boost::mutex frameUpdateMutex;
 
 	int sequenceOfLostFramesCntr = 0;
 

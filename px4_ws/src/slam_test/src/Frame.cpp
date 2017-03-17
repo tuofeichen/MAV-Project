@@ -25,80 +25,98 @@ time(timeStamp), rgb(rgbImage), gray(grayImage), depth(depthImage),\
  keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>()),\
  descriptors(new cv::Mat),averageFeatureDescriptor(new cv::Mat)
 {
-  // std::cout << "image constructor" << std::endl;
+
 	*id = -1;
 	*keyFrameFlag = false;
 	*dummyFrameFlag = false;
+
+  // int refc = 0;
+  //
+  // rgbImage.reset();
+  //
+  // refc = rgb -> u ? (rgb ->u->refcount) : 0;
+  // std::cout << "shared_ptr count " << rgb.use_count()<< std::endl;
+  // std::cout << "mat count " << refc << std::endl;
+  // rgb = gray;
+  // rgb.reset(new cv::Mat);
+
 }
 
 Frame::Frame(const Frame& other)
 {
+    // if (other.getRgb().rows > 2){ // this needs handling b/c of vector set up
+    // rgb.reset(new cv::Mat);
+    // gray.reset(new cv::Mat);
+    // depth.reset(new cv::Mat);
+    // *rgb        = other.getRgb();
+    // *gray       = other.getGray();
+    // *depth      = other.getDepth();
+    // }
+    // else
+    // {
+    //   std::cout << "[Warning] frame images deleted " << std::endl;
+    // }
 
-    std::cout << "copy constructor called" <<std::endl;
-    if (other.getRgb().rows > 2){ // this needs handling b/c of vector set up
-    rgb.reset(new cv::Mat);
-    gray.reset(new cv::Mat);
-    depth.reset(new cv::Mat);
-    *rgb        = other.getRgb();
-    *gray       = other.getGray();
-    *depth      = other.getDepth();
-    }
-    else
-    {
-      std::cout << "[Warning] frame images deleted " << std::endl;
-    }
-
-    time.reset(new double);
-    id.reset(new int );
-    keyFrameFlag.reset(new bool);
-    dummyFrameFlag.reset(new bool);
-    keypoints.reset(new std::vector<cv::KeyPoint>);
-    keypoints3D.reset(new std::vector<Eigen::Vector3f>);
-    descriptors.reset(new cv::Mat);
-    averageFeatureDescriptor.reset(new cv::Mat);
+    // time.reset(new double);
+    // id.reset(new int );
+    // keyFrameFlag.reset(new bool);
+    // dummyFrameFlag.reset(new bool);
+    // keypoints.reset(new std::vector<cv::KeyPoint>);
+    // keypoints3D.reset(new std::vector<Eigen::Vector3f>);
+    // descriptors.reset(new cv::Mat);
+    // // averageFeatureDescriptor->deallocate();
+    // averageFeatureDescriptor.reset(new cv::Mat);
+    //
 
 
-    *time           = other.getTime();
-    *id             = other.getId();
-    *keyFrameFlag   = other.getKeyFrameFlag();
-    *dummyFrameFlag = other.getDummyFrameFlag();
-    *keypoints      = other.getKeypoints();
-    *keypoints3D    = other.getKeypoints3D();
-    *descriptors    = other.getDescriptors();
-    *averageFeatureDescriptor = other.getAverageDescriptors();
+    // *time           = other.getTime();
+    // *id             = other.getId();
+    // *keyFrameFlag   = other.getKeyFrameFlag();
+    // *dummyFrameFlag = other.getDummyFrameFlag();
+    // *keypoints      = other.getKeypoints();
+    // *keypoints3D    = other.getKeypoints3D();
+    // *descriptors    = other.getDescriptors();
+    //
+    rgb    = other.rgb;
+    gray   = other.gray;
+    depth  = other.depth;
+    time   = other.time;
+    id     = other.id;
+    keyFrameFlag     = other.keyFrameFlag;
+    dummyFrameFlag   = other.dummyFrameFlag;
+    keypoints        = other.keypoints;
+    keypoints3D      = other.keypoints3D;
+    descriptors      = other.descriptors;
+    averageFeatureDescriptor = other.averageFeatureDescriptor;
 }
 
 Frame& Frame::operator=(const Frame& other)
 {
-      std::cout << "enter copy assignment " << std::endl;
-      rgb.reset(new cv::Mat);
-      gray.reset(new cv::Mat);
-      depth.reset(new cv::Mat);
-      time.reset(new double);
-      id.reset(new int );
-      keyFrameFlag.reset(new bool);
-      dummyFrameFlag.reset(new bool);
-      keypoints.reset(new std::vector<cv::KeyPoint>);
-      keypoints3D.reset(new std::vector<Eigen::Vector3f>);
-      descriptors.reset(new cv::Mat);
-      averageFeatureDescriptor.reset(new cv::Mat);
-      // averageFeatureDescriptor = boost::make_shared<cv::Mat>();
-      // std::cout<<"whats the size of average feature "<<averageFeatureDescriptor->size()<<std::endl;
+      int refc = 0;
+      refc = averageFeatureDescriptor -> u ? (averageFeatureDescriptor->u->refcount) : 0;
+      // should be fixed in the code later
 
-      *rgb    = other.getRgb();
-      *gray   = other.getGray();
-      *depth  = other.getDepth();
-      *time   = other.getTime();
-      *id     = other.getId();
-      *keyFrameFlag     = other.getKeyFrameFlag();
-      *dummyFrameFlag   = other.getDummyFrameFlag();
-      *keypoints        = other.getKeypoints();
-      *keypoints3D      = other.getKeypoints3D();
-      *descriptors      = other.getDescriptors();
-      *averageFeatureDescriptor = other.getAverageDescriptors();
-      // averageFeatureDescriptor = other.averageFeatureDescriptor;
+      // refc = rgb -> u ? (rgb->u->refcount) : 0;
+      // std::cout << "shared_ptr count " << averageFeatureDescriptor.use_count()<< std::endl;
+        // std::cout << "shared_ptr count "<< rgb.use_count()<< std::endl;
+      if (refc == averageFeatureDescriptor.use_count()) // need error handling
+      {
+        if (refc==1)
+          averageFeatureDescriptor->deallocate();
+      }
 
-      // std::cout<<"Average Feature "<< keypoints->size()<<std::endl;
+      rgb    = other.rgb;
+      gray   = other.gray;
+      depth  = other.depth;
+      time   = other.time;
+      id     = other.id;
+      keyFrameFlag     = other.keyFrameFlag;
+      dummyFrameFlag   = other.dummyFrameFlag;
+      keypoints        = other.keypoints;
+      keypoints3D      = other.keypoints3D;
+      descriptors      = other.descriptors;
+      averageFeatureDescriptor = other.averageFeatureDescriptor;
+      // std::cout << "mat count " << refc << std::endl;
 
       return *this;
 }
@@ -106,9 +124,8 @@ Frame& Frame::operator=(const Frame& other)
 void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 {
 	// TODO check if its faster to copy it or remove the points
-	keypoints->clear();
+  keypoints->clear();
 	keypoints3D->clear();
-
 	// remove keypoints with no depth value
 	for(std::vector<cv::KeyPoint>::iterator i = keys->begin(); i != keys->end(); ++i)
 	{
@@ -133,6 +150,8 @@ void Frame::setAverageDescriptors()
 {
 	assert(descriptors);
 	int type = descriptors->type();
+
+  // start a new piece of memory to store the average descriptor
 	boost::shared_ptr<cv::Mat> averageMat(new cv::Mat(1, descriptors->cols, type));
 	for (int col = 0; col < descriptors->cols; ++col)
 	{
@@ -151,8 +170,9 @@ void Frame::setAverageDescriptors()
 //		std::cout << averageMat->at<float>(0,col) << std::endl;
 		averageMat->at<float>(0,col) = averageMat->at<float>(0,col) / static_cast<float>(descriptors->rows);
 	}
-  std::cout << "aFD size " << averageFeatureDescriptor->size() << "  " << averageMat->size() << std::endl;
-	*averageFeatureDescriptor = *averageMat;//->clone();
+
+  // std::cout << "average descriptor size " << averageFeatureDescriptor->size() << "  " << averageMat->size() << std::endl;
+	averageFeatureDescriptor = averageMat;
 }
 
 }

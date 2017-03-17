@@ -146,7 +146,6 @@ include_directories(
 )
 
 link_directories(
-
 /opt/opencv3/lib
 /usr/lib
 /home/tuofeichen/g2o/lib

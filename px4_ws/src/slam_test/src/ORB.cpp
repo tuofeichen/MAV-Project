@@ -23,7 +23,7 @@ ORB::~ORB()
 boost::shared_ptr<std::vector<cv::KeyPoint>> ORB::detect(const cv::Mat& img)
 {
 	boost::shared_ptr<std::vector<cv::KeyPoint>> keypoints(new std::vector<cv::KeyPoint>);
-	detecterExtracter->detect(img, *keypoints);
+  detecterExtracter->detect(img, *keypoints);
 	return keypoints;
 }
 

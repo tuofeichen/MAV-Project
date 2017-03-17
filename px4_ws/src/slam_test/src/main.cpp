@@ -66,11 +66,9 @@ static void logPoseGraphNode(const Frame& frame, const Eigen::Isometry3d& pose)
 int main_wrap(float dRatio,float rRatio)
 // int main()
 {
-	// float dRatio = 0.8;
-	//
+
 	// downloaded datasets
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
-	//
 
 	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
 	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
@@ -78,19 +76,16 @@ int main_wrap(float dRatio,float rRatio)
 
 	// Features
 	//
-	// OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+	OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
   // SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
 	// SIFT fdem(0.8f, 50, 600);
-	ORB fdem(0.7f, 500, 50, 600);
+	// ORB fdem(0.7f, 500, 50, 600);
 	RANSACBasedTME tme(1000, 0.02, 0.03, rRatio, 30);
 	PointCloudMap map3d(0.02f);
 	G2oPoseGraph go;
 
 	Mapping slam(&fdem, &tme, &go, &map3d);
 	IRGBDSensor& sensor = rgbdSensor;
-
-	boost::mutex mapMutex;
-
 
 	boost::shared_ptr<cv::Mat> rgbImage; 	 // = boost::shared_ptr<cv::Mat>(new cv::Mat);//( cv::Mat::zeros(320, 240, CV_8U) );
 	boost::shared_ptr<cv::Mat> grayImage;	 // = boost::shared_ptr<cv::Mat>(new cv::Mat);//( cv::Mat::zeros(320, 240, CV_8UC3) );
@@ -116,13 +111,8 @@ int main_wrap(float dRatio,float rRatio)
 
 		// grab frame
 		stop = !sensor.grab(rgbImage, grayImage, depthImage, timeStamp);
-		cout << endl <<  "......finish grabbing frame" << endl ;
-		// if (iter>200)
-		// 	break;
-		//
-		// iter++;
 
-		// //
+		//
 		// imshow
 
 		// cv::imshow("Gray Image", *grayImage);
@@ -133,26 +123,24 @@ int main_wrap(float dRatio,float rRatio)
 
 		// start slam
 		Frame frame(rgbImage, grayImage, depthImage, timeStamp);
-		//
-		// cv::Mat image = frame.getRgb();
+
+
 		// 	cv::imshow("RGB Image", image);
 		//  cout << "displayed image " << endl;
-		// stop |= (cv::waitKey(10) >= 0); //stop when key pressed
+		//  stop |= (cv::waitKey(10) >= 0); //stop when key pressed
 
 		slam.addFrame(frame);
-		cout <<  "..........copied new frame" << endl;
 		slam.run();
 
-		// if (slam.getOptFlag()){
-		// 	mapMutex.lock();
-		// 	map3d.updateTrajectory(slam.getCurrentPosition());
-		// // logPoseGraphNode(frame, slam.getCurrentPosition());
-		// 	map3d.updateMapViewer();
-		// 	mapMutex.unlock();
-		// }
-
+		if (slam.getOptFlag()>0){
+			mapMutex.lock();
+			map3d.updateTrajectory(slam.getCurrentPosition());
+			logPoseGraphNode(frame, slam.getCurrentPosition());
+			map3d.updateMapViewer();
+			mapMutex.unlock();
+		}
 	}
-
+  map3d.updateMapViewer();
 	sensor.stop();
 
 	// plot statistic
