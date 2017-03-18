@@ -1,6 +1,5 @@
-
-#ifndef DEBUG_H_
-#define DEBUG_H_
+#ifndef INCLUDES_DEBUG_H_
+#define INCLUDES_DEBUG_H_
 
 #include "Frame.h"
 #include "G2oPoseGraph.h"

@@ -24,12 +24,10 @@ SURF::~SURF()
 
 boost::shared_ptr<std::vector<cv::KeyPoint>> SURF::detect(const cv::Mat& img)
 {
-
 	boost::shared_ptr<std::vector<cv::KeyPoint>> keypoints(new std::vector<cv::KeyPoint>);
 	detecterExtracter->detect(img, *keypoints);
 
 	return keypoints;
-
 }
 
 boost::shared_ptr<cv::Mat> SURF::extract(const cv::Mat& img, const std::vector<cv::KeyPoint>& kpts)

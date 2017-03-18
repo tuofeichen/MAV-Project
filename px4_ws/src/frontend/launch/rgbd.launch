@@ -15,7 +15,7 @@
 
 </group>
 
-<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen">
+<node pkg="frontend" type="frontend" name="rgbd_backend" output="screen" launch-prefix="gdb -ex run --args">
 
 <param name ="sim" type="bool" value="$(arg sim)"  />
 

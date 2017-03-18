@@ -12,13 +12,20 @@
 namespace SLAM
 {
 
-Frame::Frame()
-{ }
+  Frame::Frame():
+  id(new int), keyFrameFlag(new bool), newNodeFlag(new bool), dummyFrameFlag(new bool), badFrameFlag(new int), pos(new Eigen::Matrix4f),
+  time(new double), rgb(new cv::Mat), gray(new cv::Mat), depth(new cv::Mat),\
+  keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>()),\
+  descriptors(new cv::Mat),averageFeatureDescriptor(new cv::Mat)
+  {
+    std::cout << "blank constructor " << std::endl;
+  }
 
 Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
 : id(new int), keyFrameFlag(new bool), newNodeFlag(new bool), dummyFrameFlag(new bool), badFrameFlag(new int), pos(new Eigen::Matrix4f),time(timeStamp),
-  rgb(rgbImage), gray(grayImage), depth(depthImage), descriptors(new cv::Mat),
-  keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>())
+  rgb(rgbImage), gray(grayImage), depth(depthImage),
+  keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>()),
+   descriptors(new cv::Mat),averageFeatureDescriptor(new cv::Mat)
 {
 	*id = -1;
 	*newNodeFlag = false;
@@ -26,8 +33,39 @@ Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& g
 	*dummyFrameFlag = false;
 	*badFrameFlag = 0;
 	*pos = Eigen::Matrix<float, 4, 4>::Identity();
-
 }
+
+Frame& Frame::operator=(const Frame& other)
+{
+      int refc = 0;
+    // should be fixed in the code later
+      refc = averageFeatureDescriptor -> u ? (averageFeatureDescriptor->u->refcount) : 0;
+
+        // std::cout << "shared_ptr count "<< rgb.use_count()<< std::endl;
+      if (refc == averageFeatureDescriptor.use_count()) // need error handling
+      {
+        if (refc==1)
+          averageFeatureDescriptor->deallocate();
+      }
+
+      rgb    = other.rgb;
+      gray   = other.gray;
+      depth  = other.depth;
+      time   = other.time;
+      id     = other.id;
+      newNodeFlag      = other.newNodeFlag;
+      badFrameFlag     = other.badFrameFlag;
+      keyFrameFlag     = other.keyFrameFlag;
+      dummyFrameFlag   = other.dummyFrameFlag;
+      keypoints        = other.keypoints;
+      keypoints3D      = other.keypoints3D;
+      descriptors      = other.descriptors;
+      averageFeatureDescriptor = other.averageFeatureDescriptor;
+      // std::cout << "mat count " << refc << std::endl;
+
+      return *this;
+}
+
 
 void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 {
@@ -41,8 +79,8 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 		const int col = static_cast<int>(i->pt.x);
 		const int row = static_cast<int>(i->pt.y);
 		uint16_t depthVal = depth->at<uint16_t>(row, col);
-		long depthSum = 0; 
-		
+		long depthSum = 0;
+
 		if(depthVal != 0 && depthVal <= static_cast<uint16_t>(3.5*depthScale))
 		// if (depthVal <= static_cast<uint16_t>(3.5*depthScale))
 		{
@@ -52,7 +90,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 				for (int ny = -NEIGHBOR_Y/2; ny < NEIGHBOR_Y/2; ny ++)
 				{
 					if ((row+nx)>0 && (row+nx)<240 && (col+ny) > 0 && (col+ny)<320)
-						depthSum += (depth->at<uint16_t>(row+nx,col+ny));// - depthVal)*(depth->at<uint16_t>(row+nx,col+ny) - depthVal); 
+						depthSum += (depth->at<uint16_t>(row+nx,col+ny));// - depthVal)*(depth->at<uint16_t>(row+nx,col+ny) - depthVal);
 				}
 			}
 
@@ -61,7 +99,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 			for (int nx = -NEIGHBOR_X/2; nx < NEIGHBOR_X/2; nx ++)
 			{
 				for (int ny = -NEIGHBOR_Y/2; ny < NEIGHBOR_Y/2; ny ++)
-				{	
+				{
 					depthSum += (depthAvg - depth->at<uint16_t>(row+nx,col+ny))*(depthAvg - depth->at<uint16_t>(row+nx,col+ny));
 				}
 			}
@@ -71,7 +109,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 			{
 			// std::cout << "keypoint threshold is " << (depthSum / (NEIGHBOR*NEIGHBOR)) << std::endl;
 			// std::cout << "  keypoint depth is " << depthVal << std::endl;
-			
+
 			keypoints->push_back(*i);
 
 			Eigen::Vector3f tmp;
@@ -79,7 +117,7 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 			tmp.x() = tmp.z() * (static_cast<float>(col) - cx) * ifx; // (scaling)
 			tmp.y() = tmp.z() * (static_cast<float>(row) - cy) * ify;
 			keypoints3D->push_back(tmp);
-			}	
+			}
 		}
 	}
 	assert(keypoints->size() == keypoints3D->size());
@@ -87,9 +125,9 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 
 // void setDescriptors(boost::shared_ptr<cv::Mat> descs)
 // {
-  
+
 //   *descriptors = *descs;
-//   setAverageDescriptors(); 
+//   setAverageDescriptors();
 // }
 
 
@@ -120,5 +158,3 @@ void Frame::setAverageDescriptors()
 }
 
 }
-
-

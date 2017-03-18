@@ -23,10 +23,6 @@
 
 #include "RosHandler.h"
 
-// #define DEBUG_NEW 14
-// #define DEBUG_OLD 13
-// #define DEBUG
-
 
 namespace SLAM {
 
@@ -68,10 +64,12 @@ public:
 	 */
 	// void run(RosHandler& lpe);
 	void run();
-
+	// break down original run into following three functions
 	bool extractFeature();
 
+	void addNewNode();
 
+	void optPoseGraph();
 	/**
 	 * @brief adds a new frame
 	 *
@@ -101,19 +99,19 @@ public:
 	unsigned int getTrafoVelocityToBigCounter() {return trafoVelocityToBigCounter;}
 	unsigned int getDummyNodeCounter() {return dummyNodeCounter;}
 	unsigned int getImuCompensateCounter() {return imuCompensateCounter;}
-
+	bool 				 getOptFlag()					 {return optFlag;}
 	const std::vector<Frame>& getNodes() {return nodes;}
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 
 
-	enum{ contFramesToMatch = 4, ///< number of sequential frames to match
-		  neighborsToMatch = 4, ///< number of neighbor frames to match
+	enum{ contFramesToMatch = 2, ///< number of sequential frames to match
+		  neighborsToMatch = 2, ///< number of neighbor frames to match
 		  minNumberOfKeyPoints = 30, ///< min number of key points
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
 	enum{ badFrame = 0, recoverFrame = 1, dummyFrame = 2};
-
+	bool mapUpdate = false;
 
 	static constexpr bool onlineOptimization = true; ///< Enables/disable online optimization
 	static constexpr bool optimizeTillConvergence = false; ///< Enables/disable optimization till convergence
@@ -125,10 +123,10 @@ public:
 	// static constexpr double minRotation = -1.0;    //   < minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
-	static constexpr double minRotation = 1 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation = 0.01;   ///< minimal translation in meter(negative values to disable)
-	static constexpr double maxVelocity = std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
-	static constexpr double maxAngularVelocity = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
+	static constexpr double minRotation 				= 1.2 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minTranslation 			= 0.01;   ///< minimal translation in meter(negative values to disable)
+	static constexpr double maxVelocity 			 	= std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
+	static constexpr double maxAngularVelocity  = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
 //	static constexpr double maxAngularVelocity = 90.0 *M_PI / 180.0; ///< max angular velocity in rad per second
 	static constexpr double loopClosureDetectionThreshold =   std::numeric_limits<double>::infinity(); //0.1//< loop closure detection threshold for the averge descriptor
@@ -143,12 +141,12 @@ private:
 	bool featureDetectionAndExtraction();
 	void initialMatching();
 	void exchangeFirstFrame();
-	void parallelMatching();
+	void parallelMatching(Frame procFrame);
 	void tryToAddNode(int thread);
-	void addEdges(int thread);
+	void addEdges(int thread,int currId);
 	// void setDummyNode(RosHandler& lpe);
 	void setDummyNode();
-	bool searchKeyFrames();
+	bool searchKeyFrames(Frame procFrame);
 	void optimizeGraph(bool tillConvergenz);
 	void updateMap();
 	void matchTwoFrames(
@@ -160,15 +158,14 @@ private:
 				Eigen::Matrix<double, 6, 6>& informationMatrix  // out: information matrix of the estimation
 				);
 	enum GraphProcessingResult {trafoToSmall, trafoToBig, trafoValid};
-	GraphProcessingResult processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
-
+	GraphProcessingResult processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, int currId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
 	inline void convertRotMatToEulerAngles(const Eigen::Matrix3d& t, double& roll, double& pitch, double& yaw) const;
 	bool isMovementBigEnough(const Eigen::Isometry3d& trafo) const;
 	bool isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double deltaT) const;
 	void addFirstNode();
 	enum ComparisonResult {noTimeStamp, succeed, failed};
 	ComparisonResult compareCurrentPosition(const Frame& frame, const Eigen::Isometry3d& pose);
-	void loopClosureDetection();
+	void loopClosureDetection(Frame procFrame);
 	// void fusePX4LPE(RosHandler& lpe, int frameType);
 	void fusePX4LPE(int frameType);
 
@@ -198,6 +195,10 @@ private:
 
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
+	boost::thread graphHandler;
+	boost::thread delayProc;
+	boost::mutex mapMutex;
+	bool optFlag = true;
 
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	bool validTrafo[lcRandomMatching + contFramesToMatch + neighborsToMatch];
@@ -214,12 +215,14 @@ private:
 	bool lcValidTrafo = 0;
 	int lcBestIndex = -1;// = -1;
 
-	boost::mutex mapUpdateMutex;
+	// boost::mutex mapUpdateMutex;
 
 	int sequenceOfLostFramesCntr = 0;
 
 	// debugging
 	pcl::console::TicToc time;
+	pcl::console::TicToc time_delay;
+
 	unsigned int frameCounter = 0;
 	unsigned int badFrameCounter = 0;
 	unsigned int noTrafoFoundCounter = 0;

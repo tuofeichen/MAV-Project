@@ -13,10 +13,6 @@
 #include <string>
 #include <ros/ros.h>
 
-
-// #include <synch.h>
-
-
 #include "Frontend.h"
 #include "Mapping.h"
 #include "OrbDetSurfDesc.h"
@@ -60,7 +56,7 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 // static objects
 static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
-static SURF objdem(0.7, 35, sufficientMatches);
+static SURF objdem(descriptorRatio, 35, sufficientMatches);
 // static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 
@@ -74,6 +70,7 @@ int main(int argc, char **argv)
 	ros::init(argc,argv,"rgbd_backend");
 	initLog();
 	RosHandler px4;
+
 	boost::mutex backendMutex;
 	// start camera
 	AsusProLiveOpenNI2::start();
@@ -84,6 +81,7 @@ int main(int argc, char **argv)
 	boost::thread t_procFrame;
 	boost::thread t_slam;
 
+// Variables
 	pcl::console::TicToc time;
 	Frame frame;
 	int nodeId = 1; 				// node id (for debug mode?)
@@ -94,16 +92,16 @@ int main(int argc, char **argv)
 
 
 	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
-		rot = (Eigen::Matrix4f() <<
+		rot = (Eigen::Matrix4f() << \
 				  0,1,0,0,
 				  0,0,1,0,
 				  1,0,0,0,
 				  0,0,0,1).finished();
 
-	Eigen::Isometry3d tm;			// slam frame tm
+	Eigen::Isometry3d tm;			// slam tm
 	Eigen::Matrix<double,6,6> im;
 
-	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm
+	Eigen::Matrix4f lpe_tm; 	// pixhawk lpe tm
 	Eigen::Matrix4f lpe_prev;
 
 	// setup mapping class
@@ -129,41 +127,31 @@ int main(int argc, char **argv)
 		time.tic();
 
 // in debug mode,read stored images (video frames)
-// otherwise use camera input
 #ifdef DEBUG
 		if(readImage(frame,nodeId))//nodeId is node number
 			nodeId ++ ;
 		else
 			break;
-#else
-
+#else // else grab image from camera
 		noError = AsusProLiveOpenNI2::grab(frame);
 		if(!noError)
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 			continue;
 		}
-		//
-		// readMutex.lock();
-		// cond_signal(&readFrameDone);
-		// readMutex.unlock();
 #endif
 
 		if(nodeId > -1)
 		{
 			// start slam
 
-			// put object detection into separate thread， sort of dependecncy
 			slam.addFrame(frame);
-			// obj.processFrame(frame, readFrameDone);
 
 			if(slam.extractFeature()){
 				t_slam 			= boost::thread (&Mapping::run, &slam);
 				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, boost::ref(frame));
 				t_slam.join();
-				// time.tic();
 				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
-				// cout << "obj detect takes " << time.toc() << " ms " << endl;
 			}
 
 			badFrame = frame.getBadFrameFlag();
@@ -192,7 +180,7 @@ int main(int argc, char **argv)
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-			  logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+			  // logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
 				cout << "total processing time " << timeDiff << endl << endl;
@@ -200,9 +188,10 @@ int main(int argc, char **argv)
 
 
 // Keyframe Processing (Add New Node to backend PCL) need thread
-			if(frame.getKeyFrameFlag()||(frame.getId() == 0)) // send back key frame for PCL
+			if(slam.mapUpdate||(frame.getId() == 0)) // send back key frame for PCL
 			{
-				time.tic();
+				// cout <<
+				slam.mapUpdate = false;
 				backend.setNewNode(frame);
 				for (int i = 0; i<slam.getKeyFrames().size();i++)
 				{
@@ -218,9 +207,8 @@ int main(int argc, char **argv)
 					backend.sendCurrentPos(tm);
 					boost::this_thread::sleep(boost::posix_time::milliseconds(1)); // necessary?
 				}
-
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
-				cout <<"frame transmission " << time.toc() <<endl;
+				// cout <<"frame transmission " <<endl;
 			}
 
 		}
@@ -233,7 +221,6 @@ int main(int argc, char **argv)
 
 
 	graph.optimizeTillConvergenz();
-
 	// transmit finalized graph
 	backend.setNewNode(slam.getKeyFrames().back());
 	for (int i = 0; i<slam.getKeyFrames().size();i++)
@@ -251,7 +238,6 @@ int main(int argc, char **argv)
 		backend.sendCurrentPos(tm);
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
-
 	backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 
 	graph.save();

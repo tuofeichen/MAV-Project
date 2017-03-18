@@ -35,14 +35,14 @@ public:
 	// static constexpr float fy = 570.0; ///< focal length in y direction in pixel
 	// static constexpr float cx = 319.5; ///< center point in x direction in pixel
 	// static constexpr float cy = 239.5; ///< center point in y direction in pixel
-	
+
 	// enum{
 	// 	rows = 480,
 	// 	cols = 640,
 	// 	depthMode = 4, // select index=0  320x240, 30 fps, 1mm
 	// 	colorMode = 9, // select index 0: 320x240, 30 fps, 200 format (RGB)
 	// };
-	
+
 	// QVGA
 	static constexpr float fx = 285.0; ///< focal length in x direction in pixel
 	static constexpr float fy = 285.0; ///< focal length in y direction in pixel
@@ -55,7 +55,7 @@ public:
 		depthMode = 0, // select index=0  320x240, 30 fps, 1mm
 		colorMode = 0, // select index 0: 320x240, 30 fps, 200 format (RGB)
 	};
-	
+
 	boost::shared_ptr<double> setTime() { return time; }
 	boost::shared_ptr<cv::Mat> setRgb() { return rgb; }
 	boost::shared_ptr<cv::Mat> setGray() { return gray; }
@@ -83,6 +83,7 @@ public:
 	 */
 	Frame();
 
+
 	/**
 	 * @brief Constructor
 	 *
@@ -93,6 +94,7 @@ public:
 	 *
 	 */
 	Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp);
+	Frame& operator=(const Frame& other);
 
 	/**
 	 * @breif Destructor
@@ -237,7 +239,7 @@ public:
 
 	void setPosition(Eigen::Matrix4f lpe) { *pos = lpe; }
 
-	Eigen::Matrix4f getPosition() const {return *pos;} 
+	Eigen::Matrix4f getPosition() const {return *pos;}
 
 
 private:
@@ -245,7 +247,7 @@ private:
 
 	boost::shared_ptr<int> id;
 	boost::shared_ptr<bool> keyFrameFlag;
-	boost::shared_ptr<bool> dummyFrameFlag;	
+	boost::shared_ptr<bool> dummyFrameFlag;
 	boost::shared_ptr<bool> newNodeFlag;
 	boost::shared_ptr<int> badFrameFlag;
 

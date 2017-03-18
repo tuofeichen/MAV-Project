@@ -22,15 +22,13 @@ int main()
 ObjDetection::ObjDetection(IFeatures* aFDEM,RosHandler* aRos):
 frame(new Frame) ,dem(aFDEM), px4(aRos)
 {
-	readTemplate(); // read template
-
-
+	readTemplate(); // read object template to be matched
 }
 
 void ObjDetection::processFrame(Frame newFrame)
 {
 	bool objDetected = 0;
-	*frame = newFrame;
+	*frame = newFrame; // deep copy
 
 	// if (frame->getBadFrameFlag()!=1)
 	objDetected = objectDetect();
