@@ -113,8 +113,8 @@ void Mapping::addNewNode()
 
 	if (currentFrame.getId()>0)
 		cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
-	else
-		cout << "bad frame after " << nodes.back().getId() << " is discarded " << endl;
+	// else
+	// 	cout << "dummy frame after " << nodes.back().getId() << " is discarded " << endl;
 }
 
 void Mapping::optPoseGraph()
@@ -323,7 +323,8 @@ void Mapping::matchTwoFrames(
 		)
 {
 	assert(frame1.getId() != frame2.getId());
-	assert(!(frame1.getBadFrameFlag()) || frame2.getBadFrameFlag());
+	assert(frame1.getBadFrameFlag()!=1);
+	assert(frame2.getBadFrameFlag()!=1);
 
 	if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
 	{
@@ -599,15 +600,12 @@ void Mapping::tryToAddNode(int thread)
 		}
 		else if(result == trafoToSmall)
 		{
-			// trafo too small
-			cout << "trafo too small!" << endl;
 			currentPosition = poseGraph->getPositionOfId(graphIds[thread])*transformationMatrices[thread];
 			currentFrame.setDummyFrameFlag(true);
 			++trafoToSmallCounter; // debug
 		}
 		else if (result == trafoToBig)
 		{
-			cout << "trafo too big!!" << endl;
 			currentFrame.setDummyFrameFlag(true);
 			++trafoVelocityToBigCounter; // debug
 		}
@@ -812,10 +810,11 @@ void Mapping::fusePX4LPE(int frameType)
 		{
 			case badFrame:
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
+				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
 				currentPosition = (poseGraph->getPositionOfId(nodes.back().getId())) * tm;
 				// cout << "!!!!!!!!!!!!!!!! fuse bad frame !!!!!!!!!!!!!" << endl;
 			  // prevent set as new node or key frame
-				// currentFrame.setKeyFrameFlag(false); // allow bad frame as key frame for PCL
+
 			break;
 
 			case recoverFrame:							  // recover from bad frame

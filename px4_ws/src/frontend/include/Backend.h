@@ -21,7 +21,7 @@ using namespace SLAM;
 class Backend
 {
 public:
-	Backend(int port, boost::mutex& mutex);
+	Backend(int port, boost::mutex& mutex, bool open);
 	virtual ~Backend();
 
 	// void setNewNode(const Frame& frame, const Eigen::Matrix4f& tm, const Eigen::Matrix<float, 6, 6>& im, uint8_t toNode); // copy
@@ -57,7 +57,7 @@ private:
 	std::vector<uint8_t> sDepthImg;
 	boost::mutex& backendMutex;
 
-	
+
 	// recive stuff
 	std::vector<uint8_t> sTm;
 };

@@ -96,6 +96,8 @@ private:
 				roll,
 				pitch,
 				yaw);
+
+
 		UAS_FCU(uas)->send_message(&msg);
 	}
 
@@ -112,33 +114,33 @@ private:
 		// ROS_INFO("Sending vision estimate");
 
 		if (last_transform_stamp == stamp) {
-			ROS_DEBUG_THROTTLE_NAMED(10, "vision_pose", "Vision: Same transform as last one, dropped.");	
+			ROS_DEBUG_THROTTLE_NAMED(10, "vision_pose", "Vision: Same transform as last one, dropped.");
 			return;
 
 		}
 
 		last_transform_stamp = stamp;
-		double roll, pitch, yaw; 
+		double roll, pitch, yaw;
 
 		auto position = UAS::transform_frame_enu_ned(Eigen::Vector3d(tr.translation()));
-		
+
 		Eigen::Quaterniond q_eigen(tr.rotation());
 
 		tf::Quaternion q_tf(q_eigen.x(), q_eigen.y(), q_eigen.z(), q_eigen.w());
 
 		tf::Matrix3x3(q_tf).getRPY(roll, pitch, yaw);
- 
+
 		// auto rpy = UAS::quaternion_to_rpy(
 		// 		UAS::transform_orientation_enu_ned(Eigen::Quaterniond(tr.rotation())));
 
 
 		// ROS_INFO("RPY from mavros is %f, %f, %f", roll, -pitch, -yaw + M_PI/2);
+		// sending
 
-		// sending 
 		vision_position_estimate(stamp.toNSec() / 1000,
 				position.x(), position.y(), position.z(),
 				roll,-pitch,-yaw+M_PI/2);
-		
+
 	}
 
 	/* -*- callbacks -*- */

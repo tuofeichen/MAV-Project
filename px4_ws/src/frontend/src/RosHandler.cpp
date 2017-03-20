@@ -85,7 +85,7 @@ void RosHandler::updateWallPos(geometry_msgs::Point wallPos)
 }
 
 // everthing aligned in camera frame
-void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME)
+void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update slam estimate
 {
 		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation matrix
 

@@ -17,9 +17,10 @@ static void deserializeCurrentNodeWrapper(const uint8_t* data, int size, void* c
 	reinterpret_cast<Backend*>(context)->deserializeCurrentNode(data, size);
 }
 
-Backend::Backend(int port, boost::mutex& mutex)
+Backend::Backend(int port, boost::mutex& mutex, bool open)
  : server(port), protocolHandler(&server), sEdge(rowsTm*colsTm*sizeTypeTm + rowsIm*colsIm*sizeTypeIm + sizeof(double) + 1), sRgbImg(Frame::rows*Frame::cols*3), sDepthImg(Frame::rows*Frame::cols*2), backendMutex(mutex), sTm(rowsTm*colsTm*sizeTypeTm)
 {
+	if (open){
 	protocolHandler.registerRecvCallback(UavComProtocol::CMD1::CURRENT_NODE,deserializeCurrentNodeWrapper,this);
 
 	currentPosition = Eigen::Matrix4f::Identity();
@@ -32,6 +33,7 @@ Backend::Backend(int port, boost::mutex& mutex)
 
 	// start receiving
 	boost::thread(&TcpServer::run, &server);
+	}
 }
 
 Backend::~Backend()

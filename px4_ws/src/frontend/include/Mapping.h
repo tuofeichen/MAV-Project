@@ -110,7 +110,7 @@ public:
 		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
-	enum{ badFrame = 0, recoverFrame = 1, dummyFrame = 2};
+	enum{ badFrame = 1, recoverFrame = 2, dummyFrame = 3};
 	bool mapUpdate = false;
 
 	static constexpr bool onlineOptimization = true; ///< Enables/disable online optimization

@@ -36,6 +36,7 @@ using namespace SLAM;
 //
 
 static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
+static constexpr bool backEndSupport = false;
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
 
 enum {
@@ -74,7 +75,9 @@ int main(int argc, char **argv)
 	boost::mutex backendMutex;
 	// start camera
 	AsusProLiveOpenNI2::start();
-	Backend backend(backendPort,backendMutex);
+
+
+	Backend backend(backendPort,backendMutex,backEndSupport);
 
 
 // threading for processFrame
@@ -118,6 +121,7 @@ int main(int argc, char **argv)
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 		}
 	}
+	double camInitTime = frame.getTime();
 #endif
 
 
@@ -158,8 +162,9 @@ int main(int argc, char **argv)
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{
 				tm = slam.getCurrentPosition();
+				// cout << "camera time stamp " << frame.getTime()-camInitTime << endl;
 				if (!px4.getTakeoffFlag())
-					px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
+					px4.updateCamPos(frame.getTime()-camInitTime, tm.matrix().cast<float>()); // publish to mavros
 			}
 			else
 			{
@@ -188,7 +193,7 @@ int main(int argc, char **argv)
 
 
 // Keyframe Processing (Add New Node to backend PCL) need thread
-			if(slam.mapUpdate||(frame.getId() == 0)) // send back key frame for PCL
+			if(slam.mapUpdate || (frame.getId() == 0) && backEndSupport) // send back key frame for PCL
 			{
 				// cout <<
 				slam.mapUpdate = false;
@@ -222,6 +227,7 @@ int main(int argc, char **argv)
 
 	graph.optimizeTillConvergenz();
 	// transmit finalized graph
+	if (backEndSupport){
 	backend.setNewNode(slam.getKeyFrames().back());
 	for (int i = 0; i<slam.getKeyFrames().size();i++)
 	{
@@ -239,6 +245,7 @@ int main(int argc, char **argv)
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
 	backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
+	}
 
 	graph.save();
 
