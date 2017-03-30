@@ -7,7 +7,7 @@
 
 
 #define RANSAC 5
-#define MIN_MATCHES 20
+#define MIN_MATCHES 10
 #define MAX_NORM 40
 
 using namespace std;
@@ -20,7 +20,7 @@ int main()
 }
 
 ObjDetection::ObjDetection(IFeatures* aFDEM,RosHandler* aRos):
-frame(new Frame) ,dem(aFDEM), px4(aRos)
+ dem(aFDEM), px4(aRos)
 {
 	readTemplate(); // read object template to be matched
 }
@@ -28,18 +28,18 @@ frame(new Frame) ,dem(aFDEM), px4(aRos)
 void ObjDetection::processFrame(Frame newFrame)
 {
 	bool objDetected = 0;
-	*frame = newFrame; // deep copy
+	objFrame = newFrame; // copy everything
 
-	// if (frame->getBadFrameFlag()!=1)
+	// if (objFrame.getBadFrameFlag()!=1)d
 	objDetected = objectDetect();
 
 	if (objDetected)
-		checkObjAngle(frame->getDepth());
+		checkObjAngle(objFrame.getDepth());
 	else
-		checkForWall(frame->getDepth());
+		checkForWall(objFrame.getDepth());
 
 	if(px4->getTakeoffFlag() && (!objDetected)) /// haven't taken off yet
-		checkObstacles(frame->getDepth(),50,50,3000); // combine
+		checkObstacles(objFrame.getDepth(),50,50,3000); // combine
 
 }
 
@@ -50,24 +50,27 @@ bool  ObjDetection::objectDetect()
 	std::vector< DMatch > matches;
 	bool objFound = 0;
 
-	if(!dem->match(*tempKeyPoints,*tempDescriptors, frame->getKeypoints(), frame->getDescriptors(), forward_matches))
+	if(!dem->match(*tempKeyPoints,*tempDescriptors, objFrame.getKeypoints(), objFrame.getDescriptors(), forward_matches))
 	{
+		  // cout << "forward match size " << forward_matches.size() << endl;
+		  return false;
+	}
+
+	else if (!dem->match(objFrame.getKeypoints(), objFrame.getDescriptors(), *tempKeyPoints,*tempDescriptors,backward_matches))
+	{
+
+			// cout << "backward match size " << backward_matches.size() << endl << endl;
 			return false;
 	}
 
-	else if (!dem->match(frame->getKeypoints(), frame->getDescriptors(), *tempKeyPoints,*tempDescriptors,backward_matches))
-	{
-			return false;
-	}
 
-	// cout << "forward match size " << forward_matches.size() << endl;
-	// cout << "backward match size " << backward_matches.size() << endl << endl;
 
 	std::vector<Point2f> obj;
 	std::vector<Point2f> scene;
 
 	cv::Mat H; // homography matrix
 
+	int smallerSize = min(backward_matches.size(),forward_matches.size());
 	for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
 	{
 // Get the keypoints from the good matches
@@ -77,29 +80,29 @@ bool  ObjDetection::objectDetect()
 				if(backward_matches.at(i).trainIdx == forward_matches.at(j).queryIdx)
 				{
 					matches.push_back(forward_matches.at(j));
-					obj.push_back( (*tempKeyPoints)[ forward_matches[j].queryIdx ].pt );
-					scene.push_back( frame->getKeypoints().at(forward_matches[j].trainIdx).pt );
+					obj.push_back( (*tempKeyPoints).at(forward_matches[j].queryIdx).pt );
+					scene.push_back(objFrame.getKeypoints()[forward_matches[j].trainIdx].pt);
 					break;
 				}
 		}
-
 	}
 
-
-	// cout << matches.size() << endl;
 	if (matches.size() < MIN_MATCHES)
 		return false;
 
+	// for (int i = 0; i < matches.size() ; i++)
+	// 	cout << "Mutual match (tr/qu) " << matches[i].trainIdx << " " << matches[i].queryIdx << endl;
 
 	Mat img_matches;
-	drawMatches(tempImage, *tempKeyPoints, frame->getGray(), frame->getKeypoints(), matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
-	H = findHomography( obj, scene, CV_RANSAC, RANSAC); // find homography
-		//H = findHomography( obj, scene, CV_LMEDS);
+	drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
+	// imshow("Object Matching", img_matches);
+	// H = findHomography( obj, scene, CV_RANSAC, RANSAC); // find homography
+	H = findHomography( obj, scene, CV_LMEDS);
 
 	if(!H.empty())
 	{
 		Mat img_object = tempImage;
-		Mat img_scene =  frame->getGray();
+		Mat img_scene =  objFrame.getGray();
 		std::vector<Point2f> obj_corners(4);
 
 		obj_corners[0] = cvPoint(0,0);
@@ -110,10 +113,10 @@ bool  ObjDetection::objectDetect()
 
 		perspectiveTransform(obj_corners, scene_corners, H);
 
-		centroid = ( (scene_corners[0] + Point2f( img_object.cols, 0) ) + (scene_corners[1] + Point2f( img_object.cols, 0)) + (scene_corners[2] + Point2f( img_object.cols, 0)) + (scene_corners[3] + Point2f( img_object.cols, 0)) )/4;
+		centroid = ((scene_corners[0] + Point2f( img_object.cols, 0)) + (scene_corners[1] + Point2f( img_object.cols, 0)) + (scene_corners[2] + Point2f( img_object.cols, 0)) + (scene_corners[3] + Point2f( img_object.cols, 0)) )/4;
 		centroid2 = (scene_corners[0] + scene_corners[1] + scene_corners[2] + scene_corners[3])/4;
 
-		if(centroid2.x > 0 && centroid2.x < frame->getGray().cols && centroid2.y > 0 && centroid2.y < frame->getGray().rows && norm(centroid2 - past_centroid2) < MAX_NORM)
+		if(centroid2.x > 0 && centroid2.x < objFrame.getGray().cols && centroid2.y > 0 && centroid2.y < objFrame.getGray().rows && norm(centroid2 - past_centroid2) < MAX_NORM)
 		{
 
 				// cout << "centroid is " << centroid2 << endl;
@@ -122,13 +125,12 @@ bool  ObjDetection::objectDetect()
 				// line( img_matches, scene_corners[2] + Point2f( img_object.cols, 0), scene_corners[3] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// line( img_matches, scene_corners[3] + Point2f( img_object.cols, 0), scene_corners[0] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// circle( img_matches, centroid, 32.0, Scalar( 0, 0, 255 ), 3, 8 );
-				// circle( frame->getGray(), Point2f((int)centroid2.x,(int)centroid2.y), 32.0, Scalar( 255, 0, 0 ), 3, 8 );
-
-				//circle( frame->getGray(), centroid2, 32.0, Scalar( 255, 0, 0 ), 3, 8 );
+				// circle( objFrame.getGray(), Point2f((int)centroid2.x,(int)centroid2.y), 32.0, Scalar( 255, 0, 0 ), 3, 8 );
+				// circle( objFrame.getGray(), centroid2, 32.0, Scalar( 255, 0, 0 ), 3, 8 );
 
 				// Get depth value if centroid position is in a valid position
 				objPoint.z =-1;
-				const cv::Mat& Depth = frame->getDepth();
+				const cv::Mat& Depth = objFrame.getDepth();
 				Point2f A = centroid2;
 				const int X = (int)A.y;
 				const int Y = (int)A.x ;
@@ -138,11 +140,14 @@ bool  ObjDetection::objectDetect()
 				long int counter = 0;
 				int test_counter = 0;
 
+				// assert (X+4 < objFrame.cols && X-4 > 0 );
+				// assert (Y+4 < objFrame.rows && Y-4 > 0 );
+
 				for(int l=X-4;l<X+4;l++)
 				{
 					for(int k=Y-4;k<Y+4;k++)
 						{
-						if(Depth.at<uint16_t>(l,k) != 0 && l > 0 && l < frame->getGray().cols && k > 0 && k < frame->getGray().rows)
+						if(Depth.at<uint16_t>(l,k) != 0 && l > 0 && l < objFrame.getGray().cols && k > 0 && k < objFrame.getGray().rows)
 							{
 							sum+=Depth.at<uint16_t>(l,k);
 							counter++;
@@ -153,21 +158,19 @@ bool  ObjDetection::objectDetect()
 					// cout << endl;
 				}
 
-
-				if(sum!=0)
+				if(sum < 3500 && sum!=0)
 				{
-
 					cout << "x: " << X << endl;
 					cout << "y: " << Y << endl;
 					sum = sum/((float)counter);
-					cout << "depth: " << sum << endl;
-				}
-				if(sum < 3500 && sum!=0)
-				{
-					// imshow( "ObjMatches", img_matches );
+					cout << "depth:  " << sum << endl;
+
+					imshow( "ObjMatches", img_matches );
+
 					objPoint.z = sum;
 					objPoint.x = (int)centroid2.x;
 					objPoint.y = (int)centroid2.y;
+
 					px4->updateObjPos(objPoint);
 					objFound = 1;
 				}
@@ -178,7 +181,7 @@ bool  ObjDetection::objectDetect()
 	}
 	return objFound;
 
-	// cv::imshow("ObjDetect", frame->getRgb());
+	// cv::imshow("ObjDetect", objFrame.getRgb());
 }
 
 void ObjDetection::checkObstacles(cv::Mat depth, int d_row, int d_col, int safe_dist) // check specified central region
@@ -444,11 +447,11 @@ void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up
 
 void ObjDetection::readTemplate()
 {
-	tempImage = imread( "/home/odroid/painting.jpg", IMREAD_GRAYSCALE);
+	tempImage = imread( "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/sp.jpg", IMREAD_GRAYSCALE);
 	tempKeyPoints  	= dem->detect(tempImage);
 	tempDescriptors = dem->extract(tempImage,*tempKeyPoints);
 
-	// cv::namedWindow("scientist",CV_NORMAL);
-	// cv::imshow("scientist", tempImage);
+	// cv::namedWindow("Signal Processing",CV_NORMAL);
+	// cv::imshow("Signal Processing", tempImage);
 	// cv::waitKey(0);
 }

@@ -70,6 +70,9 @@ Frame& Frame::operator=(const Frame& other)
 void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 {
 	// TODO check if its faster to copy it or remove the points
+
+  // allow keypoints with 0 depth value?
+
 	keypoints->clear();
 	keypoints3D->clear();
 
@@ -104,14 +107,12 @@ void Frame::setKeypoints(boost::shared_ptr<std::vector<cv::KeyPoint>> keys)
 				}
 			}
 
-
 			if ((abs(static_cast<uint16_t>(depthSum / (NEIGHBOR_X*NEIGHBOR_Y))) >= 0))
 			{
 			// std::cout << "keypoint threshold is " << (depthSum / (NEIGHBOR*NEIGHBOR)) << std::endl;
 			// std::cout << "  keypoint depth is " << depthVal << std::endl;
 
 			keypoints->push_back(*i);
-
 			Eigen::Vector3f tmp;
 			tmp.z() = static_cast<float>(depthVal) * idepthScale;
 			tmp.x() = tmp.z() * (static_cast<float>(col) - cx) * ifx; // (scaling)

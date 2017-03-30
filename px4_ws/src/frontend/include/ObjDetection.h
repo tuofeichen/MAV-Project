@@ -29,7 +29,7 @@ class ObjDetection {
 	void checkObjAngle(cv::Mat Depth);
 
 
-	boost::shared_ptr <Frame> frame; // initialization
+	Frame objFrame; // initialization
 
 	IFeatures* dem;  // feature detection / extraction
 	RosHandler* px4; // pixhawk communication via mavros

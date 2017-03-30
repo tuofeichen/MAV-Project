@@ -65,6 +65,7 @@ bool Mapping::extractFeature()
 
 		return 0;
 	}
+
 	// else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()==1))
 	// {
 	// 	cout << "recover from badframe" << endl;
@@ -263,18 +264,7 @@ void Mapping::run()
 	// initialize variables
 	bestInforamtionValue = 0;
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
-	// frames = 0; unnecessary
-
-	time.tic();
-	if (!featureDetectionAndExtraction())
-	{
-		++badFrameCounter;
-		return; // immediately return if bad frame
-	}
-
-	relTime = time.toc();
-	// cout << endl << "------ Feature dem took " << relTime << " ms" << endl;
-
+	
 	if(!initDone)
 	{
 		addFirstNode();
@@ -612,7 +602,7 @@ void Mapping::tryToAddNode(int thread)
 	}
 	else
 	{
-		cout << "invalid trafo " << endl;
+		// cout << "invalid trafo " << endl;
 	}
 }
 

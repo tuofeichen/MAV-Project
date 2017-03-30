@@ -6,7 +6,6 @@
 #include "geometry_msgs/TwistStamped.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "sensor_msgs/MagneticField.h"
-#include "px_comm/OpticalFlow.h"
 #include "std_msgs/String.h"
 
 using namespace std;
@@ -36,6 +35,14 @@ public:
   void clearLog();
   string vision_logname;
   string lpe_logname;
+
+  std::vector<float> px_lpe;
+  std::vector<float> py_lpe;
+  std::vector<float> pz_lpe;
+
+  std::vector<float> px_vision;
+  std::vector<float> py_vision;
+  std::vector<float> pz_vision;
 
 
   // void csv_dump     (const char*);

@@ -1,0 +1,1418 @@
+Script started on Sat Mar 18 16:08:01 2017
+ * Stopping NTP server ntpd       [80G [74G[ OK ]
+18 Mar 16:08:08 ntpdate[8057]: adjust time server 192.168.144.15 offset -0.000369 sec
+ * Starting NTP server ntpd       [80G [74G[ OK ]
+launch $ roslaunch rgbd    frontend rgbd.launch 
+... logging to /home/odroid/.ros/log/1b85fd54-0bf5-11e7-9177-74da380a0d96/roslaunch-odroid-server-8134.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/odroid/MAV-Project/px4_ws/src/frontend/launch/rgbd.launch
+[1mstarted roslaunch server http://192.168.144.11:47099/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rgbd_backend/sim: False
+ * /rosdistro: indigo
+ * /rosversion: 1.11.19
+
+NODES
+  /
+    rgbd_backend (frontend/frontend)
+
+auto-starting new master
+[1mprocess[master]: started with pid [8145][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/odroid/MAV-Project/px4_ws/src/frontend/launch/rgbd.launch http://localhost:11311
+[1msetting /run_id to 1b85fd54-0bf5-11e7-9177-74da380a0d96[0m
+[1mprocess[rosout-1]: started with pid [8158][0m
+started core service [/rosout]
+[1mprocess[rgbd_backend-2]: started with pid [8165][0m
+Warning: USB events thread - failed to set priority. This might cause loss of data...
+0: 320x240, 30 fps, 100 format
+1: 320x240, 30 fps, 101 format
+2: 320x240, 60 fps, 100 format
+3: 320x240, 60 fps, 101 format
+4: 640x480, 30 fps, 100 format
+5: 640x480, 30 fps, 101 format
+6: 160x120, 30 fps, 100 format
+7: 160x120, 30 fps, 101 format
+0: 320x240, 30 fps, 200 format
+1: 320x240, 30 fps, 201 format
+2: 320x240, 30 fps, 205 format
+3: 320x240, 15 fps, 200 format
+4: 320x240, 15 fps, 201 format
+5: 320x240, 15 fps, 205 format
+6: 320x240, 60 fps, 200 format
+7: 320x240, 60 fps, 201 format
+8: 320x240, 60 fps, 205 format
+9: 640x480, 30 fps, 200 format
+10: 640x480, 30 fps, 201 format
+11: 640x480, 30 fps, 205 format
+12: 640x480, 15 fps, 200 format
+13: 640x480, 15 fps, 201 format
+14: 640x480, 15 fps, 205 format
+15: 1280x1024, 30 fps, 200 format
+16: 1280x1024, 30 fps, 202 format
+17: 1280x1024, 30 fps, 201 format
+18: 1280x1024, 30 fps, 205 format
+19: 1280x720, 30 fps, 200 format
+20: 1280x720, 30 fps, 202 format
+21: 1280x960, 30 fps, 200 format
+22: 1280x960, 30 fps, 202 format
+Listen for client...
+Connection established!
+blank constructor 
+blank constructor 
+blank constructor 
+blank constructor 
+=== run start 
+
+------ Feature dem took 34 ms
+frame transmission 
+=== run start 
+
+------ Feature dem took 36 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 41 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+trafo too small!
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame 1  to pose graph
+total processing time 85
+
+=== run start 
+
+------ Feature dem took 36 ms
+added frame 2  to pose graph
+total processing time 84
+
+Added id 2 as key frame <================================================================================
+=== run start 
+
+------ Feature dem took 35 ms
+added frame 3  to pose graph
+total processing time 94
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 37 ms
+added frame 4  to pose graph
+total processing time 120
+
+=== run start 
+
+------ Feature dem took 36 ms
+added frame 5  to pose graph
+total processing time 112
+
+=== run start 
+Added id 5 as key frame <================================================================================
+
+------ Feature dem took 41 ms
+added frame 6  to pose graph
+total processing time 106
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 40 ms
+added frame 7  to pose graph
+total processing time 126
+
+=== run start 
+
+------ Feature dem took 39 ms
+added frame 8  to pose graph
+total processing time 100
+
+=== run start 
+Added id 8 as key frame <================================================================================
+
+------ Feature dem took 35 ms
+added frame 9  to pose graph
+total processing time 119
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 37 ms
+added frame 10  to pose graph
+total processing time 140
+
+=== run start 
+
+------ Feature dem took 33 ms
+added frame 11  to pose graph
+total processing time 108
+
+=== run start 
+
+------ Feature dem took 35 ms
+added frame 12  to pose graph
+total processing time 103
+
+=== run start 
+
+------ Feature dem took 37 ms
+added frame 13  to pose graph
+total processing time 95
+
+=== run start 
+
+------ Feature dem took 39 ms
+added frame 14  to pose graph
+total processing time 89
+
+=== run start 
+Added id 14 as key frame <================================================================================
+
+------ Feature dem took 35 ms
+added frame 15  to pose graph
+total processing time 96
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 35 ms
+added frame 16  to pose graph
+total processing time 116
+
+=== run start 
+
+------ Feature dem took 26 ms
+added frame 17  to pose graph
+total processing time 85
+
+=== run start 
+
+------ Feature dem took 34 ms
+added frame 18  to pose graph
+total processing time 88
+
+=== run start 
+Added id 18 as key frame <================================================================================
+
+------ Feature dem took 30 ms
+added frame 19  to pose graph
+total processing time 91
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 26 ms
+added frame 20  to pose graph
+total processing time 70
+
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame 21  to pose graph
+total processing time 66
+
+=== run start 
+Added id 21 as key frame <================================================================================
+
+------ Feature dem took 26 ms
+added frame 22  to pose graph
+total processing time 74
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 26 ms
+added frame 23  to pose graph
+total processing time 75
+
+=== run start 
+
+------ Feature dem took 26 ms
+added frame 24  to pose graph
+total processing time 83
+
+=== run start 
+Added id 24 as key frame <================================================================================
+
+------ Feature dem took 28 ms
+added frame 25  to pose graph
+total processing time 74
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame 26  to pose graph
+total processing time 64
+
+Added id 26 as key frame <================================================================================
+=== run start 
+
+------ Feature dem took 28 ms
+added frame 27  to pose graph
+total processing time 94
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 43 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 39 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 39 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 39 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 40 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 41 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 39 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame 28  to pose graph
+total processing time 63
+
+=== run start 
+
+------ Feature dem took 31 ms
+added frame 29  to pose graph
+total processing time 77
+
+=== run start 
+Added id 29 as key frame <================================================================================
+
+------ Feature dem took 28 ms
+added frame 30  to pose graph
+total processing time 76
+
+frame transmission 
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 41 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 39 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 37 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 35 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 38 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 36 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 22 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 27 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 34 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 33 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 31 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 32 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 28 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 25 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 29 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 26 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 24 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 30 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 16 ms
+added frame -1  to pose graph
+bad feature!
+trafo too big!!
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+bad feature!
+trafo too big!!
+bad feature!
+trafo too big!!
+bad feature!
+trafo too big!!
+=== run start 
+
+------ Feature dem took 15 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 21 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 20 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 23 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+^C=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+[rgbd_backend-2] killing on exit
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 17 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 18 ms
+added frame -1  to pose graph
+=== run start 
+
+------ Feature dem took 19 ms
+added frame -1  to pose graph
+Total number of Frames 311
+Number of bad frames 4
+Number of frames where no transformation was found 0
+Number of frames where replaced by a dummy node 0
+Number of loop closures found 3
+Number of too small transformations 11
+Number of transformations with too big velocities 4
+Number of key frames 10
+Number of nodes 31
+
+Current graph Id 30
+
+*** Error in `/home/odroid/MAV-Project/px4_ws/devel/lib/frontend/frontend': free(): invalid pointer: 0x0002650c ***
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+launch $ exit
+exit
+
+Script done on Sat Mar 18 16:09:20 2017

@@ -7,7 +7,7 @@
 
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui.hpp"
- 
+
 #include "OrbDetSurfDesc.h"
 
 
@@ -34,7 +34,7 @@ boost::shared_ptr<cv::Mat> OrbDetSurfDesc::extract(const cv::Mat& img, const std
 	cv::Mat img_key;
 	boost::shared_ptr<cv::Mat> descriptors(new cv::Mat);
 	extracter->compute(img,const_cast<std::vector<cv::KeyPoint>&>(kpts), *descriptors);
-	
+
 	cv::namedWindow("ORB",CV_WINDOW_AUTOSIZE);
 	cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
 	cv::imshow("ORB", img_key);
@@ -48,14 +48,14 @@ boost::shared_ptr<cv::Mat> OrbDetSurfDesc::extract(const cv::Mat& img, const std
 
 bool OrbDetSurfDesc::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Mat& descs1,
 			const std::vector<cv::KeyPoint>& kpts2, const cv::Mat& descs2,
-			std::vector<cv::DMatch>& matches) const	
+			std::vector<cv::DMatch>& matches) const
 {
-	
+
 
 	cv::flann::Index tree(descs1, cv::flann::KDTreeIndexParams(4), cvflann::FLANN_DIST_EUCLIDEAN);
-	
+
 	cv::Mat indices, dists;
-	
+
 	tree.knnSearch(descs2, indices, dists, 2, cv::flann::SearchParams(16));
 
 	cv::DMatch match;
@@ -74,7 +74,7 @@ bool OrbDetSurfDesc::match( const std::vector<cv::KeyPoint>& kpts1, const cv::Ma
 			match.trainIdx = i;
 			match.distance = dists.at<float>(i,0);
 			matches.push_back(match);
-			
+
 			// matchesIdx1.push_back(indices.at<int>(i,0));
 			// matchesIdx2.push_back(i);
 		}

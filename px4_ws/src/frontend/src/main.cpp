@@ -56,10 +56,12 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
 // static objects
-static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
-static SURF objdem(descriptorRatio, 35, sufficientMatches);
+static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
+static SURF objdem(0.8, 15, sufficientMatches,100);
 // static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+// static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
+// static SIFT objdem(descriptorRatio, 15, sufficientMatches);
 
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
 static G2oPoseGraph graph;
@@ -73,10 +75,9 @@ int main(int argc, char **argv)
 	RosHandler px4;
 
 	boost::mutex backendMutex;
+
 	// start camera
 	AsusProLiveOpenNI2::start();
-
-
 	Backend backend(backendPort,backendMutex,backEndSupport);
 
 
@@ -88,10 +89,10 @@ int main(int argc, char **argv)
 	pcl::console::TicToc time;
 	Frame frame;
 	int nodeId = 1; 				// node id (for debug mode?)
-	int badFrameCnt = 0;
-	bool badFrame = 0;			// bad frame flag
-  bool noError = false;		// grab frame
-	double timeDiff = 0; 		// debug processing time
+	unsigned int badFrameCnt = 0;
+	bool badFrame = false ;			// bad frame flag
+  bool noError  = false;		  // grab frame
+	double timeDiff = 0; 		    // debug processing time
 
 
 	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
@@ -153,8 +154,10 @@ int main(int argc, char **argv)
 
 			if(slam.extractFeature()){
 				t_slam 			= boost::thread (&Mapping::run, &slam);
-				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, boost::ref(frame));
+				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
+
 				t_slam.join();
+
 				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
 			}
 
@@ -162,7 +165,6 @@ int main(int argc, char **argv)
 			if (slam.getImuCompensateCounter()== badFrameCnt)
 			{
 				tm = slam.getCurrentPosition();
-				// cout << "camera time stamp " << frame.getTime()-camInitTime << endl;
 				if (!px4.getTakeoffFlag())
 					px4.updateCamPos(frame.getTime()-camInitTime, tm.matrix().cast<float>()); // publish to mavros
 			}
@@ -172,15 +174,15 @@ int main(int argc, char **argv)
 			}
 
 // Debug Mode (Use cameara infeed or dataset)
-// #ifndef DEBUG
-// 		cv::waitKey(30);
-// 		if(frame.getNewNodeFlag()){
-// 		  saveImage(frame,nodeId);
-// 			nodeId ++ ; // increase id
-// 		}
-// #else
-// 		cv::waitKey(0);
-// #endif
+#ifndef DEBUG
+		cv::waitKey(30);
+		// if(frame.getNewNodeFlag()){
+		//   saveImage(frame,nodeId);
+		// 	nodeId ++ ; // increase id
+		// }
+#else
+		cv::waitKey(0);
+#endif
 
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())

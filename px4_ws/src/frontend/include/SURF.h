@@ -28,7 +28,7 @@ public:
 	 * @param minMatches minimal number of matches (in)
 	 * @param sufficientMatches sufficient matches (in)
 	 */
-	SURF(float aRatio, int minMatches, int sufficientMatches);
+	SURF(float aRatio, int minMatches, int sufficientMatches,float maxDist);
 
 	/**
 	 * @brief Destructor
@@ -57,6 +57,7 @@ private:
 	cv::Mat surfImg2;
 
 	float ratio;
+	float maxDistance;
 	const int sufficientNrOfMatches;
 	const int minNrOfMatches;
 	cv::Ptr<cv::xfeatures2d::SURF> detecterExtracter;

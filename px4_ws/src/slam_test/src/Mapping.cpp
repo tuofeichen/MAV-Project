@@ -65,7 +65,7 @@ void Mapping::addNewNode()
 
 	tryToAddNode(0) ;	  //  chages currentFrame
 	// mapMutex.unlock();
-	cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
+	// cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
 	// if (currentFrame.getId()<0)
 	// {
 	// currentPosition is updated (but we should forget current node? )
@@ -232,7 +232,7 @@ void Mapping::run()
 	}
 
 	relTime = time.toc();
-	cout << endl << "------ Feature dem took " << relTime << " ms" << endl;
+	cout << "------ Feature dem took " << relTime << " ms" << endl;
 
 	if(!initDone)
 	{
@@ -584,7 +584,7 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 					Frame& keyFrame = nodes.back();
 					keyFrame.setKeyFrameFlag(true);
 					keyFrames.push_back(keyFrame);
-					cout << "Added id " << keyFrame.getId() << " as key frame <================================================================================" << endl;
+					cout << "Added id " << keyFrame.getId() << " as key frame <=========================================" << endl;
 
 					ret = true;
 					break;

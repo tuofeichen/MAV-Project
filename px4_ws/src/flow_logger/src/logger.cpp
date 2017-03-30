@@ -1,23 +1,34 @@
 #include "logger.h"
+#include "matplotlibcpp.h"
+
+namespace plt = matplotlibcpp;
+
 
 int main(int argv, char **argc)
 {
   ros::init (argv, argc, "logger");
-  Logger lpe_flow_logger;
+  Logger logger;
 
   cout << "Input vision log filename: "<<endl;
-  cin >> lpe_flow_logger.flow_logname;
+  cin >> logger.vision_logname;
   cout << "Input LPE log filename: " <<endl;
-  cin >> lpe_flow_logger.lpe_logname;
+  cin >> logger.lpe_logname;
 
-  lpe_flow_logger.clearLog();
+  logger.clearLog();
   ros::Rate loop_rate(100);
+
   while(ros::ok())
   {
     ros::spinOnce();
     loop_rate.sleep();
   }
 
+  plt::figure();
+  plt::plot(logger.px_lpe, logger.py_lpe);
+  plt::figure();
+  plt::plot(logger.px_vision,logger.py_vision);
+  plt::show();
+  
   return 0;
 }
 
@@ -69,7 +80,11 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   lpe_msgs.px = lpe.pose.position.x;
   lpe_msgs.py = lpe.pose.position.y;
   lpe_msgs.pz = lpe.pose.position.z;
-  
+
+  px_lpe.push_back(lpe.pose.position.x);
+  py_lpe.push_back(lpe.pose.position.y);
+  pz_lpe.push_back(lpe.pose.position.z);
+
   ofstream myfile;
   char* logname_w = new char[lpe_logname.size()+1];
   std::copy(lpe_logname.begin(),lpe_logname.end(), logname_w);
@@ -95,7 +110,7 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
 //   flow_msgs.vy = flow.velocity_y;
 //   flow_msgs.pz = flow.ground_distance;
 //   flow_msgs.quality = flow.quality;
-//   // lpe_flow_logger.csv_dump(flow_logname.c_str());
+//   // logger.csv_dump(flow_logname.c_str());
 //   ofstream myfile;
 //   char* logname_w = new char[flow_logname.size()+1];
 //   std::copy(flow_logname.begin(),flow_logname.end(), logname_w);
@@ -113,6 +128,11 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   vision_msgs.px = vision.pose.position.x;
   vision_msgs.py = vision.pose.position.y;
   vision_msgs.pz = vision.pose.position.z;
+
+  px_vision.push_back(vision.pose.position.x);
+  py_vision.push_back(vision.pose.position.y);
+  pz_vision.push_back(vision.pose.position.z);
+
 
   ofstream myfile;
   char* logname_w = new char[vision_logname.size()+1];

@@ -69,6 +69,7 @@ int main_wrap(float dRatio,float rRatio)
 
 	// downloaded datasets
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
+	pcl::console::TicToc timer;
 
 	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
 	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
@@ -114,6 +115,7 @@ int main_wrap(float dRatio,float rRatio)
 
 		//
 		// imshow
+		timer.tic();
 
 		// cv::imshow("Gray Image", *grayImage);
 		// const float scaleFactor = 0.05f;
@@ -129,16 +131,19 @@ int main_wrap(float dRatio,float rRatio)
 		//  cout << "displayed image " << endl;
 		//  stop |= (cv::waitKey(10) >= 0); //stop when key pressed
 
+
 		slam.addFrame(frame);
 		slam.run();
 
-		if (slam.getOptFlag()>0){
-			mapMutex.lock();
-			map3d.updateTrajectory(slam.getCurrentPosition());
-			logPoseGraphNode(frame, slam.getCurrentPosition());
-			map3d.updateMapViewer();
-			mapMutex.unlock();
-		}
+		// if (slam.getOptFlag()>0){
+		// 	mapMutex.lock();
+		// 	map3d.updateTrajectory(slam.getCurrentPosition());
+		// 	logPoseGraphNode(frame, slam.getCurrentPosition());
+		// 	map3d.updateMapViewer();
+		// 	mapMutex.unlock();
+		// }
+		cout << "Total Processing Time " << timer.toc() << endl << endl;
+
 	}
   map3d.updateMapViewer();
 	sensor.stop();
