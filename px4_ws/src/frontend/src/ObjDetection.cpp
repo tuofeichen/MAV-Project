@@ -64,16 +64,13 @@ bool  ObjDetection::objectDetect()
 	}
 
 
-
 	std::vector<Point2f> obj;
 	std::vector<Point2f> scene;
-
 	cv::Mat H; // homography matrix
 
-	int smallerSize = min(backward_matches.size(),forward_matches.size());
+// symmetry test
 	for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
 	{
-// Get the keypoints from the good matches
 		for (int j = 0; j < forward_matches.size();j++)
 		{
 			if (backward_matches.at(i).queryIdx == forward_matches.at(j).trainIdx)
@@ -89,14 +86,12 @@ bool  ObjDetection::objectDetect()
 
 	if (matches.size() < MIN_MATCHES)
 		return false;
-
-	// for (int i = 0; i < matches.size() ; i++)
-	// 	cout << "Mutual match (tr/qu) " << matches[i].trainIdx << " " << matches[i].queryIdx << endl;
-
 	Mat img_matches;
+
 	drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
 	// imshow("Object Matching", img_matches);
-	// H = findHomography( obj, scene, CV_RANSAC, RANSAC); // find homography
+
+  // H = findHomography( obj, scene, CV_RANSAC, RANSAC); // find homography
 	H = findHomography( obj, scene, CV_LMEDS);
 
 	if(!H.empty())
@@ -116,9 +111,10 @@ bool  ObjDetection::objectDetect()
 		centroid = ((scene_corners[0] + Point2f( img_object.cols, 0)) + (scene_corners[1] + Point2f( img_object.cols, 0)) + (scene_corners[2] + Point2f( img_object.cols, 0)) + (scene_corners[3] + Point2f( img_object.cols, 0)) )/4;
 		centroid2 = (scene_corners[0] + scene_corners[1] + scene_corners[2] + scene_corners[3])/4;
 
-		if(centroid2.x > 0 && centroid2.x < objFrame.getGray().cols && centroid2.y > 0 && centroid2.y < objFrame.getGray().rows && norm(centroid2 - past_centroid2) < MAX_NORM)
+		if(centroid2.x > 4 && centroid2.x < (objFrame.getGray().cols-4) && centroid2.y > 4 && centroid2.y < (objFrame.getGray().rows-4) && norm(centroid2 - past_centroid2) < MAX_NORM)
 		{
 
+// for visualization of the homography:
 				// cout << "centroid is " << centroid2 << endl;
 				// line( img_matches, scene_corners[0] + Point2f( img_object.cols, 0), scene_corners[1] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// line( img_matches, scene_corners[1] + Point2f( img_object.cols, 0), scene_corners[2] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
@@ -134,14 +130,8 @@ bool  ObjDetection::objectDetect()
 				Point2f A = centroid2;
 				const int X = (int)A.y;
 				const int Y = (int)A.x ;
-
-
 				float sum = 0;
-				long int counter = 0;
-				int test_counter = 0;
-
-				// assert (X+4 < objFrame.cols && X-4 > 0 );
-				// assert (Y+4 < objFrame.rows && Y-4 > 0 );
+				int counter = 0;
 
 				for(int l=X-4;l<X+4;l++)
 				{
@@ -152,26 +142,24 @@ bool  ObjDetection::objectDetect()
 							sum+=Depth.at<uint16_t>(l,k);
 							counter++;
 							}
-						test_counter++;
-						// cout << Depth.at<uint16_t>(l,k) << " ";
 						}
 					// cout << endl;
 				}
 
 				if(sum < 3500 && sum!=0)
 				{
-					cout << "x: " << X << endl;
-					cout << "y: " << Y << endl;
+					cout << "x: " << centroid2.x << endl;
+					cout << "y: " << centroid2.y << endl;
 					sum = sum/((float)counter);
 					cout << "depth:  " << sum << endl;
 
-					imshow( "ObjMatches", img_matches );
+					// imshow( "ObjMatches", img_matches );
 
 					objPoint.z = sum;
-					objPoint.x = (int)centroid2.x;
-					objPoint.y = (int)centroid2.y;
-
+					objPoint.x = centroid2.x;
+					objPoint.y = centroid2.y;
 					px4->updateObjPos(objPoint);
+
 					objFound = 1;
 				}
 		}
@@ -417,7 +405,7 @@ void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up
 			wallAngle.y = -5000;
 		}
 
-	    // cout << "wallAngle(in degrees): " << wallAngle.y << endl;
+    // cout << "wallAngle(in degrees): " << wallAngle.y << endl;
 		// cout << "wallAngle(in rad): " << wallAngle.x << endl;
 	}
 	else

@@ -18,7 +18,7 @@ namespace SLAM
   keypoints(new std::vector<cv::KeyPoint>()),  keypoints3D(new std::vector<Eigen::Vector3f>()),\
   descriptors(new cv::Mat),averageFeatureDescriptor(new cv::Mat)
   {
-    std::cout << "blank constructor " << std::endl;
+    // std::cout << "blank constructor " << std::endl;
   }
 
 Frame::Frame(boost::shared_ptr<cv::Mat>& rgbImage, boost::shared_ptr<cv::Mat>& grayImage, boost::shared_ptr<cv::Mat>& depthImage, boost::shared_ptr<double>& timeStamp)
