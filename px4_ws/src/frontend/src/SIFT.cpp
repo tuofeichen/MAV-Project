@@ -33,9 +33,9 @@ boost::shared_ptr<cv::Mat> SIFT::extract(const cv::Mat& img, const std::vector<c
 
 	cv::Mat img_key;
 
-	cv::namedWindow("SIFT",CV_WINDOW_AUTOSIZE);
-	cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
-	cv::imshow("SIFT", img_key);
+	// cv::namedWindow("SIFT",CV_WINDOW_AUTOSIZE);
+	// cv::drawKeypoints(img, kpts, img_key, cv::Scalar::all(-1),cv::DrawMatchesFlags::DEFAULT);
+	// cv::imshow("SIFT", img_key);
 
 
 	return descriptors;

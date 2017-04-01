@@ -428,15 +428,16 @@ void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up
 		}
 	}
 
-	wallAngle. z = distance / (float) distance_counter; // how far from the wall;
+	wallAngle.z = distance / (float) distance_counter; // how far from the wall;
 
 	px4->updateWallPos (wallAngle);
 }
 
 void ObjDetection::readTemplate()
 {
-	tempImage = imread( "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/sp.jpg", IMREAD_GRAYSCALE);
-	tempKeyPoints  	= dem->detect(tempImage);
+	// tempImage = imread( "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/sp.jpg", IMREAD_GRAYSCALE);
+  tempImage = imread("/home/odroid/poster.jpg");
+  tempKeyPoints  	= dem->detect(tempImage);
 	tempDescriptors = dem->extract(tempImage,*tempKeyPoints);
 
 	// cv::namedWindow("Signal Processing",CV_NORMAL);
