@@ -13,12 +13,12 @@ double secs;
 
 CtrlPx4::CtrlPx4() {
 
-  nh_.getParam("/fcu/sim",sim_); 
+  nh_.getParam("/fcu/sim",sim_);
   nh_.getParam("/fcu/ctrl",ctrl_);
   nh_.getParam("/fcu/cali",yaw_cali_value);
 
 //  nh_.getParam("/fcu/takeoff",v_takeoff_);
-  std::cout << std::fixed<<std::setprecision(4); 
+  std::cout << std::fixed<<std::setprecision(4);
 
   off_en_ = sim_;     // initialize off_en_to be 1 always if in simulation mode
   auto_tl_ = ctrl_;
@@ -28,7 +28,7 @@ CtrlPx4::CtrlPx4() {
 
   controller_state_.fail  = 0;
   yaw_sp_ = 0;
- 
+
 //PID pid - Take off;
   pid_takeoff.setKp(1);
   pid_takeoff.setKi(0);
@@ -41,7 +41,7 @@ CtrlPx4::CtrlPx4() {
   pid_land.setKd(0);
   pid_land.setInput(0);
 
- 
+
   mavros_pos_pub_ = nh_.advertise<geometry_msgs::PoseStamped>(
       "/mavros/setpoint_position/local", 100);
   mavros_vel_pub_ = nh_.advertise<geometry_msgs::TwistStamped>(
@@ -55,7 +55,7 @@ CtrlPx4::CtrlPx4() {
       nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
 
   bat_sub_ = nh_.subscribe("/mavros/battery",10,&CtrlPx4::batCallback, this);
-  
+
   local_vel_sub_ = nh_.subscribe("/mavros/local_position/velocity", 100,
                                  &CtrlPx4::velCallback, this);
   local_pos_sub_ = nh_.subscribe("/mavros/local_position/pose", 100,
@@ -69,31 +69,31 @@ CtrlPx4::CtrlPx4() {
 
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
-  // april_sub_ = nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);  
+  // april_sub_ = nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);
 
-  obj_sub_ = nh_.subscribe("/obj/cmd_mav",100,&CtrlPx4::objCallback,this); 
+  obj_sub_ = nh_.subscribe("/obj/cmd_mav",100,&CtrlPx4::objCallback,this);
 
   // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100, &CtrlPx4::checkerCallback, this);
 };
 
 
 bool CtrlPx4::commandUpdate() {
-   
 
-  
-float yaw_old, yaw_new; 
-  if (off_en_) { 
+
+
+float yaw_old, yaw_new;
+  if (off_en_) {
 
     // check if in auto takeoff landing mode
-    if (auto_tl_>0){	
+    if (auto_tl_ > 0){	
 
     if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(1.6,2); //takeoff to 2 m at 2m/s initially // to adjust to the wall 
+        takeoff(1.6,2); //takeoff to 2 m at 2m/s initially // to adjust to the wall
   	}
     else if((state_set_.land)&&(state_read_.arm))
         land(1);    // land at 1m/s
     }
-    
+
     // arm check
     if ((state_set_.arm!=state_read_.arm)&&(!state_set_.land))
       setArm(state_set_.arm);
@@ -104,22 +104,22 @@ float yaw_old, yaw_new;
 
     // controller input
     if (state_set_.arm) {
-      if(( auto_tl_> 0 )&&((state_set_.takeoff)&&(!state_read_.takeoff))||((state_set_.land)&&(state_read_.arm))){        
+      if(( auto_tl_> 0 )&&((state_set_.takeoff)&&(!state_read_.takeoff))||((state_set_.land)&&(state_read_.arm))){
         if(state_set_.takeoff) // pos control takeoff
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
         else // vel control landing
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
 	   }
 
-      else { 
+      else {
 	          mavros_pos_pub_.publish(fcu_pos_setpoint_);
   	  }
     }
-    updateState(); // brodcast state of the drone 
+    updateState(); // brodcast state of the drone
    }
 
    else{
-  
+
 
 /*if (!yaw_calibrate)
   	{
@@ -127,32 +127,32 @@ float yaw_old, yaw_new;
 	yaw_old = pos_read_.yaw;
         secs = ros::Time::now().toSec();
 	// ROS_INFO("Yaw old is %5.2f", yaw_old);
-  	} 
+  	}
 
 	if (yaw_calibrate && (ros::Time::now().toSec() - secs)> 3){
 		yaw_calibrate = 0;
 		yaw_new = pos_read_.yaw;
-		
+
 		yaw_cali_value =  (yaw_new-yaw_old)/(ros::Time::now().toSec() - secs);
 		ROS_INFO("Yaw cali is %5.4f", yaw_cali_value);
-		
+
 	}
 */
 hover(); // always note down the most recent position
 }
 
-// regardless always check for failsafe 
+// regardless always check for failsafe
   if(fabs(pos_read_.roll) > (M_PI/4) || fabs(pos_read_.pitch) > (M_PI/4)){ // disarm by angle desbalance
   controller_state_.fail = 1;
 
   if(state_read_.arm)
 	ROS_WARN("[PX4 CTRL] Lost balance! Disarm!");
-  	
+
 	state_set_.arm = false;
   	state_set_.mode = MANUAL;
 	state_set_.takeoff = 0;
 	state_set_.land = 0;
-       
+
   }
 
   if(state_set_.failsafe)
@@ -169,7 +169,7 @@ hover(); // always note down the most recent position
     else
     state_set_.failsafe = false;
   }
-      
+
 
   ros::spinOnce();
 
@@ -194,7 +194,7 @@ void CtrlPx4::joyCallback(const px4_offboard::JoyCommand joy) {
 
 void CtrlPx4::objCallback(const px4_offboard::JoyCommand joy)
 {
-  
+
 //  if (joy.yaw!=0.0)
 // {
 //  cout << "yaw delta is " <<  joy.yaw << " current yaw " << pos_read_.yaw << endl;
@@ -234,7 +234,7 @@ void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat)
 
 
 void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
-  
+
   state_read_.arm = (vehicle_state.armed == 128);
 
   if (strcmp(vehicle_state.mode.c_str(), "OFFBOARD") == 0)
@@ -245,7 +245,7 @@ void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
 
   else if (strcmp(vehicle_state.mode.c_str(), "POSCTL") == 0)
     state_read_.mode = POSCTL;
-     
+
   state_read_.offboard = (strcmp(vehicle_state.mode.c_str(), "OFFBOARD") == 0);
 
 };
@@ -253,7 +253,7 @@ void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
 void CtrlPx4::radioCallback(const mavros_msgs::RCIn rc_in) {
   off_en_ = (rc_in.channels[6] > 1200)&&((rc_in.channels[4] > 900)&&(rc_in.channels[4] < 1200));
 };
- 
+
 
 void CtrlPx4::poseCallback(const geometry_msgs::PoseStamped pos_read) {
   pos_read_.px = pos_read.pose.position.x;
@@ -293,7 +293,7 @@ void CtrlPx4::updateState()
 
 
 bool CtrlPx4::takeoff(double altitude, double velocity) {
-  
+
   double current_height = pos_read_.pz;
   double vel_sp =  0;
   pid_takeoff.setInput(altitude);
@@ -302,7 +302,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 	ROS_INFO("[PX4 CTRL] Takeoff height too far!");
 	return 0;
   }
- 
+
   if (!state_read_.arm)
   {
 	home_.px = pos_read_.px;
@@ -312,16 +312,16 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   }
 
 
-  if (current_height < (TAKEOFF_RATIO * altitude)) { 
-    
-    // sensor read 
+  if (current_height < (TAKEOFF_RATIO * altitude)) {
+
+    // sensor read
     if(auto_tl_ == 1)
     {
       fcu_pos_setpoint_.pose.position.x = home_.px;
       fcu_pos_setpoint_.pose.position.y = home_.py;
       fcu_pos_setpoint_.pose.position.z = altitude; //directly publish pos setpoint
     }
-    else 
+    else
     {
       pid_takeoff.setSensor(pos_read_.pz);
       vel_sp = pid_takeoff.update();
@@ -336,15 +336,15 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
         fcu_vel_setpoint_.twist.linear.z = vel_sp;
       }
     }
-  
-  }  
+
+  }
 
   else{
     //ROS_INFO("[PX4 CTRL] Finished Takeoff at Height: %f", current_height);
-    std::cout << "================================== finished taking off"; 
+    std::cout << "================================== finished taking off";
     state_set_.takeoff = 0;
     //hover();
-    //cout << " with height setpoint " <<fcu_pos_setpoint_.pose.position.z<<std::endl; 
+    //cout << " with height setpoint " <<fcu_pos_setpoint_.pose.position.z<<std::endl;
   }
 
   state_read_.takeoff = (current_height > TAKEOFF_RATIO *altitude);
@@ -352,7 +352,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 }
 
 
-bool CtrlPx4::land(double velocity) 
+bool CtrlPx4::land(double velocity)
 {
   double current_height = pos_read_.pz;
   pid_land.setSensor(pos_read_.pz);
@@ -369,7 +369,7 @@ bool CtrlPx4::land(double velocity)
       mavros_vel_pub_.publish(fcu_vel_setpoint_);
     //}
   }
-  else 
+  else
   {
     state_set_.land = 0;
     state_read_.land = 0;
@@ -441,9 +441,9 @@ bool CtrlPx4::setArm(bool arm)
 void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
 {
   Vector3f pos_body, pos_nav;
-  
- 
-// basic geometry, current yaw 
+
+
+// basic geometry, current yaw
   double yaw = pos_read_.yaw;
   pos_body << dx_sp, dy_sp, dz_sp;
   pos_nav (0) = -pos_body(0)*sin(yaw) + pos_body(1)*cos(yaw); // left and right
@@ -484,40 +484,40 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   //std::cout << "current x y z estimate " << pos_read_.px << " " << pos_read_.py <<" "<<pos_read_.pz << std:: endl<< std::endl;
 
 
-  // decided if we need to reset position setpoint 
+  // decided if we need to reset position setpoint
   if ((fabs(pos_read_.px + pos_nav(0) - x) + fabs(pos_read_.py + pos_nav(1)-y)) > 0.5){
     fcu_pos_setpoint_.pose.position.x =   pos_read_.px +  pos_nav(0);
     fcu_pos_setpoint_.pose.position.y =   pos_read_.py +  pos_nav(1);
     ROS_INFO("[PX4 CTRL] Reset xy");
   } else {
-     fcu_pos_setpoint_.pose.position.x =  x; 
+     fcu_pos_setpoint_.pose.position.x =  x;
      fcu_pos_setpoint_.pose.position.y  = y;
    }
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > 2){
   fcu_pos_setpoint_.pose.position.z =  pos_read_.pz;
-  ROS_INFO("[PX4 CTRL] Reset z"); 
+  ROS_INFO("[PX4 CTRL] Reset z");
   } else {
     fcu_pos_setpoint_.pose.position.z = z;
   }
-	
+
 
   fcu_pos_setpoint_.pose.orientation.w = qw; // TODO add local
   fcu_pos_setpoint_.pose.orientation.z = qz;
 
-  // note down a prev state 
+  // note down a prev state
   prev_pos_read_.px = pos_read_.px;
   prev_pos_read_.py = pos_read_.py;
   prev_pos_read_.pz = pos_read_.pz;
 
   //ROS_INFO("setpoint: [x: %f y:%f z: %f]", fcu_pos_setpoint_.pose.position.x, \
     //fcu_pos_setpoint_.pose.position.y,fcu_pos_setpoint_.pose.position.z);
-  
+
 };
 
 void CtrlPx4::forward(float distance)
 {
- moveToPoint(distance,0,0,0); 
+ moveToPoint(distance,0,0,0);
 }
 
 void CtrlPx4::backward(float distance)
@@ -553,4 +553,3 @@ void CtrlPx4::yawRight(float radian)
 {
   moveToPoint(0,0,0,-radian);
 }
-

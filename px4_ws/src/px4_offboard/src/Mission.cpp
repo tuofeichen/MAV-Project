@@ -18,7 +18,7 @@ Mission::Mission()
 	_is_calibrate = 0;
 	_is_fail = 0;
 
-	_safe_dist = 1800; // mm (change it back!) 
+	_safe_dist = 1800; // mm (change it back!)
 	_obst_found = 0;
 	_wall_cnt = _obj_cnt = 0;
 	_cannot_find_wall_cnt = 0;
@@ -46,55 +46,56 @@ Mission::Mission()
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "mission_planner");
-  int takeoff_set = 0; //takeoff flag only set once 
+  int takeoff_set = 0; //takeoff flag only set once
   int printDelay = 0;
   int printMod = 400;
   Mission mission;
   usleep(1000*1000);
-  
+
   ros::Rate loop_rate(100);
 
+// state machine for mission execution.
   while(ros::ok())
   {
-  		
-  		printDelay++; 
+
+  		printDelay++;
   		if (mission.getFailFlag())
   		{
   			ROS_INFO("[Mission] Failure detected");
   			return 0; // override mission command
   		}
-		
+
 		switch(mission.getFlightMode())
 	  	{
 	  		case takingoff:
 	  			if (mission.getTakeoffFlag())
 	  			{
 	  				ROS_INFO("[Mission] Finished taking off");
-					mission.setFlightMode(calibration);
+					  mission.setFlightMode(calibration);
 		  		}
 		  		else
 		  		{
 		  			if (!(printDelay%printMod))
 	  					ROS_INFO("[Mission] Takeoff mode");
 
-					if (takeoff_set < 10) // limited amount of time
-		  			{
-						ROS_INFO("[Takeoff] flag set %d",takeoff_set);
-						takeoff_set++; 
-						mission.takeoff();
-					}
+						if (takeoff_set < 10) // limited amount of setpoint sent
+			  			{
+							ROS_INFO("[Takeoff] flag set %d",takeoff_set);
+							takeoff_set++;
+							mission.takeoff();
+						}
 		  		}
 
 	  		break;
-	  			
+
 	  		case calibration:
 	  			if (!(printDelay%printMod))
 	  				ROS_INFO("[Mission] Calibration mode");
 
 	  			if(!mission.getCalibrateFlag()) // then wait for state transition
 		  		{
-					usleep(10);
-				}
+						usleep(10);
+					}
 
 	  		break;
 
@@ -102,7 +103,7 @@ int main(int argc, char** argv)
 	  		    if (!(printDelay%printMod))
 	  				ROS_INFO("[Mission] Traversing mode");
 	  		break;
-	  		
+
 	  		case tracking:
 	  		    if (!(printDelay%printMod))
 	  				ROS_INFO("[Mission] Tracking mode");
@@ -114,14 +115,15 @@ int main(int argc, char** argv)
 	  				ROS_INFO("[Mission] Turning mode");
 
 	  			if(mission.turnLeft90()) {
-		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode			
-					ROS_INFO("Finished turning !!");
-				}
+						mission.hover(); // quickly adjust to hover
+		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode
+					  ROS_INFO("Finished turning !!");
+				  }
 		  		else
 		  			mission.publish();
-		  			
-		  	break; 
-	  		
+
+		  	break;
+
 	  		case landing:
 
 	  		    if(mission.getLandFlag())
@@ -129,12 +131,14 @@ int main(int argc, char** argv)
 	  		    	ROS_INFO("[Mission] Landed");
 	  		    	return 0;
 	  		    }
+
 	  		    else if(!(printDelay%printMod))
 	  		    {
-		  		ROS_INFO("[Mission] Landing mode");
+		  				ROS_INFO("[Mission] Landing mode");
 	  		    }
+
 	  		    mission.land();
-	  			
+
 	  		break;
 	  	}
 
@@ -170,15 +174,14 @@ bool Mission::turnLeft90()
 	}
 
 	resetCommand(_objCommand);
-	if  (_lpe(2,3)>1.2)
+	if(_lpe(2,3) > 1)
 	{
 		ROS_INFO("correct height");
 		_objCommand.position.z = 0.1*(-_lpe(2,3) + 1); // make sure yaw don't jump
 	}
 
-	_objCommand.yaw = 0.5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.25); // true if finished turning (set this threshold to be higher if overturn)
+	_objCommand.yaw = 0.5 * (_yaw - _yaw_prev - 0.5*M_PI);
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.2); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
@@ -190,16 +193,16 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 	{
 		setFlightMode(tracking);
 		// _flight_mode = tracking;
-		
+
 		resetCommand(_objCommand);
 		_objCommand.position.y = Kp * (pos.z - 1200.0) / 1200.0; // keep 1m distance away from target
-		_objCommand.position.x = Kp * (pos.x - 160.0)  / 200.0;  
+		_objCommand.position.x = Kp * (pos.x - 160.0)  / 200.0;
 		_objCommand.position.z = Kp * (pos.y - 120.0)  / 200.0;
 		_objCommand.yaw = - Kp * angle_rad;
-		
+
 
 		ROS_INFO("Forward %3.2f Left %3.2f Up %3.2f", _objCommand.position.y, _objCommand.position.x, _objCommand.position.z);
-		publish(); 
+		publish();
 
 		if ((pos.z < 1200) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
 		{
@@ -210,9 +213,7 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 
 		}
 	}
-
 }
-
 
 void Mission::wallCallback(const geometry_msgs::Point ang)
 {
@@ -223,21 +224,18 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 		angle_rad = ang.x;
 		if(angle_rad == -5000 || angle_rad > 0.785 || angle_rad < -0.785)
 		{
-				ROS_INFO("Cannot find wall");				
+				ROS_INFO("Cannot find wall");
 				_cannot_find_wall_cnt++;
-				if(_cannot_find_wall_cnt >100) // if cannot find wall for too long land
+				if(_cannot_find_wall_cnt >200) // if cannot find wall for too long land
 				{
 					resetCommand(_objCommand);
 					setFlightMode(landing);
 					_objCommand.land = 1;
-					
-
 				}
-				
 		}
-		else 
+		else
 		{
-			_cannot_find_wall_cnt = 0; 
+			_cannot_find_wall_cnt = 0;
 			if( (fabs(angle_rad) > 0.11) && (!_is_calibrate) )					// P controller to adjust drone to a found wall
 			{
 				ROS_INFO(" Adjust Angle %3.2f", angle_rad);
@@ -248,7 +246,6 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 			}
 			else
 			{
-				
 				_wall_cnt++;
 				if(_wall_cnt > 5){
 				resetCommand(_objCommand);
@@ -257,35 +254,34 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 				 ROS_INFO("Adjust Distance %3.2f",_objCommand.position.y);
 				 publish();
 				}
-				
+
 				if((_wall_cnt > 10) && (fabs(ang.z - (float)_safe_dist) < 20))
 				{
-					ROS_INFO("Wall is perpendicular now.");   // drone is perpendicular, hover now	
+					ROS_INFO("Wall is perpendicular now.");   // drone is perpendicular, hover now
 					if (!_is_calibrate)
 					{
 						_is_calibrate = 1;
 						_yaw_prev = _yaw;
 						ROS_WARN("Yaw pin down is %f, z pin down is %f", _yaw_prev,_lpe(2,3));
 						resetCommand(_objCommand);
-						if (_lpe(2,3) > 0.7){		
+						if (_lpe(2,3) > 0.7){
 							_objCommand.position.z = -_lpe(2,3) + 0.7; // go down to around 1 m
-							publish();						
+							publish();
 							usleep(1000*2000);
 						}
 					}  // issue this setpoint once
 
 				}
-				
+
 			}
 		}
 	}
-	else if ((_flight_mode == calibration) && (_lpe(2,3) < 1.1)) // after going down: turn 90 degrees
-	{ 
-		ROS_INFO("Start turning after going down. What's the height right now? %3.2f", _lpe(2,3));		
+	else if ((_flight_mode == calibration) && (_lpe(2,3) < 1)) // after going down: turn 90 degrees
+	{
+		ROS_INFO("Start turning after going down. What's the height right now? %3.2f", _lpe(2,3));
 		setFlightMode(traverse); // so that after turning it will return to traverse rather than calibration
 		setFlightMode(turning);
-		_safe_dist = 1300; 
-
+		_safe_dist = 1300;
 	}
 
 };
@@ -298,17 +294,17 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		if(crash_cnt>5){
 			setFlightMode(landing);
 			ROS_ERROR("obstacles too close detected. Land");
-		}		
+		}
 	//_objCommand.land = 1;
-		 
+
 	}
 	else
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-		if ((msg.x > 10)) // check bad minimum distance value 
+		if ((msg.x > 10)) // check bad minimum distance value
 		{
-						
+
 			resetCommand(_objCommand);
 			if (msg.y < _safe_dist)
 			{
@@ -317,52 +313,52 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					propelled = 0;
 					_obst_found = 1;
 					_obst_cnt++;
-					ROS_INFO("Find an obstacle: Turning 90 degrees"); //  
+					ROS_INFO("Find an obstacle: Turning 90 degrees"); //
 					if (_safe_dist < 2500){
 						_safe_dist += 50;
 					}
-					if (_lpe(2,3) > 0.7){		
+					if (_lpe(2,3) > 0.7){
 						_objCommand.position.z = -_lpe(2,3) + 0.7; // go down to around 1 m
-						publish();						
+						publish();
 						usleep(1000*2000);
 					}
-					_yaw_prev = _yaw; 
-					setFlightMode(turning); // enter turning mode 
+					_yaw_prev = _yaw;
+					setFlightMode(turning); // enter turning mode
 
 				}
 			}
 			else
 			{
-				
+
 				resetCommand(_objCommand);
 
 				if (!(_obst_cnt%2)) // prior knowledge
-				{	
+				{
 					ROS_INFO ("calibrate yaw from obstacle");
 					_objCommand.yaw = - 0.3 * angle_rad;
 				}
-		
+
 				_objCommand.position.y = 0.1 * (msg.z - _safe_dist)/1000.0; // gradually move to the obstacle
 				ROS_WARN(">>>>> ===== careful proceed ---- <<<< %3.2f", _objCommand.position.y);
 				publish();
 			}
-			
-			
+
+
 		}
 		else
 		{
 			_obst_found = 0;
 			if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.04)
 			{
-				
-				resetCommand(_objCommand); 
+
+				resetCommand(_objCommand);
 				if(propelled)
 				{
-					
+
 					_objCommand.position.y = 0.1; // go forward
 					std::cout<< "small vel" << std::endl;
-
 					publish();
+					
 				}
 				else
 				{
@@ -371,7 +367,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 
 					propelled = 1;
 					_objCommand.position.y = 0.6;
-					
+
 					 publish();
 	                                usleep(1000*1000); // don't over react her
 					std::cout<< "big vel" << std::endl;
@@ -391,7 +387,7 @@ void Mission::velCallback(const geometry_msgs::TwistStamped vel_read)
 	_vel(1) = vel_read.twist.linear.y;
 	_vel(2) = vel_read.twist.linear.z;
 	// ROS_INFO("squared xy velocity is %3.2f", _vel(1)*_vel(1)+_vel(0)*_vel(0));
-		
+
 }
 
 void Mission::lpeCallback(const geometry_msgs::PoseStamped pos_read)
@@ -399,7 +395,7 @@ void Mission::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 
 	Eigen::Quaternionf q (pos_read.pose.orientation.w, pos_read.pose.orientation.x, pos_read.pose.orientation.y,pos_read.pose.orientation.z);
 	_lpe.setIdentity(); 	// clear buffer
-	_lpe.topLeftCorner (3,3) = q.matrix(); 
+	_lpe.topLeftCorner (3,3) = q.matrix();
 	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
 	rot2rpy(q.matrix(), _roll, _pitch, _yaw);
 
@@ -420,7 +416,7 @@ inline void Mission::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 {
 	float beta, alpha, gamma;
 	beta = atan2(-R(2,0), sqrt(R(0,0)*R(0,0)+R(1,0)*R(1,0)));
-	
+
 	if(fabs(beta - M_PI/2) < 0.001){
 	alpha = 0;
 	gamma = atan2(R(0,1),R(1,1));
@@ -433,13 +429,13 @@ inline void Mission::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 	alpha = atan2(R(1,0), R(0,0));
 	gamma = atan2(R(2,1), R(2,2));
 	}
-	
+
 	y = alpha ;
 	p = beta  ;
 	r = gamma ;
 }
 
-// inline bool Mission::turnLeft90() // maybe do something? 
+// inline bool Mission::turnLeft90() // maybe do something?
 // {
 
 // }
@@ -457,7 +453,7 @@ inline void Mission::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 // <walk arround>
 // turn 90
 // go towards 2nd wall until distance d(i)
-// 
+//
 // turn 90
 // go towards 3nd wall until distance d(i)
 //

@@ -31,8 +31,8 @@ void ObjDetection::processFrame(Frame newFrame)
 	else
 		checkForWall(objFrame.getDepth());
 
-	if(px4->getTakeoffFlag() && (!objDetected)) /// haven't taken off yet
-		checkObstacles(objFrame.getDepth(),50,50,3000); // combine
+	if(px4->getTakeoffFlag() && (!objDetected)) // haven't taken off yet
+		checkObstacles(objFrame.getDepth(),50, 50, 3000); // combine
 
 }
 
@@ -299,9 +299,9 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	//	cout << "Invalid position" << endl;
 	}
 
-
 	px4->updateWallPos (objAngle);
 }
+
 void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up tbh
 {
 	int e = 20;
