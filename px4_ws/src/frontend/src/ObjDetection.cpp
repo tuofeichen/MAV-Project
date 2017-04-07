@@ -1,10 +1,8 @@
 #include "ObjDetection.h"
-
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/features2d/features2d.hpp"
-
 
 #define RANSAC 5
 #define MIN_MATCHES 10
@@ -13,11 +11,6 @@
 using namespace std;
 using namespace cv;
 
-
-int main()
-{
-
-}
 
 ObjDetection::ObjDetection(IFeatures* aFDEM,RosHandler* aRos):
  dem(aFDEM), px4(aRos)

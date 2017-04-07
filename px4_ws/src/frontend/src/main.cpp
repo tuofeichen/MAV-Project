@@ -56,10 +56,10 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
 // static objects
-static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
-static SURF objdem(0.8, 15, sufficientMatches,100);
-// static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
-// static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
+// static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
+// static SURF objdem(0.8, 15, sufficientMatches,100);
+static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 // static SIFT objdem(descriptorRatio, 15, sufficientMatches);
 
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
 	Eigen::Matrix4f lpe_prev;
 
 	// setup mapping class
-	Mapping slam(&fdem, &tme, &graph, &px4);//,&pointCloudMap); //, &pointCloudMap);
+	Mapping slam(&fdem, &tme, &graph, &px4);// &pointCloudMap);
 	ObjDetection obj(&objdem,&px4);
 
 
@@ -155,10 +155,8 @@ int main(int argc, char **argv)
 			if(slam.extractFeature()){
 				t_slam 			= boost::thread (&Mapping::run, &slam);
 				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
-
 				t_slam.join();
-
-				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
+				t_procFrame.join();　// wait for procFrame to finish (shouldn't be an issue)
 			}
 
 			badFrame = frame.getBadFrameFlag();
@@ -181,7 +179,7 @@ int main(int argc, char **argv)
 		// 	nodeId ++ ; // increase id
 		// }
 #else
-		cv::waitKey(0);
+		cv::waitKey(10);
 #endif
 
 // New Node Processing (currently only logging and timing)
