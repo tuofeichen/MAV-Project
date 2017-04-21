@@ -18,12 +18,7 @@ Mission();
 ~Mission(){};
 
 void publish() { //ROS_INFO("Publishing");
- _mission_ctrl_pub.publish(_objCommand);}; // for timing control
-
-void hover()
-{
-  _mission_ctrl_pub.publish(_emptyCommand);
-};
+ _mission_ctrl_pub.publish(_objCommand);}; // for timing control 
 
 bool getTakeoffFlag(){ return _is_takeoff;     };
 void takeoff();
@@ -34,6 +29,8 @@ bool turnLeft90();
 
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
+
+
 void setFlightMode(int request_mode)
 {
 	if (_flight_mode!=request_mode)
@@ -62,7 +59,7 @@ int  _flight_mode_prev;
 
 int  _wall_cnt;
 int  _obj_cnt;
-int  _cannot_find_wall_cnt;
+int  _cannot_find_wall_cnt; 
 int	 _obst_cnt ; // how many obstacles have the drone run into
 bool _obst_found;
 int  _safe_dist; // distance to keep away from obstacles / walls
@@ -74,8 +71,8 @@ bool _is_calibrate;
 bool _is_fail;
 
 // position info
-Eigen::Matrix4f _lpe;
-Eigen::Vector3f _vel;
+Eigen::Matrix4f _lpe; 
+Eigen::Vector3f _vel; 
 float _roll, _pitch, _yaw, _yaw_prev, angle_rad;
 
 void stateCallback(const px4_offboard::CtrlState state)
@@ -95,7 +92,7 @@ void objCallback(const geometry_msgs::Point);
 void rot2rpy(Matrix3f R,float& r, float& p, float& y);
 void resetCommand(px4_offboard::JoyCommand& command);
 
-ros::Publisher _mission_state_pub;
+ros::Publisher _mission_state_pub; 
 ros::Publisher _mission_ctrl_pub;
 
 px4_offboard::JoyCommand _objCommand;

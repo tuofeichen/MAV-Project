@@ -3,7 +3,7 @@
 #include "px4_offboard/CtrlPx4.h"
 #include "px4_offboard/include.h"
 
-#define TAKEOFF_RATIO 0.75
+#define TAKEOFF_RATIO 0.9
 //#define M_PI 3.1415926
 
 bool yaw_calibrate = 0;
@@ -85,10 +85,10 @@ float yaw_old, yaw_new;
   if (off_en_) {
 
     // check if in auto takeoff landing mode
-    if (auto_tl_ > 0){	
+    if (auto_tl_>0){
 
     if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(1.6,2); //takeoff to 2 m at 2m/s initially // to adjust to the wall
+        takeoff(1, 2); //takeoff to 1 m at 2m/s initially // to adjust to the wall
   	}
     else if((state_set_.land)&&(state_read_.arm))
         land(1);    // land at 1m/s
@@ -149,7 +149,7 @@ hover(); // always note down the most recent position
 	ROS_WARN("[PX4 CTRL] Lost balance! Disarm!");
 
 	state_set_.arm = false;
-  	state_set_.mode = MANUAL;
+  state_set_.mode = MANUAL;
 	state_set_.takeoff = 0;
 	state_set_.land = 0;
 
@@ -464,7 +464,7 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
 
 // need yaw drift handling
-  if( fabs(yaw-yaw_sp_) < 0.4){
+  if( fabs(yaw-yaw_sp_) < MAX_DYAW){
 	yaw = yaw_sp_;  // maintain previous yaw setpoint (prevent drifting)
   }
   else
@@ -480,12 +480,11 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   //std::cout << "current yaw setpoint and yaw " << yaw+dyaw_sp << " " << pos_read_.yaw << std::endl;
 
   //std::cout << "current x y z setpont " << fcu_pos_setpoint_.pose.position.x << " " << fcu_pos_setpoint_.pose.position.y << " "<<fcu_pos_setpoint_.pose.position.z << std:: endl;
-
   //std::cout << "current x y z estimate " << pos_read_.px << " " << pos_read_.py <<" "<<pos_read_.pz << std:: endl<< std::endl;
 
 
   // decided if we need to reset position setpoint
-  if ((fabs(pos_read_.px + pos_nav(0) - x) + fabs(pos_read_.py + pos_nav(1)-y)) > 0.5){
+  if ((fabs(pos_read_.px + pos_nav(0) - x) + fabs(pos_read_.py + pos_nav(1)-y)) > MAX_DXY){
     fcu_pos_setpoint_.pose.position.x =   pos_read_.px +  pos_nav(0);
     fcu_pos_setpoint_.pose.position.y =   pos_read_.py +  pos_nav(1);
     ROS_INFO("[PX4 CTRL] Reset xy");
@@ -494,11 +493,14 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
      fcu_pos_setpoint_.pose.position.y  = y;
    }
 
-  if (fabs(pos_read_.pz + pos_body(2) - z) > 2){
+  if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ){
   fcu_pos_setpoint_.pose.position.z =  pos_read_.pz;
   ROS_INFO("[PX4 CTRL] Reset z");
-  } else {
+  } else if ( z < MAX_Z){
     fcu_pos_setpoint_.pose.position.z = z;
+  }
+  else{
+    fcu_pos_setpoint_.pose.position.z = MAX_Z; // saturate z to avoid going off
   }
 
 

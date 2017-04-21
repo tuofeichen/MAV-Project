@@ -211,6 +211,7 @@ int main(int argc, char **argv)
 
 		else
 		{
+			// necessary?
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 		}
 	}

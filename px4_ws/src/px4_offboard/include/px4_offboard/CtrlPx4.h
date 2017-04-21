@@ -31,21 +31,29 @@ public:
   bool getTakeoffSignal() {return state_set_.takeoff;};
 
 private:
+
+// In meters
+  static constexpr float MAX_Z    = 1.2;
+  static constexpr float MAX_DZ   = 1.1;
+  static constexpr float MAX_DXY  = 0.5;
+  static constexpr float MAX_DYAW = 0.4;
+
+
   // subscriber callbacks from MAV
   void stateCallback(const mavros_msgs::State);
   void radioCallback(const mavros_msgs::RCIn);
   void poseCallback(const geometry_msgs::PoseStamped);
   void velCallback(const geometry_msgs::TwistStamped);
   void batCallback(const mavros_msgs::BatteryStatus);
-  
+
 
   // subscriber callback from joystick
-  void joyCallback(const px4_offboard::JoyCommand); 
+  void joyCallback(const px4_offboard::JoyCommand);
   void aprilCallback(const px4_offboard::JoyCommand);
   void objCallback(const px4_offboard::JoyCommand);
 
   // void findObjectCallback(const px4_offboard::MoveCommand move_cmd);
-  
+
   void updateState();
 
   // flight controller
@@ -59,14 +67,14 @@ private:
   bool off_en_;
   bool auto_tl_;
   float yaw_sp_;
-  
+
   // controller
   PID pid_takeoff;
   PID pid_land;
   PID pid_object;
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
-  my_pos home_; 
+  my_pos home_;
   my_pos pos_read_;
   // my_pos pos_set_; technially no need
   my_pos prev_pos_read_;
@@ -75,7 +83,7 @@ private:
 
   // node initialization
   ros::NodeHandle nh_;
-  
+
   // Publisher
   ros::Publisher mavros_vel_pub_;
   ros::Publisher mavros_pos_pub_;

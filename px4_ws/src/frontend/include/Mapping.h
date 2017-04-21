@@ -113,7 +113,7 @@ public:
 		};
 
 	enum{ badFrame = 1, recoverFrame = 2, dummyFrame = 3};
-	
+
 	// change initialziation here
 	bool mapUpdate = false;
 

@@ -300,7 +300,6 @@ void Mapping::matchTwoFrames(
 	// feature detecting, extracting and matching
 	//
 
-	static char logName [50];
 
 	std::vector<int> matchesIdx1;
 	std::vector<int> matchesIdx2;
