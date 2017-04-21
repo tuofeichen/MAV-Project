@@ -156,11 +156,11 @@ int main(int argc, char **argv)
 				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
 			}
 
-			if (slam.getBadFrameFlag() < 1); // badFrame flag not set
+
+			if (slam.getBadFrameFlag() < 1) // badFrame flag not set
 			{
-				cout << "bad frame is of type " << slam.getBadFrameFlag() << endl;
-				tm = slam.getCurrentPosition();
-				// if (!px4.getTakeoffFlag() // not necessary with current fusion
+			  tm = slam.getCurrentPosition();
+				// if (!px4.getTakeoffFlag() // not necessary with current fusion (always publish vision)
 				px4.updateCamPos(frame.getTime() - camInitTime, tm.matrix().cast<float>()); // publish to mavros
 			}
 
@@ -185,7 +185,7 @@ int main(int argc, char **argv)
 				cout << "total processing time " << timeDiff << endl << endl;
 			}
 
-// Keyframe Processing (Add New Node to backend PCL) need thread
+// Keyframe Processing (Add New Node to backend PCL) (can be threaded)
 			if(slam.mapUpdate || (frame.getId() == 0) && backEndSupport) // send back key frame for PCL
 			{
 				slam.mapUpdate = false;
@@ -205,7 +205,6 @@ int main(int argc, char **argv)
 					boost::this_thread::sleep(boost::posix_time::milliseconds(1)); // necessary?
 				}
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
-				// cout <<"frame transmission " <<endl;
 			}
 
 		}
@@ -218,6 +217,7 @@ int main(int argc, char **argv)
 
 
 	graph.optimizeTillConvergenz();
+
 	// transmit finalized graph
 	if (backEndSupport){
 	backend.setNewNode(slam.getKeyFrames().back());
@@ -232,7 +232,6 @@ int main(int argc, char **argv)
 		tm.row(1) = tm_temp.row(2) * rot.inverse();
 		tm.row(2) = tm_temp.row(0) * rot.inverse();
 		tm.col(3) =	rot * tm_temp.col(3);
-
 		backend.sendCurrentPos(tm);
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
