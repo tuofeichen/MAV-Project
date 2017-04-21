@@ -100,6 +100,8 @@ public:
 	unsigned int getDummyNodeCounter() {return dummyNodeCounter;}
 	unsigned int getImuCompensateCounter() {return imuCompensateCounter;}
 	bool 				 getOptFlag()					 {return optFlag;}
+	int 				 getBadFrameFlag()		 {return currentFrame.getBadFrameFlag();}
+
 	const std::vector<Frame>& getNodes() {return nodes;}
 	const std::vector<Frame>& getKeyFrames() {return keyFrames;}
 

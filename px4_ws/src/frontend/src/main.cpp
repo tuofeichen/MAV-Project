@@ -90,7 +90,6 @@ int main(int argc, char **argv)
 	Frame frame;
 	int nodeId = 1; 				// node id (for debug mode?)
 	unsigned int badFrameCnt = 0;
-	bool badFrame = false ;			// bad frame flag
   bool noError  = false;		  // grab frame
 	double timeDiff = 0; 		    // debug processing time
 
@@ -157,17 +156,14 @@ int main(int argc, char **argv)
 				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
 			}
 
-			badFrame = frame.getBadFrameFlag();
-			if (slam.getImuCompensateCounter()== badFrameCnt)
+			if (slam.getBadFrameFlag() < 1); // badFrame flag not set
 			{
+				cout << "bad frame is of type " << slam.getBadFrameFlag() << endl;
 				tm = slam.getCurrentPosition();
-				if (!px4.getTakeoffFlag())
-					px4.updateCamPos(frame.getTime()-camInitTime, tm.matrix().cast<float>()); // publish to mavros
+				// if (!px4.getTakeoffFlag() // not necessary with current fusion
+				px4.updateCamPos(frame.getTime() - camInitTime, tm.matrix().cast<float>()); // publish to mavros
 			}
-			else
-			{
-				badFrameCnt = slam.getImuCompensateCounter();
-			}
+
 
 // Debug Mode (Use cameara infeed or dataset)
 #ifndef DEBUG

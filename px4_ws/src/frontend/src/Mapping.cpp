@@ -59,11 +59,9 @@ bool Mapping::extractFeature()
 
 	if (!featureDetectionAndExtraction())
 	{
-		// cout << "bad feature!"<< endl;
+		cout << "bad feature!"<< endl;
 		++badFrameCounter;
-
 		fusePX4LPE(badFrame);
-
 		return 0;
 	}
 
@@ -152,15 +150,12 @@ void Mapping::optPoseGraph()
 	relTime = time_delay.toc();
 	totalTime += relTime;
 
-
 	// cout << "Graph processing took " << relTime << " ms" << endl;
-
 	if(loopClosureFound)
 	{
 		++detLoopClsrsCounter;
 		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
 	}
-
 
 	// if(procFrame.getId() < 0)
 	// {
@@ -308,14 +303,14 @@ void Mapping::matchTwoFrames(
 	assert(frame1.getBadFrameFlag()!=1);
 	assert(frame2.getBadFrameFlag()!=1);
 
-	if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
-	{
-		// just recover from a bad frame
-		cout << "error matching" << endl;
-		validTrafo = false;
-		enoughMatches = false;
-		return;
-	}
+	// if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
+	// {
+	// 	// just recover from a bad frame
+	// 	cout << "error matching" << endl;
+	// 	validTrafo = false;
+	// 	enoughMatches = false;
+	// 	return;
+	// }
 
 	//
 	// feature detecting, extracting and matching
@@ -785,10 +780,8 @@ void Mapping::fusePX4LPE(int frameType)
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
 				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
-
 				//(poseGraph->getPositionOfId(nodes.back().getId())) * tm; // old implementation
 				// no new node is set, no keyframe is set
-
 			break;
 
 			// case recoverFrame:							  // recover from bad frame (not necessary)
@@ -811,7 +804,6 @@ void Mapping::fusePX4LPE(int frameType)
 				im_lpe = Matrix<double, 6, 6>::Identity() * 5000; // (some constant value, maybe should poll mavros)
 
 				poseGraph->addEdgeFromIdToId(tm_lpe,im_lpe,id-1,id); //add immediate edge
-
 			break;
 		}
 
@@ -844,10 +836,9 @@ void Mapping::fusePX4LPE(int frameType)
 
 			if (!(currentFrame.getId()%10))
 				cout << "frame type " << frameType << " compensated by px4" << endl;
-			// cout << "update lpe cam pose in bad frame" << endl;
-			px4->updateLpeLastPose();
+				// cout << "update lpe cam pose in bad frame" << endl;
+				px4->updateLpeLastPose();
 		}
-
 		return;
 }
 

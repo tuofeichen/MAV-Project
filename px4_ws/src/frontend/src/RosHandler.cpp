@@ -111,7 +111,9 @@ void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update s
 		_rgbd_slam_pos.pose.orientation.x = q.x();
 		_rgbd_slam_pos.pose.orientation.y = q.y();
 		_rgbd_slam_pos.pose.orientation.z = q.z();
+
 		_rgbd_slam_pub.publish(_rgbd_slam_pos);
+		
 }
 
 Matrix4f RosHandler::getLpe() {
