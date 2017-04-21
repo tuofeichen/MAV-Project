@@ -23,8 +23,6 @@ using namespace cv;
 
 
 namespace SLAM {
-
-
 Mapping::Mapping(
 		IFeatures* aFDEM,
 		ITransformMatEst* aTME,
@@ -55,7 +53,6 @@ bool Mapping::extractFeature()
 {
 	double relTime = 0;
 	// time.tic();
-
 
 	if (!featureDetectionAndExtraction())
 	{
@@ -104,8 +101,7 @@ void Mapping::addNewNode()
 
 	if (currentFrame.getId()>0)
 		cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
-	// else
-	// 	cout << "dummy frame after " << nodes.back().getId() << " is discarded " << endl;
+
 }
 
 void Mapping::optPoseGraph()
@@ -237,8 +233,6 @@ void Mapping::optPoseGraph()
 	if(totalTime > frameProcMaxTime)
 		frameProcMaxTime = totalTime;
 
-	// cout << "xxxxxx graph took  " << totalTime << " ms"<< endl;
-
 	optFlag = true;
 
 }
@@ -258,9 +252,8 @@ void Mapping::run()
 		return;
 	}
 
-	// realTimeProc = boost::thread(&Mapping::addNewNode,this);
 	time.tic();
-	// realTimeProc.join(); // wait for real time processing to join
+
 	addNewNode();
 	// cout << "===== add node takes " << time.toc() << " ms" << endl;
 
@@ -302,15 +295,6 @@ void Mapping::matchTwoFrames(
 	assert(frame1.getId() != frame2.getId());
 	assert(frame1.getBadFrameFlag()!=1);
 	assert(frame2.getBadFrameFlag()!=1);
-
-	// if ((frame2.getBadFrameFlag()==1)|| frame2.getKeypoints().empty())
-	// {
-	// 	// just recover from a bad frame
-	// 	cout << "error matching" << endl;
-	// 	validTrafo = false;
-	// 	enoughMatches = false;
-	// 	return;
-	// }
 
 	//
 	// feature detecting, extracting and matching
