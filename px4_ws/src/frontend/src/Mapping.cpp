@@ -59,21 +59,13 @@ bool Mapping::extractFeature()
 
 	if (!featureDetectionAndExtraction())
 	{
-		cout << "bad feature!"<< endl;
+		// cout << "bad feature!"<< endl;
 		++badFrameCounter;
+
 		fusePX4LPE(badFrame);
 
 		return 0;
 	}
-
-	// else if(nodes.size()!=0 && (nodes.back().getBadFrameFlag()==1))
-	// {
-	// 	cout << "recover from badframe" << endl;
-	// 	fusePX4LPE(recoverFrame);
-	// 	return 0;
-	// }
-	// relTime = time.toc();
-	// cout << "Feature detection and extraction took " << relTime << "ms" << endl;
 
 	return 1;
 }
@@ -95,7 +87,7 @@ void Mapping::addNewNode()
 					boost::ref(informationMatrices[0]));
 	 					//  start from second node when doing parallel matching
 
-	tryToAddNode(0) ;	  //  chages currentFrame
+	tryToAddNode(0) ;	  //  changes currentFrame
 
 	if (currentFrame.getNewNodeFlag()) {
 			px4->updateLpeLastPose(); //update last pose
@@ -264,7 +256,7 @@ void Mapping::run()
 	// initialize variables
 	bestInforamtionValue = 0;
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
-	
+
 	if(!initDone)
 	{
 		addFirstNode();
@@ -395,7 +387,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				// 	currentPosition.matrix() = pos;
 				// }
 
-				// do I need this ?
 				currentFrame.setPosition(currentPosition.matrix().cast<float>()); // note down LPE
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
@@ -783,52 +774,49 @@ void Mapping::addFirstNode()
 
 void Mapping::fusePX4LPE(int frameType)
 {
-		Matrix4f 			  tm_lpe, lpe;
-		Vector3f			  lpe_disp;
-		Matrix<float, 6, 6>   im_lpe;
-		Isometry3d			tm ;
-		double 				  dt_lpe;
+		Isometry3d	  		 tm_lpe;
+		Matrix<double, 6, 6>  im_lpe;
+		int 						id;
 		imuCompensateCounter++;
-		px4->getTm(tm_lpe,im_lpe,dt_lpe);
-
-		if (dt_lpe < 0.00001)
-			dt_lpe = 0.01;
-
-		tm = tm_lpe.cast<double>();
 
 		switch(frameType)
 		{
 			case badFrame:
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
 				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
-				currentPosition = (poseGraph->getPositionOfId(nodes.back().getId())) * tm;
-				// cout << "!!!!!!!!!!!!!!!! fuse bad frame !!!!!!!!!!!!!" << endl;
-			  // prevent set as new node or key frame
+				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
+
+				//(poseGraph->getPositionOfId(nodes.back().getId())) * tm; // old implementation
+				// no new node is set, no keyframe is set
 
 			break;
 
-			case recoverFrame:							  // recover from bad frame
-				currentFrame.setBadFrameFlag(2);
-			break;
+			// case recoverFrame:							  // recover from bad frame (not necessary)
+			// 	currentFrame.setBadFrameFlag(2);
+			// break;
 
 			case dummyFrame:								  // invalid trafo
-				currentFrame.setBadFrameFlag(3);
-				// lpe = px4->getLpe();
-				// cout << "!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!" << endl;
-				// cout << tm_lpe << endl;
-				// cout << im_lpe << endl;
+			// most likely due to recovery from bad frame, directly add new node
+				currentFrame.setBadFrameFlag(3);    // dummy frame flag
+				currentFrame.setNewNodeFlag(true);  // new node flag
+				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
+				currentFrame.setPosition(currentPosition.matrix().cast<float>());
+				poseGraph->addNode(currentPosition);
 
-				validTrafo[0] 	 = 1;
-				enoughMatches[0] = 1;
-				transformationMatrices[0] = tm_lpe.cast<double>();
-				informationMatrices[0] =  im_lpe.cast<double>();
-				graphIds[0] = nodes.back().getId();
-				deltaT[0] = dt_lpe;
-				tryToAddNode(0); // add node if enough feature
+				id = poseGraph->getCurrentId(); // current id
+				currentFrame.setId(id);
+				nodes.push_back(currentFrame);
+
+				tm_lpe = poseGraph->getPositionOfId(id-1).inverse() * currentPosition;
+				im_lpe = Matrix<double, 6, 6>::Identity() * 5000; // (some constant value, maybe should poll mavros)
+
+				poseGraph->addEdgeFromIdToId(tm_lpe,im_lpe,id-1,id); //add immediate edge
+
 			break;
 		}
 
 
+// in case first node is dummy or bad
 		if (!initDone){
 			cout << " add first node" << endl;
 			addFirstNode();

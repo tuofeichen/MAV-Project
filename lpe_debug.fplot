@@ -1,0 +1,163 @@
+{
+ "ProcessorPresets": [
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "STAT.MainState",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"STAT.MainState": "ffc800"},
+   "Title": "STAT.MainState"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.VX",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 3,
+    "Scale": 1
+   },
+   "Colors": {"LPOS.VX": "b20000"},
+   "Title": "LPOS.VX"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.VY",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPOS.VY": "00b200"},
+   "Title": "LPOS.VY"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPSP.VX",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPSP.VX": "ffc800"},
+   "Title": "LPSP.VX"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPSP.VY",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPSP.VY": "00ff00"},
+   "Title": "LPSP.VY"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.X",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPOS.X": "ff00ff"},
+   "Title": "LPOS.X"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.Y",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPOS.Y": "000000"},
+   "Title": "LPOS.Y"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPSP.X",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPSP.X": "0000ff"},
+   "Title": "LPSP.X"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPSP.Y",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {"LPSP.Y": "00ffff"},
+   "Title": "LPSP.Y"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.VZ LPOS.Z LPSP.VZ LPSP.Z",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {
+    "LPOS.VZ": "b200b2",
+    "LPSP.Z": "00ffff",
+    "LPSP.VZ": "ff0000",
+    "LPOS.Z": "b28c00"
+   },
+   "Title": "Z tuning"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "LPOS.VX LPOS.X LPSP.VX LPSP.X",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {
+    "LPOS.VX": "c0c0c0",
+    "LPSP.VX": "00b2b2",
+    "LPOS.X": "0000b2",
+    "LPSP.X": "00ff00"
+   },
+   "Title": "x tuning"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "VISN.X VISN.Y VISN.Z",
+    "Delay": 0,
+    "Offset": 0,
+    "Scale": 1,
+    "LPF": 0
+   },
+   "Colors": {
+    "VISN.X": "ff0000",
+    "VISN.Y": "00b200",
+    "VISN.Z": "0000ff"
+   },
+   "Title": "vision"
+  }
+ ],
+ "Title": ""
+}

@@ -32,18 +32,19 @@
 using namespace std;
 using namespace SLAM;
 
+
+
 // settings
 //
 
 static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
-static constexpr bool backEndSupport = false;
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
 
 enum {
 	backendPort = 11000, ///< port of the front end
 	minMatches = 25, ///< minimal number of matches
 	maxNrOfFeatures = 600, ///< maximal number of features to detect (only needed for OrbDetSurfDesc)
-	sufficientMatches = 100, ///< sufficient number of matches to return
+	sufficientMatches = 600, ///< sufficient number of matches to return
 	maxRansacIterations = 1500, ///< maximal number of RANSAC iterations
 	minNrOfInlier = 20 ///< minimal number of inlier for the RANSAC
 };
@@ -56,12 +57,10 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 
 // static objects
-static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
-static SURF objdem(0.8, 15, sufficientMatches,100);
-// static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
-// static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
+// static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
+static SURF objdem(0.7, 35, sufficientMatches);
+static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
-// static SIFT objdem(descriptorRatio, 15, sufficientMatches);
 
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
 static G2oPoseGraph graph;
@@ -69,43 +68,39 @@ static G2oPoseGraph graph;
 int main(int argc, char **argv)
 {
 	// init
-
 	ros::init(argc,argv,"rgbd_backend");
 	initLog();
 	RosHandler px4;
-
 	boost::mutex backendMutex;
-
 	// start camera
 	AsusProLiveOpenNI2::start();
-	Backend backend(backendPort,backendMutex,backEndSupport);
+	Backend backend(backendPort,backendMutex);
 
 
 // threading for processFrame
 	boost::thread t_procFrame;
 	boost::thread t_slam;
 
-// Variables
 	pcl::console::TicToc time;
 	Frame frame;
 	int nodeId = 1; 				// node id (for debug mode?)
-	unsigned int badFrameCnt = 0;
-	bool badFrame = false ;			// bad frame flag
-  bool noError  = false;		  // grab frame
-	double timeDiff = 0; 		    // debug processing time
+	int badFrameCnt = 0;
+	bool badFrame = 0;			// bad frame flag
+  	bool noError = false;		// grab frame
+	double timeDiff = 0; 		// debug processing time
 
 
 	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
-		rot = (Eigen::Matrix4f() << \
+		rot = (Eigen::Matrix4f() <<
 				  0,1,0,0,
 				  0,0,1,0,
 				  1,0,0,0,
 				  0,0,0,1).finished();
 
-	Eigen::Isometry3d tm;			// slam tm
+	Eigen::Isometry3d tm;			// slam frame tm
 	Eigen::Matrix<double,6,6> im;
 
-	Eigen::Matrix4f lpe_tm; 	// pixhawk lpe tm
+	Eigen::Matrix4f lpe_tm; 	// pixhawk fusion tm
 	Eigen::Matrix4f lpe_prev;
 
 	// setup mapping class
@@ -122,7 +117,6 @@ int main(int argc, char **argv)
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 		}
 	}
-	double camInitTime = frame.getTime();
 #endif
 
 
@@ -132,29 +126,42 @@ int main(int argc, char **argv)
 		time.tic();
 
 // in debug mode,read stored images (video frames)
+// otherwise use camera input
 #ifdef DEBUG
 		if(readImage(frame,nodeId))//nodeId is node number
 			nodeId ++ ;
 		else
 			break;
-#else // else grab image from camera
+#else
+
 		noError = AsusProLiveOpenNI2::grab(frame);
 		if(!noError)
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 			continue;
 		}
+		//
+		// readMutex.lock();
+		// cond_signal(&readFrameDone);
+		// readMutex.unlock();
 #endif
 
 		if(nodeId > -1)
 		{
 			// start slam
+
+			// put object detection into separate thread， sort of dependecncy
 			slam.addFrame(frame);
+			// slam.run();
+			// obj.processFrame(frame, readFrameDone);
 			if(slam.extractFeature()){
-				t_slam 			= boost::thread (&Mapping::run, &slam);
-				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
-				t_slam.join();
-				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
+				slam.run();
+				// t_slam 			= boost::thread (&Mapping::run, &slam);
+				// t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, boost::ref(frame));
+				// t_slam.join();
+				// time.tic();
+				// t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
+				// cout << "obj detect takes " << time.toc() << " ms " << endl;
 			}
 
 			badFrame = frame.getBadFrameFlag();
@@ -162,7 +169,7 @@ int main(int argc, char **argv)
 			{
 				tm = slam.getCurrentPosition();
 				if (!px4.getTakeoffFlag())
-					px4.updateCamPos(frame.getTime()-camInitTime, tm.matrix().cast<float>()); // publish to mavros
+					px4.updateCamPos(frame.getTime(), tm.matrix().cast<float>()); // publish to mavros
 			}
 			else
 			{
@@ -170,29 +177,29 @@ int main(int argc, char **argv)
 			}
 
 // Debug Mode (Use cameara infeed or dataset)
-#ifndef DEBUG
-		cv::waitKey(30);
-		// if(frame.getNewNodeFlag()){
-		//   saveImage(frame,nodeId);
-		// 	nodeId ++ ; // increase id
-		// }
-#else
-		cv::waitKey(0);
-#endif
+// #ifndef DEBUG
+// 		cv::waitKey(30);
+// 		if(frame.getNewNodeFlag()){
+// 		  saveImage(frame,nodeId);
+// 			nodeId ++ ; // increase id
+// 		}
+// #else
+// 		cv::waitKey(0);
+// #endif
 
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-			  // logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+			  logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
 				cout << "total processing time " << timeDiff << endl << endl;
 			}
 
-// Keyframe Processing (Add New Node to backend PCL) need thread
-			if(slam.mapUpdate || (frame.getId() == 0) && backEndSupport) // send back key frame for PCL
+// Keyframe Processing (Add New Node to backend PCL)
+			if(frame.getKeyFrameFlag()||(frame.getId() == 0)) // send back key frame for PCL
 			{
-				slam.mapUpdate = false;
+
 				backend.setNewNode(frame);
 				for (int i = 0; i<slam.getKeyFrames().size();i++)
 				{
@@ -208,8 +215,8 @@ int main(int argc, char **argv)
 					backend.sendCurrentPos(tm);
 					boost::this_thread::sleep(boost::posix_time::milliseconds(1)); // necessary?
 				}
+
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
-				// cout <<"frame transmission " <<endl;
 			}
 
 		}
@@ -222,8 +229,8 @@ int main(int argc, char **argv)
 
 
 	graph.optimizeTillConvergenz();
+
 	// transmit finalized graph
-	if (backEndSupport){
 	backend.setNewNode(slam.getKeyFrames().back());
 	for (int i = 0; i<slam.getKeyFrames().size();i++)
 	{
@@ -240,8 +247,8 @@ int main(int argc, char **argv)
 		backend.sendCurrentPos(tm);
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
+
 	backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
-	}
 
 	graph.save();
 

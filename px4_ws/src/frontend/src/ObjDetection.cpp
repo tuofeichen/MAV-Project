@@ -1,8 +1,10 @@
 #include "ObjDetection.h"
+
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/features2d/features2d.hpp"
+
 
 #define RANSAC 5
 #define MIN_MATCHES 10
@@ -11,6 +13,11 @@
 using namespace std;
 using namespace cv;
 
+
+int main()
+{
+
+}
 
 ObjDetection::ObjDetection(IFeatures* aFDEM,RosHandler* aRos):
  dem(aFDEM), px4(aRos)
@@ -31,8 +38,8 @@ void ObjDetection::processFrame(Frame newFrame)
 	else
 		checkForWall(objFrame.getDepth());
 
-	if(px4->getTakeoffFlag() && (!objDetected)) // haven't taken off yet
-		checkObstacles(objFrame.getDepth(),50, 50, 3000); // combine
+	if(px4->getTakeoffFlag() && (!objDetected)) /// haven't taken off yet
+		checkObstacles(objFrame.getDepth(),50,50,3000); // combine
 
 }
 
@@ -207,10 +214,6 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	float angle_per_pixel_rad = (58./320.)*M_PI/180.;
 	bool valid_position = true;
 
-	float distance = 0;
-	int   distance_counter = 0;
-
-
 	float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
 
 
@@ -299,9 +302,9 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	//	cout << "Invalid position" << endl;
 	}
 
+
 	px4->updateWallPos (objAngle);
 }
-
 void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up tbh
 {
 	int e = 20;

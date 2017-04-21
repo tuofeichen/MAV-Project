@@ -13,6 +13,8 @@ int main(int argv, char **argc)
   cin >> logger.vision_logname;
   cout << "Input LPE log filename: " <<endl;
   cin >> logger.lpe_logname;
+  cout << "Input Velocity log filename: " <<endl;
+  cin >> logger.v_logname;
 
   logger.clearLog();
   ros::Rate loop_rate(100);
@@ -23,12 +25,25 @@ int main(int argv, char **argc)
     loop_rate.sleep();
   }
 
+if (logger.px_lpe.size()>0)
+{
   plt::figure();
   plt::plot(logger.px_lpe, logger.py_lpe);
   plt::figure();
+  plt::plot(logger.pz_lpe);
+//  plt::plot(logger.px_lpe, logger.time_lpe);
+//  plt::figure();
+//  plt::plot(logger.py_lpe, logger.time_lpe);
+
+}
+
+if(logger.px_vision.size()>0)
+{
+  plt::figure();
   plt::plot(logger.px_vision,logger.py_vision);
-  plt::show();
-  
+}
+//  plt::show();
+ plt::show();
   return 0;
 }
 
@@ -38,6 +53,7 @@ Logger::Logger()
   //mag_sub = nh.subscribe("/mavros/imu/mag",1000,&Logger::magCallback, this);
   lpe_sub = nh.subscribe("/mavros/local_position/pose",1000, &Logger::lpeCallback, this);
   vision_sub = nh.subscribe("/mavros/vision_pose/pose",1000, &Logger::visionCallback,this);
+  lpev_sub = nh.subscribe("mavros/local_position/velocity",1000, &Logger::lpeCallback, this);
 }
 
 Logger::~Logger()
@@ -77,6 +93,7 @@ void Logger::clearLog()
 void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
 {
 
+
   lpe_msgs.px = lpe.pose.position.x;
   lpe_msgs.py = lpe.pose.position.y;
   lpe_msgs.pz = lpe.pose.position.z;
@@ -84,6 +101,7 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   px_lpe.push_back(lpe.pose.position.x);
   py_lpe.push_back(lpe.pose.position.y);
   pz_lpe.push_back(lpe.pose.position.z);
+  //time_lpe.push_back(lpe.header.stamp.sec);
 
   ofstream myfile;
   char* logname_w = new char[lpe_logname.size()+1];
@@ -100,6 +118,23 @@ void Logger::lpeCallback(const geometry_msgs::PoseStamped lpe)
   myfile<< fixed << setprecision(6)<<lpe.pose.orientation.y<<',';
   myfile<< fixed << setprecision(6)<<lpe.pose.orientation.z<<',' <<endl;
 
+  myfile.close();
+}
+
+
+void Logger::lpevCallback(const geometry_msgs::TwistStamped v)
+{
+
+  ofstream myfile;
+  char* logname_w = new char[v_logname.size()+1];
+  std::copy(v_logname.begin(),v_logname.end(), logname_w);
+  logname_w[v_logname.size()]='\0';
+  char* full_name= strcat(logname_w,".csv");
+
+  myfile.open(full_name,ios::in|ios::app);
+  myfile<< fixed << setprecision(4)<< v.twist.linear.x<<',';
+  myfile<< fixed << setprecision(4)<< v.twist.linear.y<<',';
+  myfile<< fixed << setprecision(4)<< v.twist.linear.z<<',';
   myfile.close();
 }
 

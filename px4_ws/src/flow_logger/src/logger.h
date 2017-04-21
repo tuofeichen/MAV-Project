@@ -35,11 +35,12 @@ public:
   void clearLog();
   string vision_logname;
   string lpe_logname;
+  string v_logname;
 
   std::vector<float> px_lpe;
   std::vector<float> py_lpe;
   std::vector<float> pz_lpe;
-
+  std::vector<int> time_lpe;
   std::vector<float> px_vision;
   std::vector<float> py_vision;
   std::vector<float> pz_vision;
@@ -49,6 +50,7 @@ public:
 private:
   // subscriber callback
   void lpeCallback  (const geometry_msgs::PoseStamped);
+  void lpevCallback  (const geometry_msgs::TwistStamped);
   void visionCallback (const geometry_msgs::PoseStamped);
 
 
@@ -57,6 +59,7 @@ private:
   lpeMsg    vision_msgs;
   ros::NodeHandle nh;
   ros::Subscriber lpe_sub;
+  ros::Subscriber lpev_sub;
   ros::Subscriber vision_sub;
 
 };
