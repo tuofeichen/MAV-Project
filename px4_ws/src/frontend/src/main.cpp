@@ -72,28 +72,27 @@ int main(int argc, char **argv)
 
 	ros::init(argc,argv,"rgbd_backend");
 	initLog();
-	RosHandler px4;
 
-	boost::mutex backendMutex;
-
-	// start camera
+// start camera
 	AsusProLiveOpenNI2::start();
+
+// start backend
+	boost::mutex backendMutex;
 	Backend backend(backendPort,backendMutex,backEndSupport);
 
 
-// threading for processFrame
+// threads for parallelizing objectDetection and slam
 	boost::thread t_procFrame;
 	boost::thread t_slam;
 
-// Variables
+// Timing Variables
 	pcl::console::TicToc time;
-	Frame frame;
-	int nodeId = 1; 				// node id (for debug mode?)
-	unsigned int badFrameCnt = 0;
-  bool noError  = false;		  // grab frame
 	double timeDiff = 0; 		    // debug processing time
 
+// debug mode counter
+	int nodeId = 1; 						// node id (for debug mode when reading from dataset)
 
+// position estimate related
 	static Eigen::Matrix4f rot; // transform SLAM frame to PCL frame
 		rot = (Eigen::Matrix4f() << \
 				  0,1,0,0,
@@ -101,19 +100,17 @@ int main(int argc, char **argv)
 				  1,0,0,0,
 				  0,0,0,1).finished();
 
-	Eigen::Isometry3d tm;			// slam tm
-	Eigen::Matrix<double,6,6> im;
+	Eigen::Isometry3d pos;			// slam position estimate
 
-	Eigen::Matrix4f lpe_tm; 	// pixhawk lpe tm
-	Eigen::Matrix4f lpe_prev;
-
-	// setup mapping class
-	Mapping slam(&fdem, &tme, &graph, &px4);//,&pointCloudMap); //, &pointCloudMap);
-	ObjDetection obj(&objdem,&px4);
+	// setup SLAM related objects
+	RosHandler px4; 													// roshandler for communication with pixhawk
+	Frame frame;	  													// frame class that contains information of each frame
+	Mapping slam(&fdem, &tme, &graph, &px4);	// SLAM workflow
+	ObjDetection obj(&objdem,&px4);						// object detection workflow
 
 
 #ifndef DEBUG // initialize camera
-	for(int i=0; i < 15; ++i) // grab a bit more frame
+	for(int i=0; i < 15; ++i) // grab and discard some inital frames
 	{
 		if(!AsusProLiveOpenNI2::grab(frame))
 		{
@@ -130,15 +127,14 @@ int main(int argc, char **argv)
 		ros::spinOnce(); // get up-to-date lpe regardless
 		time.tic();
 
-// in debug mode,read stored images (video frames)
-#ifdef DEBUG
+
+#ifdef DEBUG // in debug mode,read stored images (video frames)
 		if(readImage(frame,nodeId))//nodeId is node number
 			nodeId ++ ;
 		else
 			break;
 #else // else grab image from camera
-		noError = AsusProLiveOpenNI2::grab(frame);
-		if(!noError)
+		if(! AsusProLiveOpenNI2::grab(frame)) // no error for grabbing frame
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(10));
 			continue;
@@ -153,15 +149,15 @@ int main(int argc, char **argv)
 				t_slam 			= boost::thread (&Mapping::run, &slam);
 				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
 				t_slam.join();
-				t_procFrame.join();// wait for procFrame to finish (shouldn't be an issue)
+				t_procFrame.join();
 			}
 
 
 			if (slam.getBadFrameFlag() < 1) // badFrame flag not set
 			{
-			  tm = slam.getCurrentPosition();
+			  pos = slam.getCurrentPosition();
 				// if (!px4.getTakeoffFlag() // not necessary with current fusion (always publish vision)
-				px4.updateCamPos(frame.getTime() - camInitTime, tm.matrix().cast<float>()); // publish to mavros
+				px4.updateCamPos(frame.getTime() - camInitTime, pos.matrix().cast<float>()); // publish to mavros
 			}
 
 
@@ -194,15 +190,15 @@ int main(int argc, char **argv)
 				{
 					// update optimized graph
 					int keyId = slam.getKeyFrames().at(i).getId();
-					Eigen::Matrix4f tm_temp, tm;
-					tm =  graph.getPositionOfId(keyId).matrix().cast<float>();
-					tm_temp = tm;
-					tm.row(0) = tm_temp.row(1) * rot.inverse(); // get back to PCL frame
-					tm.row(1) = tm_temp.row(2) * rot.inverse();
-					tm.row(2) = tm_temp.row(0) * rot.inverse();
-					tm.col(3) =	rot * tm_temp.col(3);
-					backend.sendCurrentPos(tm);
-					boost::this_thread::sleep(boost::posix_time::milliseconds(1)); // necessary?
+					Eigen::Matrix4f tm_temp, pos;
+					pos =  graph.getPositionOfId(keyId).matrix().cast<float>();
+					tm_temp = pos;
+					pos.row(0) = tm_temp.row(1) * rot.inverse(); // convert to PCL frame
+					pos.row(1) = tm_temp.row(2) * rot.inverse();
+					pos.row(2) = tm_temp.row(0) * rot.inverse();
+					pos.col(3) =	rot * tm_temp.col(3);
+					backend.sendCurrentPos(pos); // send to backend for point cloud reconstruction
+					boost::this_thread::sleep(boost::posix_time::milliseconds(1)); //
 				}
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 			}
@@ -211,13 +207,12 @@ int main(int argc, char **argv)
 
 		else
 		{
-			// necessary?
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 		}
 	}
 
 
-	graph.optimizeTillConvergenz();
+	graph.optimizeTillConvergenz(); // full graph optimization after video stream ended
 
 	// transmit finalized graph
 	if (backEndSupport){
@@ -226,14 +221,14 @@ int main(int argc, char **argv)
 	{
 		// update optimized graph
 		int keyId = slam.getKeyFrames().at(i).getId();
-		Eigen::Matrix4f tm_temp, tm;
-		tm =  graph.getPositionOfId(keyId).matrix().cast<float>();
-		tm_temp = tm;
-		tm.row(0) = tm_temp.row(1) * rot.inverse(); // get back to PCL frame... this is so dumb
-		tm.row(1) = tm_temp.row(2) * rot.inverse();
-		tm.row(2) = tm_temp.row(0) * rot.inverse();
-		tm.col(3) =	rot * tm_temp.col(3);
-		backend.sendCurrentPos(tm);
+		Eigen::Matrix4f tm_temp, pos;
+		pos =  graph.getPositionOfId(keyId).matrix().cast<float>();
+		tm_temp = pos;
+		pos.row(0) = tm_temp.row(1) * rot.inverse(); // get back to PCL frame... this is so dumb
+		pos.row(1) = tm_temp.row(2) * rot.inverse();
+		pos.row(2) = tm_temp.row(0) * rot.inverse();
+		pos.col(3) =	rot * tm_temp.col(3);
+		backend.sendCurrentPos(pos);
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
 	backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal

@@ -338,7 +338,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				if (!(_obst_cnt%2)) // prior knowledge
 				{
 					ROS_INFO ("[Mission] calibrate yaw from obstacle");
-					_objCommand.yaw = - 0.3 * angle_rad;　// tuning here needed
+					_objCommand.yaw = - 0.3 * angle_rad; //tuning here needed
 				}
 
 				_objCommand.position.y = 0.1 * (msg.z - _safe_dist)/1000.0; // gradually move to the obstacle
