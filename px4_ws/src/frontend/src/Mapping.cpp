@@ -68,7 +68,7 @@ bool Mapping::extractFeature()
 void Mapping::addNewNode()
 {
 
-	std::vector<Frame>::const_iterator lastNode = nodes.end()-1; // this is correct (vector::end is pass of end)
+	std::vector<Frame>::const_iterator lastNode = nodes.end()-1; // this is correct (vector::end is pass-of-end)
 	graphIds[0] 	= lastNode->getId();
 	lcSmallestId 	= std::min(lcSmallestId,graphIds[0]);
 	deltaT[0] 		= currentFrame.getTime() - lastNode->getTime();
@@ -86,23 +86,18 @@ void Mapping::addNewNode()
 
 	if (currentFrame.getNewNodeFlag()) {
 			px4->updateLpeLastPose(); //update last pose
-
 	}
 	else if (!validTrafo[0]) // invalid trafo estimate
 	{
-			++noTrafoFoundCounter;
-			if(addDummyNodeFlag)
-			{
-				++sequenceOfLostFramesCntr;
 				setDummyNode();
-				// here dummy node use the current image(keypoint) but the estimate from mavros
-			}
 	}
 
-	if (currentFrame.getId()>0)
+	if (currentFrame.getId() > 0)
 		cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
 
 }
+
+
 
 void Mapping::optPoseGraph()
 {
@@ -255,7 +250,6 @@ void Mapping::run()
 	time.tic();
 
 	addNewNode();
-	// cout << "===== add node takes " << time.toc() << " ms" << endl;
 
 	if (optFlag && currentFrame.getNewNodeFlag() > 0) // new node then lets do graph optimization
 	{
@@ -571,7 +565,7 @@ void Mapping::tryToAddNode(int thread)
 	}
 	else
 	{
-		// cout << "invalid trafo " << endl;
+			// cout << "invalid trafo " << endl;
 	}
 }
 
@@ -602,10 +596,16 @@ void Mapping::addEdges(int thread, int currId)
 void Mapping::setDummyNode()
 {
 
-	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
-	{
+	++noTrafoFoundCounter;
+	// if(addDummyNodeFlag)
+	// {
+	// 	++sequenceOfLostFramesCntr;
+	// }
 
-		fusePX4LPE(dummyFrame);
+	// if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
+	// {
+
+	fusePX4LPE(dummyFrame);
 
 		// if(!nodes.back().getDummyFrameFlag())
 		// {
@@ -627,7 +627,7 @@ void Mapping::setDummyNode()
 		// 	currentFrame.setId(nodes.back().getId());
 		// 	nodes.back() = currentFrame;
 		// }
-	}
+	// }
 }
 
 bool Mapping::searchKeyFrames(Frame procFrame)

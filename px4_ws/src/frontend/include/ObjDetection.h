@@ -6,7 +6,6 @@
 #include "Frame.h"
 #include "SURF.h"
 #include "RosHandler.h"
-
 #include "geometry_msgs/Point.h"
 
 using namespace SLAM;
@@ -36,7 +35,7 @@ class ObjDetection {
 
 	cv::Mat tempImage;
 	boost::shared_ptr<std::vector<cv::KeyPoint>> tempKeyPoints; 	//template key points
-	boost::shared_ptr<cv::Mat> 					 tempDescriptors;	//template descriptors
+	boost::shared_ptr<cv::Mat> 					 				 tempDescriptors;	//template descriptors
 
 
 	geometry_msgs::Point objPoint;
@@ -45,13 +44,11 @@ class ObjDetection {
 	geometry_msgs::Point obstacleDistance;
 
 
-	cv::Point2f past_centroid;
-	cv::Point2f past_centroid2;
-	cv::Point2f centroid;
-	cv::Point2f centroid2;
+	// cv::Point2f past_centroid;
+	cv::Point2f prevObjCentroid;
+	// cv::Point2f centroid;
+	cv::Point2f objCentroid;
 
-	// boost::shared_ptr<std::vector<cv::KeyPoint>>  sceneKeyPoints; 	//template key points
-	// boost::shared_ptr<cv::Mat> 					  sceneDescriptors;	//template descriptors
 
 
 

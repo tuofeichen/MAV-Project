@@ -8,7 +8,8 @@
 
 #define RANSAC 5
 #define MIN_MATCHES 10
-#define MAX_NORM 40
+#define MAX_DISP_NORM 40
+
 
 using namespace std;
 using namespace cv;
@@ -39,17 +40,21 @@ void ObjDetection::processFrame(Frame newFrame)
 		checkForWall(objFrame.getDepth());
 
 	if(px4->getTakeoffFlag() && (!objDetected)) /// haven't taken off yet
-		checkObstacles(objFrame.getDepth(),50,50,3000); // combine
-
+		checkObstacles(objFrame.getDepth(),50,50,2500); // combine
 }
 
 bool  ObjDetection::objectDetect()
 {
 	std::vector< DMatch > forward_matches;
 	std::vector< DMatch > backward_matches;
-	std::vector< DMatch > matches;
+	std::vector< DMatch > valid_matches;
+  std::vector<Point2f> obj_kpts_matched;
+  std::vector<Point2f> scene_kpts_matched;
+  cv::Mat H; // homography matrix for object detection
 	bool objFound = 0;
 
+
+// symmetry test (we want forward and backward matching to both be above certain threshold)
 	if(!dem->match(*tempKeyPoints,*tempDescriptors, objFrame.getKeypoints(), objFrame.getDescriptors(), forward_matches))
 	{
 		  // cout << "forward match size " << forward_matches.size() << endl;
@@ -64,9 +69,6 @@ bool  ObjDetection::objectDetect()
 	}
 
 
-	std::vector<Point2f> obj;
-	std::vector<Point2f> scene;
-	cv::Mat H; // homography matrix
 
 // symmetry test
 	for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
@@ -76,100 +78,96 @@ bool  ObjDetection::objectDetect()
 			if (backward_matches.at(i).queryIdx == forward_matches.at(j).trainIdx)
 				if(backward_matches.at(i).trainIdx == forward_matches.at(j).queryIdx)
 				{
-					matches.push_back(forward_matches.at(j));
-					obj.push_back( (*tempKeyPoints).at(forward_matches[j].queryIdx).pt );
-					scene.push_back(objFrame.getKeypoints()[forward_matches[j].trainIdx].pt);
+					valid_matches.push_back(forward_matches.at(j));
+					obj_kpts_matched.push_back( (*tempKeyPoints).at(forward_matches[j].queryIdx).pt );
+					scene_kpts_matched.push_back(objFrame.getKeypoints()[forward_matches[j].trainIdx].pt);
 					break;
 				}
 		}
 	}
 
-	if (matches.size() < MIN_MATCHES)
+	if (valid_matches.size() < MIN_MATCHES)
 		return false;
-	Mat img_matches;
 
-	drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
+
+// Visualization of matching
+	// Mat img_matches;
+	// drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), valid_matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
 	// imshow("Object Matching", img_matches);
 
-  // H = findHomography( obj, scene, CV_RANSAC, RANSAC); // find homography
-	H = findHomography( obj, scene, CV_LMEDS);
+// find homography
+  // H = findHomography( obj_kpts_matched, scene_kpts_matched, CV_RANSAC, RANSAC);
+	H = findHomography( obj_kpts_matched, scene_kpts_matched, CV_LMEDS);
 
 	if(!H.empty())
 	{
 		Mat img_object = tempImage;
 		Mat img_scene =  objFrame.getGray();
 		std::vector<Point2f> obj_corners(4);
-
 		obj_corners[0] = cvPoint(0,0);
 		obj_corners[1] = cvPoint( img_object.cols, 0 );
 		obj_corners[2] = cvPoint( img_object.cols, img_object.rows );
 		obj_corners[3] = cvPoint( 0, img_object.rows );
 		std::vector<Point2f> scene_corners(4);
 
+// This yield a floating point centroid position
 		perspectiveTransform(obj_corners, scene_corners, H);
+    objCentroid = (scene_corners[0] + scene_corners[1] + scene_corners[2] + scene_corners[3])/4;
 
-		centroid = ((scene_corners[0] + Point2f( img_object.cols, 0)) + (scene_corners[1] + Point2f( img_object.cols, 0)) + (scene_corners[2] + Point2f( img_object.cols, 0)) + (scene_corners[3] + Point2f( img_object.cols, 0)) )/4;
-		centroid2 = (scene_corners[0] + scene_corners[1] + scene_corners[2] + scene_corners[3])/4;
-
-		if(centroid2.x > 4 && centroid2.x < (objFrame.getGray().cols-4) && centroid2.y > 4 && centroid2.y < (objFrame.getGray().rows-4) && norm(centroid2 - past_centroid2) < MAX_NORM)
+		if(objCentroid.x > 4 && objCentroid.x < (objFrame.getGray().cols-4) && objCentroid.y > 4 && objCentroid.y < (objFrame.getGray().rows-4) && norm(objCentroid - prevObjCentroid) < MAX_DISP_NORM)
 		{
-
 // for visualization of the homography:
-				// cout << "centroid is " << centroid2 << endl;
+// centroid = ((scene_corners[0] + Point2f( img_object.cols, 0)) + (scene_corners[1] + Point2f( img_object.cols, 0)) + (scene_corners[2] + Point2f( img_object.cols, 0)) + (scene_corners[3] + Point2f( img_object.cols, 0)) )/4;
+				// cout << "centroid is " << objCentroid << endl;
 				// line( img_matches, scene_corners[0] + Point2f( img_object.cols, 0), scene_corners[1] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// line( img_matches, scene_corners[1] + Point2f( img_object.cols, 0), scene_corners[2] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// line( img_matches, scene_corners[2] + Point2f( img_object.cols, 0), scene_corners[3] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// line( img_matches, scene_corners[3] + Point2f( img_object.cols, 0), scene_corners[0] + Point2f( img_object.cols, 0), Scalar( 0, 255, 0), 4 );
 				// circle( img_matches, centroid, 32.0, Scalar( 0, 0, 255 ), 3, 8 );
-				// circle( objFrame.getGray(), Point2f((int)centroid2.x,(int)centroid2.y), 32.0, Scalar( 255, 0, 0 ), 3, 8 );
-				// circle( objFrame.getGray(), centroid2, 32.0, Scalar( 255, 0, 0 ), 3, 8 );
+				// circle( objFrame.getGray(), Point2f((int)objCentroid.x,(int)objCentroid.y), 32.0, Scalar( 255, 0, 0 ), 3, 8 );
+				// circle( objFrame.getGray(), objCentroid, 32.0, Scalar( 255, 0, 0 ), 3, 8 );
 
 				// Get depth value if centroid position is in a valid position
 				objPoint.z =-1;
 				const cv::Mat& Depth = objFrame.getDepth();
-				Point2f A = centroid2;
-				const int X = (int)A.y;
-				const int Y = (int)A.x ;
-				float sum = 0;
-				int counter = 0;
+				float depthSum = 0;
+				int   depthValidCounter = 0;
 
-				for(int l=X-4;l<X+4;l++)
+// take average depth value for the 4x4 neighborhood of centroid
+				for(int   l = objCentroid.y - 4; l <objCentroid.y + 4; l++)
 				{
-					for(int k=Y-4;k<Y+4;k++)
+					for(int k = objCentroid.x - 4; k <objCentroid.x + 4;k++)
 						{
 						if(Depth.at<uint16_t>(l,k) != 0 && l > 0 && l < objFrame.getGray().cols && k > 0 && k < objFrame.getGray().rows)
 							{
-							sum+=Depth.at<uint16_t>(l,k);
-							counter++;
+							        depthSum+=Depth.at<uint16_t>(l,k);
+						          depthValidCounter++;
 							}
 						}
-					// cout << endl;
 				}
 
-				if(sum < 3500 && sum!=0)
+				if(depthSum < 3500 && depthSum!=0)
 				{
-					cout << "x: " << centroid2.x << endl;
-					cout << "y: " << centroid2.y << endl;
-					sum = sum/((float)counter);
-					cout << "depth:  " << sum << endl;
+					cout << "x: " << objCentroid.x << endl;
+					cout << "y: " << objCentroid.y << endl;
+					depthSum = depthSum/((float)depthValidCounter);
+					cout << "depth:  " << depthSum << endl;
 
 					// imshow( "ObjMatches", img_matches );
+					objPoint.z = depthSum;
+					objPoint.x = objCentroid.x;
+					objPoint.y = objCentroid.y;
 
-					objPoint.z = sum;
-					objPoint.x = centroid2.x;
-					objPoint.y = centroid2.y;
 					px4->updateObjPos(objPoint);
-
 					objFound = 1;
 				}
 		}
 
-		past_centroid2 = centroid2;
-		past_centroid = centroid;
+		prevObjCentroid = objCentroid;
+		// past_centroid = centroid;
 	}
 	return objFound;
 
-	// cv::imshow("ObjDetect", objFrame.getRgb());
 }
 
 void ObjDetection::checkObstacles(cv::Mat depth, int d_row, int d_col, int safe_dist) // check specified central region
@@ -191,9 +189,9 @@ void ObjDetection::checkObstacles(cv::Mat depth, int d_row, int d_col, int safe_
 		}
 	}
 
-	obstacleDistance.x = (float) obstCnt; // some threshold (what is a rigorous check)
-	obstacleDistance.y = (float) minDist;
-	obstacleDistance.z = (float) totalDist / obstCnt; // average distance
+	obstacleDistance.x = (float) obstCnt;             // how many violation to minimum distance recorded
+	obstacleDistance.y = (float) minDist;             // minimum distance to the obstacle
+	obstacleDistance.z = (float) totalDist / obstCnt; // average distance to the obstacle
 
 	px4->updateObstacleDistance (obstacleDistance);
 
@@ -305,7 +303,7 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 
 	px4->updateWallPos (objAngle);
 }
-void ObjDetection::checkForWall(cv::Mat Depth) // these functions needs clean up tbh
+void ObjDetection::checkForWall(cv::Mat Depth) 
 {
 	int e = 20;
 	int square_size = 5;

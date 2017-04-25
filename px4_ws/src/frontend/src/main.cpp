@@ -41,7 +41,7 @@ static constexpr bool backEndSupport = false;
 
 enum {
 	backendPort = 11000, ///< port of the front end
-	minMatches = 25, ///< minimal number of matches
+	minMatches = 30, ///< minimal number of matches
 	maxNrOfFeatures = 600, ///< maximal number of features to detect (only needed for OrbDetSurfDesc)
 	sufficientMatches = 100, ///< sufficient number of matches to return
 	maxRansacIterations = 1500, ///< maximal number of RANSAC iterations
@@ -57,7 +57,7 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 
 // static objects
 static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
-static SURF objdem(0.8, 15, sufficientMatches,100);
+static SURF objdem(0.8, 20, sufficientMatches,100);
 // static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 // static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
@@ -152,11 +152,11 @@ int main(int argc, char **argv)
 				t_procFrame.join();
 			}
 
-
 			if (slam.getBadFrameFlag() < 1) // badFrame flag not set
 			{
 			  pos = slam.getCurrentPosition();
 				// if (!px4.getTakeoffFlag() // not necessary with current fusion (always publish vision)
+				logSlamNode(frame, pos, frame.getId(), slam.getBadFrameFlag()); // log the published data
 				px4.updateCamPos(frame.getTime() - camInitTime, pos.matrix().cast<float>()); // publish to mavros
 			}
 
@@ -169,20 +169,20 @@ int main(int argc, char **argv)
 		// 	nodeId ++ ; // increase id
 		// }
 #else
-		cv::waitKey(0);
+		cv::waitKey(20);
 #endif
 
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-			  // logSlamNode(frame, slam.getCurrentPosition(),nodeId,badFrame);
+
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
 				cout << "total processing time " << timeDiff << endl << endl;
 			}
 
 // Keyframe Processing (Add New Node to backend PCL) (can be threaded)
-			if(slam.mapUpdate || (frame.getId() == 0) && backEndSupport) // send back key frame for PCL
+			if((slam.mapUpdate || (frame.getId() == 0)) && backEndSupport) // send back key frame for PCL
 			{
 				slam.mapUpdate = false;
 				backend.setNewNode(frame);

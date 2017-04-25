@@ -43,11 +43,11 @@ void logSlamNode(const Frame& frame, const Eigen::Isometry3d& pose,int frameNum,
 		 << pose.translation().z() << ","
 		 << r << ","
 		 << p << ","
-		 << y  << "," << frameNum << "," << validUpdate <<",";// << endl; // note down quaternion or rpy? (should probably note down quaternion)
+		 << y  << "," << frameNum << "," << validUpdate << endl; // note down quaternion or rpy? (should probably note down quaternion)
 
-	cout << fixed << setprecision(4);
-	cout << endl << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl;
-	cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
+	// cout << fixed << setprecision(4);
+	// cout << endl << "[VSLAM] roll  " <<  r << "  pitch  " << p << " yaw " << y << endl;
+	// cout << "[VSLAM] x     " <<  pose.translation().x() << "  y     " << pose.translation().y() <<" z   " << pose.translation().z() << endl;
 
 }
 

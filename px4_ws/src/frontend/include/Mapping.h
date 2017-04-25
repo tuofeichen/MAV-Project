@@ -108,8 +108,8 @@ public:
 
 	enum{ contFramesToMatch = 2, ///< number of sequential frames to match
 		  neighborsToMatch = 2, ///< number of neighbor frames to match
-		  minNumberOfKeyPoints = 30, ///< min number of key points
-		  dummyFrameAfterLostFrames = 5 ///< number of frames, which cannot be matched until a dummy frame is created
+		  minNumberOfKeyPoints = 40, ///< min number of key points
+		  dummyFrameAfterLostFrames = 1 ///< number of frames, which cannot be matched until a dummy frame is created
 		};
 
 	enum{ badFrame = 1, recoverFrame = 2, dummyFrame = 3};
@@ -127,8 +127,8 @@ public:
 	// static constexpr double minRotation = -1.0;    //   < minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
-	static constexpr double minRotation 				= 1.2 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
-	static constexpr double minTranslation 			= 0.01;   ///< minimal translation in meter(negative values to disable)
+	static constexpr double minRotation 				= 2 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double minTranslation 			= 0.05;   ///< minimal translation in meter(negative values to disable)
 	static constexpr double maxVelocity 			 	= std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
 	static constexpr double maxAngularVelocity  = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second

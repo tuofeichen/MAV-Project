@@ -13,7 +13,7 @@ namespace SLAM {
 
 SURF::SURF(float aRatio, int minMatches, int sufficientMatches,float maxDist)
 : ratio(aRatio), sufficientNrOfMatches(sufficientMatches), minNrOfMatches(minMatches), maxDistance(maxDist),
-  detecterExtracter(cv::xfeatures2d::SURF::create(100, 6, 5, false, true)) // is thread safe
+  detecterExtracter(cv::xfeatures2d::SURF::create(1000, 6, 5, false, true)) // is thread safe
 {
 
 	// detecterExtracter->setHessianThreshold(1000);
