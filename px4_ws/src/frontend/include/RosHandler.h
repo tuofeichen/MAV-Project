@@ -33,7 +33,9 @@ public:
 	// mavros related
 	Matrix4f getLpe();
 	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
-	bool 	 getTakeoffFlag(){ return _is_takeoff;     };
+	bool 	 getTakeoffFlag(){ return _is_takeoff;};
+	bool 	 getArmFlag(){ return _is_arm;};
+
 
 
 	// double   getTime() 				{ return _time; };
@@ -58,6 +60,7 @@ private:
 	bool 						_is_takeoff;
 	bool 						_is_land;
 	bool						_is_fail;
+	bool 						_is_arm; // note down arming instance is important for some handling
 	double						_timeout;
 	double 						_time;     	// time stamp
 	double						_time_cam;
@@ -85,6 +88,7 @@ private:
 	_is_takeoff = state.takeoff;
 	_is_land 	= state.land;
 	_is_fail 	= state.fail;
+	_is_arm   = state.arm;
 	};
 
 

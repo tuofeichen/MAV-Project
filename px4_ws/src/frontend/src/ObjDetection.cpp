@@ -189,12 +189,12 @@ void ObjDetection::checkObstacles(cv::Mat depth, int d_row, int d_col, int safe_
 		}
 	}
 
+// abuse of message here, x y z component doesn't mean anything
 	obstacleDistance.x = (float) obstCnt;             // how many violation to minimum distance recorded
 	obstacleDistance.y = (float) minDist;             // minimum distance to the obstacle
 	obstacleDistance.z = (float) totalDist / obstCnt; // average distance to the obstacle
 
 	px4->updateObstacleDistance (obstacleDistance);
-
 }
 
 void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean up tbh
@@ -213,7 +213,6 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	bool valid_position = true;
 
 	float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
-
 
 	for(int k = e; k < 100; k++)
 	{
@@ -300,10 +299,9 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	//	cout << "Invalid position" << endl;
 	}
 
-
 	px4->updateWallPos (objAngle);
 }
-void ObjDetection::checkForWall(cv::Mat Depth) 
+void ObjDetection::checkForWall(cv::Mat Depth)
 {
 	int e = 20;
 	int square_size = 5;

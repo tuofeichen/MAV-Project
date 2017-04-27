@@ -113,7 +113,7 @@ void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update s
 		_rgbd_slam_pos.pose.orientation.z = q.z();
 
 		_rgbd_slam_pub.publish(_rgbd_slam_pos);
-		
+
 }
 
 Matrix4f RosHandler::getLpe() {
@@ -167,16 +167,16 @@ inline void RosHandler::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 	beta = atan2(-R(2,0), sqrt(R(0,0)*R(0,0)+R(1,0)*R(1,0)));
 
 	if(fabs(beta - 3.1415926/2) < 0.001){
-	alpha = 0;
-	gamma = atan2(R(0,1),R(1,1));
+		alpha = 0;
+		gamma = atan2(R(0,1),R(1,1));
 	}
 	else if (fabs(beta + 3.1415926/2) < 0.001){
-	alpha = 0;
-	gamma = -atan2(R(0,1),R(1,1));
+		alpha = 0;
+		gamma = -atan2(R(0,1),R(1,1));
 	}
 	else{
-	alpha = atan2(R(1,0), R(0,0));
-	gamma = atan2(R(2,1), R(2,2));
+		alpha = atan2(R(1,0), R(0,0));
+		gamma = atan2(R(2,1), R(2,2));
 	}
 
 	y = alpha ;

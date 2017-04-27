@@ -19,7 +19,7 @@ class ObjDetection {
 
 	private:
 // object detection
-	void readTemplate();
+	void  readTemplate();
 	bool  objectDetect();
 
 // navigation

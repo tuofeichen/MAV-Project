@@ -140,9 +140,6 @@ int main(int argc, char **argv)
 			continue;
 		}
 #endif
-
-		if(nodeId > -1)
-		{
 			// start slam
 			slam.addFrame(frame);
 			if(slam.extractFeature()){
@@ -155,11 +152,11 @@ int main(int argc, char **argv)
 			if (slam.getBadFrameFlag() < 1) // badFrame flag not set
 			{
 			  pos = slam.getCurrentPosition();
-				// if (!px4.getTakeoffFlag() // not necessary with current fusion (always publish vision)
-				logSlamNode(frame, pos, frame.getId(), slam.getBadFrameFlag()); // log the published data
+				if (px4.getArmFlag())  // log only when armed
+						logSlamNode(frame, pos, frame.getId(), slam.getBadFrameFlag()); // log the published data
+				
 				px4.updateCamPos(frame.getTime() - camInitTime, pos.matrix().cast<float>()); // publish to mavros
 			}
-
 
 // Debug Mode (Use cameara infeed or dataset)
 #ifndef DEBUG
@@ -203,14 +200,13 @@ int main(int argc, char **argv)
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 			}
 
-		}
-
 		else
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 		}
 	}
 
+// end of while(1) loop post processing
 
 	graph.optimizeTillConvergenz(); // full graph optimization after video stream ended
 

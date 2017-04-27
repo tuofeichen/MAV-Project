@@ -85,7 +85,7 @@ void Mapping::addNewNode()
 	tryToAddNode(0) ;	  //  changes currentFrame
 
 	if (currentFrame.getNewNodeFlag()) {
-			px4->updateLpeLastPose(); //update last pose
+			px4->updateLpeLastPose(); //update last pose (not necessary now)
 	}
 	else if (!validTrafo[0]) // invalid trafo estimate
 	{
@@ -96,8 +96,6 @@ void Mapping::addNewNode()
 		cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
 
 }
-
-
 
 void Mapping::optPoseGraph()
 {
@@ -184,7 +182,6 @@ void Mapping::optPoseGraph()
 
 	if(procFrame.getDummyFrameFlag())
 	{ // trafo to small or to big
-		sequenceOfLostFramesCntr = 0;
 		if(exchangeFirstNode && nodes.size() == 1)
 		{
 			exchangeFirstFrame();
@@ -192,7 +189,6 @@ void Mapping::optPoseGraph()
 	}
 	else
 	{
-		sequenceOfLostFramesCntr = 0;
 		// search key frame
 		bool addedKeyFrame = searchKeyFrames(procFrame);
 
@@ -596,16 +592,20 @@ void Mapping::addEdges(int thread, int currId)
 void Mapping::setDummyNode()
 {
 
+	currentFrame.setBadFrameFlag(3);    // set dummy flag so that not publish this position
+
 	++noTrafoFoundCounter;
-	// if(addDummyNodeFlag)
-	// {
-	// 	++sequenceOfLostFramesCntr;
-	// }
 
-	// if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
-	// {
+	if(addDummyNodeFlag)
+	{
+		++sequenceOfLostFramesCntr;
+	}
 
-	fusePX4LPE(dummyFrame);
+	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
+	{
+		sequenceOfLostFramesCntr = 0; //reset sequence lost frame counter
+		fusePX4LPE(dummyFrame);
+	}
 
 		// if(!nodes.back().getDummyFrameFlag())
 		// {

@@ -15,18 +15,6 @@
   {
    "ProcessorType": "Simple",
    "Parameters": {
-    "Fields": "LPOS.VX",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 3,
-    "Scale": 1
-   },
-   "Colors": {"LPOS.VX": "b20000"},
-   "Title": "LPOS.VX"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
     "Fields": "LPOS.VY",
     "Delay": 0,
     "Offset": 0,
@@ -35,18 +23,6 @@
    },
    "Colors": {"LPOS.VY": "00b200"},
    "Title": "LPOS.VY"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPSP.VX",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPSP.VX": "ffc800"},
-   "Title": "LPSP.VX"
   },
   {
    "ProcessorType": "Simple",
@@ -63,18 +39,6 @@
   {
    "ProcessorType": "Simple",
    "Parameters": {
-    "Fields": "LPOS.X",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPOS.X": "ff00ff"},
-   "Title": "LPOS.X"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
     "Fields": "LPOS.Y",
     "Delay": 0,
     "Offset": 0,
@@ -83,18 +47,6 @@
    },
    "Colors": {"LPOS.Y": "000000"},
    "Title": "LPOS.Y"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPSP.X",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPSP.X": "0000ff"},
-   "Title": "LPSP.X"
   },
   {
    "ProcessorType": "Simple",
@@ -148,8 +100,8 @@
     "Fields": "VISN.X VISN.Y VISN.Z",
     "Delay": 0,
     "Offset": 0,
-    "Scale": 1,
-    "LPF": 0
+    "LPF": 0,
+    "Scale": 1
    },
    "Colors": {
     "VISN.X": "ff0000",
@@ -157,6 +109,33 @@
     "VISN.Z": "0000ff"
    },
    "Title": "vision"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "OUT0.Out0",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 0.001
+   },
+   "Colors": {"OUT0.Out0": "000000"},
+   "Title": "OUT0.Out0"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "ATT.Yaw LPSP.Yaw",
+    "Delay": 0,
+    "Offset": 0,
+    "Scale": 1,
+    "LPF": 0
+   },
+   "Colors": {
+    "LPSP.Yaw": "00b200",
+    "ATT.Yaw": "ff00ff"
+   },
+   "Title": "yaw_tune"
   }
  ],
  "Title": ""
