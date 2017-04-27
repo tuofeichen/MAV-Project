@@ -67,7 +67,6 @@ bool Mapping::extractFeature()
 
 void Mapping::addNewNode()
 {
-
 	std::vector<Frame>::const_iterator lastNode = nodes.end()-1; // this is correct (vector::end is pass-of-end)
 	graphIds[0] 	= lastNode->getId();
 	lcSmallestId 	= std::min(lcSmallestId,graphIds[0]);
@@ -146,39 +145,9 @@ void Mapping::optPoseGraph()
 		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
 	}
 
-	// if(procFrame.getId() < 0)
-	// {
-	// 	if(procFrame.getDummyFrameFlag()){
-	// 		cout << "SLAM of frame nr" << frameCounter << " was ";
-	// 		cout << "dropped (transformation to small or to big) ";
-	// 	}
-	// 	else {
-	// 		cout << "SLAM of frame nr" << frameCounter << " was ";
-	// 		cout << "dropped (added as dummy) " << endl;
-	// 	}
-	// }
 
 	// key frame, map and optimization
 	time_delay.tic();
-	// if(procFrame.getId() < 0)
-	// {
-	// 	// invalid frame
-	// 	if(exchangeFirstNode && nodes.size() == 1)
-	// 	{
-	// 		exchangeFirstFrame();
-	// 	}
-	// 	else
-	// 	{
-			// ++noTrafoFoundCounter;
-			// // setting a dummy node is needed, otherwise the track of frames can be lost
-			// if(addDummyNodeFlag)
-			// {
-			// 	++sequenceOfLostFramesCntr;
-			// 	setDummyNode();
-			// }
-	// 	}
-	// }
-	// else
 
 	if(procFrame.getDummyFrameFlag())
 	{ // trafo to small or to big
@@ -218,13 +187,12 @@ void Mapping::optPoseGraph()
 	totalTime += relTime;
 	// cout << "Optimization and map update took " << relTime << "ms" << endl;
 
-
 	++nframeProc;
 	frameProcMeanTime += totalTime;
 	if(totalTime > frameProcMaxTime)
 		frameProcMaxTime = totalTime;
 
-	optFlag = true;
+	optFlag = true; // finished optimizing
 
 }
 
@@ -732,6 +700,8 @@ bool Mapping::isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double dt) c
     return ((dist/dt) < maxVelocity && (maxAngle/dt) < maxAngularVelocity); // velocity
 }
 
+//TODO need to handle if first node is not valid node
+
 void Mapping::addFirstNode()
 {
 	nodes.clear();
@@ -746,7 +716,6 @@ void Mapping::addFirstNode()
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
 	nodes.back().deleteGray();
-
 }
 
 
@@ -763,7 +732,6 @@ void Mapping::fusePX4LPE(int frameType)
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
 				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
-				//(poseGraph->getPositionOfId(nodes.back().getId())) * tm; // old implementation
 				// no new node is set, no keyframe is set
 			break;
 
@@ -771,10 +739,11 @@ void Mapping::fusePX4LPE(int frameType)
 			// 	currentFrame.setBadFrameFlag(2);
 			// break;
 
-			case dummyFrame:								  // invalid trafo
+			case dummyFrame:
+
 			// most likely due to recovery from bad frame, directly add new node
 				currentFrame.setBadFrameFlag(3);    // dummy frame flag
-				currentFrame.setNewNodeFlag(true);  // new node flag
+				currentFrame.setNewNodeFlag(true);  // new node flag (should we?)
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
 				currentFrame.setPosition(currentPosition.matrix().cast<float>());
 				poseGraph->addNode(currentPosition);
@@ -782,23 +751,12 @@ void Mapping::fusePX4LPE(int frameType)
 				id = poseGraph->getCurrentId(); // current id
 				currentFrame.setId(id);
 				nodes.push_back(currentFrame);
-
 				tm_lpe = poseGraph->getPositionOfId(id-1).inverse() * currentPosition;
 				im_lpe = Matrix<double, 6, 6>::Identity() * 5000; // (some constant value, maybe should poll mavros)
 
 				poseGraph->addEdgeFromIdToId(tm_lpe,im_lpe,id-1,id); //add immediate edge
 			break;
 		}
-
-
-// in case first node is dummy or bad
-		if (!initDone){
-			cout << " add first node" << endl;
-			addFirstNode();
-			initDone = true;
-			return;
-		}
-
 
 		if (currentFrame.getNewNodeFlag()){ // after fusion
 

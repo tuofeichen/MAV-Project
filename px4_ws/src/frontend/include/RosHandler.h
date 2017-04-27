@@ -36,10 +36,8 @@ public:
 	bool 	 getTakeoffFlag(){ return _is_takeoff;};
 	bool 	 getArmFlag(){ return _is_arm;};
 
-
-
 	// double   getTime() 				{ return _time; };
-	// bool 	getLpeValid()				{ return _lpe_valid; };
+	// bool 	  getLpeValid()				{ return _lpe_valid; };
 
 
 private:

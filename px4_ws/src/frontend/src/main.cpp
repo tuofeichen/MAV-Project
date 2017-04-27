@@ -143,24 +143,25 @@ int main(int argc, char **argv)
 			// start slam
 			slam.addFrame(frame);
 			if(slam.extractFeature()){
-				t_slam 			= boost::thread (&Mapping::run, &slam);
-				t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
-				t_slam.join();
-				t_procFrame.join();
+				t_slam 			= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
+			// run object detection all the time (for obstacle detection despite we don't have enough feature)
+			t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
+			t_slam.join();
+			t_procFrame.join();
 
-			if (slam.getBadFrameFlag() < 1) // badFrame flag not set
+			if (slam.getBadFrameFlag() < 1)
 			{
 			  pos = slam.getCurrentPosition();
 				if (px4.getArmFlag())  // log only when armed
 						logSlamNode(frame, pos, frame.getId(), slam.getBadFrameFlag()); // log the published data
-				
+
 				px4.updateCamPos(frame.getTime() - camInitTime, pos.matrix().cast<float>()); // publish to mavros
 			}
 
 // Debug Mode (Use cameara infeed or dataset)
 #ifndef DEBUG
-		cv::waitKey(30);
+		cv::waitKey(20);
 		// if(frame.getNewNodeFlag()){
 		//   saveImage(frame,nodeId);
 		// 	nodeId ++ ; // increase id

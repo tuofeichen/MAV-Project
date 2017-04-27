@@ -31,15 +31,16 @@ void ObjDetection::processFrame(Frame newFrame)
 	bool objDetected = 0;
 	objFrame = newFrame; // copy everything
 
-	// if (objFrame.getBadFrameFlag()!=1)d
-	objDetected = objectDetect();
+	if (objFrame.getBadFrameFlag() < 1) // should process frame regardless
+	   objDetected = objectDetect();
 
 	if (objDetected)
 		checkObjAngle(objFrame.getDepth());
 	else
+  {
 		checkForWall(objFrame.getDepth());
-
-	if(px4->getTakeoffFlag() && (!objDetected)) /// haven't taken off yet
+  }
+	if(px4->getTakeoffFlag() && (!objDetected)) // haven't taken off yet
 		checkObstacles(objFrame.getDepth(),50,50,2500); // combine
 }
 
@@ -208,7 +209,7 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	int r_counter=0;
 	int l_counter=0;
 	int height = 120;
-	float alpha, betha;
+	float alpha, beta;
 	float angle_per_pixel_rad = (58./320.)*M_PI/180.;
 	bool valid_position = true;
 
@@ -274,8 +275,8 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 		}
 		else
 		{
-    		betha = asin(l/D*sin(FOV));
-    		objAngle.x = M_PI/2 - FOV/2 - betha;
+    		beta = asin(l/D*sin(FOV));
+    		objAngle.x = M_PI/2 - FOV/2 - beta;
 		}
 
 		if(l < 3000 && r < 3000 && r!=0 && l!=0)
@@ -301,26 +302,27 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 
 	px4->updateWallPos (objAngle);
 }
+
 void ObjDetection::checkForWall(cv::Mat Depth)
 {
+   // assume 160,160 is the center of the image
 	int e = 20;
 	int square_size = 5;
-	int pixel_number_left = 160-e;
-	int pixel_number_right = 160+e;
-	float r=0;
-	float l=0;
+	int pixel_number_left  = 160 - e;
+	int pixel_number_right = 160 + e;
+	float r = 0;
+	float l = 0;
+
 	int r_counter=0;
 	int l_counter=0;
-	float alpha, betha;
-	float angle_per_pixel_rad = (58./320.)*M_PI/180.;
+	float alpha, beta;
+	float angle_per_pixel_rad = (58./320.)*M_PI/180.; // some magic number ? (calibrated)
 	bool valid_position = true;
 
 	float distance = 0;
 	int   distance_counter = 0;
 
-
 	float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
-
 
 	for(int k = e; k < 100; k++)
 	{
@@ -382,8 +384,8 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 		}
 		else
 		{
-    		betha = asin(l/D*sin(FOV));
-    		wallAngle.x = M_PI/2 - FOV/2 - betha;
+    		beta = asin(l/D*sin(FOV));
+    		wallAngle.x = M_PI/2 - FOV/2 - beta;
 		}
 
 		if(l < 3000 && r < 3000 && r!=0 && l!=0)
