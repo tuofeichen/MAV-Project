@@ -88,7 +88,7 @@ float yaw_old, yaw_new;
     if (auto_tl_>0){
 
     if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(1, 2); //takeoff to 1 m at 2m/s initially // to adjust to the wall
+        takeoff(0.7, 1); //takeoff to 1 m at 2m/s initially // to adjust to the wall
   	}
     else if((state_set_.land)&&(state_read_.arm))
         land(1);    // land at 1m/s
@@ -305,14 +305,12 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 
   if (!state_read_.arm)
   {
-	home_.px = pos_read_.px;
-	home_.py = pos_read_.py;
-        set_armed_.request.value = true; // send arm request
+	   home_.px = pos_read_.px;
+	   home_.py = pos_read_.py;
+    set_armed_.request.value = true; // send arm request
         mavros_armed_client_.call(set_armed_);
   }
-
-
-  if (current_height < (TAKEOFF_RATIO * altitude)) {
+  else if (current_height < (TAKEOFF_RATIO * altitude)) {
 
     // sensor read
     if(auto_tl_ == 1)
