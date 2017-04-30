@@ -18,7 +18,7 @@ Mission::Mission()
 	_is_calibrate = 0;
 	_is_fail = 0;
 
-	_safe_dist = 1800; // mm (change it back!)
+	_safe_dist = 1500; // inital safe distance
 	_obst_found = 0;
 	_wall_cnt = _obj_cnt = 0;
 	_cannot_find_wall_cnt = 0;
@@ -70,19 +70,19 @@ int main(int argc, char** argv)
 	  			if (mission.getTakeoffFlag())
 	  			{
 	  				ROS_INFO("[Mission] Finished taking off");
-					mission.setFlightMode(calibration);
+					  mission.setFlightMode(calibration);
 		  		}
 		  		else
 		  		{
 		  			if (!(printDelay%printMod))
 	  					ROS_INFO("[Mission] Takeoff mode");
 
-					if (takeoff_set < 10) // limited amount of time
+						if (takeoff_set < 10) // limited amount of time
 		  			{
-						ROS_INFO("[Takeoff] flag set %d",takeoff_set);
-						takeoff_set++;
-						mission.takeoff();
-					}
+							ROS_INFO("[Takeoff] flag set %d",takeoff_set);
+							takeoff_set++;
+							mission.takeoff();
+						}
 		  		}
 
 	  		break;
@@ -115,7 +115,7 @@ int main(int argc, char** argv)
 
 	  			if(mission.turnLeft90()) {
 		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode
-					ROS_INFO("[Mission]Finished turning !!");
+					  ROS_INFO("[Mission]Finished turning !!");
 				}
 		  		else
 		  			mission.publish();
@@ -243,17 +243,16 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 				ROS_INFO("[Mission] Adjust Angle %3.2f", angle_rad);
 				resetCommand(_objCommand);
 				_objCommand.yaw = - K * angle_rad;
-				 publish();
+				 publish(); // publish yaw command
 				_wall_cnt = 0;
 			}
 			else
 			{
-
 				_wall_cnt++;
 				if(_wall_cnt > 5){
 				resetCommand(_objCommand);
 				_objCommand.yaw = - K * angle_rad;
-				_objCommand.position.y = 0.05 * (ang.z-_safe_dist)/1000.0; // move to 1.5 from obstacles
+				_objCommand.position.y = 0.05 * (ang.z -_safe_dist)/1000.0; // move to 1.5 from obstacles
 				 ROS_INFO("[Mission] Adjust Distance %3.2f",_objCommand.position.y);
 				 publish();
 				}
@@ -267,8 +266,8 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 						_yaw_prev = _yaw;
 						ROS_WARN("[Mission] Yaw pin down is %f, z pin down is %f", _yaw_prev,_lpe(2,3));
 						resetCommand(_objCommand);
-						if (_lpe(2,3) > 0.7){
-							_objCommand.position.z = -_lpe(2,3) + 0.7; // go down to around 1 m
+						if (_lpe(2,3) > 0.8){
+							_objCommand.position.z = -_lpe(2,3) + 0.8; // go down to around 1 m
 							publish();
 							usleep(1000*2000);
 						}
@@ -320,8 +319,8 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					if (_safe_dist < 2500){
 						_safe_dist += 50;
 					}
-					if (_lpe(2,3) > 0.7){
-						_objCommand.position.z = -_lpe(2,3) + 0.7; // go down to around 1 m
+					if (_lpe(2,3) > 0.8){
+						_objCommand.position.z = -_lpe(2,3) + 0.8; // go down to around 1 m
 						publish();
 						usleep(1000*2000);
 					}
@@ -332,20 +331,17 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 			}
 			else
 			{
-
 				resetCommand(_objCommand);
-
-				if (!(_obst_cnt%2)) // prior knowledge
-				{
+				// if (!(_obst_cnt%2)) // prior knowledge
+				// {
 					ROS_INFO ("[Mission] calibrate yaw from obstacle");
 					_objCommand.yaw = - 0.3 * angle_rad; //tuning here needed
-				}
+				// }
 
 				_objCommand.position.y = 0.1 * (msg.z - _safe_dist)/1000.0; // gradually move to the obstacle
 				ROS_WARN("[Mission] ===== careful proceed ---- <<<< %3.2f", _objCommand.position.y);
 				publish();
 			}
-
 
 		}
 		else
@@ -360,7 +356,6 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 
 					_objCommand.position.y = 0.1; // go forward
 					std::cout<< "small vel" << std::endl;
-
 					publish();
 				}
 				else
@@ -370,9 +365,8 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 
 					propelled = 1;
 					_objCommand.position.y = 0.6;
-
-					 publish();
-	                                usleep(1000*1000); // don't over react her
+					publish();
+					usleep(1000*1000); // don't over react her
 					std::cout<< "big vel" << std::endl;
 				}
 				//publish();

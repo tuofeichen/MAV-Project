@@ -3,7 +3,7 @@
 #include "px4_offboard/CtrlPx4.h"
 #include "px4_offboard/include.h"
 
-#define TAKEOFF_RATIO 0.9
+#define TAKEOFF_RATIO 0.8
 //#define M_PI 3.1415926
 
 bool yaw_calibrate = 0;
@@ -88,7 +88,7 @@ float yaw_old, yaw_new;
     if (auto_tl_>0){
 
     if((state_set_.takeoff)&&(!state_read_.takeoff)){
-        takeoff(0.7, 1); //takeoff to 1 m at 2m/s initially // to adjust to the wall
+        takeoff(0.85, 1); //takeoff to 1 m at 2m/s initially // to adjust to the wall
   	}
     else if((state_set_.land)&&(state_read_.arm))
         land(1);    // land at 1m/s
@@ -112,7 +112,8 @@ float yaw_old, yaw_new;
 	   }
 
       else {
-	          mavros_pos_pub_.publish(fcu_pos_setpoint_);
+	        // mavros_pos_pub_.publish(fcu_pos_setpoint_);
+          mavros_vel_pub_.publish(fcu_vel_setpoint_);
   	  }
     }
     updateState(); // brodcast state of the drone
@@ -138,7 +139,7 @@ float yaw_old, yaw_new;
 
 	}
 */
-hover(); // always note down the most recent position
+   hover(); // always note down the most recent position
 }
 
 // regardless always check for failsafe
@@ -201,7 +202,8 @@ void CtrlPx4::objCallback(const px4_offboard::JoyCommand joy)
 // }
 
  moveToPoint(joy.position.x,joy.position.y,joy.position.z,joy.yaw);
-     // state_set_.offboard = joy.offboard;
+
+
   if (joy.offboard)
      state_set_.mode = OFFBOARD;
 
@@ -307,8 +309,8 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   {
 	   home_.px = pos_read_.px;
 	   home_.py = pos_read_.py;
-    set_armed_.request.value = true; // send arm request
-        mavros_armed_client_.call(set_armed_);
+     set_armed_.request.value = true; // send arm request
+     mavros_armed_client_.call(set_armed_);
   }
   else if (current_height < (TAKEOFF_RATIO * altitude)) {
 
@@ -341,7 +343,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     //ROS_INFO("[PX4 CTRL] Finished Takeoff at Height: %f", current_height);
     std::cout << "================================== finished taking off";
     state_set_.takeoff = 0;
-    //hover();
+    hover();
     //cout << " with height setpoint " <<fcu_pos_setpoint_.pose.position.z<<std::endl;
   }
 
@@ -389,6 +391,12 @@ void CtrlPx4::hover() {
 
       fcu_pos_setpoint_.pose.orientation.w = cos(0.5 * (yaw));
       fcu_pos_setpoint_.pose.orientation.z = sin(0.5 * (yaw));
+
+      fcu_vel_setpoint_.twist.linear.x = 0;
+      fcu_vel_setpoint_.twist.linear.y = 0;
+      fcu_vel_setpoint_.twist.linear.z = 0;
+      fcu_vel_setpoint_.twist.angular.z = 0;
+
 
 };
 
@@ -440,7 +448,6 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
 {
   Vector3f pos_body, pos_nav;
 
-
 // basic geometry, current yaw
   double yaw = pos_read_.yaw;
   pos_body << dx_sp, dy_sp, dz_sp;
@@ -455,7 +462,6 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   	yaw_sp_ -=  yaw_comp;
 	secs = ros::Time::now().toSec();
 }
-
 
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
@@ -473,13 +479,6 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
 
   float qw = cos(0.5 * yaw + dyaw_sp);
   float qz = sin(0.5 * yaw + dyaw_sp);
-
-  //ROS_INFO("Current yaw angle setpoint %3.2f, quat %3.2f, %3.2f", yaw+dyaw_sp, qw, qz);
-  //std::cout << "current yaw setpoint and yaw " << yaw+dyaw_sp << " " << pos_read_.yaw << std::endl;
-
-  //std::cout << "current x y z setpont " << fcu_pos_setpoint_.pose.position.x << " " << fcu_pos_setpoint_.pose.position.y << " "<<fcu_pos_setpoint_.pose.position.z << std:: endl;
-  //std::cout << "current x y z estimate " << pos_read_.px << " " << pos_read_.py <<" "<<pos_read_.pz << std:: endl<< std::endl;
-
 
   // decided if we need to reset position setpoint
   if ((fabs(pos_read_.px + pos_nav(0) - x) + fabs(pos_read_.py + pos_nav(1)-y)) > MAX_DXY){
@@ -505,13 +504,20 @@ void CtrlPx4::moveToPoint (float dx_sp, float dy_sp, float dz_sp, float dyaw_sp)
   fcu_pos_setpoint_.pose.orientation.w = qw; // TODO add local
   fcu_pos_setpoint_.pose.orientation.z = qz;
 
-  // note down a prev state
+  // note down the previous setpoint
   prev_pos_read_.px = pos_read_.px;
   prev_pos_read_.py = pos_read_.py;
   prev_pos_read_.pz = pos_read_.pz;
 
-  //ROS_INFO("setpoint: [x: %f y:%f z: %f]", fcu_pos_setpoint_.pose.position.x, \
-    //fcu_pos_setpoint_.pose.position.y,fcu_pos_setpoint_.pose.position.z);
+  // also update velocity setpoint here in case we need it
+  fcu_vel_setpoint_.twist.linear.x  =            -pos_body(0)*sin(yaw) + pos_body(1)*cos(yaw);
+  fcu_vel_setpoint_.twist.linear.y  =             pos_body(0)*cos(yaw) + pos_body(1)*sin(yaw);
+  fcu_vel_setpoint_.twist.linear.z  =  dz_sp;   // z velocity setpoint (usually 0)
+
+
+  fcu_vel_setpoint_.twist.angular.z =  dyaw_sp; // yaw setpoint
+
+  ROS_INFO("setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp,dz_sp);
 
 };
 

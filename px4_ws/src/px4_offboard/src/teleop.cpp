@@ -10,7 +10,7 @@
 // actual hardware orientation
  #define KEYCODE_RIGHT 0x43    //  forward
  #define KEYCODE_LEFT 0x44  //  backward
- #define KEYCODE_UP 0x41 //  right 
+ #define KEYCODE_UP 0x41 //  right
  #define KEYCODE_DOWN 0x42  //  left
 
 //#define KEYCODE_LEFT 0x43    //  right
@@ -52,7 +52,7 @@ private:
 };
 
 TeleopPx4::TeleopPx4()
-    : linear_(0.4), angular_(0.15), l_scale_(1), a_scale_(0.5) {
+    : linear_(0.1), angular_(0.1), l_scale_(1), a_scale_(0.5) {
   nh_.param("scale_angular", a_scale_, a_scale_);
   nh_.param("scale_linear", l_scale_, l_scale_);
   vel_pub_ = nh_.advertise<px4_offboard::JoyCommand>("/joy/cmd_mav", 100);
@@ -126,9 +126,9 @@ void TeleopPx4::keyLoop() {
     case KEYCODE_F:
       ROS_INFO("Failsafe");
       command.failsafe = true;
-      command.arm = false; 
+      command.arm = false;
       dirty = true;
-      
+
     case KEYCODE_E:
       ROS_INFO("DISARM");
       command.arm = false; // Disarm
