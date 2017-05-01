@@ -27,7 +27,7 @@
 using namespace Eigen;
 using namespace std;
 
-enum control_t { POS = 0, VEL, RAW };
+enum control_t { VEL = 0, POS, RAW };
 
 typedef struct vel_s {
   double vx;

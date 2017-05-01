@@ -19,7 +19,7 @@ CtrlPx4::CtrlPx4() {
   std::cout << std::fixed << std::setprecision(4);
 
   off_en_ = sim_;                   // initialize off_en_to be 1 always if in simulation mode
-  pos_ctrl_ = 1;                    // default position control
+  pos_ctrl_ = POS;                    // default position control
   controller_state_.failsafe = 0;   // clear fail safe flag
   prev_yaw_sp_ = 0;                 // clear previous yaw setpoint
   // PID pid - Land;

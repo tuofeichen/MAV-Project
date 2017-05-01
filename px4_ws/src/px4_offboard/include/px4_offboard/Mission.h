@@ -9,6 +9,7 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
+
 class Mission
 {
 public:
@@ -23,9 +24,7 @@ bool getTakeoffFlag(){ return _is_takeoff;     };
 void takeoff();
 bool getLandFlag(){ return _is_land;     };
 void land();
-
 bool turnLeft90();
-
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
 
@@ -39,6 +38,10 @@ void setFlightMode(int request_mode)
 	}
 };
 
+void setControlMode(bool pos_ctrl)
+{
+  _objCommand.control = pos_ctrl;
+}
 int getFlightMode() {return _flight_mode;};
 int getPrevFlightMode(){return _flight_mode_prev;};
 
@@ -68,6 +71,11 @@ bool _is_takeoff;
 bool _is_land;
 bool _is_calibrate;
 bool _is_fail;
+
+static constexpr int _room_size = 2500; //(mm)
+static constexpr int _traverse_inc = 20;
+float _traverse_height = 0.8;
+float _traverse_speed  = 0.1;
 
 // position info
 Eigen::Matrix4f _lpe;
