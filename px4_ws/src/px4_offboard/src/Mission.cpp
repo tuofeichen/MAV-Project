@@ -3,7 +3,7 @@
 
 // flight logic / state machine handler
 
-enum {takingoff, calibration,  tracking, traverse, turning, landing};
+enum {takingoff, calibration, tracking, traverse, turning, landing};
 
 int  crash_cnt = 0;
 
@@ -174,7 +174,7 @@ bool Mission::turnLeft90()
 	if  (_lpe(2,3) > _traverse_height)
 	{
 		ROS_INFO("[Mission] correct height");
-		_objCommand.position.z = 0.1* (-_lpe(2,3) + _traverse_height); // make sure yaw don't jump
+		_objCommand.position.z = -_lpe(2,3) + _traverse_height; // make sure yaw don't jump
 	}
 
 	_objCommand.yaw = 0.5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
@@ -190,10 +190,9 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 	if ((_obj_cnt > 4)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
 		setFlightMode(tracking);
-		// _flight_mode = tracking;
 
 		resetCommand(_objCommand);
-		_objCommand.position.y = Kp * (pos.z - 1200.0) / 1200.0; // keep 1m distance away from target
+		_objCommand.position.y = Kp * (pos.z - 1200.0) / 1200.0; // keep 1.2 m distance away from target
 		_objCommand.position.x = Kp * (pos.x - 160.0)  / 200.0;
 		_objCommand.position.z = Kp * (pos.y - 120.0)  / 200.0;
 		_objCommand.yaw = - Kp * angle_rad;
@@ -296,13 +295,13 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 	if ((_flight_mode > tracking) && (msg.y < 900))//failsafe object detect
 	{
 		crash_cnt++;
-		if(crash_cnt>5){
+		if(crash_cnt > 5){
 			setFlightMode(landing);
 			ROS_ERROR("[Mission] obstacles too close detected. Land");
 		}
 	//_objCommand.land = 1;
-
 	}
+
 	else
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
