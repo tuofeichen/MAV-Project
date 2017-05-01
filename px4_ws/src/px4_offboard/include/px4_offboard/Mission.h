@@ -1,6 +1,5 @@
 #include "ros/ros.h"
-#include "px4_offboard/JoyCommand.h"
-#include "px4_offboard/CtrlState.h"
+#include "px4_offboard/MavState.h"
 #include "geometry_msgs/Point.h"
 
 
@@ -18,7 +17,7 @@ Mission();
 ~Mission(){};
 
 void publish() { //ROS_INFO("Publishing");
- _mission_ctrl_pub.publish(_objCommand);}; // for timing control 
+ _mission_ctrl_pub.publish(_objCommand);}; // for timing control
 
 bool getTakeoffFlag(){ return _is_takeoff;     };
 void takeoff();
@@ -59,7 +58,7 @@ int  _flight_mode_prev;
 
 int  _wall_cnt;
 int  _obj_cnt;
-int  _cannot_find_wall_cnt; 
+int  _cannot_find_wall_cnt;
 int	 _obst_cnt ; // how many obstacles have the drone run into
 bool _obst_found;
 int  _safe_dist; // distance to keep away from obstacles / walls
@@ -71,15 +70,15 @@ bool _is_calibrate;
 bool _is_fail;
 
 // position info
-Eigen::Matrix4f _lpe; 
-Eigen::Vector3f _vel; 
+Eigen::Matrix4f _lpe;
+Eigen::Vector3f _vel;
 float _roll, _pitch, _yaw, _yaw_prev, angle_rad;
 
-void stateCallback(const px4_offboard::CtrlState state)
+void stateCallback(const px4_offboard::MavState state)
 {
 	_is_takeoff = state.takeoff;
 	_is_land 	= state.land;
-	_is_fail 	= state.fail;
+	_is_fail 	= state.failsafe;
 };
 
 void velCallback(const geometry_msgs::TwistStamped vel_read);
@@ -90,14 +89,12 @@ void objCallback(const geometry_msgs::Point);
 
 
 void rot2rpy(Matrix3f R,float& r, float& p, float& y);
-void resetCommand(px4_offboard::JoyCommand& command);
+void resetCommand(px4_offboard::MavState& command);
 
-ros::Publisher _mission_state_pub; 
+ros::Publisher _mission_state_pub;
 ros::Publisher _mission_ctrl_pub;
 
-px4_offboard::JoyCommand _objCommand;
-px4_offboard::JoyCommand _emptyCommand;
-
-// std_msgs::Byte objState;
+px4_offboard::MavState _objCommand;
+px4_offboard::MavState _emptyCommand;
 
 };

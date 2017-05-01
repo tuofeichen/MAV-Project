@@ -2,7 +2,7 @@
 #define CtrlPx4_H_
 
 #include "px4_offboard/PID.h"
-#include "px4_offboard/CtrlState.h"
+#include "px4_offboard/MavState.h"
 
 #define AUTO_FLIGHT
 
@@ -32,11 +32,16 @@ public:
 
 private:
 
-// In meters
+
+// SETTINGS
+
+// Controller Saturation (meters)
   static constexpr float MAX_Z    = 1.2;
   static constexpr float MAX_DZ   = 1.1;
   static constexpr float MAX_DXY  = 0.5;
   static constexpr float MAX_DYAW = 0.4;
+
+  static constexpr float BAT_LOW_THRESH = 14;
 
 
   // subscriber callbacks from MAV
@@ -48,9 +53,9 @@ private:
 
 
   // subscriber callback from joystick
-  void joyCallback(const px4_offboard::JoyCommand);
-  void aprilCallback(const px4_offboard::JoyCommand);
-  void objCallback(const px4_offboard::JoyCommand);
+  void joyCallback(const px4_offboard::MavState);
+  void aprilCallback(const px4_offboard::MavState);
+  void objCallback(const px4_offboard::MavState);
 
   // void findObjectCallback(const px4_offboard::MoveCommand move_cmd);
 
@@ -62,21 +67,21 @@ private:
   bool  setArm (bool arm);
 
   // state of vehile
-  int ctrl_;
-  bool sim_;
-  bool off_en_;
-  bool auto_tl_;
-  float yaw_sp_;
+  bool sim_;     // disregard all offboard command
+  bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
+  bool auto_tl_; // auto takeoff landing flag
+  bool pos_ctrl_;
 
   // controller
   PID pid_takeoff;
   PID pid_land;
   PID pid_object;
 
+  // setpoint related
+  float prev_yaw_sp_;
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_;
   my_pos pos_read_;
-  // my_pos pos_set_; technially no need
   my_pos prev_pos_read_;
   my_vel vel_;
 
@@ -112,7 +117,7 @@ private:
   geometry_msgs::TwistStamped fcu_vel_setpoint_;
   geometry_msgs::PoseStamped fcu_pos_setpoint_;
 
-  px4_offboard::CtrlState controller_state_;
+  px4_offboard::MavState controller_state_;
 
 };
 

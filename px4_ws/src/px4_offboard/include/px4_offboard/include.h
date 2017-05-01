@@ -19,7 +19,7 @@
 #include "geometry_msgs/TwistStamped.h"
 #include "geometry_msgs/Vector3Stamped.h"
 #include "geometry_msgs/PoseStamped.h"
-#include "px4_offboard/JoyCommand.h"
+#include "px4_offboard/MavState.h"
 // #include "px4_offboard/MoveCommand.h"
 #include <sstream>
 #include <string.h>
@@ -52,7 +52,7 @@ typedef struct state_s {
   bool offboard;
   bool takeoff;
   bool land;
- 
+
   int mode;
   int prev_mode;
   // control_t control;
@@ -60,7 +60,7 @@ typedef struct state_s {
 
   // need differential for drift cancellation
   // my_pos pos_read;
-  // my_pos pos_set; 
+  // my_pos pos_set;
   // my_pos prev_pos_read;
   // my_vel vel;
 

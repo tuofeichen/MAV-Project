@@ -1,9 +1,9 @@
 #include <ros/ros.h>
 // #include <posedetection_msgs/ObjectDetection.h>
 #include <geometry_msgs/PoseStamped.h>
-#include "px4_offboard/JoyCommand.h"
+#include "px4_offboard/MavState.h"
 
-px4_offboard::JoyCommand g_command;
+px4_offboard::MavState g_command;
 bool is_update = 0;
 
 void checkerCallback(const geometry_msgs::PoseStamped);
@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   ros::NodeHandle nh;
   // publish joy command
   ros::Publisher state_pub =
-      nh.advertise<px4_offboard::JoyCommand>("/joy/cmd_mav", 100);
+      nh.advertise<px4_offboard::MavState>("/joy/cmd_mav", 100);
   // listen to checkerboard
   ros::Subscriber checker_sub = nh.subscribe(
       "/checkerdetector/objectdetection_pose", 100, &checkerCallback);

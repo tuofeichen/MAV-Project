@@ -28,8 +28,8 @@ Mission::Mission()
 	_vel.setZero();
 	resetCommand(_emptyCommand); // hover command
 
-	_mission_state_pub = _nh.advertise<px4_offboard::CtrlState> ("/obj/main_state",100);
-	_mission_ctrl_pub = _nh.advertise<px4_offboard::JoyCommand> ("/obj/cmd_mav",10);
+	_mission_state_pub = _nh.advertise<px4_offboard::MavState> ("/obj/main_state",100);
+	_mission_ctrl_pub = _nh.advertise<px4_offboard::MavState> ("/obj/cmd_mav",10);
 
 	_state_sub = _nh.subscribe("/px4_offboard/state",  10,  &Mission::stateCallback, this);
 	_lpe_sub   = _nh.subscribe("/mavros/local_position/pose", 100, &Mission::lpeCallback,this);
@@ -397,7 +397,7 @@ void Mission::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 	rot2rpy(q.matrix(), _roll, _pitch, _yaw);
 
 }
-void Mission::resetCommand(px4_offboard::JoyCommand& command)
+void Mission::resetCommand(px4_offboard::MavState& command)
 {
 	command.takeoff = 0;
 	command.land = 0;

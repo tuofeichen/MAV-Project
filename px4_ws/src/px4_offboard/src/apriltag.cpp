@@ -4,9 +4,9 @@
 // #include <geometry_msgs/PoseStamped.h>
 
 #include <geometry_msgs/PoseArray.h>
-#include "px4_offboard/JoyCommand.h"
+#include "px4_offboard/MavState.h"
 
-px4_offboard::JoyCommand g_command;
+px4_offboard::MavState g_command;
 
 bool is_update = 0;
 bool is_takeoff = 0;
@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
   ros::NodeHandle nh;
   // publish joy command
   ros::Publisher state_pub =
-   nh.advertise<px4_offboard::JoyCommand>("/april/cmd_mav", 100);
+   nh.advertise<px4_offboard::MavState>("/april/cmd_mav", 100);
   // listen to checkerboard
   ros::Subscriber april_sub = nh.subscribe(
       "/tag_detections_pose", 100, &tagCallback);
@@ -38,11 +38,11 @@ int main(int argc, char **argv) {
       "/mavros/imu/data", 100, &imuCallback);
 
 
-  ROS_INFO("AR TAG START!");  
+  ROS_INFO("AR TAG START!");
   int update_cnt = 0;
   int scan_sign = 1;
   ros::Rate loop_rate(100);
-  
+
   while (ros::ok()) {
 
     if (is_update) {
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
       	update_cnt = 0;
       	if((is_takeoff)&&(az<0.05)){
             ROS_INFO("New Surveillance Round!");
-            //yaw_start = pos_read.yaw; //note down the yaw when starting   
+            //yaw_start = pos_read.yaw; //note down the yaw when starting
              g_command.position.x = 0;
              g_command.position.y = 0;
              g_command.position.z = 0;
@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
              state_pub.publish(g_command);
             }
       	}
-	      // TODO: lost track handling? 
+	      // TODO: lost track handling?
     }
 
 
@@ -88,8 +88,8 @@ void tagCallback(const geometry_msgs::PoseArray tag_pose) {
     g_command.position.y = 0;
     g_command.position.z = 0;
     g_command.yaw = 0;
-    
-    g_command.position.x = 0.2* tag_pose.poses[0].position.x;  
+
+    g_command.position.x = 0.2* tag_pose.poses[0].position.x;
     g_command.position.z = 0.2 * tag_pose.poses[0].position.y;
     g_command.position.y = 0.12* (tag_pose.poses[0].position.z - 1);
     g_command.yaw = -0.5*tag_pose.poses[0].orientation.w;
@@ -99,12 +99,12 @@ void tagCallback(const geometry_msgs::PoseArray tag_pose) {
   	g_command.position.x = 0;
   	g_command.position.y = 0;
     g_command.position.z = 0;
-	}  
+	}
 
 }
 
 void spCallback(const geometry_msgs::PoseStamped sp)
-{	
+{
 //	ROS_INFO("Position Setpoint received");
 	is_takeoff = 1;
 }
@@ -134,4 +134,3 @@ void imuCallback(const sensor_msgs::Imu imu)
 //	ROS_INFO("Z angular velocity is %f", imu.angular_velocity.z);
 	az = imu.angular_velocity.z;
 }
-

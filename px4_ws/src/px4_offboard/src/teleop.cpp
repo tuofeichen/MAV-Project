@@ -1,6 +1,6 @@
 #include "px4_offboard/include.h"
 #include "px4_offboard/CtrlPx4.h"
-#include "px4_offboard/JoyCommand.h"
+#include "px4_offboard/MavState.h"
 #include <signal.h>
 #include <termios.h>
 #include <stdio.h>
@@ -36,7 +36,7 @@
 #define KEYCODE_E 0x65 // e   //DISARM
 #define KEYCODE_C 0x63 // c   //ARM but no offboard
 
-void copyTwist(px4_offboard::JoyCommand *, px4_offboard::JoyCommand);
+void copyTwist(px4_offboard::MavState *, px4_offboard::MavState);
 
 class TeleopPx4 {
 public:
@@ -55,7 +55,7 @@ TeleopPx4::TeleopPx4()
     : linear_(0.1), angular_(0.1), l_scale_(1), a_scale_(0.5) {
   nh_.param("scale_angular", a_scale_, a_scale_);
   nh_.param("scale_linear", l_scale_, l_scale_);
-  vel_pub_ = nh_.advertise<px4_offboard::JoyCommand>("/joy/cmd_mav", 100);
+  vel_pub_ = nh_.advertise<px4_offboard::MavState>("/joy/cmd_mav", 100);
 
 }
 
@@ -81,8 +81,8 @@ void TeleopPx4::keyLoop() {
   char c, c_last;
   bool dirty = false;
   // last velocity setpoint (use for relative control)
-  px4_offboard::JoyCommand last_command;
-  px4_offboard::JoyCommand command;
+  px4_offboard::MavState last_command;
+  px4_offboard::MavState command;
   command.failsafe = false; // always make sure failsafe is off
 
   tcgetattr(kfd, &cooked);
@@ -101,7 +101,7 @@ void TeleopPx4::keyLoop() {
   ros::Rate loop_rate(100);
 
   // initialization of back to hover (no dx to any direction allowed)
-  px4_offboard::JoyCommand hover;
+  px4_offboard::MavState hover;
   hover.arm = true;
   hover.offboard = true;
   hover.failsafe = false;
@@ -222,8 +222,8 @@ void TeleopPx4::keyLoop() {
   return;
 }
 
-void copyTwist(px4_offboard::JoyCommand *command_temp,
-               px4_offboard::JoyCommand command) {
+void copyTwist(px4_offboard::MavState *command_temp,
+               px4_offboard::MavState command) {
   (*command_temp).position.x = command.position.x;
   (*command_temp).position.y = command.position.y;
   (*command_temp).position.z = command.position.z;
