@@ -56,20 +56,15 @@ CtrlPx4::CtrlPx4() {
 
   // compact message subscription
   joy_sub_ = nh_.subscribe("/joy/cmd_mav", 100, &CtrlPx4::joyCallback, this);
-  // april_sub_ =
-  // nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);
-
+  // april_sub_ = nh_.subscribe("/april/cmd_mav",100,&CtrlPx4::aprilCallback,this);
   obj_sub_ = nh_.subscribe("/obj/cmd_mav", 100, &CtrlPx4::objCallback, this);
-
-  // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100,
-  // &CtrlPx4::checkerCallback, this);
+  // checker_sub_ = nh_.subscribe("/checker/cmd_mav", 100, &CtrlPx4::checkerCallback, this);
 };
 
 bool CtrlPx4::commandUpdate() {
 
   float yaw_old, yaw_new;
   if (off_en_) {
-
     // check if in auto takeoff landing mode
     if (auto_tl_ > 0) {
 
@@ -170,7 +165,7 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
   if (joy.offboard)
     state_set_.mode = OFFBOARD;
 
-  pos_ctrl_ = joy.control; // note down if we need to change control mode
+  pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
   state_set_.arm = joy.arm;
   state_set_.takeoff = joy.takeoff;
   state_set_.land = joy.land;
@@ -393,13 +388,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   pos_nav(1) =
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
 
-  // if (state_read_.takeoff) {
-  //   float yaw_comp = yaw_cali_value * (ros::Time::now().toSec() - secs);
-  //   ROS_INFO("Compensate yaw drift for %3.2f", yaw_comp);
-  //   prev_yaw_sp_ -= yaw_comp;
-  //   secs = ros::Time::now().toSec();
-  // }
-
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
@@ -448,8 +436,8 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
   fcu_vel_setpoint_.twist.linear.y =
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw);
-  fcu_vel_setpoint_.twist.linear.z = dz_sp; // z velocity setpoint (usually 0)
-  fcu_vel_setpoint_.twist.angular.z = dyaw_sp; // yaw setpoint
+  fcu_vel_setpoint_.twist.linear.z  = dz_sp;     // z velocity setpoint (usually 0)
+  fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
 
   ROS_INFO("setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
 };

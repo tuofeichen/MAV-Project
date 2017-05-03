@@ -40,21 +40,37 @@ Mission::Mission()
 
 }
 
+static std::ofstream logMissionSp;
+Mission mission;
 
+void logSp()
+{
+	logMissionSp << ros::Time::now()
+	<< "," << mission.getFlightMode()
+	<< "," << mission._objCommand.control
+	<< "," << mission._objCommand.position.x
+	<< "," << mission._objCommand.position.y
+	<< "," << mission._objCommand.position.z
+	<< "," << mission._objCommand.yaw << endl;
+};
 
 int main(int argc, char** argv)
 {
+	logMissionSp.open("/home/odroid/MAV-Project/log/mavSp.csv", std::ofstream::out | std::ofstream::trunc);
+	logMissionSp << "time,flight mode,control, x,y,z,yaw" <<endl;
+
   ros::init(argc, argv, "mission_planner");
   int takeoff_set = 0; //takeoff flag only set once
   int printDelay = 0;
   int printMod = 400;
-  Mission mission;
-  usleep(1000*1000);
 
   ros::Rate loop_rate(100);
 
   while(ros::ok())
   {
+		  if (!(printDelay%printMod))
+				logSp();
+				
 			mission.setControlMode(POS); // always default to position control
   		printDelay++;
   		if (mission.getFailFlag())
@@ -176,9 +192,7 @@ bool Mission::turnLeft90()
 		ROS_INFO("[Mission] correct height");
 		_objCommand.position.z = -_lpe(2,3) + _traverse_height; // make sure yaw don't jump
 	}
-
 	_objCommand.yaw = 0.5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-
 	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.2); // true if finished turning (set this threshold to be higher if overturn)
 }
 
@@ -199,7 +213,6 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 
 
 		// ROS_INFO("Forward %3.2f Left %3.2f Up %3.2f", _objCommand.position.y, _objCommand.position.x, _objCommand.position.z);
-
 		publish();
 		if ((pos.z < 1200) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
 		{
@@ -344,8 +357,15 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		}
 		else
 		{
+			resetCommand(_objCommand);
 			_objCommand.control = VEL; // during traverse use velocity control mode (steady proceed)
 			_obst_found = 0;
+
+			if (fabs(_lpe(2,3) - _traverse_height) > 0.1) //if z position is off set velocity to compensate
+			{
+				_objCommand.position.z = - 0.5*(_lpe(2,3) - _traverse_height);
+			}
+
 			if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.04) //
 			{
 				_objCommand.position.y = _traverse_speed; // proceed at velocity 0.1

@@ -8,7 +8,9 @@
 
 #include <Eigen/Core>
 #include <Eigen/Dense>
-
+#include <iostream>
+#include <fstream>
+#include <string>
 
 class Mission
 {
@@ -45,6 +47,9 @@ void setControlMode(bool pos_ctrl)
 int getFlightMode() {return _flight_mode;};
 int getPrevFlightMode(){return _flight_mode_prev;};
 
+// make this public for logging
+px4_offboard::MavState _objCommand;
+
 private:
 
 ros::NodeHandle _nh;
@@ -74,7 +79,7 @@ bool _is_fail;
 
 static constexpr int _room_size = 2500; //(mm)
 static constexpr int _traverse_inc = 20;
-float _traverse_height = 0.8;
+float _traverse_height = 0.75;
 float _traverse_speed  = 0.1;
 
 // position info
@@ -102,7 +107,7 @@ void resetCommand(px4_offboard::MavState& command);
 ros::Publisher _mission_state_pub;
 ros::Publisher _mission_ctrl_pub;
 
-px4_offboard::MavState _objCommand;
+
 px4_offboard::MavState _emptyCommand;
 
 };

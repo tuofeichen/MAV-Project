@@ -85,7 +85,6 @@ private:
   my_pos prev_pos_read_;
   my_vel vel_;
 
-
   // node initialization
   ros::NodeHandle nh_;
 
@@ -93,7 +92,6 @@ private:
   ros::Publisher mavros_vel_pub_;
   ros::Publisher mavros_pos_pub_;
   ros::Publisher mavros_acc_pub_;
-
   ros::Publisher px4_offboard_pub_;
 
   // mode change service
