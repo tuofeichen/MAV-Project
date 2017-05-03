@@ -6,7 +6,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Point.h>
 
-#include "frontend/CtrlState.h"
+#include "frontend/MavState.h"
 
 
 #include <std_msgs/Float64.h>
@@ -81,7 +81,7 @@ private:
 	void rot2rpy	(Matrix3f R,float& r, float& p, float& y);
 	Matrix3f rpy2rot(float r, float p, float y);
 
-	void stateCallback(const frontend::CtrlState state)
+	void stateCallback(const frontend::MavState state)
 	{
 	_is_takeoff = state.takeoff;
 	_is_land 	= state.land;

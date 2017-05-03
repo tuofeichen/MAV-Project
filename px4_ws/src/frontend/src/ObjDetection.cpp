@@ -7,7 +7,7 @@
 
 
 #define RANSAC 5
-#define MIN_MATCHES 10
+#define MIN_MATCHES 10 // minimum matches for features
 #define MAX_DISP_NORM 40
 
 
@@ -209,16 +209,16 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	int r_counter=0;
 	int l_counter=0;
 	int height = 120;
-	float alpha, beta;
-	float angle_per_pixel_rad = (58./320.)*M_PI/180.;
+	// float alpha, beta;
+	// float angle_per_pixel_rad = (58./320.)*M_PI/180.;
 	bool valid_position = true;
 
-	float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
+	// float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
 
-	for(int k = e; k < 100; k++)
+	for(int k = e; k < 100; k+=5)
 	{
-		pixel_number_left = 160-e;
-		pixel_number_right = 160+e;
+		pixel_number_left = 160-k;
+		pixel_number_right = 160+k;
 
 		for (int i=pixel_number_right;i<pixel_number_right + square_size;i++)
 		{
@@ -246,15 +246,10 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 		}
  		l=l/(float)l_counter;
 
-		//float max=1;
-		//	if(r>=l) max = r;
-		//	else max = l;
-
-		//cout << "max: " << max(r,l) << endl;
-
-
 		if(fabs(r-Depth.at<uint16_t>(height,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(height,pixel_number_left)) < 15)
 		{
+
+      e = k;
 			valid_position = true;
 			break;
 
@@ -263,50 +258,43 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 	}
 
 
-	if(valid_position && fabs(r-l)/max(r,l) < 0.2 )
+  if(valid_position)
 	{
-		float D = sqrt(r*r + l*l - 2*l*r*cos(FOV));
-
-
-		if(l > r)
+    if(fabs(r-l)/max(r,l) < 0.3)
 		{
- 	 		 alpha = asin(r/D*sin(FOV));
-   			 objAngle.x = alpha + FOV/2 - M_PI/2;
-		}
-		else
-		{
-    		beta = asin(l/D*sin(FOV));
-    		objAngle.x = M_PI/2 - FOV/2 - beta;
-		}
+      float D = 2 * e / objFrame.fx; // scale up to real world
+      objAngle.x = atan2((l-r) /objFrame.depthScale,D); // in radians
+      objAngle.y = objAngle.x*180/M_PI; // in degrees
+      objAngle.z =  (r+l)/2; //in mm
 
-		if(l < 3000 && r < 3000 && r!=0 && l!=0)
-		{
+      if (objAngle.x>3000||objAngle.y>3000||objAngle.z>3000||objAngle.z ==0)
+      {
+        	objAngle.x = -5000;
+        	objAngle.y = -5000;
+          objAngle.z = 0;      // infinite angle value
+      }
+    }
+    else
+    {
+        objAngle.z = -1; // if angle too big
+    }
 
-			objAngle.y = objAngle.x*180/M_PI; // in degrees
-		}
-		else
-		{
-			objAngle.x = -5000;
-			objAngle.y = -5000;
-		}
-
-	    // cout << "objAngle(in degrees): " << objAngle.y << endl;
-		// cout << "objAngle(in rad): " << objAngle.x << endl;
 	}
 	else
 	{
-		objAngle.x = -5000;
-		objAngle.y = -5000;
-	//	cout << "Invalid position" << endl;
+		objAngle.x = -3000;
+		objAngle.y = -3000;
+		// cout << "Angle too big " << endl;
 	}
+
 
 	px4->updateWallPos (objAngle);
 }
 
 void ObjDetection::checkForWall(cv::Mat Depth)
 {
-   // assume 160,160 is the center of the image
-	int e = 20;
+   // assume 160,120 is the center of the image
+	int e = 40;
 	int square_size = 5;
 	int pixel_number_left  = 160 - e;
 	int pixel_number_right = 160 + e;
@@ -315,23 +303,23 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 
 	int r_counter=0;
 	int l_counter=0;
-	float alpha, beta;
-	float angle_per_pixel_rad = (58./320.)*M_PI/180.; // some magic number ? (calibrated)
+	// float alpha, beta;
+	// float angle_per_pixel_rad = (58./320.)*M_PI/180.; // 58 is the field of view of the camera (should set as a constant)
 	bool valid_position = true;
 
-	float distance = 0;
-	int   distance_counter = 0;
+	// float distance = 0;
+	// int   distance_counter = 0;
+  //
+	// float FOV = (pixel_number_right - pixel_number_left) * angle_per_pixel_rad;
 
-	float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
-
-	for(int k = e; k < 100; k++)
+	for(int k = e; k < 100; k+=5)
 	{
-		pixel_number_left = 160-e;
-		pixel_number_right = 160+e;
+    pixel_number_left  = 160 - k;
+  	pixel_number_right = 160 + k; // traverse through some k
 
-		for (int i=pixel_number_right;i<pixel_number_right + square_size;i++)
+    for (int i=pixel_number_right; i<  pixel_number_right + square_size; i++)
 		{
-    	 	for (int j=180; j< 180+square_size;j++)
+    	 	for (int j=160; j< 160+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
@@ -340,11 +328,12 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 					}
 				}
 		}
- 		r=r/(float)r_counter;
+
+ 		r = r/(float)r_counter;
 
 		for (int i=pixel_number_left;i<pixel_number_left + square_size;i++)
 		{
-     		for (int j=180; j< 180+square_size;j++)
+     		for (int j=160; j< 160+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
@@ -355,76 +344,47 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 		}
  		l=l/(float)l_counter;
 
-		//float max=1;
-		//	if(r>=l) max = r;
-		//	else max = l;
-
-		//cout << "max: " << max(r,l) << endl;
-
-
-		if(fabs(r-Depth.at<uint16_t>(180,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(180,pixel_number_left)) < 15)
+// if average is close enough to the center value then use the average (relatively flat surface)
+		if(fabs(r  - Depth.at<uint16_t>(160,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(160,pixel_number_left)) < 15)
 		{
+      e = k; // note down what's the final distance in between
 			valid_position = true;
 			break;
-
 		}
 
 	}
 
-
-	if(valid_position && fabs(r-l)/max(r,l) < 0.2 )
+	if(valid_position)
 	{
-		float D = sqrt(r*r + l*l - 2*l*r*cos(FOV));
-
-
-		if(l > r)
+    if(fabs(r-l)/max(r,l) < 0.3)
 		{
- 	 		 alpha = asin(r/D*sin(FOV));
-   			 wallAngle.x = alpha + FOV/2 - M_PI/2;
-		}
-		else
-		{
-    		beta = asin(l/D*sin(FOV));
-    		wallAngle.x = M_PI/2 - FOV/2 - beta;
-		}
+      float D = 2 * e / objFrame.fx; // scale up to real world
+      wallAngle.x = atan2((l-r) /objFrame.depthScale,D); // in radians
+      wallAngle.y = wallAngle.x*180/M_PI; // in degrees
+      wallAngle.z =  (r+l)/2; //in mm
 
-		if(l < 3000 && r < 3000 && r!=0 && l!=0)
-		{
+      if (wallAngle.x>3000||wallAngle.y>3000||wallAngle.z>3000||wallAngle.z ==0)
+      {
+        	wallAngle.x = -5000;
+        	wallAngle.y = -5000;
+          wallAngle.z = 0;      // infinite angle value
+      }
+    }
+    else
+    {
+        wallAngle.z = -1; // if angle too big
+    }
 
-			wallAngle.y = wallAngle.x*180/M_PI; // in degrees
-		}
-		else
-		{
-			wallAngle.x = -5000;
-			wallAngle.y = -5000;
-		}
-
-    // cout << "wallAngle(in degrees): " << wallAngle.y << endl;
-		// cout << "wallAngle(in rad): " << wallAngle.x << endl;
 	}
 	else
 	{
-		wallAngle.x = -5000;
-		wallAngle.y = -5000;
-	//	cout << "Invalid position" << endl;
+		wallAngle.x = -3000;
+		wallAngle.y = -3000;
+		// cout << "Angle too big " << endl;
 	}
-
-
-	for (int i=155;i<165;i++)
-	{
-    	for (int j=115; j < 125;j++)
-		{
-			if(Depth.at<uint16_t>(j,i)!=0)
-			{
-						distance = distance + Depth.at<uint16_t>(j,i);
-        	      		distance_counter = distance_counter + 1;
-			}
-		}
-	}
-
-	wallAngle.z = distance / (float) distance_counter; // how far from the wall;
 
 	px4->updateWallPos (wallAngle);
+
 }
 
 void ObjDetection::readTemplate()

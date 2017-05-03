@@ -56,8 +56,10 @@ bool Mapping::extractFeature()
 
 	if (!featureDetectionAndExtraction())
 	{
-		cout << "bad feature!"<< endl;
+
 		++badFrameCounter;
+		if(!(badFrameCounter%20))
+			cout << "bad feature!"<< endl;
 		fusePX4LPE(badFrame);
 		return 0;
 	}

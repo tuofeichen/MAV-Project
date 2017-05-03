@@ -13,6 +13,8 @@ using namespace SLAM;
 class ObjDetection {
 
 	public:
+
+
 	ObjDetection(IFeatures* aFDEM, RosHandler* aRos);
 	ObjDetection(int detectorThreshold, int minMathces, int maxMatches);
 	void processFrame(Frame newFrame);
