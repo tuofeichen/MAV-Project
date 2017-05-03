@@ -7,4 +7,4 @@ bool arm
 bool offboard
 bool takeoff
 bool land
-bool control
+byte control

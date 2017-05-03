@@ -12,6 +12,8 @@
 #include <fstream>
 #include <string>
 
+enum {takingoff = 0, calibration, tracking, traverse, turning, landing};
+
 class Mission
 {
 public:
@@ -30,7 +32,7 @@ bool turnLeft90();
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
 
-
+void logSp();
 void setFlightMode(int request_mode)
 {
 	if (_flight_mode!=request_mode)
@@ -77,6 +79,9 @@ bool _is_land;
 bool _is_calibrate;
 bool _is_fail;
 
+
+
+std::ofstream logMissionSp;
 static constexpr int _room_size = 2500; //(mm)
 static constexpr int _traverse_inc = 20;
 float _traverse_height = 0.75;

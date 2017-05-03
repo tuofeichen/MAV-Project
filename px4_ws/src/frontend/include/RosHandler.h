@@ -85,7 +85,7 @@ private:
 	{
 	_is_takeoff = state.takeoff;
 	_is_land 	= state.land;
-	_is_fail 	= state.fail;
+	_is_fail 	= state.failsafe;
 	_is_arm   = state.arm;
 	};
 

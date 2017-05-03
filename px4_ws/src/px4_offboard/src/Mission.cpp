@@ -3,7 +3,6 @@
 
 // flight logic / state machine handler
 
-enum {takingoff, calibration, tracking, traverse, turning, landing};
 
 int  crash_cnt = 0;
 
@@ -11,6 +10,7 @@ Mission::Mission()
 {
 	_flight_mode  = takingoff; // start with takeoff
 	_flight_mode_prev = takingoff;
+	setControlMode(POS); // start with position control
 
 	_is_takeoff   = 0;
 	_is_land = 0;
@@ -38,28 +38,21 @@ Mission::Mission()
 	_obj_sub   = _nh.subscribe("/objDetect/obj_pose",   100, &Mission::objCallback, this);
 	_obst_sub  = _nh.subscribe("/objDetect/obst_dist",100,&Mission::obstCallback,this);
 
-}
-
-static std::ofstream logMissionSp;
-Mission mission;
-
-void logSp()
-{
-	logMissionSp << ros::Time::now()
-	<< "," << mission.getFlightMode()
-	<< "," << mission._objCommand.control
-	<< "," << mission._objCommand.position.x
-	<< "," << mission._objCommand.position.y
-	<< "," << mission._objCommand.position.z
-	<< "," << mission._objCommand.yaw << endl;
-};
-
-int main(int argc, char** argv)
-{
+// write logger header
 	logMissionSp.open("/home/odroid/MAV-Project/log/mavSp.csv", std::ofstream::out | std::ofstream::trunc);
 	logMissionSp << "time,flight mode,control, x,y,z,yaw" <<endl;
 
-  ros::init(argc, argv, "mission_planner");
+}
+
+
+
+int main(int argc, char** argv)
+{
+	ros::init(argc, argv, "mission_planner");
+
+	Mission mission;
+
+
   int takeoff_set = 0; //takeoff flag only set once
   int printDelay = 0;
   int printMod = 400;
@@ -68,9 +61,10 @@ int main(int argc, char** argv)
 
   while(ros::ok())
   {
+
 		  if (!(printDelay%printMod))
-				logSp();
-				
+				mission.logSp();
+
 			mission.setControlMode(POS); // always default to position control
   		printDelay++;
   		if (mission.getFailFlag())
@@ -92,7 +86,7 @@ int main(int argc, char** argv)
 		  			if (!(printDelay%printMod))
 	  					ROS_INFO("[Mission] Takeoff mode");
 
-						if (takeoff_set < 10) // limited amount of time
+						if (takeoff_set < 30) // limited amount of time
 		  			{
 							ROS_INFO("[Takeoff] flag set %d",takeoff_set);
 							takeoff_set++;
@@ -432,6 +426,18 @@ inline void Mission::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 	p = beta  ;
 	r = gamma ;
 }
+
+
+void Mission::logSp()
+{
+	logMissionSp << ros::Time::now()
+	<< "," << _flight_mode
+	<< "," << (int)_objCommand.control
+	<< "," << _objCommand.position.x
+	<< "," << _objCommand.position.y
+	<< "," << _objCommand.position.z
+	<< "," << _objCommand.yaw << endl;
+};
 
 // takes off really high
 // see the wall

@@ -1,0 +1,4343 @@
+Script started on Sat Mar 18 18:46:17 2017
+ * Stopping NTP server ntpd       [130G [124G[ OK ]
+18 Mar 18:46:24 ntpdate[16750]: adjust time server 192.168.144.15 offset -0.000938 sec
+ * Starting NTP server ntpd       [130G [124G[ OK ]
+launch $ roslaunch frontend rgbd.launch 
+... logging to /home/odroid/.ros/log/35214cc6-0c0b-11e7-bf53-74da380a0d96/roslaunch-odroid-server-16813.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/odroid/MAV-Project/px4_ws/src/frontend/launch/rgbd.launch
+[1mstarted roslaunch server http://192.168.144.11:36337/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rgbd_backend/sim: False
+ * /rosdistro: indigo
+ * /rosversion: 1.11.19
+
+NODES
+  /
+    rgbd_backend (frontend/frontend)
+
+auto-starting new master
+[1mprocess[master]: started with pid [16825][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/odroid/MAV-Project/px4_ws/src/frontend/launch/rgbd.launch http://localhost:11311
+[1msetting /run_id to 35214cc6-0c0b-11e7-bf53-74da380a0d96[0m
+[1mprocess[rosout-1]: started with pid [16838][0m
+started core service [/rosout]
+[1mprocess[rgbd_backend-2]: started with pid [16846][0m
+Warning: USB events thread - failed to set priority. This might cause loss of data...
+0: 320x240, 30 fps, 100 format
+1: 320x240, 30 fps, 101 format
+2: 320x240, 60 fps, 100 format
+3: 320x240, 60 fps, 101 format
+4: 640x480, 30 fps, 100 format
+5: 640x480, 30 fps, 101 format
+6: 160x120, 30 fps, 100 format
+7: 160x120, 30 fps, 101 format
+0: 320x240, 30 fps, 200 format
+1: 320x240, 30 fps, 201 format
+2: 320x240, 30 fps, 205 format
+3: 320x240, 15 fps, 200 format
+4: 320x240, 15 fps, 201 format
+5: 320x240, 15 fps, 205 format
+6: 320x240, 60 fps, 200 format
+7: 320x240, 60 fps, 201 format
+8: 320x240, 60 fps, 205 format
+9: 640x480, 30 fps, 200 format
+10: 640x480, 30 fps, 201 format
+11: 640x480, 30 fps, 205 format
+12: 640x480, 15 fps, 200 format
+13: 640x480, 15 fps, 201 format
+14: 640x480, 15 fps, 205 format
+15: 1280x1024, 30 fps, 200 format
+16: 1280x1024, 30 fps, 202 format
+17: 1280x1024, 30 fps, 201 format
+18: 1280x1024, 30 fps, 205 format
+19: 1280x720, 30 fps, 200 format
+20: 1280x720, 30 fps, 202 format
+21: 1280x960, 30 fps, 200 format
+22: 1280x960, 30 fps, 202 format
+Listen for client...
+Connection established!
+blank constructor 
+blank constructor 
+blank constructor 
+blank constructor 
+
+------ Feature dem took 31 ms
+frame transmission 
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 23 ms
+added frame 1  to pose graph
+total processing time 92
+
+
+------ Feature dem took 22 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+added frame 2  to pose graph
+total processing time 65
+
+Added id 2 as key frame <================================================================================
+
+------ Feature dem took 26 ms
+added frame 3  to pose graph
+total processing time 86
+
+frame transmission 
+
+------ Feature dem took 37 ms
+added frame 4  to pose graph
+total processing time 117
+
+Added id 4 as key frame <================================================================================
+
+------ Feature dem took 29 ms
+added frame 5  to pose graph
+total processing time 100
+
+frame transmission 
+
+------ Feature dem took 39 ms
+added frame 6  to pose graph
+total processing time 118
+
+Added id 6 as key frame <================================================================================
+
+------ Feature dem took 34 ms
+added frame 7  to pose graph
+total processing time 98
+
+frame transmission 
+
+------ Feature dem took 33 ms
+added frame 8  to pose graph
+total processing time 101
+
+
+------ Feature dem took 47 ms
+added frame 9  to pose graph
+total processing time 108
+
+Added id 9 as key frame <================================================================================
+
+------ Feature dem took 39 ms
+added frame 10  to pose graph
+total processing time 102
+
+frame transmission 
+
+------ Feature dem took 42 ms
+added frame 11  to pose graph
+total processing time 126
+
+
+------ Feature dem took 46 ms
+added frame 12  to pose graph
+total processing time 112
+
+
+------ Feature dem took 38 ms
+added frame 13  to pose graph
+total processing time 115
+
+
+------ Feature dem took 44 ms
+added frame 14  to pose graph
+total processing time 117
+
+
+------ Feature dem took 44 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+added frame 15  to pose graph
+total processing time 102
+
+Added id 15 as key frame <================================================================================
+
+------ Feature dem took 41 ms
+added frame 16  to pose graph
+total processing time 112
+
+frame transmission 
+
+------ Feature dem took 38 ms
+added frame 17  to pose graph
+total processing time 108
+
+
+------ Feature dem took 43 ms
+added frame 18  to pose graph
+total processing time 114
+
+
+------ Feature dem took 48 ms
+added frame 19  to pose graph
+total processing time 113
+
+
+------ Feature dem took 38 ms
+added frame 20  to pose graph
+total processing time 106
+
+
+------ Feature dem took 35 ms
+added frame 21  to pose graph
+total processing time 95
+
+
+------ Feature dem took 35 ms
+added frame 22  to pose graph
+total processing time 98
+
+
+------ Feature dem took 34 ms
+added frame 23  to pose graph
+total processing time 90
+
+
+------ Feature dem took 30 ms
+added frame 24  to pose graph
+total processing time 88
+
+
+------ Feature dem took 32 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+added frame 25  to pose graph
+total processing time 83
+
+
+------ Feature dem took 36 ms
+added frame 26  to pose graph
+total processing time 93
+
+
+------ Feature dem took 34 ms
+added frame 27  to pose graph
+total processing time 89
+
+
+------ Feature dem took 44 ms
+added frame 28  to pose graph
+total processing time 96
+
+
+------ Feature dem took 30 ms
+added frame 29  to pose graph
+total processing time 84
+
+
+------ Feature dem took 36 ms
+added frame 30  to pose graph
+total processing time 88
+
+
+------ Feature dem took 37 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+added frame 31  to pose graph
+total processing time 92
+
+Added id 31 as key frame <================================================================================
+
+------ Feature dem took 36 ms
+added frame 32  to pose graph
+total processing time 99
+
+frame transmission 
+
+------ Feature dem took 39 ms
+added frame 33  to pose graph
+total processing time 127
+
+Added id 33 as key frame <================================================================================
+
+------ Feature dem took 42 ms
+added frame 34  to pose graph
+total processing time 111
+
+frame transmission 
+
+------ Feature dem took 40 ms
+added frame 35  to pose graph
+total processing time 120
+
+
+------ Feature dem took 43 ms
+added frame 36  to pose graph
+total processing time 113
+
+
+------ Feature dem took 51 ms
+added frame 37  to pose graph
+total processing time 118
+
+
+------ Feature dem took 42 ms
+added frame 38  to pose graph
+total processing time 114
+
+
+------ Feature dem took 41 ms
+added frame 39  to pose graph
+total processing time 112
+
+Added id 39 as key frame <================================================================================
+
+------ Feature dem took 39 ms
+added frame 40  to pose graph
+total processing time 105
+
+frame transmission 
+
+------ Feature dem took 36 ms
+added frame 41  to pose graph
+total processing time 108
+
+
+------ Feature dem took 43 ms
+added frame 42  to pose graph
+total processing time 104
+
+
+------ Feature dem took 37 ms
+added frame 43  to pose graph
+total processing time 105
+
+Added id 43 as key frame <================================================================================
+
+------ Feature dem took 34 ms
+added frame 44  to pose graph
+total processing time 95
+
+frame transmission 
+
+------ Feature dem took 32 ms
+added frame 45  to pose graph
+total processing time 126
+
+Added id 45 as key frame <================================================================================
+
+------ Feature dem took 31 ms
+added frame 46  to pose graph
+total processing time 92
+
+frame transmission 
+
+------ Feature dem took 29 ms
+added frame 47  to pose graph
+total processing time 102
+
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+added frame 48  to pose graph
+total processing time 85
+
+
+------ Feature dem took 36 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+added frame 49  to pose graph
+total processing time 90
+
+Added id 49 as key frame <================================================================================
+
+------ Feature dem took 28 ms
+added frame 50  to pose graph
+total processing time 93
+
+frame transmission 
+
+------ Feature dem took 29 ms
+added frame 51  to pose graph
+total processing time 107
+
+
+------ Feature dem took 32 ms
+added frame 52  to pose graph
+total processing time 110
+
+
+------ Feature dem took 37 ms
+added frame 53  to pose graph
+total processing time 110
+
+
+------ Feature dem took 35 ms
+added frame 54  to pose graph
+total processing time 104
+
+
+------ Feature dem took 38 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+added frame 55  to pose graph
+total processing time 95
+
+
+------ Feature dem took 43 ms
+added frame 56  to pose graph
+total processing time 124
+
+
+------ Feature dem took 40 ms
+added frame 57  to pose graph
+total processing time 116
+
+
+------ Feature dem took 42 ms
+added frame 58  to pose graph
+total processing time 119
+
+
+------ Feature dem took 44 ms
+added frame 59  to pose graph
+total processing time 111
+
+
+------ Feature dem took 47 ms
+added frame 60  to pose graph
+total processing time 113
+
+
+------ Feature dem took 39 ms
+added frame 61  to pose graph
+total processing time 119
+
+
+------ Feature dem took 49 ms
+added frame 62  to pose graph
+total processing time 121
+
+
+------ Feature dem took 48 ms
+added frame 63  to pose graph
+total processing time 116
+
+
+------ Feature dem took 44 ms
+added frame 64  to pose graph
+total processing time 119
+
+
+------ Feature dem took 41 ms
+added frame 65  to pose graph
+total processing time 120
+
+
+------ Feature dem took 40 ms
+added frame 66  to pose graph
+total processing time 118
+
+
+------ Feature dem took 39 ms
+added frame 67  to pose graph
+total processing time 109
+
+
+------ Feature dem took 33 ms
+added frame 68  to pose graph
+total processing time 98
+
+
+------ Feature dem took 34 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+added frame 69  to pose graph
+total processing time 72
+
+
+------ Feature dem took 30 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+added frame 70  to pose graph
+total processing time 84
+
+
+------ Feature dem took 35 ms
+added frame 71  to pose graph
+total processing time 94
+
+
+------ Feature dem took 40 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+added frame 72  to pose graph
+total processing time 90
+
+
+------ Feature dem took 37 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+added frame 73  to pose graph
+total processing time 97
+
+
+------ Feature dem took 38 ms
+added frame 74  to pose graph
+total processing time 100
+
+
+------ Feature dem took 40 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+added frame 75  to pose graph
+total processing time 90
+
+
+------ Feature dem took 40 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+added frame 76  to pose graph
+total processing time 82
+
+
+------ Feature dem took 37 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+added frame 77  to pose graph
+total processing time 89
+
+
+------ Feature dem took 33 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+added frame 78  to pose graph
+total processing time 82
+
+
+------ Feature dem took 38 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+added frame 79  to pose graph
+total processing time 88
+
+
+------ Feature dem took 39 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+added frame 80  to pose graph
+total processing time 75
+
+
+------ Feature dem took 36 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+added frame 81  to pose graph
+total processing time 74
+
+
+------ Feature dem took 34 ms
+added frame 82  to pose graph
+total processing time 89
+
+
+------ Feature dem took 35 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+added frame 83  to pose graph
+total processing time 76
+
+Added id 83 as key frame <================================================================================
+
+------ Feature dem took 29 ms
+added frame 84  to pose graph
+total processing time 79
+
+frame transmission 
+
+------ Feature dem took 33 ms
+added frame 85  to pose graph
+total processing time 87
+
+Added id 85 as key frame <================================================================================
+
+------ Feature dem took 34 ms
+added frame 86  to pose graph
+total processing time 80
+
+frame transmission 
+
+------ Feature dem took 31 ms
+added frame 87  to pose graph
+total processing time 82
+
+
+------ Feature dem took 35 ms
+added frame 88  to pose graph
+total processing time 102
+
+Added id 88 as key frame <================================================================================
+
+------ Feature dem took 38 ms
+trafo too small!
+added frame -1  to pose graph
+frame transmission 
+
+------ Feature dem took 35 ms
+added frame 89  to pose graph
+total processing time 110
+
+
+------ Feature dem took 37 ms
+added frame 90  to pose graph
+total processing time 102
+
+
+------ Feature dem took 37 ms
+added frame 91  to pose graph
+total processing time 95
+
+
+------ Feature dem took 41 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 42 ms
+added frame 92  to pose graph
+total processing time 106
+
+
+------ Feature dem took 31 ms
+added frame 93  to pose graph
+total processing time 117
+
+
+------ Feature dem took 34 ms
+added frame 94  to pose graph
+total processing time 111
+
+
+------ Feature dem took 38 ms
+added frame 95  to pose graph
+total processing time 114
+
+Added id 95 as key frame <================================================================================
+
+------ Feature dem took 42 ms
+added frame 96  to pose graph
+total processing time 110
+
+frame transmission 
+
+------ Feature dem took 38 ms
+added frame 97  to pose graph
+total processing time 109
+
+Added id 97 as key frame <================================================================================
+
+------ Feature dem took 39 ms
+added frame 98  to pose graph
+total processing time 107
+
+frame transmission 
+
+------ Feature dem took 35 ms
+added frame 99  to pose graph
+total processing time 92
+
+
+------ Feature dem took 42 ms
+added frame 100  to pose graph
+total processing time 105
+
+
+------ Feature dem took 43 ms
+added frame 101  to pose graph
+total processing time 114
+
+
+------ Feature dem took 45 ms
+added frame 102  to pose graph
+total processing time 112
+
+
+------ Feature dem took 45 ms
+added frame 103  to pose graph
+total processing time 121
+
+
+------ Feature dem took 43 ms
+added frame 104  to pose graph
+total processing time 122
+
+
+------ Feature dem took 45 ms
+added frame 105  to pose graph
+total processing time 125
+
+
+------ Feature dem took 47 ms
+added frame 106  to pose graph
+total processing time 127
+
+
+------ Feature dem took 52 ms
+added frame 107  to pose graph
+total processing time 135
+
+
+------ Feature dem took 44 ms
+added frame 108  to pose graph
+total processing time 122
+
+Added id 108 as key frame <================================================================================
+
+------ Feature dem took 50 ms
+trafo too small!
+added frame -1  to pose graph
+frame transmission 
+
+------ Feature dem took 44 ms
+added frame 109  to pose graph
+total processing time 145
+
+
+------ Feature dem took 47 ms
+added frame 110  to pose graph
+total processing time 127
+
+
+------ Feature dem took 42 ms
+added frame 111  to pose graph
+total processing time 116
+
+
+------ Feature dem took 43 ms
+added frame 112  to pose graph
+total processing time 113
+
+
+------ Feature dem took 31 ms
+added frame 113  to pose graph
+total processing time 96
+
+
+------ Feature dem took 35 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 42 ms
+added frame 114  to pose graph
+total processing time 106
+
+
+------ Feature dem took 46 ms
+added frame 115  to pose graph
+total processing time 129
+
+
+------ Feature dem took 47 ms
+added frame 116  to pose graph
+total processing time 126
+
+
+------ Feature dem took 50 ms
+added frame 117  to pose graph
+total processing time 127
+
+
+------ Feature dem took 45 ms
+added frame 118  to pose graph
+total processing time 119
+
+
+------ Feature dem took 48 ms
+added frame 119  to pose graph
+total processing time 132
+
+Added id 119 as key frame <================================================================================
+
+------ Feature dem took 52 ms
+added frame 120  to pose graph
+total processing time 141
+
+frame transmission 
+
+------ Feature dem took 47 ms
+added frame 121  to pose graph
+total processing time 161
+
+
+------ Feature dem took 50 ms
+added frame 122  to pose graph
+total processing time 165
+
+
+------ Feature dem took 53 ms
+added frame 123  to pose graph
+total processing time 153
+
+Added id 123 as key frame <================================================================================
+
+------ Feature dem took 40 ms
+added frame 124  to pose graph
+total processing time 128
+
+frame transmission 
+
+------ Feature dem took 39 ms
+added frame 125  to pose graph
+total processing time 128
+
+Added id 125 as key frame <================================================================================
+
+------ Feature dem took 44 ms
+added frame 126  to pose graph
+total processing time 112
+
+frame transmission 
+
+------ Feature dem took 32 ms
+added frame 127  to pose graph
+total processing time 105
+
+Added id 127 as key frame <================================================================================
+
+------ Feature dem took 32 ms
+added frame 128  to pose graph
+total processing time 78
+
+frame transmission 
+
+------ Feature dem took 25 ms
+added frame 129  to pose graph
+total processing time 85
+
+
+------ Feature dem took 30 ms
+added frame 130  to pose graph
+total processing time 82
+
+
+------ Feature dem took 25 ms
+added frame 131  to pose graph
+total processing time 74
+
+Added id 131 as key frame <================================================================================
+
+------ Feature dem took 26 ms
+added frame 132  to pose graph
+total processing time 75
+
+frame transmission 
+
+------ Feature dem took 26 ms
+added frame 133  to pose graph
+total processing time 78
+
+Added id 133 as key frame <================================================================================
+
+------ Feature dem took 26 ms
+trafo too small!
+added frame -1  to pose graph
+frame transmission 
+
+------ Feature dem took 30 ms
+added frame 134  to pose graph
+total processing time 81
+
+
+------ Feature dem took 34 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+added frame 135  to pose graph
+total processing time 101
+
+Added id 135 as key frame <================================================================================
+
+------ Feature dem took 36 ms
+trafo too small!
+added frame -1  to pose graph
+frame transmission 
+
+------ Feature dem took 33 ms
+added frame 136  to pose graph
+total processing time 122
+
+
+------ Feature dem took 38 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+added frame 137  to pose graph
+total processing time 92
+
+
+------ Feature dem took 38 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+added frame 138  to pose graph
+total processing time 90
+
+
+------ Feature dem took 40 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+added frame 139  to pose graph
+total processing time 91
+
+
+------ Feature dem took 39 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+added frame 140  to pose graph
+total processing time 90
+
+
+------ Feature dem took 37 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+added frame 141  to pose graph
+total processing time 79
+
+
+------ Feature dem took 36 ms
+added frame 142  to pose graph
+total processing time 93
+
+
+------ Feature dem took 39 ms
+added frame 143  to pose graph
+total processing time 92
+
+
+------ Feature dem took 36 ms
+added frame 144  to pose graph
+total processing time 96
+
+Added id 144 as key frame <================================================================================
+
+------ Feature dem took 43 ms
+added frame 145  to pose graph
+total processing time 111
+
+frame transmission 
+
+------ Feature dem took 41 ms
+added frame 146  to pose graph
+total processing time 111
+
+
+------ Feature dem took 45 ms
+added frame 147  to pose graph
+total processing time 111
+
+
+------ Feature dem took 45 ms
+added frame 148  to pose graph
+total processing time 113
+
+
+------ Feature dem took 51 ms
+added frame 149  to pose graph
+total processing time 136
+
+
+------ Feature dem took 44 ms
+added frame 150  to pose graph
+total processing time 120
+
+
+------ Feature dem took 46 ms
+added frame 151  to pose graph
+total processing time 114
+
+
+------ Feature dem took 48 ms
+added frame 152  to pose graph
+total processing time 129
+
+
+------ Feature dem took 47 ms
+added frame 153  to pose graph
+total processing time 126
+
+
+------ Feature dem took 39 ms
+added frame 154  to pose graph
+total processing time 110
+
+Added id 154 as key frame <================================================================================
+
+------ Feature dem took 36 ms
+added frame 155  to pose graph
+total processing time 103
+
+frame transmission 
+
+------ Feature dem took 28 ms
+added frame 156  to pose graph
+total processing time 88
+
+Added id 156 as key frame <================================================================================
+
+------ Feature dem took 31 ms
+added frame 157  to pose graph
+total processing time 77
+
+frame transmission 
+
+------ Feature dem took 27 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 20 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 21 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 21 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 23 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 23 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+added frame 158  to pose graph
+total processing time 78
+
+
+------ Feature dem took 29 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+added frame 159  to pose graph
+total processing time 91
+
+
+------ Feature dem took 30 ms
+added frame 160  to pose graph
+total processing time 88
+
+
+------ Feature dem took 30 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+added frame 161  to pose graph
+total processing time 89
+
+
+------ Feature dem took 33 ms
+trafo too small!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+added frame 162  to pose graph
+total processing time 76
+
+Added id 162 as key frame <================================================================================
+
+------ Feature dem took 39 ms
+added frame 163  to pose graph
+total processing time 93
+
+frame transmission 
+
+------ Feature dem took 30 ms
+added frame 164  to pose graph
+total processing time 103
+
+
+------ Feature dem took 32 ms
+added frame 165  to pose graph
+total processing time 84
+
+
+------ Feature dem took 29 ms
+added frame 166  to pose graph
+total processing time 70
+
+
+------ Feature dem took 25 ms
+added frame 167  to pose graph
+total processing time 74
+
+Added id 167 as key frame <================================================================================
+
+------ Feature dem took 19 ms
+invalid trafo 
+added frame -1  to pose graph
+frame transmission 
+
+------ Feature dem took 19 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 21 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+added frame -1  to pose graph
+
+------ Feature dem took 23 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 42 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 41 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 48 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 47 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 48 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 46 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 40 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 41 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 28 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 20 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 22 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 44 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 24 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 47 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 46 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 38 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 40 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 39 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 41 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 42 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 26 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 27 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 25 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 29 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 31 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 30 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 37 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 32 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 34 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 35 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+^Cinvalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+[rgbd_backend-2] killing on exit
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 41 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 36 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+
+------ Feature dem took 33 ms
+invalid trafo 
+!!!!!!!!!!!!!! fuse dummy frame !!!!!!!!!!!!
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+5000    0    0    0    0    0
+   0 5000    0    0    0    0
+   0    0 5000    0    0    0
+   0    0    0 5000    0    0
+   0    0    0    0 5000    0
+   0    0    0    0    0 5000
+trafo too big!!
+added frame -1  to pose graph
+Total number of Frames 427
+Number of bad frames 0
+Number of frames where no transformation was found 203
+Number of frames where replaced by a dummy node 0
+Number of loop closures found 128
+Number of too small transformations 56
+Number of transformations with too big velocities 193
+Number of key frames 30
+Number of nodes 168
+
+Current graph Id 167
+
+*** Error in `/home/odroid/MAV-Project/px4_ws/devel/lib/frontend/frontend': free(): invalid pointer: 0x0002650c ***
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+launch $ clear
+[H[2Jlaunch $ clear
+[H[2Jlaunch $ exit
+exit
+
+Script done on Sat Mar 18 18:50:41 2017

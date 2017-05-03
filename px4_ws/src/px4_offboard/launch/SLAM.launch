@@ -18,12 +18,12 @@
 
 <node pkg="px4_offboard" type="teleop" name="teleop" output="screen">
 <param name ="sim" type="bool" value="$(arg sim)"  />
-<param name ="ctrl" type="int" value="$(arg ctrl)" />
+<param name ="takeoff" type="int" value="$(arg takeoff)" />
 </node>
 
 <node pkg="px4_offboard" type="SLAM" name="fcu" output="screen">
 <param name ="sim" type="bool" value="$(arg sim)"  />
-<param name ="ctrl" type="int" value="$(arg ctrl)" />
+<param name ="takeoff" type="int" value="$(arg takeoff)" />
 <param name ="cali" type="double" value="$(arg cali)" />
 
 </node>
