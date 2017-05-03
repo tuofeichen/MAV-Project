@@ -2,10 +2,7 @@
 #include "px4_offboard/Mission.h"
 
 // flight logic / state machine handler
-
-
 int  crash_cnt = 0;
-
 Mission::Mission()
 {
 	_flight_mode  = takingoff; // start with takeoff
@@ -40,7 +37,7 @@ Mission::Mission()
 
 // write logger header
 	logMissionSp.open("/home/odroid/MAV-Project/log/mavSp.csv", std::ofstream::out | std::ofstream::trunc);
-	logMissionSp << "time,flight mode,control, x,y,z,yaw" <<endl;
+	logMissionSp << "time,flight mode,control,x,y,z,yaw" <<endl;
 
 }
 
@@ -52,12 +49,11 @@ int main(int argc, char** argv)
 
 	Mission mission;
 
-
   int takeoff_set = 0; //takeoff flag only set once
   int printDelay = 0;
   int printMod = 400;
 
-  ros::Rate loop_rate(100);
+  ros::Rate loop_rate(200);
 
   while(ros::ok())
   {
@@ -245,7 +241,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 		else
 		{
 			_cannot_find_wall_cnt = 0;
-			if( (fabs(angle_rad) > 0.11) && (!_is_calibrate) )					// P controller to adjust drone to a found wall
+			if( (fabs(angle_rad) > 0.15) && (!_is_calibrate) )					// P controller to adjust drone to a found wall
 			{
 				ROS_INFO("[Mission] Adjust Angle %3.2f", angle_rad);
 				resetCommand(_objCommand);
@@ -256,15 +252,17 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 			else
 			{
 				_wall_cnt++;
-				if(_wall_cnt > 5){
-				resetCommand(_objCommand);
-				_objCommand.yaw = - K * angle_rad;
-				_objCommand.position.y = 0.05 * (ang.z -_safe_dist)/1000.0; // move to 1.5 from obstacles
-				 ROS_INFO("[Mission] Adjust Distance %3.2f",_objCommand.position.y);
-				 publish();
+				if(_wall_cnt > 5) {
+					resetCommand(_objCommand);
+					if (ang.z>0)
+					{				_objCommand.yaw = - K * angle_rad;
+					_objCommand.position.y = 0.5 * (ang.z -_safe_dist)/1000.0; // move to 1.5 from obstacles
+					 ROS_INFO("[Mission] Adjust Distance %3.2f",_objCommand.position.y);
+					 publish();
+				 	}
 				}
 
-				if((_wall_cnt > 10) && (fabs(ang.z - (float)_safe_dist) < 20))
+				if((_wall_cnt > 10) && (fabs(ang.z - (float)_safe_dist) < 50))
 				{
 					ROS_INFO("[Mission] Wall is perpendicular now.");   // drone is perpendicular, hover now
 					if (!_is_calibrate)
@@ -299,14 +297,14 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 void Mission::obstCallback(geometry_msgs::Point msg)
 {
 	_objCommand.control = 1; // defaul position control mode
+	
 	if ((_flight_mode > tracking) && (msg.y < 900))//failsafe object detect
 	{
 		crash_cnt++;
-		if(crash_cnt > 5){
+		if(crash_cnt > 10){
 			setFlightMode(landing);
 			ROS_ERROR("[Mission] obstacles too close detected. Land");
-		}
-	//_objCommand.land = 1;
+		};
 	}
 
 	else

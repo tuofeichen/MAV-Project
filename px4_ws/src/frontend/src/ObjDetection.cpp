@@ -267,7 +267,7 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
       objAngle.y = objAngle.x*180/M_PI; // in degrees
       objAngle.z =  (r+l)/2; //in mm
 
-      if (objAngle.x>3000||objAngle.y>3000||objAngle.z>3000||objAngle.z ==0)
+      if (objAngle.x>3000||objAngle.y>3000||objAngle.z>3000||objAngle.z == 0)
       {
         	objAngle.x = -5000;
         	objAngle.y = -5000;
@@ -324,7 +324,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
 						r = r + Depth.at<uint16_t>(j,i);
-        	      		r_counter = r_counter + 1;
+        	  r_counter = r_counter + 1;
 					}
 				}
 		}
@@ -338,7 +338,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
 						l = l + Depth.at<uint16_t>(j,i);
-              			l_counter = l_counter + 1;
+            l_counter = l_counter + 1;
 					}
 				}
 		}
@@ -347,7 +347,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 // if average is close enough to the center value then use the average (relatively flat surface)
 		if(fabs(r  - Depth.at<uint16_t>(160,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(160,pixel_number_left)) < 15)
 		{
-      e = k; // note down what's the final distance in between
+      e = k; // note down what's the final distance in between two selected points
 			valid_position = true;
 			break;
 		}
