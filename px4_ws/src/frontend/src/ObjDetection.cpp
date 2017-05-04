@@ -398,9 +398,9 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 void ObjDetection::readTemplate()
 {
 	// tempImage = imread( "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/sp.jpg", IMREAD_GRAYSCALE);
-  	tempImage = imread("/home/odroid/rsz_tim.jpg",IMREAD_GRAYSCALE);
+  	tempImage = imread("/home/odroid/Images/rsz_tim.jpg",IMREAD_GRAYSCALE);
   	tempKeyPoints  	= dem->detect(tempImage);
-	tempDescriptors = dem->extract(tempImage,*tempKeyPoints);
+	  tempDescriptors = dem->extract(tempImage,*tempKeyPoints);
 
 	// cv::namedWindow("Signal Processing",CV_NORMAL);
 	// cv::imshow("Signal Processing", tempImage);

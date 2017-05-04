@@ -31,8 +31,6 @@ void land();
 bool turnLeft90();
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
-
-void logSp(float angle_rad);
 void setFlightMode(int request_mode)
 {
 	if (_flight_mode!=request_mode)
@@ -47,12 +45,10 @@ void setControlMode(bool pos_ctrl)
   _objCommand.control = pos_ctrl;
 }
 
-
 int getFlightMode() {return _flight_mode;};
 int getPrevFlightMode(){return _flight_mode_prev;};
+void logSp();
 
-// make this public for logging
-px4_offboard::MavState _objCommand;
 
 private:
 
@@ -63,6 +59,7 @@ ros::Subscriber _state_sub;
 ros::Subscriber	_obst_sub;
 ros::Subscriber _lpe_sub;
 ros::Subscriber _vel_sub;
+px4_offboard::MavState _objCommand;
 
 
 int  _flight_mode;

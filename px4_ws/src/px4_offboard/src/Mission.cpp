@@ -42,27 +42,31 @@ Mission::Mission()
 }
 
 
-int printDelay = 0;
-int printMod = 400;
+
 
 int main(int argc, char** argv)
 {
 	ros::init(argc, argv, "mission_planner");
 
 	Mission mission;
-
+	int printDelay  = 0;
+	int printMod    = 100;
   int takeoff_set = 0; //takeoff flag only set once
-
 
   ros::Rate loop_rate(200);
 
   while(ros::ok())
   {
 
+
 			if (mission.getFlightMode()!=traverse)
 				mission.setControlMode(POS);
 
-  		printDelay++;
+			if(!(printDelay%printMod))
+				mission.logSp();
+
+			printDelay++;
+
   		if (mission.getFailFlag())
   		{
   			ROS_INFO("[Mission] Failure detected");
@@ -177,11 +181,7 @@ bool Mission::turnLeft90()
 	}
 
 	resetCommand(_objCommand);
-	if  (_lpe(2,3) > _traverse_height)
-	{
-		ROS_INFO("[Mission] correct height");
-		_objCommand.position.z = -_lpe(2,3) + _traverse_height; // make sure yaw don't jump
-	}
+	_objCommand.position.z = -_lpe(2,3) + _traverse_height; // always correct height
 	_objCommand.yaw = 0.5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
 	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.2); // true if finished turning (set this threshold to be higher if overturn)
 }
@@ -272,12 +272,9 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 						_yaw_prev = _yaw;
 						ROS_WARN("[Mission] Yaw pin down is %f, z pin down is %f", _yaw_prev,_lpe(2,3));
 						resetCommand(_objCommand);
-						if (_lpe(2,3) > _traverse_height){
-							resetCommand(_objCommand);
-							_objCommand.position.z = - _lpe(2,3) + _traverse_height; // go down to around 1 m
-							publish();
-							usleep(1000*2000);
-						}
+						_objCommand.position.z = - _lpe(2,3) + _traverse_height; // go down to around 1 m
+						publish();
+						usleep(1000*1000);
 					}  // issue this setpoint once
 
 				}
@@ -294,7 +291,6 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 		// _safe_dist = 1200;
 
 	}
-	logSp(_angle_rad);
 };
 
 void Mission::obstCallback(geometry_msgs::Point msg)
@@ -329,11 +325,8 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 						_safe_dist += _traverse_inc;
 					}
 
-					if (_lpe(2,3) > _traverse_height){ // stablize around _traverse_height
-						_objCommand.position.z = -_lpe(2,3) + _traverse_height;
-						publish();
-						usleep(1000*2000);
-					}
+					_objCommand.position.z = -_lpe(2,3) + _traverse_height;
+					publish();
 
 					_yaw_prev = _yaw;
 					setFlightMode(turning); // enter turning mode
@@ -372,7 +365,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				resetCommand(_objCommand); // hover if velocity too big
 			}
 
-			_objCommand.position.z =  - 0.1 * (_lpe(2,3) - _traverse_height); // constantly correcting height
+			_objCommand.position.z =  - 0.1 * (_lpe(2,3) - _traverse_height); // constantly correcting height with velocity
 
 		}
 	}
@@ -433,7 +426,7 @@ inline void Mission::rot2rpy(Matrix3f R,float& r, float& p, float& y)
 }
 
 
-void Mission::logSp(float _angle_rad)
+void Mission::logSp()
 {
 	logMissionSp << ros::Time::now()
 	<< "," << _flight_mode
@@ -442,7 +435,7 @@ void Mission::logSp(float _angle_rad)
 	<< "," << _objCommand.position.y
 	<< "," << _objCommand.position.z
 	<< "," << _objCommand.yaw
-	<< "," <<  _angle_rad <<  endl;
+	<< "," << _angle_rad <<  endl;
 };
 
 // takes off really high
