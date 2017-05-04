@@ -69,7 +69,7 @@ bool CtrlPx4::commandUpdate() {
     if (auto_tl_ > 0) {
 
       if ((state_set_.takeoff) && (!state_read_.takeoff)) {
-        takeoff(0.85, 1); // takeoff to 1 m at 2m/s initially // to adjust to the wall
+        takeoff(1, 1); // takeoff to 1 m at 2m/s initially // to adjust to the wall
       } else if ((state_set_.land) && (state_read_.arm))
         land(1); // land at 1m/s
     }
@@ -439,7 +439,11 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   fcu_vel_setpoint_.twist.linear.z  = dz_sp;     // z velocity setpoint (usually 0)
   fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
 
-  ROS_INFO("setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
+  // if (pos_ctrl_)
+  //   ROS_INFO("position setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
+  // else
+  //   ROS_INFO("velocity setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
+
 };
 
 void CtrlPx4::forward(float distance) { moveToPoint(distance, 0, 0, 0); }

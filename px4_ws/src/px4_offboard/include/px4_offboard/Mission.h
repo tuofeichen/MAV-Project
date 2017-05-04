@@ -32,7 +32,7 @@ bool turnLeft90();
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
 
-void logSp();
+void logSp(float angle_rad);
 void setFlightMode(int request_mode)
 {
 	if (_flight_mode!=request_mode)
@@ -46,6 +46,8 @@ void setControlMode(bool pos_ctrl)
 {
   _objCommand.control = pos_ctrl;
 }
+
+
 int getFlightMode() {return _flight_mode;};
 int getPrevFlightMode(){return _flight_mode_prev;};
 
@@ -83,14 +85,14 @@ bool _is_fail;
 
 std::ofstream logMissionSp;
 static constexpr int _room_size = 2500; //(mm)
-static constexpr int _traverse_inc = 20;
-float _traverse_height = 0.75;
+static constexpr int _traverse_inc = 10;
+float _traverse_height = 0.85;
 float _traverse_speed  = 0.1;
 
 // position info
 Eigen::Matrix4f _lpe;
 Eigen::Vector3f _vel;
-float _roll, _pitch, _yaw, _yaw_prev, angle_rad;
+float _roll, _pitch, _yaw, _yaw_prev, _angle_rad;
 
 void stateCallback(const px4_offboard::MavState state)
 {

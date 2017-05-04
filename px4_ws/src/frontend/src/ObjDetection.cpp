@@ -49,9 +49,9 @@ bool  ObjDetection::objectDetect()
 	std::vector< DMatch > forward_matches;
 	std::vector< DMatch > backward_matches;
 	std::vector< DMatch > valid_matches;
-  std::vector<Point2f> obj_kpts_matched;
-  std::vector<Point2f> scene_kpts_matched;
-  cv::Mat H; // homography matrix for object detection
+  	std::vector<Point2f> obj_kpts_matched;
+  	std::vector<Point2f> scene_kpts_matched;
+  	cv::Mat H; // homography matrix for object detection
 	bool objFound = 0;
 
 
@@ -92,9 +92,10 @@ bool  ObjDetection::objectDetect()
 
 
 // Visualization of matching
-	// Mat img_matches;
-	// drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), valid_matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
-	// imshow("Object Matching", img_matches);
+/*	 Mat img_matches;
+	 drawMatches(tempImage, *tempKeyPoints, objFrame.getGray(), objFrame.getKeypoints(), valid_matches, img_matches, Scalar::all(-1), Scalar::all(-1),vector<char>(), DrawMatchesFlags::DEFAULT );
+	 imshow("Object Matching", img_matches);
+*/
 
 // find homography
   // H = findHomography( obj_kpts_matched, scene_kpts_matched, CV_RANSAC, RANSAC);
@@ -138,20 +139,21 @@ bool  ObjDetection::objectDetect()
 				for(int   l = objCentroid.y - 4; l <objCentroid.y + 4; l++)
 				{
 					for(int k = objCentroid.x - 4; k <objCentroid.x + 4;k++)
-						{
+					{
 						if(Depth.at<uint16_t>(l,k) != 0 && l > 0 && l < objFrame.getGray().cols && k > 0 && k < objFrame.getGray().rows)
 							{
 							        depthSum+=Depth.at<uint16_t>(l,k);
-						          depthValidCounter++;
+						          	depthValidCounter++;
 							}
 						}
 				}
+
+				depthSum = depthSum/((float)depthValidCounter);
 
 				if(depthSum < 3500 && depthSum!=0)
 				{
 					cout << "x: " << objCentroid.x << endl;
 					cout << "y: " << objCentroid.y << endl;
-					depthSum = depthSum/((float)depthValidCounter);
 					cout << "depth:  " << depthSum << endl;
 
 					// imshow( "ObjMatches", img_matches );
@@ -162,6 +164,8 @@ bool  ObjDetection::objectDetect()
 					px4->updateObjPos(objPoint);
 					objFound = 1;
 				}
+				else
+				{ cout << "invalid depth value (found object)"<<endl;}
 		}
 
 		prevObjCentroid = objCentroid;
@@ -267,11 +271,15 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
       objAngle.y = objAngle.x*180/M_PI; // in degrees
       objAngle.z =  (r+l)/2; //in mm
 
-      if (objAngle.x>3000||objAngle.y>3000||objAngle.z>3000||objAngle.z == 0)
+      if (objAngle.x>3000||objAngle.y>3000||objAngle.z>3000||objAngle.z ==0)
       {
         	objAngle.x = -5000;
         	objAngle.y = -5000;
           objAngle.z = 0;      // infinite angle value
+      }
+      else
+      {
+        cout << "detect object angle " << objAngle.y << endl;
       }
     }
     else
@@ -324,7 +332,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
 						r = r + Depth.at<uint16_t>(j,i);
-        	  r_counter = r_counter + 1;
+        	      		r_counter = r_counter + 1;
 					}
 				}
 		}
@@ -338,7 +346,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
 						l = l + Depth.at<uint16_t>(j,i);
-            l_counter = l_counter + 1;
+              			l_counter = l_counter + 1;
 					}
 				}
 		}
@@ -347,7 +355,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 // if average is close enough to the center value then use the average (relatively flat surface)
 		if(fabs(r  - Depth.at<uint16_t>(160,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(160,pixel_number_left)) < 15)
 		{
-      e = k; // note down what's the final distance in between two selected points
+      e = k; // note down what's the final distance in between
 			valid_position = true;
 			break;
 		}
@@ -390,8 +398,8 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 void ObjDetection::readTemplate()
 {
 	// tempImage = imread( "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/frontend/sp.jpg", IMREAD_GRAYSCALE);
-  tempImage = imread("/home/odroid/poster.jpg");
-  tempKeyPoints  	= dem->detect(tempImage);
+  	tempImage = imread("/home/odroid/rsz_tim.jpg",IMREAD_GRAYSCALE);
+  	tempKeyPoints  	= dem->detect(tempImage);
 	tempDescriptors = dem->extract(tempImage,*tempKeyPoints);
 
 	// cv::namedWindow("Signal Processing",CV_NORMAL);
