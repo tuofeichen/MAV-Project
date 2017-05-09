@@ -7,7 +7,7 @@
 
 
 #define RANSAC 5
-#define MIN_MATCHES 10 // minimum matches for features
+#define MIN_MATCHES 20 // minimum matches for features
 #define MAX_DISP_NORM 40
 
 

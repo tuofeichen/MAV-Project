@@ -180,7 +180,7 @@ bool Mission::turnLeft90()
 
 	resetCommand(_objCommand);
 	_objCommand.position.z = 0.002*(-_lpe(2,3) + _traverse_height); // always correct height
-	_objCommand.yaw = 0.7 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
+	_objCommand.yaw = 0.5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
 	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.1); // true if finished turning (set this threshold to be higher if overturn)
 }
 
