@@ -8,6 +8,7 @@ Mission::Mission()
 	_flight_mode  = takingoff; // start with takeoff
 	_flight_mode_prev = takingoff;
 	setControlMode(POS); // start with position control
+	setFlightMode(takingoff);
 
 	_is_takeoff   = 0;
 	_is_land = 0;
@@ -50,7 +51,7 @@ int main(int argc, char** argv)
 
 	Mission mission;
 	int printDelay  = 0;
-	int printMod    = 300;
+	int printMod    = 200;
   int takeoff_set = 0; //takeoff flag only set once
 
   ros::Rate loop_rate(200);
@@ -86,12 +87,11 @@ int main(int argc, char** argv)
 		  		}
 		  		else
 		  		{
-		  			if (mission.getStateSwitchFlag())
-	  					ROS_INFO("[Mission] Takeoff mode");
+		  			// if (mission.getStateSwitchFlag())
+	  				// 	ROS_INFO("[Mission] Takeoff mode");
 
 						if (takeoff_set < 10) // ask for takeoff
 		  			{
-							ROS_INFO("[Takeoff] flag set %d",takeoff_set);
 							takeoff_set++;
 							mission.takeoff();
 						}
@@ -100,24 +100,25 @@ int main(int argc, char** argv)
 	  		break;
 
 	  		case calibration:
-	  			  if (mission.getStateSwitchFlag())
-	  				  ROS_INFO("[Mission] Calibration mode");
+	  			  // if (mission.getStateSwitchFlag())
+	  				//   ROS_INFO("[Mission] Calibration mode");
 
 	  		break;
 
 	  		case traverse:
-	  		    if (mission.getStateSwitchFlag())
-	  					ROS_INFO("[Mission] Traversing mode");
+	  		    // if (mission.getStateSwitchFlag())
+	  				// 	ROS_INFO("[Mission] Traversing mode");
+
 	  		break;
 
 	  		case tracking:
-	  		    if (mission.getStateSwitchFlag())
-	  					ROS_INFO("[Mission] Tracking mode");
+	  		    // if (mission.getStateSwitchFlag())
+	  				// 	ROS_INFO("[Mission] Tracking mode");
 	  		break;
 
 	  		case turning:
-	  			if (mission.getStateSwitchFlag())
-	  				ROS_INFO("[Mission] Turning mode");
+	  			// if (mission.getStateSwitchFlag())
+	  			// 	ROS_INFO("[Mission] Turning mode");
 
 	  			if(mission.turnLeft90()) {
 		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode
@@ -132,10 +133,10 @@ int main(int argc, char** argv)
 	  		    	ROS_INFO("[Mission] Landed");
 	  		    	return 0;
 	  		    }
-	  		    else if (mission.getStateSwitchFlag())
-	  		    {
-		  				ROS_INFO("[Mission] Landing mode");
-	  		    }
+	  		    // else if (mission.getStateSwitchFlag())
+	  		    // {
+		  			// 	ROS_INFO("[Mission] Landing mode");
+	  		    // }
 	  		    mission.land();
 	  		break;
 	  	}
@@ -153,15 +154,12 @@ void Mission::takeoff()
 	_objCommand.arm = 1;
  	_objCommand.offboard =  1;
 	_objCommand.control  =  POS;
-	// _mission_ctrl_pub.publish(_objCommand);
 };
 
 void Mission::land()
 {
-	resetCommand(_objCommand);
-	_objCommand.takeoff = 0;
-	_objCommand.land =1 ;
-	_mission_ctrl_pub.publish(_objCommand);
+  _objCommand.takeoff = 0;
+	_objCommand.land =1;
 }
 
 bool Mission::turnLeft90()
@@ -170,32 +168,26 @@ bool Mission::turnLeft90()
 	{
 		_yaw += 2* M_PI; // warp around
 	}
-	_objCommand.yaw = 0.7 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < 0.1); // true if finished turning (set this threshold to be higher if overturn)
+	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < _ang_tol); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
 {
 	_obj_cnt ++ ;
-	const float Kp = 0.5; // tracking gain
+	const float Ktrack = 0.5; // tracking gain
 	if ((_obj_cnt > 5)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
 		setFlightMode(tracking);
-		resetCommand(_objCommand);
-		_objCommand.position.y = Kp * (pos.z - 900.0) / 1200.0; // keep 0.9 m distance away from target
-		_objCommand.position.x = Kp * (pos.x - 160.0)  / 120.0;
-		_objCommand.position.z = Kp * (pos.y - 120.0)  / 120.0;
-		_objCommand.yaw =  Kp * _angle_rad;
-		_angle_rad = 0;
-		// ROS_INFO("Forward %3.2f Left %3.2f Up %3.2f", _objCommand.position.y, _objCommand.position.x, _objCommand.position.z);
-		publish();
-		if ((pos.z < 1000) && (abs(pos.x-160) < 40 )&& (abs(pos.y-120)< 40)) //center arranged
+		_objCommand.position.y = Ktrack * (pos.z - 900.0) / 1000.0; // keep 0.9 m distance away from target
+		_objCommand.position.x = Ktrack * (pos.x - 160.0)  / 120.0;
+		_objCommand.position.z = Ktrack * (pos.y - 120.0)  / 120.0;
+		_objCommand.yaw =  _Kyaw * _angle_rad;
+
+		if ((pos.z < 1000) && (abs(pos.x-160) < 30 )&& (abs(pos.y-120)< 30)) //center arranged
 		{
 			ROS_INFO("[Mission] Found object ><><><><>< Land!");
-			resetCommand(_objCommand);
-			_objCommand.land = 1;
 			setFlightMode(landing);
-
 		}
 		else if (_obj_cnt>0)
 		 _obj_cnt --;
@@ -206,9 +198,6 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 
 void Mission::wallCallback(const geometry_msgs::Point ang)
 {
-
-	const float w = 0.3; //listen to wall if in calibration mode
-
 	if((_flight_mode == calibration) && (!_is_calibrate))
 	{
 		_angle_rad = ang.x;
@@ -295,7 +284,6 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _Kp * (msg.z - _safe_dist)/1000.0; // gradually calibrate to obstacle
 					ROS_WARN("[Mission] == cali yaw %5.4f, wall %3.2f == ", _objCommand.yaw,_angle_rad);
-					publish();
 				}
 				else if (!_obst_found)
 				{
@@ -401,6 +389,16 @@ void Mission::logSp()
 	<< "," << _objCommand.position.z
 	<< "," << _objCommand.yaw
 	<< "," << _angle_rad <<  endl;
+};
+
+void Mission::setFlightMode(int request_mode)
+{
+	if (_flight_mode!=request_mode)
+	{
+		_flight_mode_prev = _flight_mode; // note down previous flight mode
+		_flight_mode = request_mode;
+	}
+  cout << "[Mission] Flight mode switched to " << flight_mode_string[_flight_mode] << endl;
 };
 
 // takes off really high

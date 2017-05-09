@@ -13,6 +13,7 @@
 #include <string>
 
 enum {takingoff = 0, calibration, tracking, traverse, turning, landing};
+const char* flight_mode_string [landing+1] = {"takeoff","calibration","tracking","traverse","turning","land"};
 
 class Mission
 {
@@ -29,21 +30,14 @@ void land();
 bool turnLeft90();
 void correctTraverseHeight();
 
-void setFlightMode(int request_mode)
-{
-	if (_flight_mode!=request_mode)
-	{
-		_flight_mode_prev = _flight_mode; // note down previous flight mode
-		_flight_mode = request_mode;
-	}
-};
+void setFlightMode(int flight_mode);
+
 void setControlMode(bool pos_ctrl){ _objCommand.control = pos_ctrl;};
 
 bool getTakeoffFlag(){ return _is_takeoff;     };
 bool getLandFlag(){ return _is_land;     };
 bool getCalibrateFlag(){return _is_calibrate;};
 bool getFailFlag() {return _is_fail;};
-bool getStateSwitchFlag(){return (_flight_mode != _flight_mode_prev);};
 int  getFlightMode() {return _flight_mode;};
 int  getPrevFlightMode(){return _flight_mode_prev;};
 void logSp();
