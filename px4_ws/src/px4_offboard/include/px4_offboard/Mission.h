@@ -23,30 +23,29 @@ Mission();
 
 void publish() { //ROS_INFO("Publishing");
  _mission_ctrl_pub.publish(_objCommand);}; // for timing control
-
-bool getTakeoffFlag(){ return _is_takeoff;     };
+void hover(){resetCommand(_objCommand);_angle_rad = 0;};
 void takeoff();
-bool getLandFlag(){ return _is_land;     };
 void land();
 bool turnLeft90();
-bool getCalibrateFlag(){return _is_calibrate;};
-bool getFailFlag() {return _is_fail;};
+void correctTraverseHeight();
+
 void setFlightMode(int request_mode)
 {
 	if (_flight_mode!=request_mode)
 	{
-		_flight_mode_prev = _flight_mode;
+		_flight_mode_prev = _flight_mode; // note down previous flight mode
 		_flight_mode = request_mode;
 	}
 };
+void setControlMode(bool pos_ctrl){ _objCommand.control = pos_ctrl;};
 
-void setControlMode(bool pos_ctrl)
-{
-  _objCommand.control = pos_ctrl;
-}
-
-int getFlightMode() {return _flight_mode;};
-int getPrevFlightMode(){return _flight_mode_prev;};
+bool getTakeoffFlag(){ return _is_takeoff;     };
+bool getLandFlag(){ return _is_land;     };
+bool getCalibrateFlag(){return _is_calibrate;};
+bool getFailFlag() {return _is_fail;};
+bool getStateSwitchFlag(){return (_flight_mode != _flight_mode_prev);};
+int  getFlightMode() {return _flight_mode;};
+int  getPrevFlightMode(){return _flight_mode_prev;};
 void logSp();
 
 
@@ -81,8 +80,16 @@ bool _is_fail;
 
 
 std::ofstream logMissionSp;
-static constexpr int _room_size = 2500; //(mm)
-static constexpr int _traverse_inc = 10;
+static constexpr int _obj_fail = 800;
+static constexpr int _room_size = 1500;  // (mm)
+static constexpr int _traverse_inc = 10; // (mm)
+static constexpr float _Kp   = 0.01;
+static constexpr float _Kv   = 0.1;
+static constexpr float _Kyaw = 0.5;
+static constexpr float _ang_tol = 0.1; // rad
+static constexpr float _lin_tol = 20;  // mm
+
+
 float _traverse_height = 0.85;
 float _traverse_speed  = 0.1;
 

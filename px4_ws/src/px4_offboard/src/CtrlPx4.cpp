@@ -62,7 +62,6 @@ bool CtrlPx4::commandUpdate() {
   if (off_en_) {
     // check if in auto takeoff landing mode
     if (auto_tl_ > 0) {
-
       if ((state_set_.takeoff) && (!state_read_.takeoff)) {
         takeoff(tl_height_, 1); // takeoff to 1 m at 2m/s initially // to adjust to the wall
       } else if ((state_set_.land) && (state_read_.arm))
@@ -78,9 +77,9 @@ bool CtrlPx4::commandUpdate() {
       setMode(state_set_.mode);
 
     // controller input
-    if (state_set_.arm) {
+    if (state_read_.arm) { // publish only if state is armed
       if ((auto_tl_ > 0) && ((state_set_.takeoff) && (!state_read_.takeoff)) ||
-          ((state_set_.land) && (state_read_.arm))) {
+          (state_set_.land)) {
         if (state_set_.takeoff) // pos control takeoff
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
         else // vel control landing
@@ -264,7 +263,8 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     home_.py = pos_read_.py;
     set_armed_.request.value = true; // send arm request
     mavros_armed_client_.call(set_armed_);
-  } else if (current_height < (TAKEOFF_RATIO * altitude)) {
+  }
+  else if (current_height < (TAKEOFF_RATIO * altitude)) {
 
     // sensor read
     if (auto_tl_ == 1) {
@@ -272,6 +272,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
       fcu_pos_setpoint_.pose.position.y = home_.py;
       fcu_pos_setpoint_.pose.position.z = altitude; // directly publish pos setpoint
     } else {
+      // velocity controlled take off (not using at this point)
       pid_takeoff.setSensor(pos_read_.pz);
       vel_sp = pid_takeoff.update();
       // velocity saturation
@@ -286,7 +287,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 
   }
   else {
-    std::cout << "================================== finished taking off"
+    std::cout << "================== finished taking off"
               << std::endl;
     state_set_.takeoff = 0;
     hover();
