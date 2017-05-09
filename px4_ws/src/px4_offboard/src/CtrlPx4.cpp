@@ -3,12 +3,7 @@
 #include "px4_offboard/CtrlPx4.h"
 #include "px4_offboard/include.h"
 
-#define TAKEOFF_RATIO 0.8
-
-bool yaw_calibrate = 0;
-bool vision_init = 0;
-float yaw_cali_value = 0;
-double secs;
+#define TAKEOFF_RATIO 0.9
 
 CtrlPx4::CtrlPx4() {
 
