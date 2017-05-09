@@ -71,6 +71,7 @@ private:
   bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
   bool auto_tl_; // auto takeoff landing flag
   bool pos_ctrl_;
+  float tl_height_ = 1.0;
 
   // controller
   PID pid_takeoff;

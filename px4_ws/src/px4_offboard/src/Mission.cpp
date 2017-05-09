@@ -57,8 +57,6 @@ int main(int argc, char** argv)
 
   while(ros::ok())
   {
-
-
 			if (mission.getFlightMode()!=traverse)
 				mission.setControlMode(POS);
 
@@ -92,7 +90,6 @@ int main(int argc, char** argv)
 							takeoff_set++;
 							mission.takeoff();
 						}
-
 		  		}
 
 	  		break;
@@ -158,6 +155,7 @@ int main(int argc, char** argv)
 void Mission::takeoff()
 {
 	resetCommand(_objCommand);
+	_objCommand.position.z = _traverse_height;
 	_objCommand.takeoff = 1;
 	_objCommand.arm = 1;
  	_objCommand.offboard =  1;

@@ -69,7 +69,7 @@ bool CtrlPx4::commandUpdate() {
     if (auto_tl_ > 0) {
 
       if ((state_set_.takeoff) && (!state_read_.takeoff)) {
-        takeoff(1, 1); // takeoff to 1 m at 2m/s initially // to adjust to the wall
+        takeoff(tl_height_, 1); // takeoff to 1 m at 2m/s initially // to adjust to the wall
       } else if ((state_set_.land) && (state_read_.arm))
         land(1); // land at 1m/s
     }
@@ -160,7 +160,11 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
   //  endl;
   // }
 
+
   moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
+
+  if ((!state_set_.arm)&& (joy.arm))
+    tl_height_ = joy.position.z; // use take off height from mission
 
   if (joy.offboard)
     state_set_.mode = OFFBOARD;

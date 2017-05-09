@@ -83,7 +83,7 @@ bool _is_fail;
 std::ofstream logMissionSp;
 static constexpr int _room_size = 2500; //(mm)
 static constexpr int _traverse_inc = 10;
-float _traverse_height = 0.85;
+float _traverse_height = 1;
 float _traverse_speed  = 0.1;
 
 // position info
