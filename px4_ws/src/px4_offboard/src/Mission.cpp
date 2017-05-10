@@ -70,9 +70,9 @@ int main(int argc, char** argv)
 			{
 				if (mission.update()) // wait for update
 				{
+					mission.correctTraverseHeight();
 					mission.publish(); // publish control command once
  					mission.hover();   // clear _objCommand
-					mission.correctTraverseHeight();
 				}
 			}
 
@@ -294,11 +294,10 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 	{
 			if (msg.y < (_safe_dist + 100)) // start to decelerate at 10 cm
 			{
-
 				if((fabs(_angle_rad) > _ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
 					if (_cali_cnt > 0)
 							_cali_cnt--;
-					ROS_WARN("[Mission] == cali yaw and wall == ", _objCommand.yaw,_angle_rad);
+					ROS_WARN("[Mission] == cali yaw and wall == ");
 				}
 				else
 				{

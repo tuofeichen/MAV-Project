@@ -78,7 +78,7 @@ bool _is_update;
 std::ofstream logMissionSp;
 static constexpr int _obj_fail = 800;
 static constexpr int _room_size = 1500;  // (mm)
-static constexpr int _traverse_inc = 10; // (mm)
+static constexpr int _traverse_inc = 20; // (mm)
 
 static constexpr float _Kpxy   = 0.01;
 static constexpr float _Kpz    = 0.01;
