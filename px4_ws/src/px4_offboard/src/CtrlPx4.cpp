@@ -134,6 +134,7 @@ void CtrlPx4::joyCallback(const px4_offboard::MavState joy) {
 
   ROS_INFO("Joy setpoint received");
 
+
   moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
 
   // state_set_.offboard = joy.offboard;
@@ -148,26 +149,24 @@ void CtrlPx4::joyCallback(const px4_offboard::MavState joy) {
 
 void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
 
-  //  if (joy.yaw!=0.0)
-  // {
-  //  cout << "yaw delta is " <<  joy.yaw << " current yaw " << pos_read_.yaw <<
-  //  endl;
-  // }
+  if (state_set_.land == 0) // not in landing mode
+  {
+    if (joy.takeoff == 0)
+      moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
 
+    if ((!state_set_.arm)&& (joy.arm))
+      tl_height_ = joy.position.z; // use take off height from mission
 
-  moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
+    if (joy.offboard)
+      state_set_.mode = OFFBOARD;
 
-  if ((!state_set_.arm)&& (joy.arm))
-    tl_height_ = joy.position.z; // use take off height from mission
+    pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
+    state_set_.arm = joy.arm;
+    state_set_.takeoff = joy.takeoff;
+    state_set_.land = joy.land;
+    state_set_.failsafe = joy.failsafe;
+  }
 
-  if (joy.offboard)
-    state_set_.mode = OFFBOARD;
-
-  pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
-  state_set_.arm = joy.arm;
-  state_set_.takeoff = joy.takeoff;
-  state_set_.land = joy.land;
-  state_set_.failsafe = joy.failsafe;
 }
 
 void CtrlPx4::aprilCallback(const px4_offboard::MavState joy) {
@@ -199,6 +198,10 @@ void CtrlPx4::stateCallback(const mavros_msgs::State vehicle_state) {
 void CtrlPx4::radioCallback(const mavros_msgs::RCIn rc_in) {
   off_en_ = (rc_in.channels[6] > 1200) &&
             ((rc_in.channels[4] > 900) && (rc_in.channels[4] < 1200));
+
+  if (rc_in.channels[6] > 1800)
+     state_set_.land = 1; // land
+
 };
 
 void CtrlPx4::poseCallback(const geometry_msgs::PoseStamped pos_read) {
@@ -268,9 +271,15 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 
     // sensor read
     if (auto_tl_ == 1) {
+      //take off at local yaw angle (make yaw local every where )
+      float qw = cos(0.5 * pos_read_.yaw);
+      float qz = sin(0.5 * pos_read_.yaw);
+      fcu_pos_setpoint_.pose.orientation.w = qw;
+      fcu_pos_setpoint_.pose.orientation.z = qz;
       fcu_pos_setpoint_.pose.position.x = home_.px;
       fcu_pos_setpoint_.pose.position.y = home_.py;
       fcu_pos_setpoint_.pose.position.z = altitude; // directly publish pos setpoint
+
     } else {
       // velocity controlled take off (not using at this point)
       pid_takeoff.setSensor(pos_read_.pz);

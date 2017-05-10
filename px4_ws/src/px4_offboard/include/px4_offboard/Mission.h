@@ -24,14 +24,14 @@ Mission();
 
 void publish() { //ROS_INFO("Publishing");
  _mission_ctrl_pub.publish(_objCommand);}; // for timing control
-void hover(){resetCommand(_objCommand);_angle_rad = 0;};
+
+void hover(){resetCommand(_objCommand);_angle_rad = 0;_is_update = 0;};
 void takeoff();
 void land();
+bool update(){return _is_update;};
 bool turnLeft90();
 void correctTraverseHeight();
-
 void setFlightMode(int flight_mode);
-
 void setControlMode(bool pos_ctrl){ _objCommand.control = pos_ctrl;};
 
 bool getTakeoffFlag(){ return _is_takeoff;     };
@@ -58,6 +58,7 @@ px4_offboard::MavState _objCommand;
 int  _flight_mode;
 int  _flight_mode_prev;
 
+int  _cali_cnt;
 int  _wall_cnt;
 int  _obj_cnt;
 int  _cannot_find_wall_cnt;
@@ -70,6 +71,7 @@ bool _is_takeoff;
 bool _is_land;
 bool _is_calibrate;
 bool _is_fail;
+bool _is_update;
 
 
 
@@ -77,15 +79,18 @@ std::ofstream logMissionSp;
 static constexpr int _obj_fail = 800;
 static constexpr int _room_size = 1500;  // (mm)
 static constexpr int _traverse_inc = 10; // (mm)
-static constexpr float _Kp   = 0.01;
-static constexpr float _Kv   = 0.1;
-static constexpr float _Kyaw = 0.5;
+
+static constexpr float _Kpxy   = 0.01;
+static constexpr float _Kpz    = 0.01;
+
+static constexpr float _Kv      = 1;
+static constexpr float _Kyaw    = 0.1;
 static constexpr float _ang_tol = 0.1; // rad
 static constexpr float _lin_tol = 20;  // mm
 
 
-float _traverse_height = 0.85;
-float _traverse_speed  = 0.1;
+float _traverse_height = 0.75;
+float _traverse_speed  = 0.2;
 
 // position info
 Eigen::Matrix4f _lpe;

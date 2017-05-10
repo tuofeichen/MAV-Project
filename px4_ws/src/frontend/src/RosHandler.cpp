@@ -10,10 +10,9 @@ RosHandler::RosHandler()
 	yaw_offset.setZero();
 
 	_rgbd_slam_pub  = _nh.advertise<geometry_msgs::PoseStamped>("/mavros/vision_pose/pose",1000);
-
-	_object_pub 	= _nh.advertise<geometry_msgs::Point>("/objDetect/obj_pose", 100);
-	_wall_pub  		= _nh.advertise<geometry_msgs::Point>("/objDetect/wall_pose", 100);
-	_obst_pub		= _nh.advertise<geometry_msgs::Point>("/objDetect/obst_dist",100);
+	_object_pub 	 = _nh.advertise<geometry_msgs::Point>("/objDetect/obj_pose", 100);
+	_wall_pub  		 = _nh.advertise<geometry_msgs::Point>("/objDetect/wall_pose", 100);
+	_obst_pub		   = _nh.advertise<geometry_msgs::Point>("/objDetect/obst_dist",100);
 
 	_state_sub 		= _nh.subscribe("/px4_offboard/state",  10,  &RosHandler::stateCallback, this);
 	_lpe_sub 		= _nh.subscribe("/mavros/local_position/pose",100,&RosHandler::lpeCallback,this);

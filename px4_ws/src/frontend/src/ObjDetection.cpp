@@ -219,44 +219,47 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 
 	// float FOV = (pixel_number_right - pixel_number_left)*angle_per_pixel_rad;
 
-	for(int k = e; k < 100; k+=5)
+  for(int k = e; k < 80; k+=10)
 	{
-		pixel_number_left = 160-k;
-		pixel_number_right = 160+k;
+    r = 0; l = 0; // reset r and l
+    r_counter = 0; l_counter = 0;
 
-		for (int i=pixel_number_right;i<pixel_number_right + square_size;i++)
+    pixel_number_left  = 160 - k;
+  	pixel_number_right = 160 + k; // traverse through some k
+
+    for (int i = pixel_number_right; i <  pixel_number_right + square_size; i++)
 		{
-    	 	for (int j=height; j< height+square_size;j++)
+    	 	for (int j=120-square_size; j< 120+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
-						r = r + Depth.at<uint16_t>(j,i);
-        	      		r_counter = r_counter + 1;
+						r += Depth.at<uint16_t>(j,i);
+        	  r_counter ++;
 					}
 				}
 		}
- 		r=r/(float)r_counter;
+
+ 		r = r/(float)r_counter;
 
 		for (int i=pixel_number_left;i<pixel_number_left + square_size;i++)
 		{
-     		for (int j=height; j< height+square_size;j++)
+     		for (int j=120; j< 120+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
-						l = l + Depth.at<uint16_t>(j,i);
-              			l_counter = l_counter + 1;
+						l += Depth.at<uint16_t>(j,i);
+            l_counter ++;
 					}
 				}
 		}
  		l=l/(float)l_counter;
 
-		if(fabs(r-Depth.at<uint16_t>(height,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(height,pixel_number_left)) < 15)
+// if average is close enough to the center value then use the average (relatively flat surface)
+		if(fabs(r-Depth.at<uint16_t>(120,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(120,pixel_number_left)) < 15)
 		{
-
-      e = k;
+      e = k; // note down what's the final distance in between
 			valid_position = true;
 			break;
-
 		}
 
 	}
@@ -303,7 +306,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 {
    // assume 160,120 is the center of the image
 	int e = 40;
-	int square_size = 5;
+	int square_size = 3;
 	int pixel_number_left  = 160 - e;
 	int pixel_number_right = 160 + e;
 	float r = 0;
@@ -320,19 +323,22 @@ void ObjDetection::checkForWall(cv::Mat Depth)
   //
 	// float FOV = (pixel_number_right - pixel_number_left) * angle_per_pixel_rad;
 
-	for(int k = e; k < 100; k+=5)
+	for(int k = e; k < 80; k+=10)
 	{
+    r = 0; l = 0; // reset r and l
+    r_counter = 0; l_counter = 0;
+
     pixel_number_left  = 160 - k;
   	pixel_number_right = 160 + k; // traverse through some k
 
-    for (int i=pixel_number_right; i<  pixel_number_right + square_size; i++)
+    for (int i = pixel_number_right; i <  pixel_number_right + square_size; i++)
 		{
-    	 	for (int j=160; j< 160+square_size;j++)
+    	 	for (int j=120-square_size; j< 120+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
-						r = r + Depth.at<uint16_t>(j,i);
-        	      		r_counter = r_counter + 1;
+						r += Depth.at<uint16_t>(j,i);
+        	  r_counter ++;
 					}
 				}
 		}
@@ -341,19 +347,19 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 
 		for (int i=pixel_number_left;i<pixel_number_left + square_size;i++)
 		{
-     		for (int j=160; j< 160+square_size;j++)
+     		for (int j=120; j< 120+square_size;j++)
 				{
 					if(Depth.at<uint16_t>(j,i)!=0)
 					{
-						l = l + Depth.at<uint16_t>(j,i);
-              			l_counter = l_counter + 1;
+						l += Depth.at<uint16_t>(j,i);
+            l_counter ++;
 					}
 				}
 		}
  		l=l/(float)l_counter;
 
 // if average is close enough to the center value then use the average (relatively flat surface)
-		if(fabs(r  - Depth.at<uint16_t>(160,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(160,pixel_number_left)) < 15)
+		if(fabs(r-Depth.at<uint16_t>(120,pixel_number_right)) < 15 && fabs(l-Depth.at<uint16_t>(120,pixel_number_left)) < 15)
 		{
       e = k; // note down what's the final distance in between
 			valid_position = true;
@@ -369,7 +375,7 @@ void ObjDetection::checkForWall(cv::Mat Depth)
       float D = 2 * e / objFrame.fx; // scale up to real world
       wallAngle.x = atan2((l-r) /objFrame.depthScale,D); // in radians
       wallAngle.y = wallAngle.x*180/M_PI; // in degrees
-      wallAngle.z =  (r+l)/2; //in mm
+      wallAngle.z = (r + l ) /2; //in mm
 
       if (wallAngle.x>3000||wallAngle.y>3000||wallAngle.z>3000||wallAngle.z ==0)
       {
@@ -392,7 +398,6 @@ void ObjDetection::checkForWall(cv::Mat Depth)
 	}
 
 	px4->updateWallPos (wallAngle);
-
 }
 
 void ObjDetection::readTemplate()
