@@ -36,12 +36,11 @@ private:
 // SETTINGS
 
 // Controller Saturation (meters)
-  static constexpr float MAX_Z    = 1.2;
+  static constexpr float MAX_Z    = 0.9;
   static constexpr float MAX_DZ   = 1.1;
   static constexpr float MAX_DXY  = 0.5;
-  static constexpr float MAX_DYAW = 0.4;
-
-  static constexpr float BAT_LOW_THRESH = 14;
+  static constexpr float MAX_DYAW = 0.8;
+  static constexpr float BAT_LOW_THRESH = 14; //(V)
 
 
   // subscriber callbacks from MAV
@@ -52,12 +51,11 @@ private:
   void batCallback(const mavros_msgs::BatteryStatus);
 
 
-  // subscriber callback from joystick
+  // subscriber callback from offboard controller nodes
   void joyCallback(const px4_offboard::MavState);
   void aprilCallback(const px4_offboard::MavState);
   void objCallback(const px4_offboard::MavState);
 
-  // void findObjectCallback(const px4_offboard::MoveCommand move_cmd);
 
   void updateState();
 
@@ -70,8 +68,8 @@ private:
   bool sim_;     // disregard all offboard command
   bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
   bool auto_tl_; // auto takeoff landing flag
-  bool pos_ctrl_;
-  float tl_height_ = 1.0;
+  bool pos_ctrl_; // position control or velocity control (0 is POS, 1 is VEL)
+  float tl_height_ = 1.0; // takeoff height default
 
   // controller
   PID pid_takeoff;

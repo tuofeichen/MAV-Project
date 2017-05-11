@@ -63,14 +63,15 @@ int main(int argc, char** argv)
 			if (mission.getFlightMode()!=traverse) // if outside of traverse mode use position control
 				mission.setControlMode(POS);
 
-			if(!(++printDelay%printMod)) // printing and logging
-					mission.logSp();
 
 			if (mission.getFlightMode()> takingoff && mission.getFlightMode() < landing)
 			{
 				if (mission.update()) // wait for update
 				{
 					mission.correctTraverseHeight();
+
+					if(!(++printDelay%printMod)) // printing and logging
+							mission.logSp();
 					mission.publish(); // publish control command once
  					mission.hover();   // clear _objCommand
 				}
@@ -182,13 +183,13 @@ bool Mission::turnLeft90()
 	}
 	_is_update = 1;
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < _ang_tol); // true if finished turning (set this threshold to be higher if overturn)
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol*5)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
 {
 	_obj_cnt ++ ;
-	const float Ktrack = 0.5; // tracking gain
+	const float Ktrack = 0.03; // tracking gain
 	if ((_obj_cnt > 5)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
 		setFlightMode(tracking);
@@ -198,7 +199,7 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 		_objCommand.position.z = Ktrack * (pos.y - 120.0)  / 120.0;
 		_objCommand.yaw =  _Kyaw * _angle_rad;
 
-		if ((pos.z < 1000) && (abs(pos.x-160) < 30 )&& (abs(pos.y-120)< 30)) //center arranged
+		if ((pos.z < 1000) && (abs(pos.x-160) < 20 )&& (abs(pos.y-120)< 20)) //center arranged
 		{
 			ROS_INFO("[Mission] Found object ><><><><>< Land!");
 			setFlightMode(landing);
@@ -212,9 +213,9 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 
 void Mission::wallCallback(const geometry_msgs::Point ang)
 {
+	_angle_rad = ang.x; // need to update this shit my friend
 	if((_flight_mode == calibration) && (!_is_calibrate))
 	{
-		_angle_rad = ang.x;
 		if(_angle_rad < -100 || _angle_rad > 0.5 || _angle_rad < -0.5)
 		{
 				ROS_INFO("[Mission] Cannot find wall");
@@ -292,14 +293,16 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-			if (msg.y < (_safe_dist + 100)) // start to decelerate at 10 cm
+			if (msg.y < (_safe_dist + 300)) // start to decelerate at 30 cm
 			{
+				ROS_INFO("_angle_rad right now %5.3f",_angle_rad*180/3.1415926);
 				if((fabs(_angle_rad) > _ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
-					if (_cali_cnt > 0)
+					if (_cali_cnt > 0){
 							_cali_cnt--;
+					}
 					ROS_WARN("[Mission] == cali yaw and wall == ");
 				}
-				else
+				else if (msg.y < (_safe_dist+30))
 				{
 					_cali_cnt++;
 				}
@@ -308,7 +311,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				_objCommand.yaw = _Kyaw * _angle_rad;
 				_objCommand.position.y = _Kpxy * (msg.z - _safe_dist)/1000.0; // gradually calibrate to obstacle
 
-				if ((!_obst_found)&& (_cali_cnt>20))
+				if ((!_obst_found)&& (_cali_cnt > 50))
 				{
 					_obst_found = 1;
 					_cali_cnt = 0;
@@ -330,7 +333,6 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 
 				if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.1) //
 				{
-					cout << "velocity control mode proceed" << endl;
 					_objCommand.position.y = _traverse_speed; // proceed at velocity 0.1
 				}
 				else

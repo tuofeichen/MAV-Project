@@ -41,7 +41,7 @@ void ObjDetection::processFrame(Frame newFrame)
 		checkForWall(objFrame.getDepth());
   }
 	if(px4->getTakeoffFlag() && (!objDetected)) // haven't taken off yet
-		checkObstacles(objFrame.getDepth(),50,50,2500); // combine
+		checkObstacles(objFrame.getDepth(),20,20,2500); // combine
 }
 
 bool  ObjDetection::objectDetect()
@@ -184,13 +184,13 @@ void ObjDetection::checkObstacles(cv::Mat depth, int d_row, int d_col, int safe_
 	{
 		for (int j = -d_col; j< d_col; j++)
 		{
-			int dist = depth.at<uint16_t>(160+j,120+i);
+			int dist = depth.at<uint16_t>(120+j,160+i);
 			if ((dist < safe_dist)&& (dist>0))
 			{
 				obstCnt++;
 				totalDist += dist;
 				minDist = std::min(minDist,dist);
-			}
+      }
 		}
 	}
 

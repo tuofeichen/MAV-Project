@@ -85,7 +85,6 @@ bool CtrlPx4::commandUpdate() {
         else // vel control landing
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
       }
-
       else {
         if (pos_ctrl_)
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
@@ -151,9 +150,6 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
 
   if (state_set_.land == 0) // not in landing mode
   {
-    if (joy.takeoff == 0)
-      moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
-
     if ((!state_set_.arm)&& (joy.arm))
       tl_height_ = joy.position.z; // use take off height from mission
 
@@ -165,6 +161,10 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     state_set_.takeoff = joy.takeoff;
     state_set_.land = joy.land;
     state_set_.failsafe = joy.failsafe;
+
+    if (state_read_.takeoff) // don't mess with move to point during takeoff
+      moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
+
   }
 
 }
@@ -397,6 +397,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   pos_nav(1) =
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
 
+  if (pos_ctrl_ == POS){
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
@@ -439,7 +440,9 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   prev_pos_read_.px = pos_read_.px;
   prev_pos_read_.py = pos_read_.py;
   prev_pos_read_.pz = pos_read_.pz;
-
+  }
+  else
+  {
   // also update velocity setpoint here in case we need it
   fcu_vel_setpoint_.twist.linear.x =
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
@@ -447,11 +450,12 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw);
   fcu_vel_setpoint_.twist.linear.z  = dz_sp;     // z velocity setpoint (usually 0)
   fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
+  }
 
   // if (pos_ctrl_)
-  //   ROS_INFO("position setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
+  //   ROS_INFO("position setpoint: [z: %f]",fcu_pos_setpoint_.pose.position.z);
   // else
-  //   ROS_INFO("velocity setpoint: [x: %f y:%f z: %f]", dx_sp, dy_sp, dz_sp);
+  //   ROS_INFO("velocity setpoint: [z: %f]", fcu_vel_setpoint_.twist.linear.z);
 
 };
 
