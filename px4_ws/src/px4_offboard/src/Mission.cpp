@@ -65,7 +65,6 @@ int main(int argc, char** argv)
 			if (mission.getFlightMode()!=traverse) // if outside of traverse mode use position control
 				mission.setControlMode(POS);
 
-
 			if (mission.getFlightMode()> takingoff && mission.getFlightMode() < landing)
 			{
 				if (mission.update()) // wait for update
@@ -315,7 +314,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 				 }
 
-				 if ((_cali_cnt > 15)||(_obst_found)) // back off mode
+				 if ((_cali_cnt > 10)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
 					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
