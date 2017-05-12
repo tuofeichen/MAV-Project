@@ -182,9 +182,14 @@ bool Mission::turnLeft90()
 	{
 		_yaw += 2* M_PI; // warp around
 	}
-	_is_update = 1;
-	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol*3)); // true if finished turning (set this threshold to be higher if overturn)
+
+	if (fabs(_yaw_prev - _yaw) < 10 * _ang_tol)
+	{
+		_is_update = 1;
+		_objCommand.yaw = _Kyaw * 5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
+	} // only publish when perceived rotation is small (rotation rate is small)
+
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 3)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)

@@ -23,12 +23,12 @@ int main()
 ObjDetection::ObjDetection(IFeatures* aFDEM,RosHandler* aRos):
  dem(aFDEM), px4(aRos)
 {
+  objDetected = 0;
 	readTemplate(); // read object template to be matched
 }
 
 void ObjDetection::processFrame(Frame newFrame)
 {
-	bool objDetected = 0;
 	objFrame = newFrame; // copy everything
 
 	if (objFrame.getBadFrameFlag() < 1) // should process frame regardless
@@ -42,6 +42,7 @@ void ObjDetection::processFrame(Frame newFrame)
   }
 	if(px4->getTakeoffFlag() && (!objDetected)) // haven't taken off yet
 		checkObstacles(objFrame.getDepth(),20,20,2500); // combine
+
 }
 
 bool  ObjDetection::objectDetect()

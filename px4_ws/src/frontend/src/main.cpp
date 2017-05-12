@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 #endif
 			// start slam
 			slam.addFrame(frame);
-			if(slam.extractFeature()){
+			if(slam.extractFeature()&& (!obj.getObjDetectFlag())){
 				t_slam 			= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
 			// run object detection all the time (for obstacle detection despite we don't have enough feature)
@@ -150,12 +150,11 @@ int main(int argc, char **argv)
 			t_slam.join();
 			t_procFrame.join();
 
-			if (slam.getBadFrameFlag() < 1)
+			if ((slam.getBadFrameFlag() < 1) || (!obj.getObjDetectFlag()))
 			{
 			  pos = slam.getCurrentPosition();
 				if (px4.getArmFlag())  // log only when armed
 						logSlamNode(frame, pos, frame.getId(), slam.getBadFrameFlag()); // log the published data
-
 				px4.updateCamPos(frame.getTime() - camInitTime, pos.matrix().cast<float>()); // publish to mavros
 			}
 
@@ -173,7 +172,6 @@ int main(int argc, char **argv)
 // New Node Processing (currently only logging and timing)
 			if (frame.getNewNodeFlag())
 			{
-
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
 				cout << "total processing time " << timeDiff << endl << endl;
@@ -200,7 +198,6 @@ int main(int argc, char **argv)
 				}
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 			}
-
 		else
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
@@ -208,7 +205,6 @@ int main(int argc, char **argv)
 	}
 
 // end of while(1) loop post processing
-
 	graph.optimizeTillConvergenz(); // full graph optimization after video stream ended
 
 	// transmit finalized graph
@@ -221,7 +217,7 @@ int main(int argc, char **argv)
 		Eigen::Matrix4f tm_temp, pos;
 		pos =  graph.getPositionOfId(keyId).matrix().cast<float>();
 		tm_temp = pos;
-		pos.row(0) = tm_temp.row(1) * rot.inverse(); // get back to PCL frame... this is so dumb
+		pos.row(0) = tm_temp.row(1) * rot.inverse();
 		pos.row(1) = tm_temp.row(2) * rot.inverse();
 		pos.row(2) = tm_temp.row(0) * rot.inverse();
 		pos.col(3) =	rot * tm_temp.col(3);

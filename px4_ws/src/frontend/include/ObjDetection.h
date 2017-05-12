@@ -18,6 +18,7 @@ class ObjDetection {
 	ObjDetection(IFeatures* aFDEM, RosHandler* aRos);
 	ObjDetection(int detectorThreshold, int minMathces, int maxMatches);
 	void processFrame(Frame newFrame);
+	bool getObjDetectFlag(){return objDetected;};
 
 	private:
 // object detection
@@ -44,7 +45,7 @@ class ObjDetection {
 	geometry_msgs::Point objAngle;
 	geometry_msgs::Point wallAngle;
 	geometry_msgs::Point obstacleDistance;
-
+	bool objDetected;
 
 	// cv::Point2f past_centroid;
 	cv::Point2f prevObjCentroid;
