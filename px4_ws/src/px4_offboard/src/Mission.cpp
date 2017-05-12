@@ -16,8 +16,10 @@ Mission::Mission()
 	_is_calibrate = 0;
 	_is_fail = 0;
 
-	_safe_dist = 950; // inital safe distance
+
+	_safe_dist = 880; // inital safe distance
 	_obst_found = 0;
+	_obst_cnt = 1; 		// start with 1 obstacles;
 	_wall_cnt = _obj_cnt = _cali_cnt = 0;
 	_cannot_find_wall_cnt = 0;
 	_roll = _pitch = _yaw = 0;
@@ -27,7 +29,7 @@ Mission::Mission()
 	resetCommand(_emptyCommand); // hover command
 
 	_mission_state_pub = _nh.advertise<px4_offboard::MavState> ("/obj/main_state",100);
-	_mission_ctrl_pub = _nh.advertise<px4_offboard::MavState> ("/obj/cmd_mav",10);
+	_mission_ctrl_pub = _nh.advertise<px4_offboard::MavState>  ("/obj/cmd_mav",10);
 
 	_state_sub = _nh.subscribe("/px4_offboard/state",  10,  &Mission::stateCallback, this);
 	_lpe_sub   = _nh.subscribe("/mavros/local_position/pose", 100, &Mission::lpeCallback,this);
@@ -183,23 +185,23 @@ bool Mission::turnLeft90()
 	}
 	_is_update = 1;
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol*5)); // true if finished turning (set this threshold to be higher if overturn)
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol*3)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
 {
 	_obj_cnt ++ ;
-	const float Ktrack = 0.03; // tracking gain
+	const float Ktrack = 0.01; // tracking gain
 	if ((_obj_cnt > 5)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
 		setFlightMode(tracking);
 		_is_update = 1;
-		_objCommand.position.y = Ktrack * (pos.z - 900.0) / 1000.0; // keep 0.9 m distance away from target
+		_objCommand.position.y = Ktrack * (pos.z - 850.0) / 1000.0; // keep 0.9 m distance away from target
 		_objCommand.position.x = Ktrack * (pos.x - 160.0)  / 120.0;
 		_objCommand.position.z = Ktrack * (pos.y - 120.0)  / 120.0;
 		_objCommand.yaw =  _Kyaw * _angle_rad;
 
-		if ((pos.z < 1000) && (abs(pos.x-160) < 20 )&& (abs(pos.y-120)< 20)) //center arranged
+		if ((pos.z < 1000) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
 		{
 			ROS_INFO("[Mission] Found object ><><><><>< Land!");
 			setFlightMode(landing);
@@ -220,7 +222,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 		{
 				ROS_INFO("[Mission] Cannot find wall");
 				_cannot_find_wall_cnt++;
-				if(_cannot_find_wall_cnt >10) // if cannot find wall for too long land
+				if(_cannot_find_wall_cnt > 4) // if cannot find wall for too long land
 				{
 					setFlightMode(landing);
 					_objCommand.land = 1;
@@ -240,8 +242,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 			else
 			{
 				_wall_cnt++;
-				if(_wall_cnt > 5) {
-					// resetCommand(_objCommand);
+				if(_wall_cnt > 20) {
 					if (ang.z > 0) // valid angle
 					{
 					_is_update = 1;
@@ -251,7 +252,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 				 	}
 				}
 
-				if((_wall_cnt > 10) && (fabs(ang.z - (float)_safe_dist) < _lin_tol))
+				if((_wall_cnt > 20) && (fabs(ang.z - (float)_safe_dist) < _lin_tol))
 				{
 					ROS_INFO("[Mission] Wall is perpendicular now.");   // drone is perpendicular, hover now
 					if (!_is_calibrate)
@@ -284,7 +285,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 	if ((_flight_mode > tracking) && (msg.y < _obj_fail))//failsafe object detect
 	{
 		crash_cnt++;
-		if(crash_cnt > 15){
+		if(crash_cnt > 20){
 			setFlightMode(landing);
 			ROS_ERROR("[Mission] obstacles too close detected. Land");
 		};
@@ -293,36 +294,48 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-			if (msg.y < (_safe_dist + 300)) // start to decelerate at 30 cm
-			{
-				ROS_INFO("_angle_rad right now %5.3f",_angle_rad*180/3.1415926);
-				if((fabs(_angle_rad) > _ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
-					if (_cali_cnt > 0){
-							_cali_cnt--;
+			if ((msg.y < (_track_dist + 300))||(_obst_found == 1)) // start to decelerate at 30 cm
+			{ // observation / calibration mode
+					if (!_obst_found)
+					{
+					if((fabs(_angle_rad) > _ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
+						if (_cali_cnt > 0){
+								_cali_cnt--;
+						}
+						ROS_WARN("[Mission] == cali yaw and wall %5.3f",_angle_rad*180/3.1415926);
 					}
-					ROS_WARN("[Mission] == cali yaw and wall == ");
-				}
-				else if (msg.y < (_safe_dist+30))
-				{
-					_cali_cnt++;
-				}
-				// correct yaw always
-				_is_update = 1;
-				_objCommand.yaw = _Kyaw * _angle_rad;
-				_objCommand.position.y = _Kpxy * (msg.z - _safe_dist)/1000.0; // gradually calibrate to obstacle
+					else if ((msg.y < (_track_dist+30))&& (msg.y > _track_dist))
+					{
+						_cali_cnt++;
+					} // always get close to the wall
 
-				if ((!_obst_found)&& (_cali_cnt > 50))
-				{
+					// correct yaw always
+					_is_update = 1;
+					_objCommand.yaw = _Kyaw * _angle_rad;
+					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
+				 }
+
+				 if ((_cali_cnt > 15)||(_obst_found)) // back off mode
+				 {
 					_obst_found = 1;
-					_cali_cnt = 0;
-					_obst_cnt++;
-					ROS_INFO("[Mission] Find an obstacle: Turning 90 degrees"); //
-
-					if ((_safe_dist < _room_size)&&(!(_obst_cnt%4))){ // room dimension
+					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
+					if ((_safe_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
+						ROS_INFO("[Mission] Increment traverse distance");
 						_safe_dist += _traverse_inc;
 					}
-					_yaw_prev = _yaw;
-					setFlightMode(turning); // enter turning mode
+
+					_objCommand.yaw = _Kyaw * _angle_rad;
+					_objCommand.position.y = _Kpxy * (msg.z - _safe_dist)/1000.0;
+					_is_update = 1;
+
+					if ((msg.y < (_safe_dist+30)) && (msg.y > _safe_dist-30)){
+						ROS_INFO("[Mission] Finished backing off start turning");
+						_obst_found = 0;
+						_obst_cnt++;
+						_cali_cnt = 0;
+						_yaw_prev = _yaw;
+						setFlightMode(turning); // enter turning mode
+					}
 				}
 			}
 			else

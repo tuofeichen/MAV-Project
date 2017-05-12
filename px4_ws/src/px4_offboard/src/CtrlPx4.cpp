@@ -17,7 +17,9 @@ CtrlPx4::CtrlPx4() {
   pos_ctrl_ = POS;                    // default position control
   controller_state_.failsafe = 0;   // clear fail safe flag
   prev_yaw_sp_ = 0;                 // clear previous yaw setpoint
-  // PID pid - Land;
+
+
+  // PID pid - Land controller;
   pid_land.setKp(0.6);
   pid_land.setKi(0);
   pid_land.setKd(0);
@@ -406,7 +408,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   if (fabs(yaw - prev_yaw_sp_) < MAX_DYAW) {
     yaw = prev_yaw_sp_; // maintain previous yaw setpoint (prevent drifting)
   } else {
-    ROS_INFO("reset yaw_sp");
+    // ROS_INFO("reset yaw_sp");
   }
 
   float qw = cos(0.5 * yaw + dyaw_sp);
@@ -418,7 +420,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
        fabs(pos_read_.py + pos_nav(1) - y)) > MAX_DXY) {
     fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0);
     fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
-    ROS_INFO("[PX4 CTRL] Reset xy");
+    // ROS_INFO("[PX4 CTRL] Reset xy");
   } else {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
@@ -426,7 +428,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
-    ROS_INFO("[PX4 CTRL] Reset z");
+    // ROS_INFO("[PX4 CTRL] Reset z");
   } else if (z < MAX_Z) {
     fcu_pos_setpoint_.pose.position.z = z;
   } else {
@@ -443,13 +445,12 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
   else
   {
-  // also update velocity setpoint here in case we need it
-  fcu_vel_setpoint_.twist.linear.x =
-      -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
-  fcu_vel_setpoint_.twist.linear.y =
-      pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw);
-  fcu_vel_setpoint_.twist.linear.z  = dz_sp;     // z velocity setpoint (usually 0)
-  fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
+    fcu_vel_setpoint_.twist.linear.x =
+        -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
+    fcu_vel_setpoint_.twist.linear.y =
+        pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw);
+    fcu_vel_setpoint_.twist.linear.z  = dz_sp;     // z velocity setpoint (usually 0)
+    fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
   }
 
   // if (pos_ctrl_)

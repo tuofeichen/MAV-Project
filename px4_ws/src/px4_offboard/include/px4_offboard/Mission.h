@@ -64,7 +64,8 @@ int  _obj_cnt;
 int  _cannot_find_wall_cnt;
 int	 _obst_cnt ; // how many obstacles have the drone run into
 bool _obst_found;
-int  _safe_dist; // distance to keep away from obstacles / walls
+
+int  _safe_dist; // distance to keep away from obstacles / walls for traversal
 
 
 bool _is_takeoff;
@@ -76,16 +77,18 @@ bool _is_update;
 
 
 std::ofstream logMissionSp;
-static constexpr int _obj_fail = 800;
-static constexpr int _room_size = 1500;  // (mm)
-static constexpr int _traverse_inc = 20; // (mm)
+static constexpr int _obj_fail     = 800;
+static constexpr int _room_size    = 1500;   // (mm)
+static constexpr int _traverse_inc = 100;  // (mm)
+static constexpr int _track_dist   = 860; //  object recognition distance
+
 
 static constexpr float _Kpxy   = 0.02;
-static constexpr float _Kpz    = 0.01;
+static constexpr float _Kpz    = 0.012;
 
-static constexpr float _Kv      = 1.2;
+static constexpr float _Kv      = 1.8;
 static constexpr float _Kyaw    = 0.1;
-static constexpr float _ang_tol = 0.1; // rad
+static constexpr float _ang_tol = 0.05; // rad
 static constexpr float _lin_tol = 20;  // mm
 
 
