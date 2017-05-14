@@ -16,13 +16,15 @@ Mission::Mission()
 	_is_calibrate = 0;
 	_is_fail = 0;
 
-
-	_safe_dist = 880; // inital safe distance
 	_obst_found = 0;
 	_obst_cnt = 1; 		// start with 1 obstacles;
 	_wall_cnt = _obj_cnt = _cali_cnt = 0;
 	_cannot_find_wall_cnt = 0;
 	_roll = _pitch = _yaw = 0;
+
+	// read parameters
+	readParam();
+
 
 	_lpe.setIdentity();
 	_vel.setZero();
@@ -182,12 +184,11 @@ bool Mission::turnLeft90()
 	{
 		_yaw += 2* M_PI; // warp around
 	}
-
-	if (fabs(_yaw_prev - _yaw) < 10 * _ang_tol)
-	{
-		_is_update = 1;
-		_objCommand.yaw = _Kyaw * 5 * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	} // only publish when perceived rotation is small (rotation rate is small)
+	// if(fabs(_vel(5)) < 2.5 *_ang_tol)
+	// {
+	_is_update = 1;
+	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
+	// }
 
 	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 3)); // true if finished turning (set this threshold to be higher if overturn)
 }
@@ -251,12 +252,12 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 					{
 					_is_update = 1;
 					_objCommand.yaw =  _Kyaw * _angle_rad;
-					_objCommand.position.y =  _Kpxy * (ang.z -_safe_dist)/1000.0; // move to 1 from obstacles
+					_objCommand.position.y =  _Kpxy * (ang.z -_trav_dist)/1000.0; // move to 1 from obstacles
 					 ROS_INFO("[Mission] Adjust Distance %4.3f,%4.3f",ang.z, _objCommand.position.y);
 				 	}
 				}
 
-				if((_wall_cnt > 20) && (fabs(ang.z - (float)_safe_dist) < _lin_tol))
+				if((_wall_cnt > 20) && (fabs(ang.z - (float)_trav_dist) < _lin_tol))
 				{
 					ROS_INFO("[Mission] Wall is perpendicular now.");   // drone is perpendicular, hover now
 					if (!_is_calibrate)
@@ -286,7 +287,12 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 {
 	_objCommand.control = 1; // defaul position control mode
 
-	if ((_flight_mode > tracking) && (msg.y < _obj_fail))//failsafe object detect
+// don't propagate prevent drifting
+	if(fabs(_angle_rad) < 0.00001)
+		return;
+
+
+	if ((_flight_mode > tracking) && (msg.y < _obj_fail_dist))//failsafe object detect
 	{
 		crash_cnt++;
 		if(crash_cnt > 20){
@@ -302,37 +308,40 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 			{ // observation / calibration mode
 					if (!_obst_found)
 					{
-					if((fabs(_angle_rad) > _ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
+					if((fabs(_angle_rad) > 2 *_ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
 						if (_cali_cnt > 0){
 								_cali_cnt--;
 						}
-						ROS_WARN("[Mission] == cali yaw and wall %5.3f",_angle_rad*180/3.1415926);
 					}
-					else if ((msg.y < (_track_dist+30))&& (msg.y > _track_dist))
+					else if ((msg.z < (_track_dist+30))&& (msg.z > _track_dist))
 					{
 						_cali_cnt++;
 					} // always get close to the wall
 
+					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 					// correct yaw always
 					_is_update = 1;
 					_objCommand.yaw = _Kyaw * _angle_rad;
-					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 				 }
 
-				 if ((_cali_cnt > 10)||(_obst_found)) // back off mode
+				 ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
+
+				 if ((_cali_cnt > 5)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
 					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
-					if ((_safe_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
+
+					if ((_trav_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
 						ROS_INFO("[Mission] Increment traverse distance");
-						_safe_dist += _traverse_inc;
+						_trav_dist += _traverse_inc;
+						_obst_cnt++;
 					}
 
 					_objCommand.yaw = _Kyaw * _angle_rad;
-					_objCommand.position.y = _Kpxy * (msg.z - _safe_dist)/1000.0;
+					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					if ((msg.y < (_safe_dist+30)) && (msg.y > _safe_dist-30)){
+					if ((msg.y < (_trav_dist+30)) && (msg.y > _trav_dist-30)){
 						ROS_INFO("[Mission] Finished backing off start turning");
 						_obst_found = 0;
 						_obst_cnt++;
@@ -348,7 +357,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				_objCommand.control = VEL; // during traverse use velocity control mode (steady proceed)
 				_obst_found = 0;
 
-				if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.1) //
+				if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.25) //
 				{
 					_objCommand.position.y = _traverse_speed; // proceed at velocity 0.1
 				}
@@ -367,6 +376,9 @@ void Mission::velCallback(const geometry_msgs::TwistStamped vel_read)
 	_vel(0) = vel_read.twist.linear.x;
 	_vel(1) = vel_read.twist.linear.y;
 	_vel(2) = vel_read.twist.linear.z;
+	_vel(3) = vel_read.twist.angular.x;
+	_vel(4) = vel_read.twist.angular.y;
+	_vel(5) = vel_read.twist.angular.z;
 }
 
 void Mission::lpeCallback(const geometry_msgs::PoseStamped pos_read)
@@ -420,7 +432,7 @@ inline void Mission::correctTraverseHeight()
 	if (_objCommand.control == POS)
 		_objCommand.position.z =  - _Kpz * (_lpe(2,3) - _traverse_height);
 	else
-		_objCommand.position.z =  - _Kv  * (_lpe(2,3) - _traverse_height);
+		_objCommand.position.z =  - _Kvz  * (_lpe(2,3) - _traverse_height);
 }
 
 
@@ -446,29 +458,32 @@ void Mission::setFlightMode(int request_mode)
   cout << "[Mission] Flight mode switched to " << flight_mode_string[_flight_mode] << endl;
 };
 
-// takes off really high
-// see the wall
-// get perpendicular to the wall
-// go towards it
-//
-// go to apropriate height1
-//
-// <change_height>
-//
-// <walk arround>
-// turn 90
-// go towards 2nd wall until distance d(i)
-//
-// turn 90
-// go towards 3nd wall until distance d(i)
-//
-// turn 90
-// go towards 4nd wall until distance d(i)
-//
-// turn 90
-// go towards 1st all until distance d(i)
-//
-// go to <walk arround>
-//
-// if walked all possible distances go to change_height
-//
+void Mission::stateCallback(const px4_offboard::MavState state)
+{
+	_is_takeoff = state.takeoff;
+	_is_land 	  = state.land;
+	_is_fail 	  = state.failsafe;
+};
+
+void Mission::readParam()
+{
+
+// int
+	_nh.getParam("/fcu/safe_dist",  _trav_dist);
+	_nh.getParam("/fcu/track_dist", _track_dist);
+	_nh.getParam("/fcu/obj_fail_dist",   _obj_fail_dist);
+	_nh.getParam("/fcu/trav_inc",   _traverse_inc);
+
+
+// float
+	_nh.getParam("/fcu/Kpxy", _Kpxy);
+	_nh.getParam("/fcu/Kpz",  _Kpz);
+	_nh.getParam("/fcu/Kvz",   _Kvz);
+	_nh.getParam("/fcu/Kyaw", _Kyaw);
+	_nh.getParam("/fcu/ang_tol",  _ang_tol);
+	_nh.getParam("/fcu/lin_tol",  _lin_tol);
+	_nh.getParam("/fcu/trav_h",   _traverse_height);
+	_nh.getParam("/fcu/trav_v",    _traverse_speed);
+
+
+}

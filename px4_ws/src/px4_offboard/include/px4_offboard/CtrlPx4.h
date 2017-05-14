@@ -36,11 +36,11 @@ private:
 // SETTINGS
 
 // Controller Saturation (meters)
-  static constexpr float MAX_Z    = 0.9;
-  static constexpr float MAX_DZ   = 1.1;
-  static constexpr float MAX_DXY  = 0.5;
-  static constexpr float MAX_DYAW = 0.5;
-  static constexpr float BAT_LOW_THRESH = 14; //(V)
+  float MAX_Z    = 0.9;
+  float MAX_DZ   = 1.1;
+  float MAX_DXY  = 0.1;
+  float MAX_DYAW = 0.5;
+  float BAT_LOW_THRESH = 14; //(V)
 
 
   // subscriber callbacks from MAV

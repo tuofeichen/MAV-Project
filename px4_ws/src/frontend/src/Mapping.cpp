@@ -58,8 +58,8 @@ bool Mapping::extractFeature()
 	{
 
 		++badFrameCounter;
-		if(!(badFrameCounter%50))
-			cout << "bad feature!"<< endl;
+		// if(!(badFrameCounter%50))
+			// cout << "bad feature!"<< endl;
 		fusePX4LPE(badFrame);
 		return 0;
 	}
@@ -93,8 +93,8 @@ void Mapping::addNewNode()
 				setDummyNode();
 	}
 
-	if (currentFrame.getId() > 0)
-		cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
+	// if (currentFrame.getId() > 0)
+	// 	cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
 
 }
 
@@ -615,7 +615,7 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 					keyFrame.setKeyFrameFlag(true);
 					mapUpdate = true;
 					keyFrames.push_back(keyFrame);
-					cout << "Added id " << keyFrame.getId() << " as key frame <================================================================================" << endl;
+					// cout << "Added id " << keyFrame.getId() << " as key frame <================================================================================" << endl;
 					// cout << "Current frame flag ? " << currentFrame.getKeyFrameFlag() << " " << procFrame.getKeyFrameFlag() << endl;
 					ret = true;
 					break;
@@ -777,8 +777,8 @@ void Mapping::fusePX4LPE(int frameType)
 			// // 	cout << "Added frame (dummy) " << keyFrames.back().getId() << " as key frame------------------- " << keyFrames.size() << endl;
 			// // }
 
-			if (!(currentFrame.getId()%10))
-				cout << "frame type " << frameType << " compensated by px4" << endl;
+			// if (!(currentFrame.getId()%10))
+			// 	cout << "frame type " << frameType << " compensated by px4" << endl;
 				// cout << "update lpe cam pose in bad frame" << endl;
 				px4->updateLpeLastPose();
 		}

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -rf /home/odroid/MAV-Project/px4_ws/devel/libs/px4_offboard
+rm -rf /home/odroid/MAV-Project/px4_ws/build/px4_offboard

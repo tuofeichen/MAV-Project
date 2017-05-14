@@ -9,14 +9,18 @@ CtrlPx4::CtrlPx4() {
 
   nh_.getParam("/fcu/sim", sim_);
   nh_.getParam("/fcu/takeoff", auto_tl_);
-  // nh_.getParam("/fcu/cali", yaw_cali_value);
+  nh_.getParam("/fcu/maxz", MAX_Z);
+  nh_.getParam("/fcu/maxdz", MAX_DZ);
+  nh_.getParam("/fcu/maxdxy", MAX_DXY);
+  nh_.getParam("/fcu/maxdyaw", MAX_DYAW);
+
 
   std::cout << std::fixed << std::setprecision(4);
 
   off_en_ = sim_;                   // initialize off_en_to be 1 always if in simulation mode
   pos_ctrl_ = POS;                    // default position control
   controller_state_.failsafe = 0;   // clear fail safe flag
-  prev_yaw_sp_ = 0;                 // clear previous yaw setpoint
+  prev_yaw_sp_ = ;                 // clear previous yaw setpoint
 
 
   // PID pid - Land controller;
@@ -408,7 +412,8 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   if (fabs(yaw - prev_yaw_sp_) < MAX_DYAW) {
     yaw = prev_yaw_sp_; // maintain previous yaw setpoint (prevent drifting)
   } else {
-    // ROS_INFO("reset yaw_sp");
+    // want always reset
+    ROS_INFO("reset yaw_sp");
   }
 
   float qw = cos(0.5 * yaw + dyaw_sp);
@@ -428,7 +433,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
-    // ROS_INFO("[PX4 CTRL] Reset z");
+    ROS_INFO("[PX4 CTRL] Reset z");
   } else if (z < MAX_Z) {
     fcu_pos_setpoint_.pose.position.z = z;
   } else {
@@ -445,6 +450,8 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
   else
   {
+    prev_yaw_sp_  = yaw; // note down yaw (don't overturn)
+
     fcu_vel_setpoint_.twist.linear.x =
         -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
     fcu_vel_setpoint_.twist.linear.y =

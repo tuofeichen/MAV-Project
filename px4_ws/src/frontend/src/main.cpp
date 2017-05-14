@@ -198,6 +198,7 @@ int main(int argc, char **argv)
 				}
 				backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 			}
+
 		else
 		{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
@@ -205,6 +206,7 @@ int main(int argc, char **argv)
 	}
 
 // end of while(1) loop post processing
+
 	graph.optimizeTillConvergenz(); // full graph optimization after video stream ended
 
 	// transmit finalized graph
@@ -217,7 +219,7 @@ int main(int argc, char **argv)
 		Eigen::Matrix4f tm_temp, pos;
 		pos =  graph.getPositionOfId(keyId).matrix().cast<float>();
 		tm_temp = pos;
-		pos.row(0) = tm_temp.row(1) * rot.inverse();
+		pos.row(0) = tm_temp.row(1) * rot.inverse(); // get back to PCL frame... this is so dumb
 		pos.row(1) = tm_temp.row(2) * rot.inverse();
 		pos.row(2) = tm_temp.row(0) * rot.inverse();
 		pos.col(3) =	rot * tm_temp.col(3);

@@ -7,7 +7,7 @@
 int main(int argv, char **argc) {
   ros::init(argv, argc, "px4_controller");
   CtrlPx4 controller;
-  ros::Rate loop_rate(150);
+  ros::Rate loop_rate(200);
 
   while (ros::ok()) {
 
@@ -20,7 +20,7 @@ int main(int argv, char **argc) {
 // 	  			if(controller.takeoff(1.5 ,2))
 // 	  				flightMode = calibration;
 // 	  		break;
-	  			
+
 // 	  		case calibration:
 // 	  			controller.land(2);
 
@@ -28,18 +28,18 @@ int main(int argv, char **argc) {
 
 // 	  		case traverse:
 // 	  		break;
-	  		
+
 // 	  		case tracking:
 // 	  		break;
-	  		
+
 // 	  		case land:
 // 	  		break;
 // 	  	}
 //  		controller.commandUpdate();
 // 	}
-	
+
 // #else
-    controller.commandUpdate(); 
+    controller.commandUpdate();
 // #endif
 
     ros::spinOnce();

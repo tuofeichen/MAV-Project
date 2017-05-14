@@ -65,7 +65,6 @@ int  _cannot_find_wall_cnt;
 int	 _obst_cnt ; // how many obstacles have the drone run into
 bool _obst_found;
 
-int  _safe_dist; // distance to keep away from obstacles / walls for traversal
 
 
 bool _is_takeoff;
@@ -77,36 +76,36 @@ bool _is_update;
 
 
 std::ofstream logMissionSp;
-static constexpr int _obj_fail     = 800;
-static constexpr int _room_size    = 1500;   // (mm)
-static constexpr int _traverse_inc = 100;  // (mm)
-static constexpr int _track_dist   = 860; //  object recognition distance
+
+int  _trav_dist         = 900;  // distance to keep away from obstacles / walls for traversal
+int  _obj_fail_dist     = 800;  // failsafe distance
+int  _track_dist        = 900;  //  object recognition distance
+int _traverse_inc = 100;  // (mm)
+
+int _room_size    = 1500;   // (mm)
 
 
-static constexpr float _Kpxy   = 0.02;
-static constexpr float _Kpz    = 0.012;
 
-static constexpr float _Kv      = 1.8;
-static constexpr float _Kyaw    = 0.1;
-static constexpr float _ang_tol = 0.05; // rad
-static constexpr float _lin_tol = 20;  // mm
+float _Kpxy   = 0.012;
+float _Kpz    = 0.012;
+
+float _Kvz      = 1.8;
+float _Kyaw    = 0.1;
+float _ang_tol = 0.06; // rad
+float _lin_tol = 50;  // mm
 
 
 float _traverse_height = 0.75;
-float _traverse_speed  = 0.2;
+float _traverse_speed  = 0.35;
 
 // position info
 Eigen::Matrix4f _lpe;
-Eigen::Vector3f _vel;
+Eigen::Matrix<float, 6, 1> _vel;
 float _roll, _pitch, _yaw, _yaw_prev, _angle_rad;
 
-void stateCallback(const px4_offboard::MavState state)
-{
-	_is_takeoff = state.takeoff;
-	_is_land 	= state.land;
-	_is_fail 	= state.failsafe;
-};
 
+void readParam();
+void stateCallback(const px4_offboard::MavState state);
 void velCallback(const geometry_msgs::TwistStamped vel_read);
 void lpeCallback(const geometry_msgs::PoseStamped pos_read);
 void wallCallback(const geometry_msgs::Point ang);

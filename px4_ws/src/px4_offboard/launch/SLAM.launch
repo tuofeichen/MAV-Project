@@ -4,8 +4,26 @@
 
 <arg name="sim" default="0"/>
 <arg name="takeoff" default="1"/>
+
+
+<arg name="trav_dist" default="900"/>
+<arg name="obj_fail_dist" default="800"/>
+<arg name="track_dist" default="900"/>
+<arg name="trav_inc" default="100"/>
+
+<arg name="Kpxy" default="0.012"/>
+<arg name="Kpz" default="0.013"/>
+<arg name="Kvz" default="1.8"/>
+<arg name="Kyaw" default="0.1"/>
+
+<arg name="ang_tol" default="0.06"/>
+<arg name="lin_tol" default="50"/>
+<arg name="trav_h"  default="0.75"/>
+<arg name="trav_v"  default="0.3"/>
+
+
 <!-- default control to be 1 (auto takeoff and landing) -->
-<arg name = "cali" default = "0.002"/>
+
 
 
 <group unless="$(arg sim)">
@@ -24,8 +42,30 @@
 <node pkg="px4_offboard" type="SLAM" name="fcu" output="screen">
 <param name ="sim" type="bool" value="$(arg sim)"  />
 <param name ="takeoff" type="int" value="$(arg takeoff)" />
-<param name ="cali" type="double" value="$(arg cali)" />
+
+
+<param name = "trav_inc" type="int" value="$(arg trav_inc)"/>
+<param name = "trav_dist" type="int" value="$(arg trav_dist)"/>
+<param name = "track_dist" type="int" value="$(arg track_dist)"/>
+<param name = "obj_fail_dist" type="int" value="$(arg obj_fail_dist)"/>
+
+<param name = "Kpxy" type="double" value="$(arg Kpxy)"/>
+<param name = "Kpz" type="double" value="$(arg Kpz)"/>
+<param name = "Kvz" type="double" value="$(arg Kvz)"/>
+<param name = "Kyaw" type="double" value="$(arg Kyaw)"/>
+<param name = "ang_tol" type="double" value="$(arg ang_tol)"/>
+<param name = "lin_tol" type="double" value="$(arg lin_tol)"/>
+<param name = "trav_h" type="double" value="$(arg trav_h)"/>
+<param name = "trav_v" type="double" value="$(arg trav_v)"/>
+
+<param name= "maxz"    type="double" value="1"/>
+<param name= "maxdz"   type="double" value="1.1"/>
+<param name= "maxdxy"  type="double" value="0.1"/>
+<param name= "maxdyaw" type="double" value="0.8"/>
+
 
 </node>
+
+
 
 </launch>
