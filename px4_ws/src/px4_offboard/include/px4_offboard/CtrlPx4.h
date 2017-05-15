@@ -38,7 +38,7 @@ private:
 // Controller Saturation (meters)
   float MAX_Z    = 0.9;
   float MAX_DZ   = 1.1;
-  float MAX_DXY  = 0.1;
+  float MAX_DXY  = 0.3;
   float MAX_DYAW = 0.5;
   float BAT_LOW_THRESH = 14; //(V)
 
@@ -67,7 +67,7 @@ private:
   // state of vehile
   bool sim_;     // disregard all offboard command
   bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
-  bool auto_tl_; // auto takeoff landing flag
+  int auto_tl_; // auto takeoff landing flag
   bool pos_ctrl_; // position control or velocity control (0 is POS, 1 is VEL)
   float tl_height_ = 1.0; // takeoff height default
 

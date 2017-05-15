@@ -5,7 +5,6 @@
 <arg name="sim" default="0"/>
 <arg name="takeoff" default="1"/>
 
-
 <arg name="trav_dist" default="900"/>
 <arg name="obj_fail_dist" default="800"/>
 <arg name="track_dist" default="900"/>
@@ -42,7 +41,6 @@
 <node pkg="px4_offboard" type="SLAM" name="fcu" output="screen">
 <param name ="sim" type="bool" value="$(arg sim)"  />
 <param name ="takeoff" type="int" value="$(arg takeoff)" />
-
 
 <param name = "trav_inc" type="int" value="$(arg trav_inc)"/>
 <param name = "trav_dist" type="int" value="$(arg trav_dist)"/>

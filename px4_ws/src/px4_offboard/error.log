@@ -1,0 +1,2251 @@
+Script started on Sun 14 May 2017 04:13:15 PM CDT
+]0;tuofeichen@chen-Ubuntu: ~/SLAM/MAV-Project/px4_ws/src/px4_offboardtuofeichen:px4_offboard$ catkin build --this
+[35m-----------------------------------------------------------------------------[0m[0m
+[36mProfile:[0m                     [33mdefault[0m[0m
+[36mExtending:[0m          [32m[cached][0m[0m [33m/opt/ros/indigo[0m[0m
+[36mWorkspace:[0m                   [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[36mSource Space:[0m       [32m[exists][0m[0m [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws/src[0m[0m
+[36mLog Space:[0m          [32m[exists][0m[0m [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws/logs[0m[0m
+[36mBuild Space:[0m        [32m[exists][0m[0m [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws/build[0m[0m
+[36mDevel Space:[0m        [32m[exists][0m[0m [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws/devel[0m[0m
+[36mInstall Space:[0m      [34m[unused][0m[0m [33m/home/tuofeichen/SLAM/MAV-Project/px4_ws/install[0m[0m
+[36mDESTDIR:[0m            [34m[unused][0m[0m [33mNone[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[36mDevel Space Layout:[0m          [33mmerged[0m[0m
+[36mInstall Space Layout:[0m        [33mNone[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[36mAdditional CMake Args:[0m       [33mNone[0m[0m
+[36mAdditional Make Args:[0m        [33mNone[0m[0m
+[36mAdditional catkin Make Args:[0m [33mNone[0m[0m
+[36mInternal Make Job Server:[0m    [33mTrue[0m[0m
+[36mCache Job Environments:[0m      [33mFalse[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[36mWhitelisted Packages:[0m        [33mNone[0m[0m
+[36mBlacklisted Packages:[0m        [33mNone[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[1m[36mWorkspace configuration appears valid.[0m[0m
+[35m-----------------------------------------------------------------------------[0m[0m
+[build] Found '5' packages in 0.0 seconds.                                                      
+[build] Package table is up to date.                                                            
+[[35mbuild[0m - [33m0.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m0[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [3m[1m[30mWaiting for jobs...[0m[0m                          Starting  [1m[32m>>>[0m [1m[36mpx4_offboard               [0m[0m                                                       
+[[35mbuild[0m - [33m0.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m4[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(0%)[0m - [33m0.0[0m][0m               [[35mbuild[0m - [33m0.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m4[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(0%)[0m - [33m0.0[0m][0m               [[35mbuild[0m - [33m0.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m4[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(57%)[0m - [33m0.2[0m][0m              [[35mbuild[0m - [33m0.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m2[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(71%)[0m - [33m0.2[0m][0m              [[35mbuild[0m - [33m0.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.2[0m][0m              [[35mbuild[0m - [33m0.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.2[0m][0m              [[35mbuild[0m - [33m0.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.3[0m][0m              [[35mbuild[0m - [33m0.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.3[0m][0m              [[35mbuild[0m - [33m0.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.3[0m][0m              [[35mbuild[0m - [33m0.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.4[0m][0m              [[35mbuild[0m - [33m0.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.4[0m][0m              [[35mbuild[0m - [33m0.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.5[0m][0m              [[35mbuild[0m - [33m0.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.5[0m][0m              [[35mbuild[0m - [33m0.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.5[0m][0m              [[35mbuild[0m - [33m0.7[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.6[0m][0m              [[35mbuild[0m - [33m0.7[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.6[0m][0m              [[35mbuild[0m - [33m0.8[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.7[0m][0m              [[35mbuild[0m - [33m0.9[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.8[0m][0m              [[35mbuild[0m - [33m0.9[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.8[0m][0m              [[35mbuild[0m - [33m1.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.9[0m][0m              [[35mbuild[0m - [33m1.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m0.9[0m][0m              [[35mbuild[0m - [33m1.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.0[0m][0m              [[35mbuild[0m - [33m1.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.0[0m][0m              [[35mbuild[0m - [33m1.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.1[0m][0m              [[35mbuild[0m - [33m1.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.1[0m][0m              [[35mbuild[0m - [33m1.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.1[0m][0m              [[35mbuild[0m - [33m1.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.1[0m][0m              [[35mbuild[0m - [33m1.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.1[0m][0m              [[35mbuild[0m - [33m1.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.3[0m][0m              [[35mbuild[0m - [33m1.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.3[0m][0m              [[35mbuild[0m - [33m1.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.4[0m][0m              [[35mbuild[0m - [33m1.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.4[0m][0m              [[35mbuild[0m - [33m1.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.5[0m][0m              [[35mbuild[0m - [33m1.7[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.6[0m][0m              [[35mbuild[0m - [33m1.7[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.6[0m][0m              [[35mbuild[0m - [33m1.8[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.7[0m][0m              [[35mbuild[0m - [33m1.8[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.7[0m][0m              [[35mbuild[0m - [33m1.9[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.8[0m][0m              [[35mbuild[0m - [33m2.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m1.9[0m][0m              [[35mbuild[0m - [33m2.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.0[0m][0m              [[35mbuild[0m - [33m2.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.0[0m][0m              [[35mbuild[0m - [33m2.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.1[0m][0m              [[35mbuild[0m - [33m2.2[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.1[0m][0m              [[35mbuild[0m - [33m2.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.2[0m][0m              [[35mbuild[0m - [33m2.3[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.2[0m][0m              [[35mbuild[0m - [33m2.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.3[0m][0m              [[35mbuild[0m - [33m2.4[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.3[0m][0m              [[35mbuild[0m - [33m2.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.4[0m][0m              [[35mbuild[0m - [33m2.5[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.4[0m][0m              [[35mbuild[0m - [33m2.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.5[0m][0m              [[35mbuild[0m - [33m2.6[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.5[0m][0m              [[35mbuild[0m - [33m2.7[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.6[0m][0m              [[35mbuild[0m - [33m2.8[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.7[0m][0m              [[35mbuild[0m - [33m3.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.8[0m][0m              [[35mbuild[0m - [33m3.0[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.8[0m][0m              [[35mbuild[0m - [33m3.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.9[0m][0m              [[35mbuild[0m - [33m3.1[0m] [[1m[32m0[0m/[32m1[0m complete] [[1m[32m1[0m/[32m4[0m jobs] [[1m[30m0[0m queued][0m [[36mpx4_offboard[0m:[34mmake[0m [34m(92%)[0m - [33m2.9[0m][0m              [1m[31m________________________________________________________________________________________________[0m[0m
+[1m[31mErrors[0m    [31m <<[0m [36mpx4_offboard[0m:[34mmake[0m [1m[31m/home/tuofeichen/SLAM/MAV-Project/px4_ws/logs/px4_offboard/build.make.124.log[0m[0m
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:1:2: error: stray ‘#’ in program
+ s#include <unistd.h>
+  ^
+/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:1:1: error: ‘s’ does not name a type
+ s#include <unistd.h>
+ ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:139:8: error: ‘size_t’ does not name a type
+ extern size_t __ctype_get_mb_cur_max (void) __THROW __wur;
+        ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:331:4: error: ‘size_t’ has not been declared
+    size_t __statelen) __THROW __nonnull ((2));
+    ^
+/usr/include/stdlib.h:361:4: error: ‘size_t’ has not been declared
+    size_t __statelen,
+    ^
+/usr/include/stdlib.h:466:22: error: ‘size_t’ was not declared in this scope
+ extern void *malloc (size_t __size) __THROW __attribute_malloc__ __wur;
+                      ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:466:37: error: expected ‘,’ or ‘;’ before ‘throw’
+ extern void *malloc (size_t __size) __THROW __attribute_malloc__ __wur;
+                                     ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:468:22: error: ‘size_t’ was not declared in this scope
+ extern void *calloc (size_t __nmemb, size_t __size)
+                      ^
+/usr/include/stdlib.h:468:38: error: ‘size_t’ was not declared in this scope
+ extern void *calloc (size_t __nmemb, size_t __size)
+                                      ^
+/usr/include/stdlib.h:468:51: error: expression list treated as compound expression in initializer [-fpermissive]
+ extern void *calloc (size_t __nmemb, size_t __size)
+                                                   ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:469:6: error: expected ‘,’ or ‘;’ before ‘throw’
+      __THROW __attribute_malloc__ __wur;
+      ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:480:36: error: ‘size_t’ has not been declared
+ extern void *realloc (void *__ptr, size_t __size)
+                                    ^
+In file included from /usr/include/stdlib.h:492:0,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/alloca.h:32:22: error: ‘size_t’ was not declared in this scope
+ extern void *alloca (size_t __size) __THROW;
+                      ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/alloca.h:32:37: error: expected ‘,’ or ‘;’ before ‘throw’
+ extern void *alloca (size_t __size) __THROW;
+                                     ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:498:22: error: ‘size_t’ was not declared in this scope
+ extern void *valloc (size_t __size) __THROW __attribute_malloc__ __wur;
+                      ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:498:37: error: expected ‘,’ or ‘;’ before ‘throw’
+ extern void *valloc (size_t __size) __THROW __attribute_malloc__ __wur;
+                                     ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:503:45: error: ‘size_t’ has not been declared
+ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
+                                             ^
+/usr/include/stdlib.h:503:65: error: ‘size_t’ has not been declared
+ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
+                                                                 ^
+/usr/include/stdlib.h:509:29: error: ‘size_t’ was not declared in this scope
+ extern void *aligned_alloc (size_t __alignment, size_t __size)
+                             ^
+/usr/include/stdlib.h:509:49: error: ‘size_t’ was not declared in this scope
+ extern void *aligned_alloc (size_t __alignment, size_t __size)
+                                                 ^
+/usr/include/stdlib.h:509:62: error: expression list treated as compound expression in initializer [-fpermissive]
+ extern void *aligned_alloc (size_t __alignment, size_t __size)
+                                                              ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:510:6: error: expected ‘,’ or ‘;’ before ‘throw’
+      __THROW __attribute_malloc__ __attribute_alloc_size__ ((2)) __wur;
+      ^
+In file included from /opt/ros/indigo/include/ros/platform.h:53:0,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdlib.h:756:9: error: ‘size_t’ has not been declared
+         size_t __nmemb, size_t __size, __compar_fn_t __compar)
+         ^
+/usr/include/stdlib.h:756:25: error: ‘size_t’ has not been declared
+         size_t __nmemb, size_t __size, __compar_fn_t __compar)
+                         ^
+/usr/include/stdlib.h:765:34: error: ‘size_t’ has not been declared
+ extern void qsort (void *__base, size_t __nmemb, size_t __size,
+                                  ^
+/usr/include/stdlib.h:765:50: error: ‘size_t’ has not been declared
+ extern void qsort (void *__base, size_t __nmemb, size_t __size,
+                                                  ^
+/usr/include/stdlib.h:768:36: error: ‘size_t’ has not been declared
+ extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+                                    ^
+/usr/include/stdlib.h:768:52: error: ‘size_t’ has not been declared
+ extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+                                                    ^
+/usr/include/stdlib.h:844:6: error: ‘size_t’ has not been declared
+      size_t __len) __THROW __nonnull ((3, 4, 5));
+      ^
+/usr/include/stdlib.h:847:6: error: ‘size_t’ has not been declared
+      size_t __len) __THROW __nonnull ((3, 4, 5));
+      ^
+/usr/include/stdlib.h:851:31: error: ‘size_t’ has not been declared
+       char *__restrict __buf, size_t __len)
+                               ^
+/usr/include/stdlib.h:855:31: error: ‘size_t’ has not been declared
+       char *__restrict __buf, size_t __len)
+                               ^
+/usr/include/stdlib.h:863:36: error: ‘size_t’ has not been declared
+ extern int mblen (const char *__s, size_t __n) __THROW;
+                                    ^
+/usr/include/stdlib.h:867:34: error: ‘size_t’ has not been declared
+      const char *__restrict __s, size_t __n) __THROW;
+                                  ^
+/usr/include/stdlib.h:874:8: error: ‘size_t’ does not name a type
+ extern size_t mbstowcs (wchar_t *__restrict  __pwcs,
+        ^
+/usr/include/stdlib.h:877:8: error: ‘size_t’ does not name a type
+ extern size_t wcstombs (char *__restrict __s,
+        ^
+/usr/include/stdlib.h:940:46: error: ‘size_t’ has not been declared
+ extern int ptsname_r (int __fd, char *__buf, size_t __buflen)
+                                              ^
+In file included from /usr/include/c++/4.8/cwchar:44:0,
+                 from /usr/include/c++/4.8/bits/postypes.h:40,
+                 from /usr/include/c++/4.8/bits/char_traits.h:40,
+                 from /usr/include/c++/4.8/string:40,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/wchar.h:151:38: error: ‘size_t’ has not been declared
+     const wchar_t *__restrict __src, size_t __n)
+                                      ^
+/usr/include/wchar.h:159:38: error: ‘size_t’ has not been declared
+     const wchar_t *__restrict __src, size_t __n)
+                                      ^
+/usr/include/wchar.h:166:63: error: ‘size_t’ has not been declared
+ extern int wcsncmp (const wchar_t *__s1, const wchar_t *__s2, size_t __n)
+                                                               ^
+/usr/include/wchar.h:176:4: error: ‘size_t’ has not been declared
+    size_t __n) __THROW;
+    ^
+/usr/include/wchar.h:186:6: error: ‘size_t’ has not been declared
+      size_t __n, __locale_t __loc) __THROW;
+      ^
+/usr/include/wchar.h:196:8: error: ‘size_t’ does not name a type
+ extern size_t wcsxfrm (wchar_t *__restrict __s1,
+        ^
+/usr/include/wchar.h:212:8: error: ‘size_t’ does not name a type
+ extern size_t wcsxfrm_l (wchar_t *__s1, const wchar_t *__s2,
+        ^
+/usr/include/wchar.h:252:8: error: ‘size_t’ does not name a type
+ extern size_t wcscspn (const wchar_t *__wcs, const wchar_t *__reject)
+        ^
+/usr/include/wchar.h:256:8: error: ‘size_t’ does not name a type
+ extern size_t wcsspn (const wchar_t *__wcs, const wchar_t *__accept)
+        ^
+/usr/include/wchar.h:287:8: error: ‘size_t’ does not name a type
+ extern size_t wcslen (const wchar_t *__s) __THROW __attribute_pure__;
+        ^
+/usr/include/wchar.h:306:8: error: ‘size_t’ does not name a type
+ extern size_t wcsnlen (const wchar_t *__s, size_t __maxlen)
+        ^
+/usr/include/wchar.h:314:59: error: ‘size_t’ has not been declared
+ extern "C++" wchar_t *wmemchr (wchar_t *__s, wchar_t __c, size_t __n)
+                                                           ^
+/usr/include/wchar.h:317:10: error: ‘size_t’ has not been declared
+          size_t __n)
+          ^
+/usr/include/wchar.h:325:63: error: ‘size_t’ has not been declared
+ extern int wmemcmp (const wchar_t *__s1, const wchar_t *__s2, size_t __n)
+                                                               ^
+/usr/include/wchar.h:330:37: error: ‘size_t’ has not been declared
+     const wchar_t *__restrict __s2, size_t __n) __THROW;
+                                     ^
+/usr/include/wchar.h:334:63: error: ‘size_t’ has not been declared
+ extern wchar_t *wmemmove (wchar_t *__s1, const wchar_t *__s2, size_t __n)
+                                                               ^
+/usr/include/wchar.h:338:53: error: ‘size_t’ has not been declared
+ extern wchar_t *wmemset (wchar_t *__s, wchar_t __c, size_t __n) __THROW;
+                                                     ^
+/usr/include/wchar.h:345:38: error: ‘size_t’ has not been declared
+      const wchar_t *__restrict __s2, size_t __n)
+                                      ^
+/usr/include/wchar.h:365:8: error: ‘size_t’ does not name a type
+ extern size_t mbrtowc (wchar_t *__restrict __pwc,
+        ^
+/usr/include/wchar.h:370:8: error: ‘size_t’ does not name a type
+ extern size_t wcrtomb (char *__restrict __s, wchar_t __wc,
+        ^
+/usr/include/wchar.h:374:8: error: ‘size_t’ does not name a type
+ extern size_t __mbrlen (const char *__restrict __s, size_t __n,
+        ^
+/usr/include/wchar.h:376:8: error: ‘size_t’ does not name a type
+ extern size_t mbrlen (const char *__restrict __s, size_t __n,
+        ^
+/usr/include/wchar.h:408:8: error: ‘size_t’ does not name a type
+ extern size_t mbsrtowcs (wchar_t *__restrict __dst,
+        ^
+/usr/include/wchar.h:414:8: error: ‘size_t’ does not name a type
+ extern size_t wcsrtombs (char *__restrict __dst,
+        ^
+/usr/include/wchar.h:423:8: error: ‘size_t’ does not name a type
+ extern size_t mbsnrtowcs (wchar_t *__restrict __dst,
+        ^
+/usr/include/wchar.h:429:8: error: ‘size_t’ does not name a type
+ extern size_t wcsnrtombs (char *__restrict __dst,
+        ^
+/usr/include/wchar.h:443:42: error: ‘size_t’ has not been declared
+ extern int wcswidth (const wchar_t *__s, size_t __n) __THROW;
+                                          ^
+/usr/include/wchar.h:572:38: error: ‘size_t’ has not been declared
+     const wchar_t *__restrict __src, size_t __n)
+                                      ^
+/usr/include/wchar.h:580:53: error: ‘size_t’ has not been declared
+ extern __FILE *open_wmemstream (wchar_t **__bufloc, size_t *__sizeloc) __THROW;
+                                                     ^
+/usr/include/wchar.h:604:47: error: ‘size_t’ has not been declared
+ extern int swprintf (wchar_t *__restrict __s, size_t __n,
+                                               ^
+/usr/include/wchar.h:625:48: error: ‘size_t’ has not been declared
+ extern int vswprintf (wchar_t *__restrict __s, size_t __n,
+                                                ^
+/usr/include/wchar.h:855:8: error: ‘size_t’ does not name a type
+ extern size_t wcsftime (wchar_t *__restrict __s, size_t __maxsize,
+        ^
+/usr/include/wchar.h:865:8: error: ‘size_t’ does not name a type
+ extern size_t wcsftime_l (wchar_t *__restrict __s, size_t __maxsize,
+        ^
+In file included from /usr/include/c++/4.8/bits/postypes.h:40:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:40,
+                 from /usr/include/c++/4.8/string:40,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/cwchar:151:11: error: ‘::mbrlen’ has not been declared
+   using ::mbrlen;
+           ^
+/usr/include/c++/4.8/cwchar:152:11: error: ‘::mbrtowc’ has not been declared
+   using ::mbrtowc;
+           ^
+/usr/include/c++/4.8/cwchar:154:11: error: ‘::mbsrtowcs’ has not been declared
+   using ::mbsrtowcs;
+           ^
+/usr/include/c++/4.8/cwchar:176:11: error: ‘::wcrtomb’ has not been declared
+   using ::wcrtomb;
+           ^
+/usr/include/c++/4.8/cwchar:181:11: error: ‘::wcscspn’ has not been declared
+   using ::wcscspn;
+           ^
+/usr/include/c++/4.8/cwchar:182:11: error: ‘::wcsftime’ has not been declared
+   using ::wcsftime;
+           ^
+/usr/include/c++/4.8/cwchar:183:11: error: ‘::wcslen’ has not been declared
+   using ::wcslen;
+           ^
+/usr/include/c++/4.8/cwchar:187:11: error: ‘::wcsrtombs’ has not been declared
+   using ::wcsrtombs;
+           ^
+/usr/include/c++/4.8/cwchar:188:11: error: ‘::wcsspn’ has not been declared
+   using ::wcsspn;
+           ^
+/usr/include/c++/4.8/cwchar:196:11: error: ‘::wcsxfrm’ has not been declared
+   using ::wcsxfrm;
+           ^
+In file included from /usr/include/c++/4.8/string:40:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/char_traits.h: In static member function ‘static std::size_t std::char_traits<wchar_t>::length(const char_type*)’:
+/usr/include/c++/4.8/bits/char_traits.h:330:26: error: ‘wcslen’ was not declared in this scope
+       { return wcslen(__s); }
+                          ^
+In file included from /usr/include/sched.h:41:0,
+                 from /usr/include/pthread.h:23,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/bits/sched.h: At global scope:
+/usr/include/x86_64-linux-gnu/bits/sched.h:203:30: error: ‘size_t’ was not declared in this scope
+ extern int __sched_cpucount (size_t __setsize, const cpu_set_t *__setp)
+                              ^
+/usr/include/x86_64-linux-gnu/bits/sched.h:203:30: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/sched.h:41:0,
+                 from /usr/include/pthread.h:23,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/bits/sched.h:203:48: error: expected primary-expression before ‘const’
+ extern int __sched_cpucount (size_t __setsize, const cpu_set_t *__setp)
+                                                ^
+/usr/include/x86_64-linux-gnu/bits/sched.h:203:71: error: expression list treated as compound expression in initializer [-fpermissive]
+ extern int __sched_cpucount (size_t __setsize, const cpu_set_t *__setp)
+                                                                       ^
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/bits/sched.h:204:3: error: expected ‘,’ or ‘;’ before ‘throw’
+   __THROW;
+   ^
+In file included from /usr/include/sched.h:41:0,
+                 from /usr/include/pthread.h:23,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/bits/sched.h:205:37: error: ‘size_t’ was not declared in this scope
+ extern cpu_set_t *__sched_cpualloc (size_t __count) __THROW __wur;
+                                     ^
+/usr/include/x86_64-linux-gnu/bits/sched.h:205:37: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/features.h:374:0,
+                 from /usr/include/stdlib.h:24,
+                 from /opt/ros/indigo/include/ros/platform.h:53,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/bits/sched.h:205:53: error: expected ‘,’ or ‘;’ before ‘throw’
+ extern cpu_set_t *__sched_cpualloc (size_t __count) __THROW __wur;
+                                                     ^
+In file included from /usr/include/pthread.h:23:0,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/sched.h:116:46: error: ‘size_t’ has not been declared
+ extern int sched_setaffinity (__pid_t __pid, size_t __cpusetsize,
+                                              ^
+/usr/include/sched.h:120:46: error: ‘size_t’ has not been declared
+ extern int sched_getaffinity (__pid_t __pid, size_t __cpusetsize,
+                                              ^
+In file included from /usr/include/pthread.h:24:0,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/time.h:205:8: error: ‘size_t’ does not name a type
+ extern size_t strftime (char *__restrict __s, size_t __maxsize,
+        ^
+/usr/include/time.h:223:8: error: ‘size_t’ does not name a type
+ extern size_t strftime_l (char *__restrict __s, size_t __maxsize,
+        ^
+In file included from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:35:0,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:148,
+                 from /usr/include/c++/4.8/ext/atomicity.h:35,
+                 from /usr/include/c++/4.8/bits/basic_string.h:39,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/pthread.h:317:11: error: ‘size_t’ has not been declared
+           size_t *__guardsize)
+           ^
+/usr/include/pthread.h:322:11: error: ‘size_t’ has not been declared
+           size_t __guardsize)
+           ^
+/usr/include/pthread.h:380:19: error: ‘size_t’ has not been declared
+           __attr, size_t *__restrict __stacksize)
+                   ^
+/usr/include/pthread.h:387:11: error: ‘size_t’ has not been declared
+           size_t __stacksize)
+           ^
+/usr/include/pthread.h:394:7: error: ‘size_t’ has not been declared
+       size_t *__restrict __stacksize)
+       ^
+/usr/include/pthread.h:401:7: error: ‘size_t’ has not been declared
+       size_t __stacksize) __THROW __nonnull ((1));
+       ^
+/usr/include/pthread.h:408:6: error: ‘size_t’ has not been declared
+      size_t __cpusetsize,
+      ^
+/usr/include/pthread.h:415:6: error: ‘size_t’ has not been declared
+      size_t __cpusetsize,
+      ^
+/usr/include/pthread.h:458:11: error: ‘size_t’ has not been declared
+           size_t __buflen)
+           ^
+/usr/include/pthread.h:485:52: error: ‘size_t’ has not been declared
+ extern int pthread_setaffinity_np (pthread_t __th, size_t __cpusetsize,
+                                                    ^
+/usr/include/pthread.h:490:52: error: ‘size_t’ has not been declared
+ extern int pthread_getaffinity_np (pthread_t __th, size_t __cpusetsize,
+                                                    ^
+In file included from /usr/include/c++/4.8/ext/string_conversions.h:41:0,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/cstdlib:143:11: error: ‘::mbstowcs’ has not been declared
+   using ::mbstowcs;
+           ^
+/usr/include/c++/4.8/cstdlib:160:11: error: ‘::wcstombs’ has not been declared
+   using ::wcstombs;
+           ^
+In file included from /usr/include/stdio.h:74:0,
+                 from /usr/include/c++/4.8/cstdio:42,
+                 from /usr/include/c++/4.8/ext/string_conversions.h:43,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/libio.h:306:3: error: ‘size_t’ does not name a type
+   size_t __pad5;
+   ^
+/usr/include/libio.h:310:67: error: ‘size_t’ was not declared in this scope
+   char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
+                                                                   ^
+/usr/include/libio.h:310:67: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/stdio.h:74:0,
+                 from /usr/include/c++/4.8/cstdio:42,
+                 from /usr/include/c++/4.8/ext/string_conversions.h:43,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/libio.h:338:62: error: ‘size_t’ has not been declared
+ typedef __ssize_t __io_read_fn (void *__cookie, char *__buf, size_t __nbytes);
+                                                              ^
+/usr/include/libio.h:347:6: error: ‘size_t’ has not been declared
+      size_t __n);
+      ^
+In file included from /usr/include/stdio.h:74:0,
+                 from /usr/include/c++/4.8/cstdio:42,
+                 from /usr/include/c++/4.8/ext/string_conversions.h:43,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/libio.h:469:8: error: ‘size_t’ does not name a type
+ extern _IO_size_t _IO_sgetn (_IO_FILE *, void *, _IO_size_t);
+        ^
+In file included from /usr/include/c++/4.8/cstdio:42:0,
+                 from /usr/include/c++/4.8/ext/string_conversions.h:43,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/stdio.h:319:35: error: ‘size_t’ has not been declared
+ extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
+                                   ^
+/usr/include/stdio.h:325:47: error: ‘size_t’ has not been declared
+ extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __THROW __wur;
+                                               ^
+/usr/include/stdio.h:337:20: error: ‘size_t’ has not been declared
+       int __modes, size_t __n) __THROW;
+                    ^
+/usr/include/stdio.h:344:10: error: ‘size_t’ has not been declared
+          size_t __size) __THROW;
+          ^
+/usr/include/stdio.h:386:44: error: ‘size_t’ has not been declared
+ extern int snprintf (char *__restrict __s, size_t __maxlen,
+                                            ^
+/usr/include/stdio.h:390:45: error: ‘size_t’ has not been declared
+ extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+                                             ^
+/usr/include/stdio.h:666:11: error: ‘size_t’ has not been declared
+           size_t *__restrict __n, int __delimiter,
+           ^
+/usr/include/stdio.h:669:9: error: ‘size_t’ has not been declared
+         size_t *__restrict __n, int __delimiter,
+         ^
+/usr/include/stdio.h:679:8: error: ‘size_t’ has not been declared
+        size_t *__restrict __n,
+        ^
+/usr/include/stdio.h:709:8: error: ‘size_t’ does not name a type
+ extern size_t fread (void *__restrict __ptr, size_t __size,
+        ^
+/usr/include/stdio.h:715:8: error: ‘size_t’ does not name a type
+ extern size_t fwrite (const void *__restrict __ptr, size_t __size,
+        ^
+/usr/include/stdio.h:737:8: error: ‘size_t’ does not name a type
+ extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
+        ^
+/usr/include/stdio.h:739:8: error: ‘size_t’ does not name a type
+ extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
+        ^
+In file included from /usr/include/c++/4.8/ext/string_conversions.h:43:0,
+                 from /usr/include/c++/4.8/bits/basic_string.h:2815,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/cstdio:111:11: error: ‘::fread’ has not been declared
+   using ::fread;
+           ^
+/usr/include/c++/4.8/cstdio:117:11: error: ‘::fwrite’ has not been declared
+   using ::fwrite;
+           ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2866:20: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [3], int&)’
+         "%d", __val); }
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h:2866:20: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2866:20: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%d", __val); }
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2872:20: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [3], unsigned int&)’
+         "%u", __val); }
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h:2872:20: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2872:20: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%u", __val); }
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(long int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2877:21: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [4], long int&)’
+         "%ld", __val); }
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h:2877:21: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2877:21: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%ld", __val); }
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(long unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2883:21: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [4], long unsigned int&)’
+         "%lu", __val); }
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h:2883:21: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2883:21: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%lu", __val); }
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(long long int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2889:22: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [5], long long int&)’
+         "%lld", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:2889:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2889:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%lld", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(long long unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2895:22: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), long unsigned int, const char [5], long long unsigned int&)’
+         "%llu", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:2895:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2895:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%llu", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(float)’:
+/usr/include/c++/4.8/bits/basic_string.h:2903:20: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), const int&, const char [3], float&)’
+         "%f", __val);
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h:2903:20: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2903:20: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%f", __val);
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(double)’:
+/usr/include/c++/4.8/bits/basic_string.h:2912:20: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), const int&, const char [3], double&)’
+         "%f", __val);
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h:2912:20: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2912:20: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%f", __val);
+                    ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::string std::to_string(long double)’:
+/usr/include/c++/4.8/bits/basic_string.h:2921:21: error: no matching function for call to ‘__to_xstring(int (*)(char*, int, const char*, __va_list_tag*)throw (), const int&, const char [4], long double&)’
+         "%Lf", __val);
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h:2921:21: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2921:21: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+         "%Lf", __val);
+                     ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2967:22: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [3], int&)’
+          L"%d", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:2967:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2967:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%d", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2973:22: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [3], unsigned int&)’
+          L"%u", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:2973:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2973:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%u", __val); }
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(long int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2978:23: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [4], long int&)’
+          L"%ld", __val); }
+                       ^
+/usr/include/c++/4.8/bits/basic_string.h:2978:23: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2978:23: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%ld", __val); }
+                       ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(long unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2984:23: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [4], long unsigned int&)’
+          L"%lu", __val); }
+                       ^
+/usr/include/c++/4.8/bits/basic_string.h:2984:23: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2984:23: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%lu", __val); }
+                       ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(long long int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2990:24: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [5], long long int&)’
+          L"%lld", __val); }
+                        ^
+/usr/include/c++/4.8/bits/basic_string.h:2990:24: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2990:24: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%lld", __val); }
+                        ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(long long unsigned int)’:
+/usr/include/c++/4.8/bits/basic_string.h:2996:24: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), long unsigned int, const wchar_t [5], long long unsigned int&)’
+          L"%llu", __val); }
+                        ^
+/usr/include/c++/4.8/bits/basic_string.h:2996:24: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:2996:24: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%llu", __val); }
+                        ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(float)’:
+/usr/include/c++/4.8/bits/basic_string.h:3004:22: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), const int&, const wchar_t [3], float&)’
+          L"%f", __val);
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:3004:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:3004:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%f", __val);
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(double)’:
+/usr/include/c++/4.8/bits/basic_string.h:3013:22: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), const int&, const wchar_t [3], double&)’
+          L"%f", __val);
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h:3013:22: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:3013:22: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%f", __val);
+                      ^
+/usr/include/c++/4.8/bits/basic_string.h: In function ‘std::wstring std::to_wstring(long double)’:
+/usr/include/c++/4.8/bits/basic_string.h:3022:23: error: no matching function for call to ‘__to_xstring(int (*)(wchar_t*, int, const wchar_t*, __va_list_tag*)throw (), const int&, const wchar_t [4], long double&)’
+          L"%Lf", __val);
+                       ^
+/usr/include/c++/4.8/bits/basic_string.h:3022:23: note: candidate is:
+In file included from /usr/include/c++/4.8/bits/basic_string.h:2815:0,
+                 from /usr/include/c++/4.8/string:52,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, std::size_t, const _CharT*, __va_list_tag*), std::size_t, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/4.8/ext/string_conversions.h:83:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/bits/basic_string.h:3022:23: note:   mismatched types ‘std::size_t {aka long unsigned int}’ and ‘int’
+          L"%Lf", __val);
+                       ^
+In file included from /usr/include/boost/config/stdlib/libstdcpp3.hpp:77:0,
+                 from /usr/include/boost/config.hpp:44,
+                 from /usr/include/boost/math/tools/config.hpp:13,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/unistd.h: At global scope:
+/usr/include/unistd.h:360:45: error: ‘size_t’ has not been declared
+ extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur;
+                                             ^
+/usr/include/unistd.h:366:52: error: ‘size_t’ has not been declared
+ extern ssize_t write (int __fd, const void *__buf, size_t __n) __wur;
+                                                    ^
+/usr/include/unistd.h:376:46: error: ‘size_t’ has not been declared
+ extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,
+                                              ^
+/usr/include/unistd.h:384:53: error: ‘size_t’ has not been declared
+ extern ssize_t pwrite (int __fd, const void *__buf, size_t __n,
+                                                     ^
+/usr/include/unistd.h:404:48: error: ‘size_t’ has not been declared
+ extern ssize_t pread64 (int __fd, void *__buf, size_t __nbytes,
+                                                ^
+/usr/include/unistd.h:408:55: error: ‘size_t’ has not been declared
+ extern ssize_t pwrite64 (int __fd, const void *__buf, size_t __n,
+                                                       ^
+/usr/include/unistd.h:511:35: error: ‘size_t’ has not been declared
+ extern char *getcwd (char *__buf, size_t __size) __THROW __wur;
+                                   ^
+In file included from /usr/include/boost/config/stdlib/libstdcpp3.hpp:77:0,
+                 from /usr/include/boost/config.hpp:44,
+                 from /usr/include/boost/math/tools/config.hpp:13,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/unistd.h:623:8: error: ‘size_t’ does not name a type
+ extern size_t confstr (int __name, char *__buf, size_t __len) __THROW;
+        ^
+/usr/include/unistd.h:774:46: error: ‘size_t’ has not been declared
+ extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
+                                              ^
+/usr/include/unistd.h:810:29: error: ‘size_t’ has not been declared
+     char *__restrict __buf, size_t __len)
+                             ^
+/usr/include/unistd.h:821:31: error: ‘size_t’ has not been declared
+       char *__restrict __buf, size_t __len)
+                               ^
+/usr/include/unistd.h:857:38: error: ‘size_t’ has not been declared
+ extern int getlogin_r (char *__name, size_t __name_len) __nonnull ((1));
+                                      ^
+In file included from /usr/include/boost/config/stdlib/libstdcpp3.hpp:77:0,
+                 from /usr/include/boost/config.hpp:44,
+                 from /usr/include/boost/math/tools/config.hpp:13,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/unistd.h:879:39: error: ‘size_t’ has not been declared
+ extern int gethostname (char *__name, size_t __len) __THROW __nonnull ((1));
+                                       ^
+/usr/include/unistd.h:886:45: error: ‘size_t’ has not been declared
+ extern int sethostname (const char *__name, size_t __len)
+                                             ^
+/usr/include/unistd.h:897:41: error: ‘size_t’ has not been declared
+ extern int getdomainname (char *__name, size_t __len)
+                                         ^
+/usr/include/unistd.h:899:47: error: ‘size_t’ has not been declared
+ extern int setdomainname (const char *__name, size_t __len)
+                                               ^
+/usr/include/unistd.h:917:57: error: ‘size_t’ has not been declared
+ extern int profil (unsigned short int *__sample_buffer, size_t __size,
+                                                         ^
+/usr/include/unistd.h:918:6: error: ‘size_t’ has not been declared
+      size_t __offset, unsigned int __scale)
+      ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/xmmintrin.h:38:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/x86intrin.h:34,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/opt_random.h:33,
+                 from /usr/include/c++/4.8/random:51,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/math/tools/config.hpp:16,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:34:41: error: ‘size_t’ has not been declared
+ extern "C" int posix_memalign (void **, size_t, size_t) throw ();
+                                         ^
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:34:49: error: ‘size_t’ has not been declared
+ extern "C" int posix_memalign (void **, size_t, size_t) throw ();
+                                                 ^
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:13: error: ‘_mm_malloc’ declared as an ‘inline’ variable
+ _mm_malloc (size_t size, size_t alignment)
+             ^
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:13: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:13: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/xmmintrin.h:38:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/x86intrin.h:34,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/opt_random.h:33,
+                 from /usr/include/c++/4.8/random:51,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/math/tools/config.hpp:16,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:26: error: ‘size_t’ was not declared in this scope
+ _mm_malloc (size_t size, size_t alignment)
+                          ^
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:26: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/xmmintrin.h:38:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/4.8/include/x86intrin.h:34,
+                 from /usr/include/x86_64-linux-gnu/c++/4.8/bits/opt_random.h:33,
+                 from /usr/include/c++/4.8/random:51,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/math/tools/config.hpp:16,
+                 from /usr/include/boost/math/special_functions/round.hpp:13,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:38:42: error: expression list treated as compound expression in initializer [-fpermissive]
+ _mm_malloc (size_t size, size_t alignment)
+                                          ^
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mm_malloc.h:39:1: error: expected ‘,’ or ‘;’ before ‘{’ token
+ {
+ ^
+In file included from /usr/include/c++/4.8/bits/locale_facets_nonio.h:39:0,
+                 from /usr/include/c++/4.8/locale:41,
+                 from /usr/include/c++/4.8/iomanip:43,
+                 from /usr/include/boost/math/policies/error_handling.hpp:12,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/ctime:72:11: error: ‘::strftime’ has not been declared
+   using ::strftime;
+           ^
+In file included from /usr/include/c++/4.8/cstring:42:0,
+                 from /usr/include/boost/math/special_functions/detail/fp_traits.hpp:23,
+                 from /usr/include/boost/math/special_functions/fpclassify.hpp:20,
+                 from /usr/include/boost/math/special_functions/round.hpp:15,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/string.h:47:8: error: ‘size_t’ has not been declared
+        size_t __n) __THROW __nonnull ((1, 2));
+        ^
+/usr/include/string.h:50:56: error: ‘size_t’ has not been declared
+ extern void *memmove (void *__dest, const void *__src, size_t __n)
+                                                        ^
+/usr/include/string.h:59:18: error: ‘size_t’ has not been declared
+         int __c, size_t __n)
+                  ^
+/usr/include/string.h:66:42: error: ‘size_t’ has not been declared
+ extern void *memset (void *__s, int __c, size_t __n) __THROW __nonnull ((1));
+                                          ^
+/usr/include/string.h:69:56: error: ‘size_t’ has not been declared
+ extern int memcmp (const void *__s1, const void *__s2, size_t __n)
+                                                        ^
+/usr/include/string.h:76:42: error: ‘size_t’ has not been declared
+ extern void *memchr (void *__s, int __c, size_t __n)
+                                          ^
+/usr/include/string.h:78:54: error: ‘size_t’ has not been declared
+ extern const void *memchr (const void *__s, int __c, size_t __n)
+                                                      ^
+/usr/include/string.h:116:49: error: ‘size_t’ has not been declared
+ extern "C++" void *memrchr (void *__s, int __c, size_t __n)
+                                                 ^
+/usr/include/string.h:118:61: error: ‘size_t’ has not been declared
+ extern "C++" const void *memrchr (const void *__s, int __c, size_t __n)
+                                                             ^
+/usr/include/string.h:133:39: error: ‘size_t’ has not been declared
+         const char *__restrict __src, size_t __n)
+                                       ^
+/usr/include/string.h:141:9: error: ‘size_t’ has not been declared
+         size_t __n) __THROW __nonnull ((1, 2));
+         ^
+/usr/include/string.h:147:57: error: ‘size_t’ has not been declared
+ extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+                                                         ^
+/usr/include/string.h:154:8: error: ‘size_t’ does not name a type
+ extern size_t strxfrm (char *__restrict __dest,
+        ^
+/usr/include/string.h:169:8: error: ‘size_t’ does not name a type
+ extern size_t strxfrm_l (char *__dest, const char *__src, size_t __n,
+        ^
+/usr/include/string.h:184:45: error: ‘size_t’ has not been declared
+ extern char *strndup (const char *__string, size_t __n)
+                                             ^
+/usr/include/string.h:285:8: error: ‘size_t’ does not name a type
+ extern size_t strcspn (const char *__s, const char *__reject)
+        ^
+/usr/include/string.h:289:8: error: ‘size_t’ does not name a type
+ extern size_t strspn (const char *__s, const char *__accept)
+        ^
+/usr/include/string.h:382:46: error: ‘size_t’ has not been declared
+ extern void *memmem (const void *__haystack, size_t __haystacklen,
+                                              ^
+/usr/include/string.h:383:30: error: ‘size_t’ has not been declared
+        const void *__needle, size_t __needlelen)
+                              ^
+/usr/include/string.h:389:34: error: ‘size_t’ has not been declared
+    const void *__restrict __src, size_t __n)
+                                  ^
+/usr/include/string.h:392:39: error: ‘size_t’ has not been declared
+         const void *__restrict __src, size_t __n)
+                                       ^
+/usr/include/string.h:399:8: error: ‘size_t’ does not name a type
+ extern size_t strlen (const char *__s)
+        ^
+/usr/include/string.h:406:8: error: ‘size_t’ does not name a type
+ extern size_t strnlen (const char *__string, size_t __maxlen)
+        ^
+/usr/include/string.h:438:53: error: ‘size_t’ has not been declared
+ extern char *strerror_r (int __errnum, char *__buf, size_t __buflen)
+                                                     ^
+/usr/include/string.h:451:33: error: ‘size_t’ has not been declared
+ extern void __bzero (void *__s, size_t __n) __THROW __nonnull ((1));
+                                 ^
+/usr/include/string.h:455:53: error: ‘size_t’ has not been declared
+ extern void bcopy (const void *__src, void *__dest, size_t __n)
+                                                     ^
+/usr/include/string.h:459:31: error: ‘size_t’ has not been declared
+ extern void bzero (void *__s, size_t __n) __THROW __nonnull ((1));
+                               ^
+/usr/include/string.h:462:54: error: ‘size_t’ has not been declared
+ extern int bcmp (const void *__s1, const void *__s2, size_t __n)
+                                                      ^
+/usr/include/string.h:538:61: error: ‘size_t’ has not been declared
+ extern int strncasecmp (const char *__s1, const char *__s2, size_t __n)
+                                                             ^
+/usr/include/string.h:550:6: error: ‘size_t’ has not been declared
+      size_t __n, __locale_t __loc)
+      ^
+/usr/include/string.h:575:34: error: ‘size_t’ has not been declared
+    const char *__restrict __src, size_t __n)
+                                  ^
+/usr/include/string.h:578:39: error: ‘size_t’ has not been declared
+         const char *__restrict __src, size_t __n)
+                                       ^
+/usr/include/string.h:591:34: error: ‘size_t’ has not been declared
+ extern void *memfrob (void *__s, size_t __n) __THROW __nonnull ((1));
+                                  ^
+In file included from /usr/include/boost/math/special_functions/detail/fp_traits.hpp:23:0,
+                 from /usr/include/boost/math/special_functions/fpclassify.hpp:20,
+                 from /usr/include/boost/math/special_functions/round.hpp:15,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/c++/4.8/cstring:84:11: error: ‘::strcspn’ has not been declared
+   using ::strcspn;
+           ^
+/usr/include/c++/4.8/cstring:86:11: error: ‘::strlen’ has not been declared
+   using ::strlen;
+           ^
+/usr/include/c++/4.8/cstring:90:11: error: ‘::strspn’ has not been declared
+   using ::strspn;
+           ^
+/usr/include/c++/4.8/cstring:92:11: error: ‘::strxfrm’ has not been declared
+   using ::strxfrm;
+           ^
+In file included from /usr/include/log4cxx/logstring.h:83:0,
+                 from /usr/include/log4cxx/level.h:22,
+                 from /opt/ros/indigo/include/ros/console.h:45,
+                 from /opt/ros/indigo/include/ros/ros.h:40,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/log4cxx/helpers/transcoder.h:188:14: error: ‘size_t’ does not name a type
+       static size_t encodeUTF8(unsigned int ch, char* dst);
+              ^
+/usr/include/log4cxx/helpers/transcoder.h:189:14: error: ‘size_t’ does not name a type
+       static size_t encodeUTF16BE(unsigned int ch, char* dst);
+              ^
+/usr/include/log4cxx/helpers/transcoder.h:190:14: error: ‘size_t’ does not name a type
+       static size_t encodeUTF16LE(unsigned int ch, char* dst);
+              ^
+In file included from /opt/ros/indigo/include/ros/ros.h:40:0,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/opt/ros/indigo/include/ros/console.h:263:73: error: ‘size_t’ has not been declared
+ ROSCONSOLE_DECL void vformatToBuffer(boost::shared_array<char>& buffer, size_t& buffer_size, const char* fmt, va_list args);
+                                                                         ^
+/opt/ros/indigo/include/ros/console.h:264:72: error: ‘size_t’ has not been declared
+ ROSCONSOLE_DECL void formatToBuffer(boost::shared_array<char>& buffer, size_t& buffer_size, const char* fmt, ...);
+                                                                        ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:13:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:47,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function0<R>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:13:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:47,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:18:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:52,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function1<R, T1>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:18:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:52,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:23:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:57,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function2<R, T1, T2>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:23:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:57,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:28:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:62,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function3<R, T1, T2, T3>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:28:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:62,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:33:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:67,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function4<R, T1, T2, T3, T4>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:33:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:67,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:38:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:72,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function5<R, T1, T2, T3, T4, T5>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:38:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:72,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:43:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:77,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function6<R, T1, T2, T3, T4, T5, T6>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:43:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:77,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:48:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:82,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function7<R, T1, T2, T3, T4, T5, T6, T7>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:48:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:82,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:53:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:87,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function8<R, T1, T2, T3, T4, T5, T6, T7, T8>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:53:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:87,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:58:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:92,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function9<R, T1, T2, T3, T4, T5, T6, T7, T8, T9>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:58:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:92,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:63:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:97,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp: In member function ‘void boost::function10<R, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>::assign_to(Functor)’:
+/usr/include/boost/function/function_template.hpp:941:32: error: expected type-specifier before ‘size_t’
+           value |= static_cast<size_t>(0x01);
+                                ^
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘>’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: expected ‘(’ before ‘size_t’
+/usr/include/boost/function/function_template.hpp:941:32: error: ‘size_t’ was not declared in this scope
+/usr/include/boost/function/function_template.hpp:941:32: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /usr/include/boost/function/detail/maybe_include.hpp:63:0,
+                 from /usr/include/boost/function/detail/function_iterate.hpp:14,
+                 from /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:97,
+                 from /usr/include/boost/function.hpp:64,
+                 from /opt/ros/indigo/include/ros/forwards.h:40,
+                 from /opt/ros/indigo/include/ros/common.h:37,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/function/function_template.hpp:941:45: error: expected ‘)’ before ‘;’ token
+           value |= static_cast<size_t>(0x01);
+                                             ^
+In file included from /opt/ros/indigo/include/ros/common.h:38:0,
+                 from /opt/ros/indigo/include/ros/ros.h:43,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/opt/ros/indigo/include/ros/serialized_message.h: At global scope:
+/opt/ros/indigo/include/ros/serialized_message.h:43:3: error: ‘size_t’ does not name a type
+   size_t num_bytes;
+   ^
+/opt/ros/indigo/include/ros/serialized_message.h:56:55: error: ‘size_t’ has not been declared
+   SerializedMessage(boost::shared_array<uint8_t> buf, size_t num_bytes)
+                                                       ^
+/opt/ros/indigo/include/ros/serialized_message.h: In constructor ‘ros::SerializedMessage::SerializedMessage()’:
+/opt/ros/indigo/include/ros/serialized_message.h:51:5: error: class ‘ros::SerializedMessage’ does not have any field named ‘num_bytes’
+   , num_bytes(0)
+     ^
+/opt/ros/indigo/include/ros/serialized_message.h: In constructor ‘ros::SerializedMessage::SerializedMessage(boost::shared_array<unsigned char>, int)’:
+/opt/ros/indigo/include/ros/serialized_message.h:58:5: error: class ‘ros::SerializedMessage’ does not have any field named ‘num_bytes’
+   , num_bytes(num_bytes)
+     ^
+In file included from /opt/ros/indigo/include/ros/publisher.h:34:0,
+                 from /opt/ros/indigo/include/ros/node_handle.h:32,
+                 from /opt/ros/indigo/include/ros/ros.h:45,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/opt/ros/indigo/include/ros/serialization.h: In static member function ‘static void ros::serialization::Serializer<std::basic_string<char, std::char_traits<char>, ContainerAllocator> >::write(Stream&, const StringType&)’:
+/opt/ros/indigo/include/ros/serialization.h:280:5: error: ‘size_t’ was not declared in this scope
+     size_t len = str.size();
+     ^
+/opt/ros/indigo/include/ros/serialization.h:280:5: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/string:38:0,
+                 from /opt/ros/indigo/include/ros/platform.h:55,
+                 from /opt/ros/indigo/include/ros/time.h:53,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+   typedef __SIZE_TYPE__  size_t;
+                          ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:186:26: note:   ‘std::size_t’
+In file included from /usr/include/boost/mpl/size_t.hpp:17:0,
+                 from /usr/include/boost/type_traits/detail/size_t_trait_def.hpp:17,
+                 from /usr/include/boost/type_traits/alignment_of.hpp:17,
+                 from /usr/include/boost/optional/optional.hpp:24,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/format/internals.hpp:20,
+                 from /usr/include/boost/format.hpp:38,
+                 from /usr/include/boost/math/policies/error_handling.hpp:31,
+                 from /usr/include/boost/math/special_functions/round.hpp:14,
+                 from /opt/ros/indigo/include/ros/time.h:58,
+                 from /opt/ros/indigo/include/ros/ros.h:38,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+ template< std::size_t N > struct size_t;
+                                  ^
+/usr/include/boost/mpl/size_t_fwd.hpp:23:34: note:   ‘mpl_::size_t’
+In file included from /opt/ros/indigo/include/ros/publisher.h:34:0,
+                 from /opt/ros/indigo/include/ros/node_handle.h:32,
+                 from /opt/ros/indigo/include/ros/ros.h:45,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/opt/ros/indigo/include/ros/serialization.h:280:12: error: expected ‘;’ before ‘len’
+     size_t len = str.size();
+            ^
+/opt/ros/indigo/include/ros/serialization.h:281:27: error: ‘len’ was not declared in this scope
+     stream.next((uint32_t)len);
+                           ^
+In file included from /opt/ros/indigo/include/ros/publisher.h:34:0,
+                 from /opt/ros/indigo/include/ros/node_handle.h:32,
+                 from /opt/ros/indigo/include/ros/ros.h:45,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/opt/ros/indigo/include/ros/serialization.h: At global scope:
+/opt/ros/indigo/include/ros/serialization.h:540:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N, class Enabled = void>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:547:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:593:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:623:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:661:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N, typename Stream>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:670:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N, typename Stream>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h:679:22: error: ‘size_t’ has not been declared
+ template<typename T, size_t N>
+                      ^
+/opt/ros/indigo/include/ros/serialization.h: In function ‘ros::SerializedMessage ros::serialization::serializeMessage(const M&)’:
+/opt/ros/indigo/include/ros/serialization.h:849:5: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+   m.num_bytes = len + 4;
+     ^
+/opt/ros/indigo/include/ros/serialization.h:850:29: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+   m.buf.reset(new uint8_t[m.num_bytes]);
+                             ^
+/opt/ros/indigo/include/ros/serialization.h:852:38: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+   OStream s(m.buf.get(), (uint32_t)m.num_bytes);
+                                      ^
+/opt/ros/indigo/include/ros/serialization.h:853:28: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+   serialize(s, (uint32_t)m.num_bytes - 4);
+                            ^
+/opt/ros/indigo/include/ros/serialization.h: In function ‘ros::SerializedMessage ros::serialization::serializeServiceResponse(bool, const M&)’:
+/opt/ros/indigo/include/ros/serialization.h:871:7: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     m.num_bytes = len + 5;
+       ^
+/opt/ros/indigo/include/ros/serialization.h:872:31: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     m.buf.reset(new uint8_t[m.num_bytes]);
+                               ^
+/opt/ros/indigo/include/ros/serialization.h:874:40: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     OStream s(m.buf.get(), (uint32_t)m.num_bytes);
+                                        ^
+/opt/ros/indigo/include/ros/serialization.h:876:30: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     serialize(s, (uint32_t)m.num_bytes - 5);
+                              ^
+/opt/ros/indigo/include/ros/serialization.h:882:7: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     m.num_bytes = len + 1;
+       ^
+/opt/ros/indigo/include/ros/serialization.h:883:31: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     m.buf.reset(new uint8_t[m.num_bytes]);
+                               ^
+/opt/ros/indigo/include/ros/serialization.h:885:40: error: ‘class ros::SerializedMessage’ has no member named ‘num_bytes’
+     OStream s(m.buf.get(), (uint32_t)m.num_bytes);
+                                        ^
+/opt/ros/indigo/include/ros/serialization.h: In function ‘void ros::serialization::deserializeMessage(const ros::SerializedMessage&, M&)’:
+/opt/ros/indigo/include/ros/serialization.h:899:32: error: ‘const class ros::SerializedMessage’ has no member named ‘num_bytes’
+   IStream s(m.message_start, m.num_bytes - (m.message_start - m.buf.get()));
+                                ^
+In file included from /usr/include/boost/range/end.hpp:24:0,
+                 from /usr/include/boost/range/functions.hpp:19,
+                 from /usr/include/boost/range/iterator_range_core.hpp:28,
+                 from /usr/include/boost/lexical_cast.hpp:169,
+                 from /opt/ros/indigo/include/ros/transport_hints.h:34,
+                 from /opt/ros/indigo/include/ros/subscribe_options.h:33,
+                 from /opt/ros/indigo/include/ros/node_handle.h:41,
+                 from /opt/ros/indigo/include/ros/ros.h:45,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/boost/range/detail/implementation_help.hpp: In function ‘const char* boost::range_detail::str_end(const char*, const char*)’:
+/usr/include/boost/range/detail/implementation_help.hpp:37:34: error: ‘strlen’ was not declared in this scope
+             return s + strlen( s );
+                                  ^
+/usr/include/boost/range/detail/implementation_help.hpp: In function ‘const wchar_t* boost::range_detail::str_end(const wchar_t*, const wchar_t*)’:
+/usr/include/boost/range/detail/implementation_help.hpp:43:34: error: ‘wcslen’ was not declared in this scope
+             return s + wcslen( s );
+                                  ^
+In file included from /usr/include/eigen3/Eigen/Core:256:0,
+                 from /usr/include/eigen3/Eigen/Dense:1,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/include.h:8,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/include/px4_offboard/Mission.h:6,
+                 from /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/px4_offboard/src/Mission.cpp:2:
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h: In function ‘void* Eigen::internal::handmade_aligned_malloc(std::size_t)’:
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h:106:39: error: ‘malloc’ cannot be used as a function
+   void *original = std::malloc(size+16);
+                                       ^
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h: In function ‘void* Eigen::internal::aligned_malloc(std::size_t)’:
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h:220:30: error: ‘malloc’ cannot be used as a function
+     result = std::malloc(size);
+                              ^
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h: In function ‘void* Eigen::internal::conditional_aligned_malloc(std::size_t) [with bool Align = false; std::size_t = long unsigned int]’:
+/usr/include/eigen3/Eigen/src/Core/util/Memory.h:308:34: error: ‘malloc’ cannot be used as a function
+   void *result = std::malloc(size);
+                                  ^
+make[2]: *** [CMakeFiles/mission.dir/src/Mission.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mission.dir/all] Error 2
+make: *** [all] Error 2
+[1m[30mcd /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/px4_offboard; catkin build --get-env px4_offboard | catkin env -si  /usr/bin/make --jobserver-fds=6,7 -j; cd -[0m
+[0m[31m................................................................................................[0m[0m
+[1m[31mFailed[0m    [31m <<[0m [36mpx4_offboard[0m:[34mmake           [0m[ [33mExited with code [1m[33m2[0m ][0m                                
+[1m[31mFailed[0m    [31m<<<[0m [36mpx4_offboard               [0m [ [33m3.0 seconds[0m ][0m                                       
+[build] [3m[1m[33mSummary:[0m [3m[1m0[0m [3mof [1m1[0m [3mpackages succeeded.[0m[0m                                                     
+[build]   [3m[1m[35mIgnored:[0m   [3m[1m4[0m [3mpackages were skipped or are blacklisted.[0m[0m                                
+[build]   [3m[1m[30mWarnings:  None.[0m[0m                                                                      
+[build]   [3m[1m[30mAbandoned: None.[0m[0m                                                                      
+[build]   [3m[1m[31mFailed:[0m    [3m[1m1[0m [3mpackages failed.[0m[0m                                                         
+[build] [3m[1mRuntime:[0m [3m3.2 seconds total.[0m[0m                                                             
+]0;tuofeichen@chen-Ubuntu: ~/SLAM/MAV-Project/px4_ws/src/px4_offboardtuofeichen:px4_offboard$ exit
+exit
+
+Script done on Sun 14 May 2017 04:13:29 PM CDT

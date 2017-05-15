@@ -217,6 +217,8 @@ void Mapping::run()
 
 	addNewNode();
 
+	delayProc.join(); // join optimizing graph
+
 	if (optFlag && currentFrame.getNewNodeFlag() > 0) // new node then lets do graph optimization
 	{
 		optFlag 		 = false; // don't add new thread to the queue, this should be asynchronous
@@ -225,7 +227,6 @@ void Mapping::run()
 		// mapMutex.unlock();
 		// delayProc.join();
 	}
-
 }
 
 void Mapping::addFrame(Frame& frame)

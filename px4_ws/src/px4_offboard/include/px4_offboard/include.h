@@ -33,6 +33,7 @@ typedef struct vel_s {
   double vx;
   double vy;
   double vz;
+  double vyaw;
 } my_vel;
 
 typedef struct pos_s {

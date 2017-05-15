@@ -59,7 +59,8 @@ int main(int argc, char** argv)
 	int printMod    = 1;
   int takeoff_set = 0; //takeoff flag only set once
 
-  ros::Rate loop_rate(120);
+  ros::Rate loop_rate(50);
+  ros::Rate loop_rate_turn(20);
 
   while(ros::ok())
   {
@@ -72,9 +73,7 @@ int main(int argc, char** argv)
 				if (mission.update()) // wait for update
 				{
 					mission.correctTraverseHeight();
-
-					if(!(++printDelay%printMod)) // printing and logging
-							mission.logSp();
+					mission.logSp();
 					mission.publish(); // publish control command once
  					mission.hover();   // clear _objCommand
 				}
@@ -100,10 +99,11 @@ int main(int argc, char** argv)
 		  			// if (mission.getStateSwitchFlag())
 	  				// 	ROS_INFO("[Mission] Takeoff mode");
 
-						if (takeoff_set < 30) // ask for takeoff
+						if (takeoff_set < 50) // ask for takeoff
 		  			{
 							takeoff_set++;
 							mission.takeoff();
+							mission.logSp();
 							mission.publish();
 						}
 						else
@@ -158,7 +158,17 @@ int main(int argc, char** argv)
 	  	}
 
 		ros::spinOnce(); // listen to subscriptions
-	  loop_rate.sleep();
+
+		/*if ((mission.getFlightMode() == turning) || (mission.getFlightMode() == traverse))
+		{
+			loop_rate_turn.sleep();
+		}
+		else
+		{
+			loop_rate.sleep();
+		}*/
+		loop_rate.sleep();
+
   }
 }
 
@@ -265,7 +275,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 						_is_calibrate = 1;
 						_yaw_prev = _yaw;
 						ROS_WARN("[Mission] Yaw pin down is %f, z pin down is %f", _yaw_prev,_lpe(2,3));
-						usleep(200*1000);
+						// usleep(200*1000);
 					}
 
 				}
@@ -308,12 +318,12 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 			{ // observation / calibration mode
 					if (!_obst_found)
 					{
-					if((fabs(_angle_rad) > 2 *_ang_tol)||(fabs(_lpe(2,3) - _traverse_height)>_lin_tol)){
+					if(fabs(_angle_rad) > 2 *_ang_tol){ // no height constraint here (too stringent)
 						if (_cali_cnt > 0){
 								_cali_cnt--;
 						}
 					}
-					else if ((msg.z < (_track_dist+30))&& (msg.z > _track_dist))
+					else if ((msg.z < (_track_dist+50))&& (msg.z > _track_dist))
 					{
 						_cali_cnt++;
 					} // always get close to the wall
@@ -324,31 +334,31 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.yaw = _Kyaw * _angle_rad;
 				 }
 
-				 ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
+				//  ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
 
-				 if ((_cali_cnt > 5)||(_obst_found)) // back off mode
+				 if ((_cali_cnt > 4)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
-					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
-
-					if ((_trav_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
-						ROS_INFO("[Mission] Increment traverse distance");
-						_trav_dist += _traverse_inc;
-						_obst_cnt++;
-					}
-
+					// ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
 					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					if ((msg.y < (_trav_dist+30)) && (msg.y > _trav_dist-30)){
-						ROS_INFO("[Mission] Finished backing off start turning");
+					if ((msg.y < (_trav_dist+40)) && (msg.y > _trav_dist-40)){
+						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;
 						_cali_cnt = 0;
 						_yaw_prev = _yaw;
 						setFlightMode(turning); // enter turning mode
 					}
+
+					if ((_trav_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
+						ROS_INFO("[Mission] Increment traverse %d", _obst_cnt);
+						_trav_dist += _traverse_inc;
+						_obst_cnt++;
+					}
+
 				}
 			}
 			else
@@ -484,6 +494,5 @@ void Mission::readParam()
 	_nh.getParam("/fcu/lin_tol",  _lin_tol);
 	_nh.getParam("/fcu/trav_h",   _traverse_height);
 	_nh.getParam("/fcu/trav_v",    _traverse_speed);
-
 
 }

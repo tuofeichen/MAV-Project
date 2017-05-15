@@ -14,13 +14,13 @@ CtrlPx4::CtrlPx4() {
   nh_.getParam("/fcu/maxdxy", MAX_DXY);
   nh_.getParam("/fcu/maxdyaw", MAX_DYAW);
 
-
+  std::cout <<"auto takeoff? " <<  auto_tl_ << std::endl;
   std::cout << std::fixed << std::setprecision(4);
 
-  off_en_ = sim_;                   // initialize off_en_to be 1 always if in simulation mode
-  pos_ctrl_ = POS;                    // default position control
-  controller_state_.failsafe = 0;   // clear fail safe flag
-  prev_yaw_sp_ = ;                 // clear previous yaw setpoint
+  off_en_ = sim_;                    // initialize off_en_to be 1 always if in simulation mode
+  pos_ctrl_ = POS;                   // default position control
+  controller_state_.failsafe = 0;    // clear fail safe flag
+  prev_yaw_sp_ = 10;                 // clear previous yaw setpoint
 
 
   // PID pid - Land controller;
@@ -87,13 +87,17 @@ bool CtrlPx4::commandUpdate() {
       if ((auto_tl_ > 0) && ((state_set_.takeoff) && (!state_read_.takeoff)) ||
           (state_set_.land)) {
         if (state_set_.takeoff) // pos control takeoff
+        {
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
+        }
         else // vel control landing
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
       }
       else {
         if (pos_ctrl_)
+        {
           mavros_pos_pub_.publish(fcu_pos_setpoint_);
+        }
         else
           mavros_vel_pub_.publish(fcu_vel_setpoint_);
       }
@@ -154,6 +158,7 @@ void CtrlPx4::joyCallback(const px4_offboard::MavState joy) {
 
 void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
 
+
   if (state_set_.land == 0) // not in landing mode
   {
     if ((!state_set_.arm)&& (joy.arm))
@@ -169,8 +174,9 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     state_set_.failsafe = joy.failsafe;
 
     if (state_read_.takeoff) // don't mess with move to point during takeoff
+    {
       moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
-
+    }
   }
 
 }
@@ -181,7 +187,7 @@ void CtrlPx4::aprilCallback(const px4_offboard::MavState joy) {
 
 void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat) {
   if (bat.voltage < BAT_LOW_THRESH) {
-    ROS_WARN("[PX4 CTRL] Low battery!");
+    ROS_WARN("[PX4 CTRL] Low battery! %4.2f",bat.voltage);
   }
 }
 
@@ -238,6 +244,7 @@ void CtrlPx4::velCallback(const geometry_msgs::TwistStamped vel_read) {
   vel_.vx = vel_read.twist.linear.x;
   vel_.vy = vel_read.twist.linear.y;
   vel_.vz = vel_read.twist.linear.z;
+  vel_.vyaw = vel_read.twist.angular.z; // yaw rate
 };
 
 void CtrlPx4::updateState() {
@@ -404,28 +411,48 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
 
   if (pos_ctrl_ == POS){
+    // first term is the previous setpoint
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
 
   // need yaw drift handling
-  if (fabs(yaw - prev_yaw_sp_) < MAX_DYAW) {
-    yaw = prev_yaw_sp_; // maintain previous yaw setpoint (prevent drifting)
-  } else {
-    // want always reset
-    ROS_INFO("reset yaw_sp");
+
+  // if ((prev_yaw_sp_ >  M_PI)&& (yaw < 0)) // avoid wrap around
+	// {
+	// 	yaw += 2* M_PI; // warp around
+	// }
+
+
+
+  if((fabs( prev_yaw_sp_) > 5)||(dyaw_sp < 0.000001))// initializing prev_yaw_sp_ at beginning (or very little change needed)
+    prev_yaw_sp_ = yaw;//
+
+  if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
+    dyaw_sp = 0;
+    // ROS_INFO("saturate of yaw %3.2f, yaw_sp %3.2f",yaw, prev_yaw_sp_); // current yaw
   }
 
-  float qw = cos(0.5 * yaw + dyaw_sp);
-  float qz = sin(0.5 * yaw + dyaw_sp);
-  prev_yaw_sp_ = yaw + dyaw_sp;
+  float yaw_sp = prev_yaw_sp_ + dyaw_sp; // important to prevent drifting
+
+// avoid wrap around
+  if (yaw_sp > M_PI) // saturation should be here
+    yaw_sp -= 2*M_PI;
+  else if (yaw_sp < -M_PI)
+    yaw_sp += 2*M_PI;
+
+  float qw = cos(0.5 * yaw_sp);
+  float qz = sin(0.5 * yaw_sp);
+  prev_yaw_sp_ = yaw_sp;
+
 
   // decided if we need to reset position setpoint
   if ((fabs(pos_read_.px + pos_nav(0) - x) +
        fabs(pos_read_.py + pos_nav(1) - y)) > MAX_DXY) {
-    fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0);
-    fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
-    // ROS_INFO("[PX4 CTRL] Reset xy");
+    // xy saturation
+    // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
+    // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
+    ROS_INFO("[PX4 CTRL] Reset xy");
   } else {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
@@ -450,8 +477,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
   else
   {
-    prev_yaw_sp_  = yaw; // note down yaw (don't overturn)
-
+    prev_yaw_sp_  = yaw; // note down yaw (so that when we switch back to position control we know where we are)
     fcu_vel_setpoint_.twist.linear.x =
         -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
     fcu_vel_setpoint_.twist.linear.y =

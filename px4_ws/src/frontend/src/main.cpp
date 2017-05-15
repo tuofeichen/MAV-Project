@@ -149,6 +149,7 @@ int main(int argc, char **argv)
 			t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
 			t_slam.join();
 			t_procFrame.join();
+			
 
 			if ((slam.getBadFrameFlag() < 1) || (!obj.getObjDetectFlag()))
 			{

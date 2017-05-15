@@ -306,7 +306,7 @@ void ObjDetection::checkObjAngle(cv::Mat Depth) // these functions needs clean u
 void ObjDetection::checkForWall(cv::Mat Depth)
 {
    // assume 160,120 is the center of the image
-	int e = 40;
+	int e = 25;
 	int square_size = 3;
 	int pixel_number_left  = 160 - e;
 	int pixel_number_right = 160 + e;

@@ -6,8 +6,8 @@
     "Fields": "STAT.MainState",
     "Delay": 0,
     "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
+    "Scale": 0.1,
+    "LPF": 0
    },
    "Colors": {"STAT.MainState": "ffc800"},
    "Title": "STAT.MainState"
@@ -128,8 +128,8 @@
     "Fields": "ATT.Yaw LPSP.Yaw",
     "Delay": 0,
     "Offset": 0,
-    "Scale": 1,
-    "LPF": 0
+    "LPF": 0,
+    "Scale": 1
    },
    "Colors": {
     "LPSP.Yaw": "00b200",
