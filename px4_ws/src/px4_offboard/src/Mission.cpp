@@ -247,7 +247,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 		else
 		{
 			_cannot_find_wall_cnt--;
-			if( (fabs(_angle_rad) > 0.1) && (!_is_calibrate) )					// P controller to adjust drone to a found wall
+			if( (fabs(_angle_rad) > _ang_tol) && (!_is_calibrate) )					// P controller to adjust drone to a found wall
 			{
 				_is_update = 1;
 				ROS_INFO("[Mission] Adjust Angle %3.2f", _angle_rad);
@@ -257,7 +257,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 			else
 			{
 				_wall_cnt++;
-				if(_wall_cnt > 20) {
+				if(_wall_cnt > 10) {
 					if (ang.z > 0) // valid angle
 					{
 					_is_update = 1;
@@ -267,7 +267,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 				 	}
 				}
 
-				if((_wall_cnt > 20) && (fabs(ang.z - (float)_trav_dist) < _lin_tol))
+				if((_wall_cnt > 15) && (fabs(ang.z - (float)_trav_dist) < _lin_tol))
 				{
 					ROS_INFO("[Mission] Wall is perpendicular now.");   // drone is perpendicular, hover now
 					if (!_is_calibrate)
@@ -316,14 +316,18 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 	{
 			if ((msg.y < (_track_dist + 300))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
+					if(_cali_cnt == 0){
+						_cali_cnt++; //set cali_cnt to be 1 so that we know we're in calibration mode
+					}
+
 					if (!_obst_found)
 					{
 					if(fabs(_angle_rad) > 2 *_ang_tol){ // no height constraint here (too stringent)
-						if (_cali_cnt > 0){
+						if (_cali_cnt > 1){
 								_cali_cnt--;
 						}
 					}
-					else if ((msg.z < (_track_dist+50))&& (msg.z > _track_dist))
+					else if ((msg.z < (_track_dist+50)) && (msg.z > _track_dist))
 					{
 						_cali_cnt++;
 					} // always get close to the wall
@@ -334,7 +338,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.yaw = _Kyaw * _angle_rad;
 				 }
 
-				//  ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
+				 ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
 
 				 if ((_cali_cnt > 4)||(_obst_found)) // back off mode
 				 {
@@ -344,7 +348,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					if ((msg.y < (_trav_dist+40)) && (msg.y > _trav_dist-40)){
+					if ((msg.y < (_trav_dist+30)) && (msg.y > _trav_dist-30)){
 						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;
@@ -364,17 +368,21 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 			else
 			{
 				_is_update = 1;
-				_objCommand.control = VEL; // during traverse use velocity control mode (steady proceed)
 				_obst_found = 0;
+				_objCommand.control = VEL; // during traverse use velocity control mode (steady proceed)
 
-				if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.25) //
+				if (_cali_cnt > 0){ // fallback from POS, take it easy
+					_objCommand.position.y = _traverse_speed / 5; // slowly approaching
+				}
+				else if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.25) //
 				{
-					_objCommand.position.y = _traverse_speed; // proceed at velocity 0.1
+					_objCommand.position.y = _traverse_speed;
 				}
 				else
 				{
 					hover(); // hover if velocity too big
 				}
+
 			}
 	}
 

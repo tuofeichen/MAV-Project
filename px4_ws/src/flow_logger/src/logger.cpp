@@ -53,7 +53,8 @@ Logger::Logger()
   //mag_sub = nh.subscribe("/mavros/imu/mag",1000,&Logger::magCallback, this);
   lpe_sub = nh.subscribe("/mavros/local_position/pose",1000, &Logger::lpeCallback, this);
   vision_sub = nh.subscribe("/mavros/vision_pose/pose",1000, &Logger::visionCallback,this);
-  lpev_sub = nh.subscribe("mavros/local_position/velocity",1000, &Logger::lpeCallback, this);
+  lpev_sub =  nh.subscribe("mavros/local_position/velocity",1000, &Logger::lpeCallback, this);
+  // bat_sub  =  nh.subscribe ("mavros/battery",100,&Logger::batCallback,this);
 }
 
 Logger::~Logger()

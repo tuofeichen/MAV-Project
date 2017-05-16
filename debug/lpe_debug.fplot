@@ -6,59 +6,11 @@
     "Fields": "STAT.MainState",
     "Delay": 0,
     "Offset": 0,
-    "Scale": 0.1,
-    "LPF": 0
+    "LPF": 0,
+    "Scale": 0.1
    },
    "Colors": {"STAT.MainState": "ffc800"},
    "Title": "STAT.MainState"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPOS.VY",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPOS.VY": "00b200"},
-   "Title": "LPOS.VY"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPSP.VY",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPSP.VY": "00ff00"},
-   "Title": "LPSP.VY"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPOS.Y",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPOS.Y": "000000"},
-   "Title": "LPOS.Y"
-  },
-  {
-   "ProcessorType": "Simple",
-   "Parameters": {
-    "Fields": "LPSP.Y",
-    "Delay": 0,
-    "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
-   },
-   "Colors": {"LPSP.Y": "00ffff"},
-   "Title": "LPSP.Y"
   },
   {
    "ProcessorType": "Simple",
@@ -113,29 +65,36 @@
   {
    "ProcessorType": "Simple",
    "Parameters": {
-    "Fields": "OUT0.Out0",
+    "Fields": "LPOS.VY LPOS.Y LPSP.VY LPSP.Y",
     "Delay": 0,
     "Offset": 0,
-    "LPF": 0,
-    "Scale": 0.001
+    "Scale": 1,
+    "LPF": 1
    },
-   "Colors": {"OUT0.Out0": "000000"},
-   "Title": "OUT0.Out0"
+   "Colors": {
+    "LPOS.VY": "00ffff",
+    "LPOS.Y": "0000ff",
+    "LPSP.VY": "ff00ff",
+    "LPSP.Y": "ffc800"
+   },
+   "Title": "Y tuning"
   },
   {
    "ProcessorType": "Simple",
    "Parameters": {
-    "Fields": "ATT.Yaw LPSP.Yaw",
+    "Fields": "ARSP.YawRateSP ATSP.YawSP ATT.Yaw ATT.YawRate",
     "Delay": 0,
     "Offset": 0,
-    "LPF": 0,
-    "Scale": 1
+    "Scale": 1,
+    "LPF": 0
    },
    "Colors": {
-    "LPSP.Yaw": "00b200",
-    "ATT.Yaw": "ff00ff"
+    "ARSP.YawRateSP": "0000b2",
+    "ATSP.YawSP": "b20000",
+    "ATT.YawRate": "00b200",
+    "ATT.Yaw": "ffc800"
    },
-   "Title": "yaw_tune"
+   "Title": "Yaw Tuning"
   }
  ],
  "Title": ""

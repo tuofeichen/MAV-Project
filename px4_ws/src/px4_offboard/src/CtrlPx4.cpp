@@ -186,6 +186,12 @@ void CtrlPx4::aprilCallback(const px4_offboard::MavState joy) {
 }
 
 void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat) {
+
+  if (bat.current > 20)
+  {
+    ROS_INFO("current now is %4.2f",bat.current);
+  }
+
   if (bat.voltage < BAT_LOW_THRESH) {
     ROS_WARN("[PX4 CTRL] Low battery! %4.2f",bat.voltage);
   }
@@ -447,12 +453,20 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
 
 
   // decided if we need to reset position setpoint
+
+  if (((fabs(pos_read_.px + pos_nav(0) - x) +
+       fabs(pos_read_.py + pos_nav(1) - y)) > (MAX_DXY*20)) || (fabs(pos_read_.pz + pos_body(2) - z) > (10*MAX_DZ))) // avoid position setpoint goes crazy
+  {
+    state_set_.land = 1;
+    ROS_WARN("Position controller out of range, land");
+  }
+
   if ((fabs(pos_read_.px + pos_nav(0) - x) +
        fabs(pos_read_.py + pos_nav(1) - y)) > MAX_DXY) {
     // xy saturation
     // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
     // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
-    ROS_INFO("[PX4 CTRL] Reset xy");
+    ROS_INFO("[PX4 CTRL] Reset xy"); // simply do not change setpoint
   } else {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
@@ -477,7 +491,11 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
   else
   {
-    prev_yaw_sp_  = yaw; // note down yaw (so that when we switch back to position control we know where we are)
+    fcu_pos_setpoint_.pose.position.x = pos_read_.px ; // always remember current position and yaw
+    fcu_pos_setpoint_.pose.position.y = pos_read_.py ;
+    fcu_pos_setpoint_.pose.position.z = pos_read_.pz ;
+    
+    prev_yaw_sp_  = yaw;
     fcu_vel_setpoint_.twist.linear.x =
         -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
     fcu_vel_setpoint_.twist.linear.y =

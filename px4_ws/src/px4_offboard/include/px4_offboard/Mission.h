@@ -89,7 +89,7 @@ int _room_size    = 1500;   // (mm)
 float _Kpxy   = 0.012;
 float _Kpz    = 0.012;
 
-float _Kvz      = 1.8;
+float _Kvz     = 1.8;
 float _Kyaw    = 0.1;
 float _ang_tol = 0.06; // rad
 float _lin_tol = 50;  // mm
