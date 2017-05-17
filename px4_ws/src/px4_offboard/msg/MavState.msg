@@ -1,10 +1,12 @@
 Header header
 geometry_msgs/Point position
 float64 yaw
+float64 yaw_pos
 geometry_msgs/Quaternion orientation
 bool failsafe
 bool arm
 bool offboard
 bool takeoff
 bool land
+byte mode
 byte control

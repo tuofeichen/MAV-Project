@@ -25,7 +25,7 @@ Mission();
 void publish(){ //ROS_INFO("Publishing");
  _mission_ctrl_pub.publish(_objCommand);}; // for timing control
 
-void hover(){resetCommand(_objCommand);_angle_rad = 0;_is_update = 0;};
+void hover();//{resetCommand(_objCommand);_angle_rad = 0;_is_update = 0; _objCommand.mode = _flight_mode;};
 void takeoff();
 void land();
 bool update(){return _is_update;};

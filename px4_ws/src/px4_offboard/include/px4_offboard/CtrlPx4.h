@@ -77,6 +77,8 @@ private:
 
   // setpoint related
   float prev_yaw_sp_;
+  float pos_dir_ = -5; // external direction for body frame setpoint position 
+
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_;
   my_pos pos_read_;

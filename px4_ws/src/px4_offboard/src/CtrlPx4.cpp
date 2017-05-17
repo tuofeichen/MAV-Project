@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "px4_offboard/CtrlPx4.h"
 #include "px4_offboard/include.h"
+#include "px4_offboard/Mission.h"
 
 #define TAKEOFF_RATIO 0.9
 
@@ -174,6 +175,16 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
       fcu_pos_setpoint_.pose.position.x = pos_read_.px;
       fcu_pos_setpoint_.pose.position.y = pos_read_.py;
       ROS_INFO("VEL->POS x:%4.2f,y:%4.2f sp:%4.2f",fcu_pos_setpoint_.pose.position.x,fcu_pos_setpoint_.pose.position.y,joy.position.y);
+    }
+
+// limiting horizontal drift with known direction
+    if (joy.mode == traverse)
+    {
+      pos_dir_ = joy.yaw_pos;
+    }
+    else
+    {
+      pos_dir_ = -5;
     }
 
     pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
@@ -422,13 +433,16 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   // basic geometry, current yaw
   double yaw = pos_read_.yaw;
 
+  if (fabs(pos_dir_)<M_PI)
+    yaw = pos_dir_; // use a directional setpoint instead of just using current yaw
+
   pos_body << dx_sp, dy_sp, dz_sp;
 
 // we're constantly doing po_body(0)*sin(yaw)
   pos_nav(0) =
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw); // left and right
   pos_nav(1) =
-      pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
+       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
 
 
   if (pos_ctrl_ == POS){
@@ -478,15 +492,16 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   //   ROS_INFO("[PX4 CTRL] Reset xy due to velocity");
   // }
 
+
   // x,y is the new setpoint
   if((fabs(x - pos_read_.px)+fabs(y-pos_read_.py)) < p_norm) {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
   }
-  else
-  {
-    ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
-  }
+  // else
+  // {
+  //   ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
+  // }
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
@@ -511,7 +526,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     fcu_pos_setpoint_.pose.position.y = pos_read_.py ;
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz ;
     prev_yaw_sp_  = yaw;
-
 
     fcu_vel_setpoint_.twist.linear.x =
         -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);

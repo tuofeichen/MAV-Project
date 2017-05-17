@@ -195,7 +195,8 @@ bool Mission::turnLeft90()
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
 	// }
 
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 3)); // true if finished turning (set this threshold to be higher if overturn)
+	_objCommand.yaw_pos = _yaw; // note down yaw angle (after turn)
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 2)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
@@ -332,7 +333,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				 }
 
 				//  ROS_WARN("[Mission] OTG Cali:%4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
-				 if ((_cali_cnt > 15)||(_obst_found)) // back off mode
+				 if ((_cali_cnt > 10)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
 					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
@@ -473,6 +474,14 @@ void Mission::stateCallback(const px4_offboard::MavState state)
 	_is_takeoff = state.takeoff;
 	_is_land 	  = state.land;
 	_is_fail 	  = state.failsafe;
+};
+
+void Mission::hover()
+{
+	resetCommand(_objCommand);
+	_angle_rad = 0;
+	_is_update = 0;
+	_objCommand.mode = _flight_mode;
 };
 
 void Mission::readParam()
