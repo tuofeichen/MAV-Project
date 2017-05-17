@@ -10,7 +10,7 @@
 <arg name="track_dist" default="900"/>
 <arg name="trav_inc" default="100"/>
 
-<arg name="Kpxy" default="0.012"/>
+<arg name="Kpxy" default="0.12"/>
 <arg name="Kpz" default="0.013"/>
 <arg name="Kvz" default="1.8"/>
 <arg name="Kyaw" default="0.1"/>
@@ -58,7 +58,7 @@
 
 <param name= "maxz"    type="double" value="1"/>
 <param name= "maxdz"   type="double" value="1.1"/>
-<param name= "maxdxy"  type="double" value="0.1"/>
+<param name= "maxdxy"  type="double" value="0.15"/>
 <param name= "maxdyaw" type="double" value="0.8"/>
 
 

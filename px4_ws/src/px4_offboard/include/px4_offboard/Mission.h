@@ -22,7 +22,7 @@ public:
 Mission();
 ~Mission(){};
 
-void publish() { //ROS_INFO("Publishing");
+void publish(){ //ROS_INFO("Publishing");
  _mission_ctrl_pub.publish(_objCommand);}; // for timing control
 
 void hover(){resetCommand(_objCommand);_angle_rad = 0;_is_update = 0;};

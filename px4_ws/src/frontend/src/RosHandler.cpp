@@ -62,10 +62,10 @@ void RosHandler::flowValidCallback(const std_msgs::Float64 data)
 
 void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
 {
-	if (bat.voltage < 14.5)
-	{
-	  ROS_WARN("Low battery!");
-	}
+	// if (bat.voltage < 14.5)
+	// {
+	//   ROS_WARN("Low battery!");
+	// }
 }
 
 void RosHandler::updateObstacleDistance(geometry_msgs::Point obsDist)

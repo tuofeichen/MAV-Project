@@ -13,6 +13,8 @@ CtrlPx4::CtrlPx4() {
   nh_.getParam("/fcu/maxdz", MAX_DZ);
   nh_.getParam("/fcu/maxdxy", MAX_DXY);
   nh_.getParam("/fcu/maxdyaw", MAX_DYAW);
+  nh_.getParam("/fcu/maxvpos", MAX_V_POS);
+  nh_.getParam("/fcu/bat",BAT_LOW_THRESH);
 
   std::cout <<"auto takeoff? " <<  auto_tl_ << std::endl;
   std::cout << std::fixed << std::setprecision(4);
@@ -167,6 +169,13 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     if (joy.offboard)
       state_set_.mode = OFFBOARD;
 
+    if ((pos_ctrl_ == VEL) && (joy.control == POS))
+    {
+      fcu_pos_setpoint_.pose.position.x = pos_read_.px;
+      fcu_pos_setpoint_.pose.position.y = pos_read_.py;
+      ROS_INFO("VEL->POS x:%4.2f,y:%4.2f sp:%4.2f",fcu_pos_setpoint_.pose.position.x,fcu_pos_setpoint_.pose.position.y,joy.position.y);
+    }
+
     pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
     state_set_.arm = joy.arm;
     state_set_.takeoff = joy.takeoff;
@@ -187,7 +196,7 @@ void CtrlPx4::aprilCallback(const px4_offboard::MavState joy) {
 
 void CtrlPx4::batCallback(const mavros_msgs::BatteryStatus bat) {
 
-  if (bat.current > 20)
+  if (bat.current > 25)
   {
     ROS_INFO("current now is %4.2f",bat.current);
   }
@@ -283,16 +292,19 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
   if (!state_read_.arm) {
     home_.px = pos_read_.px;
     home_.py = pos_read_.py;
+    home_.yaw = pos_read_.yaw;
     set_armed_.request.value = true; // send arm request
     mavros_armed_client_.call(set_armed_);
+    float qw = cos(0.5 * pos_read_.yaw);
+    float qz = sin(0.5 * pos_read_.yaw);
   }
   else if (current_height < (TAKEOFF_RATIO * altitude)) {
 
     // sensor read
     if (auto_tl_ == 1) {
       //take off at local yaw angle (make yaw local every where )
-      float qw = cos(0.5 * pos_read_.yaw);
-      float qz = sin(0.5 * pos_read_.yaw);
+      float qw = cos(0.5 * home_.yaw);
+      float qz = sin(0.5 * home_.yaw);
       fcu_pos_setpoint_.pose.orientation.w = qw;
       fcu_pos_setpoint_.pose.orientation.z = qz;
       fcu_pos_setpoint_.pose.position.x = home_.px;
@@ -315,7 +327,7 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
 
   }
   else {
-    std::cout << "================== finished taking off"
+    std::cout << "============= finished taking off"
               << std::endl;
     state_set_.takeoff = 0;
     hover();
@@ -411,25 +423,21 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   double yaw = pos_read_.yaw;
 
   pos_body << dx_sp, dy_sp, dz_sp;
+
+// we're constantly doing po_body(0)*sin(yaw)
   pos_nav(0) =
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw); // left and right
   pos_nav(1) =
       pos_body(0) * cos(yaw) + pos_body(1) * sin(yaw); // front and back
+
 
   if (pos_ctrl_ == POS){
     // first term is the previous setpoint
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
-
-  // need yaw drift handling
-
-  // if ((prev_yaw_sp_ >  M_PI)&& (yaw < 0)) // avoid wrap around
-	// {
-	// 	yaw += 2* M_PI; // warp around
-	// }
-
-
+  float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
+  float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
 
   if((fabs( prev_yaw_sp_) > 5)||(dyaw_sp < 0.000001))// initializing prev_yaw_sp_ at beginning (or very little change needed)
     prev_yaw_sp_ = yaw;//
@@ -440,7 +448,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
 
   float yaw_sp = prev_yaw_sp_ + dyaw_sp; // important to prevent drifting
-
 // avoid wrap around
   if (yaw_sp > M_PI) // saturation should be here
     yaw_sp -= 2*M_PI;
@@ -451,9 +458,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   float qz = sin(0.5 * yaw_sp);
   prev_yaw_sp_ = yaw_sp;
 
-
   // decided if we need to reset position setpoint
-
   if (((fabs(pos_read_.px + pos_nav(0) - x) +
        fabs(pos_read_.py + pos_nav(1) - y)) > (MAX_DXY*20)) || (fabs(pos_read_.pz + pos_body(2) - z) > (10*MAX_DZ))) // avoid position setpoint goes crazy
   {
@@ -461,15 +466,26 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     ROS_WARN("Position controller out of range, land");
   }
 
-  if ((fabs(pos_read_.px + pos_nav(0) - x) +
-       fabs(pos_read_.py + pos_nav(1) - y)) > MAX_DXY) {
-    // xy saturation
-    // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
-    // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
-    ROS_INFO("[PX4 CTRL] Reset xy"); // simply do not change setpoint
-  } else {
+  // if ((fabs(pos_read_.px + pos_nav(0) - x) +
+  //      fabs(pos_read_.py + pos_nav(1) - y)) > MAX_DXY) {
+  //   // xy saturation
+  //   // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
+  //   // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
+  //   ROS_INFO("[PX4 CTRL] Reset xy due to setpoint too far"); // simply do not change setpoint
+  // }
+  // else if (v_norm>MAX_V_POS)
+  // {
+  //   ROS_INFO("[PX4 CTRL] Reset xy due to velocity");
+  // }
+
+  // x,y is the new setpoint
+  if((fabs(x - pos_read_.px)+fabs(y-pos_read_.py)) < p_norm) {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
+  }
+  else
+  {
+    ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
   }
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
@@ -494,8 +510,9 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     fcu_pos_setpoint_.pose.position.x = pos_read_.px ; // always remember current position and yaw
     fcu_pos_setpoint_.pose.position.y = pos_read_.py ;
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz ;
-    
     prev_yaw_sp_  = yaw;
+
+
     fcu_vel_setpoint_.twist.linear.x =
         -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw);
     fcu_vel_setpoint_.twist.linear.y =

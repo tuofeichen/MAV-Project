@@ -25,7 +25,6 @@ Mission::Mission()
 	// read parameters
 	readParam();
 
-
 	_lpe.setIdentity();
 	_vel.setZero();
 	resetCommand(_emptyCommand); // hover command
@@ -44,7 +43,6 @@ Mission::Mission()
 // write logger header
 	logMissionSp.open("/home/odroid/MAV-Project/px4_ws/src/px4_offboard/mavSp.csv", std::ofstream::out | std::ofstream::trunc);
 	logMissionSp << "time,flight mode,control,x,y,z,yaw,wall_angle" <<endl;
-
 }
 
 
@@ -59,8 +57,8 @@ int main(int argc, char** argv)
 	int printMod    = 1;
   int takeoff_set = 0; //takeoff flag only set once
 
-  ros::Rate loop_rate(50);
-  ros::Rate loop_rate_turn(20);
+  ros::Rate loop_rate(150);
+  // ros::Rate loop_rate_turn(20);
 
   while(ros::ok())
   {
@@ -117,13 +115,11 @@ int main(int argc, char** argv)
 	  		case calibration:
 	  			  // if (mission.getStateSwitchFlag())
 	  				//   ROS_INFO("[Mission] Calibration mode");
-
 	  		break;
 
 	  		case traverse:
 	  		    // if (mission.getStateSwitchFlag())
 	  				// 	ROS_INFO("[Mission] Traversing mode");
-
 	  		break;
 
 	  		case tracking:
@@ -134,7 +130,6 @@ int main(int argc, char** argv)
 	  		case turning:
 	  			// if (mission.getStateSwitchFlag())
 	  			// 	ROS_INFO("[Mission] Turning mode");
-
 	  			if(mission.turnLeft90()) {
 		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode
 					  ROS_INFO("[Mission]Finished turning !!");
@@ -314,7 +309,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-			if ((msg.y < (_track_dist + 300))||(_obst_found == 1)) // start to decelerate at 30 cm
+			if ((msg.y < (_track_dist + 200))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
 					if(_cali_cnt == 0){
 						_cali_cnt++; //set cali_cnt to be 1 so that we know we're in calibration mode
@@ -322,33 +317,30 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 
 					if (!_obst_found)
 					{
-					if(fabs(_angle_rad) > 2 *_ang_tol){ // no height constraint here (too stringent)
-						if (_cali_cnt > 1){
-								_cali_cnt--;
+						if(fabs(_angle_rad) < 2 *_ang_tol){ // no height constraint here (too stringent)
+							_cali_cnt++;
 						}
-					}
-					else if ((msg.z < (_track_dist+50)) && (msg.z > _track_dist))
-					{
-						_cali_cnt++;
-					} // always get close to the wall
+						else if (_cali_cnt > 1)
+						{
+							_cali_cnt--;
+						}
 
-					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
-					// correct yaw always
+					// stay where you're don't correct distance
+					// _objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 					_is_update = 1;
 					_objCommand.yaw = _Kyaw * _angle_rad;
 				 }
 
-				 ROS_WARN("[Mission] cali yaw and wall %4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
-
-				 if ((_cali_cnt > 4)||(_obst_found)) // back off mode
+				//  ROS_WARN("[Mission] OTG Cali:%4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
+				 if ((_cali_cnt > 15)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
-					// ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.y); //
+					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
 					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					if ((msg.y < (_trav_dist+30)) && (msg.y > _trav_dist-30)){
+					if ((msg.z < (_trav_dist+50)) && (msg.z > _trav_dist-50)){
 						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;
@@ -371,7 +363,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				_obst_found = 0;
 				_objCommand.control = VEL; // during traverse use velocity control mode (steady proceed)
 
-				if (_cali_cnt > 0){ // fallback from POS, take it easy
+				if (_cali_cnt > 0){ // fallback from POS traverse, take it easy
 					_objCommand.position.y = _traverse_speed / 5; // slowly approaching
 				}
 				else if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.25) //

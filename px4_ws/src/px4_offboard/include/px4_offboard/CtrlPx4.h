@@ -13,9 +13,7 @@ class CtrlPx4 {
 
 public:
   CtrlPx4();
-
   bool commandUpdate();
-
   bool takeoff(double altitude, double velcity);
   bool land(double velocity);
   void hover();
@@ -40,7 +38,8 @@ private:
   float MAX_DZ   = 1.1;
   float MAX_DXY  = 0.3;
   float MAX_DYAW = 0.5;
-  float BAT_LOW_THRESH = 14; //(V)
+  float MAX_V_POS = 0.1;
+  float BAT_LOW_THRESH = 9.5; //(V)
 
 
   // subscriber callbacks from MAV
