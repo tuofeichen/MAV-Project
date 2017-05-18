@@ -4,7 +4,7 @@
 #include "px4_offboard/include.h"
 #include "px4_offboard/Mission.h"
 
-#define TAKEOFF_RATIO 0.9
+#define TAKEOFF_RATIO 0.8
 
 CtrlPx4::CtrlPx4() {
 
@@ -174,8 +174,9 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     {
       fcu_pos_setpoint_.pose.position.x = pos_read_.px;
       fcu_pos_setpoint_.pose.position.y = pos_read_.py;
-      ROS_INFO("VEL->POS x:%4.2f,y:%4.2f sp:%4.2f",fcu_pos_setpoint_.pose.position.x,fcu_pos_setpoint_.pose.position.y,joy.position.y);
+      // ROS_INFO("VEL->POS x:%4.2f,y:%4.2f sp:%4.2f",fcu_pos_setpoint_.pose.position.x,fcu_pos_setpoint_.pose.position.y,joy.position.y);
     }
+
 
 // limiting horizontal drift with known direction
     if (joy.mode == traverse)
@@ -187,6 +188,9 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
       pos_dir_ = -5;
     }
 
+    obj_mode_prev = obj_mode_;
+    obj_mode_ = joy.mode;
+
     pos_ctrl_ = joy.control; // note down if we need to change control mode (in traverse mode we use velocity setpoint)
     state_set_.arm = joy.arm;
     state_set_.takeoff = joy.takeoff;
@@ -195,7 +199,13 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
 
     if (state_read_.takeoff) // don't mess with move to point during takeoff
     {
-      moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
+      if(obj_mode_prev == obj_mode_)
+        moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
+      else 
+      {
+        ROS_INFO("switched flight mode hover");
+        hover(); // reset all setpoint to current position
+      }
     }
   }
 
@@ -341,7 +351,8 @@ bool CtrlPx4::takeoff(double altitude, double velocity) {
     std::cout << "============= finished taking off"
               << std::endl;
     state_set_.takeoff = 0;
-    hover();
+    // hover();
+
   }
 
   state_read_.takeoff = (current_height > TAKEOFF_RATIO * altitude);
@@ -373,6 +384,7 @@ void CtrlPx4::hover() {
       2 * (pos_read_.q[0] * pos_read_.q[3] + pos_read_.q[1] * pos_read_.q[2]),
       1 - 2 * (pos_read_.q[3] * pos_read_.q[3] +  pos_read_.q[2] * pos_read_.q[2]));
 
+// reset integration
   fcu_pos_setpoint_.pose.position.x = pos_read_.px;
   fcu_pos_setpoint_.pose.position.y = pos_read_.py;
   fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
@@ -433,12 +445,14 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   // basic geometry, current yaw
   double yaw = pos_read_.yaw;
 
-  if (fabs(pos_dir_)<M_PI)
+  if (fabs(pos_dir_) < M_PI)
+  {
+    ROS_INFO("fix direction");
     yaw = pos_dir_; // use a directional setpoint instead of just using current yaw
-
+  }
   pos_body << dx_sp, dy_sp, dz_sp;
 
-// we're constantly doing po_body(0)*sin(yaw)
+
   pos_nav(0) =
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw); // left and right
   pos_nav(1) =
@@ -453,7 +467,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
   float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
 
-  if((fabs( prev_yaw_sp_) > 5)||(dyaw_sp < 0.000001))// initializing prev_yaw_sp_ at beginning (or very little change needed)
+  if((fabs( prev_yaw_sp_) > 5))//||(dyaw_sp < 0.000001))// initializing prev_yaw_sp_ at beginning (or very little change needed)
     prev_yaw_sp_ = yaw;//
 
   if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
@@ -494,14 +508,16 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
 
 
   // x,y is the new setpoint
-  if((fabs(x - pos_read_.px)+fabs(y-pos_read_.py)) < p_norm) {
+  if((fabs(x - pos_read_.px)+fabs(y-pos_read_.py)) < max(MAX_DXY,p_norm)) {
     fcu_pos_setpoint_.pose.position.x = x;
     fcu_pos_setpoint_.pose.position.y = y;
   }
-  // else
-  // {
-  //   ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
-  // }
+  else
+  {
+    // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
+    // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
+    // ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
+  }
 
   if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
     fcu_pos_setpoint_.pose.position.z = pos_read_.pz;

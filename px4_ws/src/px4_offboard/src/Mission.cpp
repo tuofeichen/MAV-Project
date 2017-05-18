@@ -194,7 +194,6 @@ bool Mission::turnLeft90()
 	_is_update = 1;
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
 	// }
-
 	_objCommand.yaw_pos = _yaw; // note down yaw angle (after turn)
 	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 2)); // true if finished turning (set this threshold to be higher if overturn)
 }

@@ -67,7 +67,10 @@ private:
   bool sim_;     // disregard all offboard command
   bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
   int auto_tl_; // auto takeoff landing flag
+  int obj_mode_;
+  int obj_mode_prev;
   bool pos_ctrl_; // position control or velocity control (0 is POS, 1 is VEL)
+
   float tl_height_ = 1.0; // takeoff height default
 
   // controller
@@ -77,7 +80,7 @@ private:
 
   // setpoint related
   float prev_yaw_sp_;
-  float pos_dir_ = -5; // external direction for body frame setpoint position 
+  float pos_dir_ = -5; // external direction for body frame setpoint position
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_;
