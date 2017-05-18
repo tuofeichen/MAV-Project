@@ -335,12 +335,17 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				 if ((_cali_cnt > 10)||(_obst_found)) // back off mode
 				 {
 					_obst_found = 1;
-					ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
 					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					if ((msg.z < (_trav_dist+50)) && (msg.z > _trav_dist-50)){
+					if(fabs(msg.z-_trav_dist)<_lin_tol)
+					{
+						ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
+						_cali_cnt++; // add more counting to avoid overshoot // wait for back off to be stablized
+					}
+
+					if (_cali_cnt > 15){
 						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;

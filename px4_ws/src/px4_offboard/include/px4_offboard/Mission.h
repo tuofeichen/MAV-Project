@@ -96,7 +96,7 @@ float _lin_tol = 50;  // mm
 
 
 float _traverse_height = 0.75;
-float _traverse_speed  = 0.35;
+float _traverse_speed  = 0.15;
 
 // position info
 Eigen::Matrix4f _lpe;
