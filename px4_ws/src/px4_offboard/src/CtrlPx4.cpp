@@ -201,7 +201,7 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     {
       if(obj_mode_prev == obj_mode_)
         moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
-      else 
+      else
       {
         ROS_INFO("switched flight mode hover");
         hover(); // reset all setpoint to current position
@@ -445,11 +445,11 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   // basic geometry, current yaw
   double yaw = pos_read_.yaw;
 
-  if (fabs(pos_dir_) < M_PI)
-  {
-    ROS_INFO("fix direction");
-    yaw = pos_dir_; // use a directional setpoint instead of just using current yaw
-  }
+  // if (fabs(pos_dir_) < M_PI)
+  // {
+  //   ROS_INFO("fix direction");
+  //   yaw = pos_dir_; // use a directional setpoint instead of just using current yaw
+  // }
   pos_body << dx_sp, dy_sp, dz_sp;
 
 

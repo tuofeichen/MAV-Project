@@ -334,11 +334,13 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				//  ROS_WARN("[Mission] OTG Cali:%4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
 				 if ((_cali_cnt > 10)||(_obst_found)) // back off mode
 				 {
+
 					_obst_found = 1;
 					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
+					_cali_cnt = max(_cali_cnt,10); // only need 5 recorded success
 					if(fabs(msg.z-_trav_dist)<_lin_tol)
 					{
 						ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
@@ -373,7 +375,10 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				}
 				else if ((_vel(1)*_vel(1)+_vel(0)*_vel(0)) < 0.25) //
 				{
-					_objCommand.position.y = _traverse_speed;
+					// make velocity adaptive to avoid overshoot of position
+					// do not exceed traverse speed
+					float speed = _traverse_speed*(_track_dist-msg.y)/1000;
+					_objCommand.position.y = min(speed, _traverse_speed);
 				}
 				else
 				{

@@ -129,8 +129,8 @@ public:
 
 	static constexpr double minRotation 				= 2 * M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
 	static constexpr double minTranslation 			= 0.05;   ///< minimal translation in meter(negative values to disable)
-	static constexpr double maxVelocity 			 	= std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
-	static constexpr double maxAngularVelocity  = std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
+	static constexpr double maxVelocity 			 	= 0.5;//std::numeric_limits<double>::infinity(); ///< max velocity in meter per second
+	static constexpr double maxAngularVelocity  = 0.8;//std::numeric_limits<double>::infinity(); ///< max angular velocity in rad per second
 //	static constexpr double maxVelocity = 5.0; ///< max velocity in meter per second
 //	static constexpr double maxAngularVelocity = 90.0 *M_PI / 180.0; ///< max angular velocity in rad per second
 	static constexpr double loopClosureDetectionThreshold =   std::numeric_limits<double>::infinity(); //0.1//< loop closure detection threshold for the averge descriptor
