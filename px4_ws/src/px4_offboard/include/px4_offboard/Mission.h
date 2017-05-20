@@ -101,7 +101,7 @@ float _traverse_speed  = 0.15;
 // position info
 Eigen::Matrix4f _lpe;
 Eigen::Matrix<float, 6, 1> _vel;
-float _roll, _pitch, _yaw, _yaw_prev, _angle_rad;
+float _roll, _pitch, _yaw, _yaw_prev, _angle_rad, _wall_dist;
 
 
 void readParam();

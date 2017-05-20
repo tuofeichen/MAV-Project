@@ -42,7 +42,7 @@ Mission::Mission()
 
 // write logger header
 	logMissionSp.open("/home/odroid/MAV-Project/px4_ws/src/px4_offboard/mavSp.csv", std::ofstream::out | std::ofstream::trunc);
-	logMissionSp << "time,flight mode,control,x,y,z,yaw,wall_angle" <<endl;
+	logMissionSp << "time,flight mode,control,x,y,z,yaw,wall_angle,wall_dist" <<endl;
 }
 
 
@@ -70,7 +70,9 @@ int main(int argc, char** argv)
 			{
 				if (mission.update()) // wait for update
 				{
-					mission.correctTraverseHeight();
+					if (mission.getFlightMode()!= tracking){
+						mission.correctTraverseHeight();
+					}
 					mission.logSp();
 					mission.publish(); // publish control command once
  					mission.hover();   // clear _objCommand
@@ -225,6 +227,7 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 
 void Mission::wallCallback(const geometry_msgs::Point ang)
 {
+	_wall_dist = ang.z;
 	_angle_rad = ang.x; // need to update this shit my friend
 	if((_flight_mode == calibration) && (!_is_calibrate))
 	{
@@ -291,6 +294,7 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 void Mission::obstCallback(geometry_msgs::Point msg)
 {
 	_objCommand.control = 1; // defaul position control mode
+	_wall_dist = msg.z;// (average distance)
 
 // don't propagate prevent drifting
 	if(fabs(_angle_rad) < 0.00001)
@@ -340,14 +344,15 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
 					_is_update = 1;
 
-					_cali_cnt = max(_cali_cnt,10); // only need 5 recorded success
+					_cali_cnt = max(_cali_cnt,10); // need 5 more recorded success
+
 					if(fabs(msg.z-_trav_dist)<_lin_tol)
 					{
-						ROS_INFO("[Mission] Finish Observation Backoff %4.2f",msg.z); //
+						ROS_INFO("[Mission] Backoff %4.2f",msg.z); //
 						_cali_cnt++; // add more counting to avoid overshoot // wait for back off to be stablized
 					}
 
-					if (_cali_cnt > 15){
+					if (_cali_cnt > 13){
 						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;
@@ -377,8 +382,10 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				{
 					// make velocity adaptive to avoid overshoot of position
 					// do not exceed traverse speed
-					float speed = _traverse_speed*(_track_dist-msg.y)/1000;
+					float speed = _traverse_speed*(msg.y-_track_dist)/1000;
+					speed = max(speed,(float)0); // make sure its positive
 					_objCommand.position.y = min(speed, _traverse_speed);
+
 				}
 				else
 				{
@@ -450,9 +457,10 @@ inline void Mission::correctTraverseHeight()
 {
 
 	if (_objCommand.control == POS)
-		_objCommand.position.z =  - _Kpz * (_lpe(2,3) - _traverse_height);
+		_objCommand.position.z = _traverse_height; // - _Kpz * (_lpe(2,3) - _traverse_height);
 	else
-		_objCommand.position.z =  - _Kvz  * (_lpe(2,3) - _traverse_height);
+		_objCommand.position.z = 0;  // - _Kvz  * (_lpe(2,3) - _traverse_height);
+
 }
 
 
@@ -465,7 +473,8 @@ void Mission::logSp()
 	<< "," << _objCommand.position.y
 	<< "," << _objCommand.position.z
 	<< "," << _objCommand.yaw
-	<< "," << _angle_rad <<  endl;
+	<< "," << _angle_rad
+	<< "," << _wall_dist << endl;
 };
 
 void Mission::setFlightMode(int request_mode)

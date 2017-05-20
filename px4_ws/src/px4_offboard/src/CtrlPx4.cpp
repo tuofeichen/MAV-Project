@@ -4,7 +4,7 @@
 #include "px4_offboard/include.h"
 #include "px4_offboard/Mission.h"
 
-#define TAKEOFF_RATIO 0.8
+#define TAKEOFF_RATIO 0.9
 
 CtrlPx4::CtrlPx4() {
 
@@ -17,7 +17,6 @@ CtrlPx4::CtrlPx4() {
   nh_.getParam("/fcu/maxvpos", MAX_V_POS);
   nh_.getParam("/fcu/bat",BAT_LOW_THRESH);
 
-  std::cout <<"auto takeoff? " <<  auto_tl_ << std::endl;
   std::cout << std::fixed << std::setprecision(4);
 
   off_en_ = sim_;                    // initialize off_en_to be 1 always if in simulation mode
@@ -203,7 +202,7 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
         moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
       else
       {
-        ROS_INFO("switched flight mode hover");
+        ROS_INFO("switched flight mode, hover");
         hover(); // reset all setpoint to current position
       }
     }
@@ -464,6 +463,10 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
+
+  if (obj_mode_ != tracking)
+    z = dz_sp; // use dz as z setpoint
+
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
   float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
 
@@ -472,7 +475,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
 
   if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
     dyaw_sp = 0;
-    // ROS_INFO("saturate of yaw %3.2f, yaw_sp %3.2f",yaw, prev_yaw_sp_); // current yaw
   }
 
   float yaw_sp = prev_yaw_sp_ + dyaw_sp; // important to prevent drifting
