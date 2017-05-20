@@ -1,1 +1,7 @@
-Repo for RGB-D SLAM Project in IVPL Northwestern.
+
+# RGB-D SLAM for MAVs Autonomous Indoor Navigation
+## Repo Structure
+
+## Documentation
+
+## Dependency
