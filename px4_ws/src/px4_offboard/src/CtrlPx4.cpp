@@ -477,6 +477,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     prev_yaw_sp_ = yaw;//
 
   if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
+    cout << "reset yaw vyaw" << vel_.vyaw << endl;
     dyaw_sp = 0;
   }
 

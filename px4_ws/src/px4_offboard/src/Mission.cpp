@@ -193,6 +193,9 @@ bool Mission::turnLeft90()
 	}
 	// if(fabs(_vel(5)) < 2.5 *_ang_tol)
 	// {
+	// 	// cout << "error remaining is " << fabs(_yaw - _yaw_prev - 0.5 * M_PI) << endl;
+	// }
+	// {
 	_is_update = 1;
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
 	// }
@@ -316,6 +319,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 			if ((msg.y < (_track_dist + 100))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
 					if(_cali_cnt == 0){
+						cout << "[Mission] enter position approach" << endl;
 						_cali_cnt++; //set cali_cnt to be 1 so that we know we're in calibration mode
 					}
 
@@ -329,9 +333,9 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 							_cali_cnt--;
 						}
 
-					// stay where you're don't correct distance
-					// _objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
+					// position correct distance (fine tune)
 					_is_update = 1;
+					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 					_objCommand.yaw = _Kyaw * _angle_rad;
 
 				 }
@@ -341,19 +345,19 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				 {
 
 					_obst_found = 1;
-					_objCommand.yaw = _Kyaw * _angle_rad;
-					_objCommand.position.y = _Kpxy * (msg.z - _trav_dist)/1000.0;
+					// _objCommand.yaw = _Kyaw * _angle_rad;
+					_objCommand.position.y = _traverse_speed * (msg.z - _trav_dist)/1000.0;
+					_objCommand.control = VEL; // back off still using velocity control
 					_is_update = 1;
-
 					_cali_cnt = max(_cali_cnt,10); // need 5 more recorded success
 
-					if(fabs(msg.z-_trav_dist)<_lin_tol)
+					if(msg.z > _trav_dist)
 					{
 						ROS_INFO("[Mission] Backoff %4.2f",msg.z); //
 						_cali_cnt++; // add more counting to avoid overshoot // wait for back off to be stablized
 					}
 
-					if (_cali_cnt > 13){
+					if (_cali_cnt > 14){
 						ROS_INFO("[Mission] Finished backing off start turning ");
 						_obst_found = 0;
 						_obst_cnt++;
