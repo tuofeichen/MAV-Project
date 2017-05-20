@@ -313,7 +313,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-			if ((msg.y < (_track_dist + 200))||(_obst_found == 1)) // start to decelerate at 30 cm
+			if ((msg.y < (_track_dist + 100))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
 					if(_cali_cnt == 0){
 						_cali_cnt++; //set cali_cnt to be 1 so that we know we're in calibration mode
@@ -333,6 +333,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					// _objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 					_is_update = 1;
 					_objCommand.yaw = _Kyaw * _angle_rad;
+
 				 }
 
 				//  ROS_WARN("[Mission] OTG Cali:%4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
@@ -459,7 +460,7 @@ inline void Mission::correctTraverseHeight()
 	if (_objCommand.control == POS)
 		_objCommand.position.z = _traverse_height; // - _Kpz * (_lpe(2,3) - _traverse_height);
 	else
-		_objCommand.position.z = 0;  // - _Kvz  * (_lpe(2,3) - _traverse_height);
+		_objCommand.position.z =  - _Kvz  * (_lpe(2,3) - _traverse_height);
 
 }
 

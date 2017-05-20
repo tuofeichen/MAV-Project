@@ -462,10 +462,13 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     // first term is the previous setpoint
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
+
   float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
 
-  if (obj_mode_ != tracking)
+  if (obj_mode_ != tracking){
+    // cout << "directly use dz as setpoint " << dz_sp <<  endl;
     z = dz_sp; // use dz as z setpoint
+  }
 
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
   float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
@@ -521,10 +524,12 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     // ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
   }
 
-  if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
-    fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
-    ROS_INFO("[PX4 CTRL] Reset z");
-  } else if (z < MAX_Z) {
+  // if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
+  //   fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
+  //   ROS_INFO("[PX4 CTRL] Reset z");
+  // } else
+
+  if (z < MAX_Z) {
     fcu_pos_setpoint_.pose.position.z = z;
   } else {
     fcu_pos_setpoint_.pose.position.z = MAX_Z; // saturate z to avoid going off
