@@ -462,12 +462,13 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     // first term is the previous setpoint
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
+  float z = dz_sp;// fcu_pos_setpoint_.pose.position.z + pos_body(2);
 
-  float z = fcu_pos_setpoint_.pose.position.z + pos_body(2);
-
-  if (obj_mode_ != tracking){
+  if (obj_mode_ == tracking){
     // cout << "directly use dz as setpoint " << dz_sp <<  endl;
-    z = dz_sp; // use dz as z setpoint
+    x =  pos_read_.px + pos_nav(0);
+    y =  pos_read_.py + pos_nav(1); // tracking mode
+    z =  pos_read_.pz + pos_body(2); // use dz as z setpoint
   }
 
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
@@ -477,7 +478,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     prev_yaw_sp_ = yaw;//
 
   if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
-    cout << "reset yaw vyaw" << vel_.vyaw << endl;
+    // cout << "reset yaw vyaw" << vel_.vyaw << endl;
     dyaw_sp = 0;
   }
 

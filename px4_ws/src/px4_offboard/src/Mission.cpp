@@ -206,23 +206,21 @@ bool Mission::turnLeft90()
 void Mission::objCallback(const geometry_msgs::Point pos)
 {
 	_obj_cnt ++ ;
-	const float Ktrack = 0.01; // tracking gain
+	const float Ktrack = 0.2; // tracking gain
 	if ((_obj_cnt > 5)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
 		setFlightMode(tracking);
 		_is_update = 1;
-		_objCommand.position.y = Ktrack * (pos.z - 850.0) / 1000.0; // keep 0.9 m distance away from target
+		_objCommand.position.y = 0.5* Ktrack * (pos.z - 900.0) / 1000.0; // keep 0.9 m distance away from target
 		_objCommand.position.x = Ktrack * (pos.x - 160.0)  / 120.0;
 		_objCommand.position.z = Ktrack * (pos.y - 120.0)  / 120.0;
 		_objCommand.yaw =  _Kyaw * _angle_rad;
 
-		if ((pos.z < 1000) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
+		if ((pos.z < 950) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
 		{
 			ROS_INFO("[Mission] Found object ><><><><>< Land!");
 			setFlightMode(landing);
 		}
-		else if (_obj_cnt>0)
-		 _obj_cnt --;
 	}
 
 }
@@ -316,7 +314,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 		crash_cnt = 0;
 	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
 	{
-			if ((msg.y < (_track_dist + 100))||(_obst_found == 1)) // start to decelerate at 30 cm
+			if ((msg.y < (_track_dist + 200))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
 					if(_cali_cnt == 0){
 						cout << "[Mission] enter position approach" << endl;
@@ -366,7 +364,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 						setFlightMode(turning); // enter turning mode
 					}
 
-					if ((_trav_dist < _room_size)&&(!(_obst_cnt%3))){ // room dimension
+					if ((_trav_dist < _room_size)&&(!(_obst_cnt%4))){ // room dimension
 						ROS_INFO("[Mission] Increment traverse %d", _obst_cnt);
 						_trav_dist += _traverse_inc;
 						_obst_cnt++;
