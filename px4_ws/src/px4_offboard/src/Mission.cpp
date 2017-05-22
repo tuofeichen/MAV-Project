@@ -62,7 +62,6 @@ int main(int argc, char** argv)
 
   while(ros::ok())
   {
-
 			if (mission.getFlightMode()!=traverse) // if outside of traverse mode use position control
 				mission.setControlMode(POS);
 
@@ -92,6 +91,7 @@ int main(int argc, char** argv)
 	  			if (mission.getTakeoffFlag())
 	  			{
 	  				ROS_INFO("[Mission] Finished taking off");
+
 					  mission.setFlightMode(calibration);
 		  		}
 		  		else
@@ -133,8 +133,9 @@ int main(int argc, char** argv)
 	  			// if (mission.getStateSwitchFlag())
 	  			// 	ROS_INFO("[Mission] Turning mode");
 	  			if(mission.turnLeft90()) {
+						ROS_INFO("[Mission]Finished turning !!");
+						// usleep(1000*1000);// sleep for 2s (let turn stablize)
 		  			mission.setFlightMode(mission.getPrevFlightMode()); // go back to previous flight mode
-					  ROS_INFO("[Mission]Finished turning !!");
 					}
 
 		  	break;
@@ -209,14 +210,15 @@ void Mission::objCallback(const geometry_msgs::Point pos)
 	const float Ktrack = 0.2; // tracking gain
 	if ((_obj_cnt > 5)&&(_flight_mode != landing) && (_flight_mode!=takingoff))
 	{
-		setFlightMode(tracking);
+		if (_flight_mode != tracking)
+			setFlightMode(tracking);
 		_is_update = 1;
-		_objCommand.position.y = 0.5* Ktrack * (pos.z - 900.0) / 1000.0; // keep 0.9 m distance away from target
-		_objCommand.position.x = Ktrack * (pos.x - 160.0)  / 120.0;
+		_objCommand.position.y = Ktrack * (pos.z - _track_dist) / 1000.0; // keep 0.9 m distance away from target
+		_objCommand.position.x = Ktrack * (pos.x - 160.0)  / 160.0;
 		_objCommand.position.z = Ktrack * (pos.y - 120.0)  / 120.0;
-		_objCommand.yaw =  _Kyaw * _angle_rad;
-
-		if ((pos.z < 950) && (abs(pos.x-160) < 35 )&& (abs(pos.y-120)< 35)) //center arranged
+		_objCommand.yaw =  2 * Ktrack * _angle_rad;
+		cout << "x: " << pos.x << " y: " <<pos.y <<" z: " << pos.z << endl;
+		if ((pos.z < 900) && (fabs(pos.x-160) < _lin_tol)&& (fabs(pos.y-120)< _lin_tol)) //center arranged
 		{
 			ROS_INFO("[Mission] Found object ><><><><>< Land!");
 			setFlightMode(landing);
@@ -274,7 +276,6 @@ void Mission::wallCallback(const geometry_msgs::Point ang)
 						_is_calibrate = 1;
 						_yaw_prev = _yaw;
 						ROS_WARN("[Mission] Yaw pin down is %f, z pin down is %f", _yaw_prev,_lpe(2,3));
-						// usleep(200*1000);
 					}
 
 				}
@@ -312,9 +313,11 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 	}
 	else
 		crash_cnt = 0;
-	if (_flight_mode == traverse) // maybe want some threshold in case wrong depth occur
+
+// only care about traversing mode (good)
+	if (_flight_mode == traverse)
 	{
-			if ((msg.y < (_track_dist + 200))||(_obst_found == 1)) // start to decelerate at 30 cm
+			if ((msg.y < (_track_dist + 100))||(_obst_found == 1)) // start to decelerate at 30 cm
 			{ // observation / calibration mode
 					if(_cali_cnt == 0){
 						cout << "[Mission] enter position approach" << endl;
@@ -335,7 +338,6 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					_is_update = 1;
 					_objCommand.position.y = _Kpxy * (msg.z - _track_dist)/1000.0; // gradually calibrate to obstacle
 					_objCommand.yaw = _Kyaw * _angle_rad;
-
 				 }
 
 				//  ROS_WARN("[Mission] OTG Cali:%4.2f,%4.2f, %d",_angle_rad*180/3.1415926,msg.z,_cali_cnt);
@@ -363,13 +365,17 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 						_yaw_prev = _yaw;
 						setFlightMode(turning); // enter turning mode
 					}
-
 					if ((_trav_dist < _room_size)&&(!(_obst_cnt%4))){ // room dimension
-						ROS_INFO("[Mission] Increment traverse %d", _obst_cnt);
+						ROS_INFO("[Mission] Increment traverse to %d", _trav_dist);
 						_trav_dist += _traverse_inc;
 						_obst_cnt++;
 					}
-
+					
+					if (_trav_dist > _room_size)
+					{
+						ROS_INFO("[Mission] Decrement traverse to %d", _trav_dist);
+						_trav_dist-=_traverse_inc; // goback
+					}
 				}
 			}
 			else
@@ -386,7 +392,8 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 					// make velocity adaptive to avoid overshoot of position
 					// do not exceed traverse speed
 					float speed = _traverse_speed*(msg.y-_track_dist)/1000;
-					speed = max(speed,(float)0); // make sure its positive
+					speed = max(speed,(float)0.1); // make sure it doesn't go below 0.3
+
 					_objCommand.position.y = min(speed, _traverse_speed);
 
 				}

@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 #endif
 			// start slam
 			slam.addFrame(frame);
-			if(slam.extractFeature()&& (!obj.getObjDetectFlag())){
+			if(slam.extractFeature()){
 				t_slam 			= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
 			// run object detection all the time (for obstacle detection despite we don't have enough feature)
@@ -151,7 +151,7 @@ int main(int argc, char **argv)
 			t_procFrame.join();
 
 
-			if ((slam.getBadFrameFlag() < 1) && (!obj.getObjDetectFlag()))
+			if ((slam.getBadFrameFlag() < 1))// && (!obj.getObjDetectFlag()))
 			{
 			  pos = slam.getCurrentPosition();
 				if (px4.getArmFlag())  // log only when armed

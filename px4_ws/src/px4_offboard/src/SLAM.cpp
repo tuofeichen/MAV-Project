@@ -7,7 +7,7 @@
 int main(int argv, char **argc) {
   ros::init(argv, argc, "px4_controller");
   CtrlPx4 controller;
-  ros::Rate loop_rate(200);
+  ros::Rate loop_rate(150);
 
   while (ros::ok()) {
 

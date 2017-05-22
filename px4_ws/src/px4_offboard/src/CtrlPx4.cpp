@@ -4,7 +4,7 @@
 #include "px4_offboard/include.h"
 #include "px4_offboard/Mission.h"
 
-#define TAKEOFF_RATIO 0.9
+#define TAKEOFF_RATIO 0.8
 
 CtrlPx4::CtrlPx4() {
 
@@ -23,7 +23,6 @@ CtrlPx4::CtrlPx4() {
   pos_ctrl_ = POS;                   // default position control
   controller_state_.failsafe = 0;    // clear fail safe flag
   prev_yaw_sp_ = 10;                 // clear previous yaw setpoint
-
 
   // PID pid - Land controller;
   pid_land.setKp(0.6);
@@ -144,8 +143,6 @@ bool CtrlPx4::commandUpdate() {
 void CtrlPx4::joyCallback(const px4_offboard::MavState joy) {
 
   ROS_INFO("Joy setpoint received");
-
-
   moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
 
   // state_set_.offboard = joy.offboard;
@@ -449,6 +446,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   //   ROS_INFO("fix direction");
   //   yaw = pos_dir_; // use a directional setpoint instead of just using current yaw
   // }
+
   pos_body << dx_sp, dy_sp, dz_sp;
 
 
@@ -474,15 +472,17 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
   float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
 
-  if((fabs( prev_yaw_sp_) > 5))//||(dyaw_sp < 0.000001))// initializing prev_yaw_sp_ at beginning (or very little change needed)
+  if((obj_mode_ == turning)||(fabs( prev_yaw_sp_) > 5)||((0 < dyaw_sp) && (dyaw_sp < 0.0001)))// initializing prev_yaw_sp_ at beginning (or very little change needed)
     prev_yaw_sp_ = yaw;//
 
-  if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW) || (fabs(vel_.vyaw) > 0.1)) {
+  if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW))// || (fabs(vel_.vyaw) > 0.1)) {
+  {
     // cout << "reset yaw vyaw" << vel_.vyaw << endl;
     dyaw_sp = 0;
   }
 
   float yaw_sp = prev_yaw_sp_ + dyaw_sp; // important to prevent drifting
+  // float yaw_sp = yaw
 // avoid wrap around
   if (yaw_sp > M_PI) // saturation should be here
     yaw_sp -= 2*M_PI;

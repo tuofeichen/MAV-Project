@@ -81,10 +81,7 @@ int  _trav_dist         = 900;  // distance to keep away from obstacles / walls 
 int  _obj_fail_dist     = 800;  // failsafe distance
 int  _track_dist        = 900;  //  object recognition distance
 int _traverse_inc = 100;  // (mm)
-
 int _room_size    = 1500;   // (mm)
-
-
 
 float _Kpxy   = 0.012;
 float _Kpz    = 0.012;
