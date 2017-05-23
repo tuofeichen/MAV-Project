@@ -143,7 +143,7 @@ int main(int argc, char **argv)
 			// start slam
 			slam.addFrame(frame);
 			if(slam.extractFeature()){
-				t_slam 			= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
+				t_slam 		= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
 			// run object detection all the time (for obstacle detection despite we don't have enough feature)
 			t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);

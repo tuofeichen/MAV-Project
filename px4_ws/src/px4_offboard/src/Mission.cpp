@@ -17,7 +17,7 @@ Mission::Mission()
 	_is_fail = 0;
 
 	_obst_found = 0;
-	_obst_cnt = 1; 		// start with 1 obstacles;
+	_obst_cnt = 2; 		// start with 2 obstacles cnt (cuz the first time calibration doesn't count);
 	_wall_cnt = _obj_cnt = _cali_cnt = 0;
 	_cannot_find_wall_cnt = 0;
 	_roll = _pitch = _yaw = 0;
@@ -199,9 +199,10 @@ bool Mission::turnLeft90()
 	// {
 	_is_update = 1;
 	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
+	_objCommand.yaw = max(_objCommand.yaw, 0.06);
 	// }
 	_objCommand.yaw_pos = _yaw; // note down yaw angle (after turn)
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol * 2)); // true if finished turning (set this threshold to be higher if overturn)
+	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
@@ -365,12 +366,13 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 						_yaw_prev = _yaw;
 						setFlightMode(turning); // enter turning mode
 					}
+
 					if ((_trav_dist < _room_size)&&(!(_obst_cnt%4))){ // room dimension
 						ROS_INFO("[Mission] Increment traverse to %d", _trav_dist);
 						_trav_dist += _traverse_inc;
 						_obst_cnt++;
 					}
-					
+
 					if (_trav_dist > _room_size)
 					{
 						ROS_INFO("[Mission] Decrement traverse to %d", _trav_dist);

@@ -239,6 +239,13 @@ void Mapping::addFrame(Frame& frame)
 			initDone = true;
 	}
 
+
+	Matrix3d rot = currentPosition.matrix().topLeftCorner(3,3);
+	rot = 1/2*rot + 1/2* px4 -> getLpe().cast<double>().topLeftCorner(3,3); // average with LPE orientation
+  currentPosition.matrix().topLeftCorner(3,3) = rot;
+
+
+
 	lastFrame = currentFrame;
 	currentFrame = frame;
 
@@ -318,6 +325,12 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentFrame.setNewNodeFlag(true);
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 
+// when adding node keep translation the same but change compensate rotation from lpe
+				Matrix3d rot = currentPosition.matrix().topLeftCorner(3,3);
+				rot = 1/2*rot + 1/2* px4 -> getLpe().cast<double>().topLeftCorner(3,3); // average with LPE orientation
+				currentPosition.matrix().topLeftCorner(3,3) = rot;
+
+
 				// if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder
 				// 	cout << "fuse with rangefinder" << endl;
 				// 	Matrix4d pos = currentPosition.matrix(); // fuse height with LPE constantly
@@ -326,7 +339,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				// 	currentPosition.matrix() = pos;
 				// }
 
-				currentFrame.setPosition(currentPosition.matrix().cast<float>()); // note down LPE
+				currentFrame.setPosition(currentPosition.matrix().cast<float>());
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				currId = currentFrame.getId();
@@ -345,7 +358,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 
 		// add edge to current node (only add edges)
 		poseGraph->addEdgeFromIdToId(transformationMatrix, informationMatrix, prevId,currId);
-
 		return trafoValid;
 	}
 	else
@@ -728,10 +740,10 @@ void Mapping::fusePX4LPE(int frameType)
 		Matrix<double, 6, 6>  im_lpe;
 		int 						id;
 		imuCompensateCounter++;
-
 		switch(frameType)
 		{
 			case badFrame:
+				cout << "fuse bad frame " << endl;
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
 				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
@@ -743,7 +755,7 @@ void Mapping::fusePX4LPE(int frameType)
 			// break;
 
 			case dummyFrame:
-
+				cout << "fuse dummy frame" << endl;
 			// most likely due to recovery from bad frame, directly add new node
 				currentFrame.setBadFrameFlag(3);    // dummy frame flag
 				currentFrame.setNewNodeFlag(true);  // new node flag (should we?)

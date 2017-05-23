@@ -197,7 +197,7 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     {
       if(obj_mode_prev == obj_mode_)
         moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
-      else
+      else 
       {
         ROS_INFO("switched flight mode, hover");
         hover(); // reset all setpoint to current position

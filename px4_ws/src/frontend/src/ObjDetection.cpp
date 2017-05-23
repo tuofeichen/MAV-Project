@@ -69,9 +69,6 @@ bool  ObjDetection::objectDetect()
 			// cout << "backward match size " << backward_matches.size() << endl << endl;
 			return false;
 	}
-
-
-
 // symmetry test
 	for( int i = 0; i < backward_matches.size(); i++ ) // symmetry test
 	{
