@@ -240,12 +240,6 @@ void Mapping::addFrame(Frame& frame)
 	}
 
 
-	Matrix3d rot = currentPosition.matrix().topLeftCorner(3,3);
-	rot = 1/2*rot + 1/2* px4 -> getLpe().cast<double>().topLeftCorner(3,3); // average with LPE orientation
-  currentPosition.matrix().topLeftCorner(3,3) = rot;
-
-
-
 	lastFrame = currentFrame;
 	currentFrame = frame;
 
@@ -743,7 +737,7 @@ void Mapping::fusePX4LPE(int frameType)
 		switch(frameType)
 		{
 			case badFrame:
-				cout << "fuse bad frame " << endl;
+				// cout << "fuse bad frame " << endl;
 				currentFrame.setBadFrameFlag(1); 		 // bad feature
 				currentFrame.setKeyFrameFlag(false); // shouldn't allow bad frame as key frame for PCL
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
@@ -755,7 +749,7 @@ void Mapping::fusePX4LPE(int frameType)
 			// break;
 
 			case dummyFrame:
-				cout << "fuse dummy frame" << endl;
+				// cout << "fuse dummy frame" << endl;
 			// most likely due to recovery from bad frame, directly add new node
 				currentFrame.setBadFrameFlag(3);    // dummy frame flag
 				currentFrame.setNewNodeFlag(true);  // new node flag (should we?)
