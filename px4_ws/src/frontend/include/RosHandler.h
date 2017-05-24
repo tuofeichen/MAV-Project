@@ -32,6 +32,9 @@ public:
 
 	// mavros related
 	Matrix4f getLpe();
+	Matrix3f fuseRpy(Matrix3f);
+	// void dummy (Matrix3f a){;};
+
 	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
 	bool 	 getTakeoffFlag(){ return _is_takeoff;};
 	bool 	 getArmFlag(){ return _is_arm;};
@@ -77,6 +80,7 @@ private:
 	void batCallback(const mavros_msgs::BatteryStatus bat);
 
 
+// rotation utilities
 	void q2rpy		(Quaternionf q, float& r, float& p, float& y);
 	void rot2rpy	(Matrix3f R,float& r, float& p, float& y);
 	Matrix3f rpy2rot(float r, float p, float y);

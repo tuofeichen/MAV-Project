@@ -1,0 +1,4 @@
+#!/bin/bash
+ccache -C
+rm -rf /home/tuofeichen/SLAM/MAV-Project/px4_ws/devel/lib/frontend
+rm -rf /home/tuofeichen/SLAM/MAV-Project/px4_ws/build/frontend

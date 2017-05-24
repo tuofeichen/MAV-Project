@@ -20,8 +20,6 @@
 using namespace std;
 using namespace cv;
 
-
-
 namespace SLAM {
 Mapping::Mapping(
 		IFeatures* aFDEM,
@@ -30,7 +28,6 @@ Mapping::Mapping(
 		RosHandler* aRos//,
 		// IMap* aMap
 		)
-
  : fdem(aFDEM), tme(aTME), poseGraph(aGO), px4(aRos)//, map3d(aMap)
 {
 	// check element are not pointing to 0
@@ -319,11 +316,11 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentFrame.setNewNodeFlag(true);
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 
-// when adding node keep translation the same but change compensate rotation from lpe
-				Matrix3d rot = currentPosition.matrix().topLeftCorner(3,3);
-				rot = 1/2*rot + 1/2* px4 -> getLpe().cast<double>().topLeftCorner(3,3); // average with LPE orientation
-				currentPosition.matrix().topLeftCorner(3,3) = rot;
-
+// when adding node keep translation the same but filter rotation from lpe
+			  Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
+				rot =  px4->fuseRpy(rot);
+				// px4->updateCamPos(1.0,currentPosition.matrix().cast<float>());
+				currentPosition.matrix().topLeftCorner(3,3) = rot.cast<double>();
 
 				// if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder
 				// 	cout << "fuse with rangefinder" << endl;

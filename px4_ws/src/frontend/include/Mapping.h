@@ -20,7 +20,6 @@
 #include "IMap.h"
 #include "Frame.h"
 #include "FrameToPcConverter.h"
-
 #include "RosHandler.h"
 
 

@@ -161,7 +161,7 @@ add_executable(frontend src/main.cpp) # src/RosHandler.cpp)
 
 add_library(
 SLAM
-src/Debug.cpp  src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp src/RosHandler.cpp src/Backend.cpp src/TcpServer.cpp src/ObjDetection.cpp)
+src/Debug.cpp  src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/RosHandler.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp  src/Backend.cpp src/TcpServer.cpp src/ObjDetection.cpp)
 
 target_link_libraries(SLAM
 ${catkin_LIBRARIES}
@@ -181,7 +181,6 @@ opencv_highgui
 opencv_videoio
 opencv_imgproc
 opencv_imgcodecs
-
 )
 
 target_link_libraries(frontend

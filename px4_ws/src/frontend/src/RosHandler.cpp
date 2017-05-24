@@ -146,6 +146,21 @@ void RosHandler::q2rpy(Quaternionf q, float& r, float& p, float& y)
 
 }
 
+
+Matrix3f RosHandler::fuseRpy(Matrix3f vRot)
+{
+	const float lpe_weight = 0.5;
+	float r, p, y,r_v,p_v,y_v;
+	rot2rpy(_lpe.topLeftCorner(3,3),r,p,y);
+	rot2rpy(vRot, r_v,p_v,y_v);
+
+	r = lpe_weight*r + (1-lpe_weight)*r_v;
+	p = lpe_weight*p + (1-lpe_weight)*p_v;
+	y = lpe_weight*y + (1-lpe_weight)*y_v; // average the rpy with lpe estimate (complimentary filter)
+
+	return rpy2rot(r,p,y);
+}
+
 inline Matrix3f RosHandler::rpy2rot(float r, float p, float y)
 {
 	Matrix3f roll, pitch, yaw;
@@ -157,7 +172,6 @@ inline Matrix3f RosHandler::rpy2rot(float r, float p, float y)
 	pitch(0,0) = cos(p);  pitch(0,2) = sin(p);  pitch(2,0) = -sin(p); pitch (2,2) = cos(p);
 	yaw (0,0)  = cos(y);  yaw(0,1)   = -sin(y); yaw(1,0)   =  sin(y); yaw(1,1)    = cos(y);
 	return yaw*pitch*roll;
-
 }
 
 inline void RosHandler::rot2rpy(Matrix3f R,float& r, float& p, float& y)
