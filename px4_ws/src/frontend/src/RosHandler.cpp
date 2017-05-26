@@ -149,7 +149,7 @@ void RosHandler::q2rpy(Quaternionf q, float& r, float& p, float& y)
 
 Matrix3f RosHandler::fuseRpy(Matrix3f vRot)
 {
-	const float lpe_weight = 0.5;
+	const float lpe_weight = 0.8;
 	float r, p, y,r_v,p_v,y_v;
 	rot2rpy(_lpe.topLeftCorner(3,3),r,p,y);
 	rot2rpy(vRot, r_v,p_v,y_v);

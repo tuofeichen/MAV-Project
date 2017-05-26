@@ -48,7 +48,7 @@ Mapping::~Mapping()
 
 bool Mapping::extractFeature()
 {
-	double relTime = 0;
+	// double relTime = 0;
 	// time.tic();
 
 	if (!featureDetectionAndExtraction())
@@ -198,8 +198,8 @@ void Mapping::optPoseGraph()
 void Mapping::run()
 {
 
-	double totalTime = 0;
-	double relTime;
+	// double totalTime = 0;
+	// double relTime;
 	// initialize variables
 	bestInforamtionValue = 0;
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
@@ -319,16 +319,8 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 // when adding node keep translation the same but filter rotation from lpe
 			  Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
 				rot =  px4->fuseRpy(rot);
-				// px4->updateCamPos(1.0,currentPosition.matrix().cast<float>());
 				currentPosition.matrix().topLeftCorner(3,3) = rot.cast<double>();
 
-				// if (px4->getLpe()(2,3)> 0.2){ //valid rangefinder
-				// 	cout << "fuse with rangefinder" << endl;
-				// 	Matrix4d pos = currentPosition.matrix(); // fuse height with LPE constantly
-				// 	double height = pos(2,3);
-				// 	pos(2,3) = 0.1*height + 0.9*px4->getLpe()(2,3);
-				// 	currentPosition.matrix() = pos;
-				// }
 
 				currentFrame.setPosition(currentPosition.matrix().cast<float>());
 				poseGraph->addNode(currentPosition);
@@ -656,7 +648,7 @@ void Mapping::optimizeGraph(bool tillConvergenz)
 		if(took > optMaxTime)
 			optMaxTime = took;
 
-		currentPosition = poseGraph->getCurrentPosition();
+		currentPosition = poseGraph->getCurrentPosition(); // update current position after posegraph opt.
 	}
 }
 

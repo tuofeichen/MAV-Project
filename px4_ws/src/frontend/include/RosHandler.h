@@ -33,7 +33,6 @@ public:
 	// mavros related
 	Matrix4f getLpe();
 	Matrix3f fuseRpy(Matrix3f);
-	// void dummy (Matrix3f a){;};
 
 	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
 	bool 	 getTakeoffFlag(){ return _is_takeoff;};
