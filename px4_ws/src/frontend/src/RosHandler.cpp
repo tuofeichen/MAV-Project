@@ -130,7 +130,6 @@ Matrix4f RosHandler::getLpe() {
 		return _lpe;
 };
 
-
 Matrix4f RosHandler::getTmFromIdtoId(int from, int to)
 {
   Matrix4f tm;
@@ -163,7 +162,7 @@ void RosHandler::q2rpy(Quaternionf q, float& r, float& p, float& y)
 
 Matrix4f RosHandler::fuseLpeTm(Matrix4f vTm, int from, int to)
 {
-	const float lpe_weight = 0.8;
+	const float lpe_weight = 0.5;
 	float r, p, y,r_v,p_v,y_v;
 	Matrix4f lpeTm = getTmFromIdtoId(from,to);
 	rot2rpy(lpeTm.topLeftCorner(3,3),r,p,y);
@@ -177,6 +176,21 @@ Matrix4f RosHandler::fuseLpeTm(Matrix4f vTm, int from, int to)
 	vTm.topLeftCorner(3,3) = rpy2rot(r,p,y);
 	return vTm;
 }
+
+Matrix3f RosHandler::fuseRpy(Matrix3f vRot)
+{
+	const float lpe_weight = 0.5;
+	float r, p, y,r_v,p_v,y_v;
+	rot2rpy(_lpe.topLeftCorner(3,3),r,p,y);
+	rot2rpy(vRot, r_v,p_v,y_v);
+
+	r = lpe_weight*r + (1-lpe_weight)*r_v;
+	p = lpe_weight*p + (1-lpe_weight)*p_v;
+	y = lpe_weight*y + (1-lpe_weight)*y_v; // average the rpy with lpe estimate (complimentary filter)
+
+	return rpy2rot(r,p,y);
+}
+
 
 inline Matrix3f RosHandler::rpy2rot(float r, float p, float y)
 {

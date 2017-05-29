@@ -32,6 +32,8 @@ public:
 	// mavros related
 	Matrix4f getLpe();
 	Matrix4f fuseLpeTm(Matrix4f,int from, int to);  // need to be consistent with pixhawk
+	Matrix3f fuseRpy(Matrix3f vRot);
+	
 	// void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
 
 	Matrix4f 	 getTmFromIdtoId(int from, int to);

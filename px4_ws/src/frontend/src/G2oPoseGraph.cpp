@@ -23,7 +23,7 @@ G2oPoseGraph::~G2oPoseGraph()
 	optimizer.clear(); // freeing the graph memory
 }
 
-int G2oPoseGraph::addFirstNode()
+int G2oPoseGraph::addFirstNode(const Eigen::Isometry3d& position)
 {
 	boost::mutex::scoped_lock(graphMutex);
 
@@ -32,7 +32,8 @@ int G2oPoseGraph::addFirstNode()
 
 	g2o::VertexSE3* vertex = new g2o::VertexSE3();
 	vertex->setId(currentIndex);
-	vertex->setToOriginImpl();
+	// vertex->setToOriginImpl();
+  vertex->setEstimate(position); // start at a preliminary position
 	vertex->setFixed(true);
 
 	optimizer.addVertex(vertex);
@@ -170,7 +171,7 @@ void G2oPoseGraph::getEdgeNeighborsToCurrentNode(int sequential, std::vector<int
 	dijkstra.shortestPaths(v, &costFun, 3); // geodesic distance == 3
 
 	// shortest path search
-	
+
 	g2o::HyperGraph::VertexSet& vs = dijkstra.visited();
 
 	for (g2o::HyperGraph::VertexSet::iterator i=vs.begin(); i!=vs.end(); ++i)

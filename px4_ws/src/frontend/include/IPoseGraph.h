@@ -31,11 +31,11 @@ public:
 	virtual int getCurrentId() = 0;
 
 	/**
-	 * @brief adds the first node
+	 * @brief adds the first node (given an initial position)
 	 *
 	 * @return returns the id of the first node
 	 */
-	virtual int addFirstNode() = 0;
+	virtual int addFirstNode(const Eigen::Isometry3d& position) = 0;
 
 	/**
 	 * @brief adds a node to the pose graph

@@ -44,7 +44,7 @@ public:
 	//
 	// see IGraphOptimizer.h for description
 	virtual int getCurrentId() { return currentIndex; }
-	virtual int addFirstNode();
+	virtual int addFirstNode(const Eigen::Isometry3d& position);
 	virtual int addNode(const Eigen::Isometry3d& pos);
 	virtual void removeNode(int id);
 	virtual void addEdgePreviousToCurrent(const Eigen::Isometry3d& measurement, const Eigen::Matrix<double, 6, 6>& informationMatrix);
@@ -61,7 +61,7 @@ public:
 	/**
 	 * @brief saves the pose graph
 	 */
-	void save() { 
+	void save() {
 
 		std::string buffer;
 		const char origFile [100] = "/home/tuofeichen/SLAM/MAV-Project/catkin_ws/src/frontend/matlab_util/g.g2o";
@@ -82,7 +82,6 @@ public:
 		}
 
 		std::remove(origFile);
-
 		// std::ofstream ofs2("/home/tuofeichen/graph2.g2o");
 		// std::cout << "what is current index?" << currentIndex << std::endl;
 		// for (int i = 0;i<currentIndex;i++)
