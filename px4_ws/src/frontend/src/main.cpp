@@ -69,7 +69,6 @@ static G2oPoseGraph graph;
 int main(int argc, char **argv)
 {
 	// init
-
 	ros::init(argc,argv,"rgbd_backend");
 	initLog();
 
@@ -81,8 +80,8 @@ int main(int argc, char **argv)
 	Backend backend(backendPort,backendMutex,backEndSupport);
 
 
-// threads for parallelizing objectDetection and slam
-	boost::thread t_procFrame;
+// threads for parallelizing object detection and slam
+	boost::thread t_obj;
 	boost::thread t_slam;
 
 // Timing Variables
@@ -142,16 +141,15 @@ int main(int argc, char **argv)
 #endif
 			// start slam
 			slam.addFrame(frame);
-			if(slam.extractFeature()){
+			if(slam.extractFeature() && (!obj.getObjDetectFlag())){ // stop slam when is in tracking mode
 				t_slam 		= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
 			// run object detection all the time (for obstacle detection despite we don't have enough feature)
-			t_procFrame = boost::thread (&ObjDetection::processFrame, &obj, frame);
+			t_obj = boost::thread (&ObjDetection::processFrame, &obj, frame);
 			t_slam.join();
-			t_procFrame.join();
+			t_obj.join();
 
-
-			if ((slam.getBadFrameFlag() < 1))// && (!obj.getObjDetectFlag()))
+			if ((slam.getBadFrameFlag() < 1) && (!obj.getObjDetectFlag()))
 			{
 			  pos = slam.getCurrentPosition();
 				if (px4.getArmFlag())  // log only when armed
@@ -227,7 +225,7 @@ int main(int argc, char **argv)
 		backend.sendCurrentPos(pos);
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));// necessary?
 	}
-	backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
+		backend.sendCurrentPos((-1)*Eigen::Matrix<float, 4, 4>::Identity()); // end signal
 	}
 
 	graph.save();

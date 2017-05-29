@@ -169,8 +169,8 @@ private:
 	enum ComparisonResult {noTimeStamp, succeed, failed};
 	ComparisonResult compareCurrentPosition(const Frame& frame, const Eigen::Isometry3d& pose);
 	void loopClosureDetection(Frame procFrame);
-	// void fusePX4LPE(RosHandler& lpe, int frameType);
-	void fusePX4LPE(int frameType);
+	// void setPx4Node(RosHandler& lpe, int frameType);
+	void setPx4Node(int frameType);
 
 
 	//

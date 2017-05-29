@@ -20,9 +20,9 @@ RosHandler::RosHandler()
 	_bat_sub 		= _nh.subscribe("/mavros/battery",10, &RosHandler::batCallback, this);
 
 	_lpe.setIdentity();
-	_lpe_cam.setIdentity();
+	// _lpe_prev_cam.setIdentity();
 	_time = 0.0 ;
-	_time_cam = 0.0;
+	// _time_prev_cam = 0.0;
 
 	_is_takeoff   = 0;
 	_is_land = 0;
@@ -37,6 +37,13 @@ RosHandler::~RosHandler()
 	ros::shutdown();
 };
 
+void 	RosHandler::updateLpeLastPose(int id)
+// add rotational information to fuse (should at end of the day fuse to ekf2)
+{
+	// keep a pose graph of lpe
+	_lpe_nodes.push_back(_lpe);
+	cout << "slam/lpe node id is " << id << " " << _lpe_nodes.size()-1 << endl;
+}; // note down new lpe (for next edge calculation)
 
 void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 {
@@ -99,9 +106,6 @@ void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update s
 		_rgbd_slam_pos.header.stamp.sec  = floor(timeStamp);
 		_rgbd_slam_pos.header.stamp.nsec = (timeStamp - floor(timeStamp)) *1000000000.0;
 
-		// cout << "current time sec is " << _rgbd_slam_pos.header.stamp.sec << endl;
-		// cout << "current time nsec is " << _rgbd_slam_pos.header.stamp.nsec << endl;
-
 		_rgbd_slam_pos.pose.position.x = _xyz(0);
 		_rgbd_slam_pos.pose.position.y = _xyz(1);
 		_rgbd_slam_pos.pose.position.z = _xyz(2);
@@ -116,10 +120,10 @@ void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update s
 }
 
 Matrix4f RosHandler::getLpe() {
-		float r, p, y;
-		Matrix3f rot = _lpe.topLeftCorner(3,3);
-		rot2rpy(rot,r,p,y);
-
+	// some debugging information if needed
+		// float r, p, y;
+		// Matrix3f rot = _lpe.topLeftCorner(3,3);
+		// rot2rpy(rot,r,p,y);
 		// cout << "[LPE] rpy :   "<< r <<"   " << p << "   " << y << endl;
 		// cout << "[LPE] position : " << _lpe.topRightCorner(3,1).transpose()<< endl << endl;
 
@@ -127,14 +131,25 @@ Matrix4f RosHandler::getLpe() {
 };
 
 
-void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
+Matrix4f RosHandler::getTmFromIdtoId(int from, int to)
 {
-	tm =  _lpe_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
-	im = Matrix<float, 6, 6>::Identity() * 5000;
-	// TODO get actual covariance matrix from mavlink (need to modify mavros to subscribe)
+  Matrix4f tm;
+	if (to >= 0)
+		tm = _lpe_nodes[from].inverse()* _lpe_nodes[to];
+	else
+		tm = _lpe_nodes[from].inverse()* _lpe;
 
-	dt = _time - _time_cam;
+	return tm;
 }
+
+// void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
+// {
+// 	tm =  _lpe_prev_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
+// 	im = Matrix<float, 6, 6>::Identity() * 5000;
+// 	// TODO get actual covariance matrix from mavlink (need to modify mavros to subscribe)
+//
+// 	dt = _time - _time_prev_cam;
+// }
 
 
 // debug utility
@@ -143,22 +158,24 @@ void RosHandler::q2rpy(Quaternionf q, float& r, float& p, float& y)
 	r = atan2(2*(q.w()*q.x()+q.y()*q.z()), 1-2*(q.x()*q.x()+q.y()*q.y()));
 	p = asin(2*(q.w()*q.y()-q.z()*q.x()));
 	y = atan2(2*(q.w()*q.z()+q.y()*q.x()), 1-2*(q.z()*q.z()+q.y()*q.y()));
-
 }
 
 
-Matrix3f RosHandler::fuseRpy(Matrix3f vRot)
+Matrix4f RosHandler::fuseLpeTm(Matrix4f vTm, int from, int to)
 {
 	const float lpe_weight = 0.8;
 	float r, p, y,r_v,p_v,y_v;
-	rot2rpy(_lpe.topLeftCorner(3,3),r,p,y);
-	rot2rpy(vRot, r_v,p_v,y_v);
+	Matrix4f lpeTm = getTmFromIdtoId(from,to);
+	rot2rpy(lpeTm.topLeftCorner(3,3),r,p,y);
+	rot2rpy(vTm.topLeftCorner(3,3), r_v,p_v,y_v);
 
 	r = lpe_weight*r + (1-lpe_weight)*r_v;
 	p = lpe_weight*p + (1-lpe_weight)*p_v;
 	y = lpe_weight*y + (1-lpe_weight)*y_v; // average the rpy with lpe estimate (complimentary filter)
 
-	return rpy2rot(r,p,y);
+	// vTm = lpeTm*lpe_weight + vTm*(1- lpe_weight); // do we need to fuse tranlsation?
+	vTm.topLeftCorner(3,3) = rpy2rot(r,p,y);
+	return vTm;
 }
 
 inline Matrix3f RosHandler::rpy2rot(float r, float p, float y)

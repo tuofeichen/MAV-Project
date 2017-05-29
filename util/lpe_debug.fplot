@@ -68,14 +68,14 @@
     "Fields": "LPOS.VY LPOS.Y LPSP.VY LPSP.Y",
     "Delay": 0,
     "Offset": 0,
-    "Scale": 1,
-    "LPF": 1
+    "LPF": 1,
+    "Scale": 1
    },
    "Colors": {
     "LPOS.VY": "00ffff",
-    "LPOS.Y": "0000ff",
+    "LPSP.Y": "ffc800",
     "LPSP.VY": "ff00ff",
-    "LPSP.Y": "ffc800"
+    "LPOS.Y": "0000ff"
    },
    "Title": "Y tuning"
   },
@@ -85,16 +85,45 @@
     "Fields": "ARSP.YawRateSP ATSP.YawSP ATT.Yaw ATT.YawRate",
     "Delay": 0,
     "Offset": 0,
-    "Scale": 1,
-    "LPF": 0
+    "LPF": 0,
+    "Scale": 1
    },
    "Colors": {
     "ARSP.YawRateSP": "0000b2",
-    "ATSP.YawSP": "b20000",
     "ATT.YawRate": "00b200",
+    "ATSP.YawSP": "b20000",
     "ATT.Yaw": "ffc800"
    },
    "Title": "Yaw Tuning"
+  },
+  {
+   "ProcessorType": "Simple",
+   "Parameters": {
+    "Fields": "ATT.qw ATT.qz VISN.QuatW VISN.QuatZ",
+    "Delay": 0,
+    "Offset": 0,
+    "LPF": 0,
+    "Scale": 1
+   },
+   "Colors": {
+    "ATT.qw": "000000",
+    "VISN.QuatW": "c0c0c0",
+    "VISN.QuatZ": "b28c00",
+    "ATT.qz": "ffc800"
+   },
+   "Title": "Yaw Align"
+  },
+  {
+   "ProcessorType": "Derivative",
+   "Parameters": {
+    "Fields": "LPOS.X",
+    "Delay": 0,
+    "Offset": 0,
+    "Scale": 1,
+    "LPF": 1
+   },
+   "Colors": {"LPOS.X": "ff00ff"},
+   "Title": "LPOS.X"
   }
  ],
  "Title": ""

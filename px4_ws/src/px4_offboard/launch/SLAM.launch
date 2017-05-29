@@ -9,7 +9,7 @@
 <arg name="trav_dist" default="900"/>
 <arg name="obj_fail_dist" default="800"/>
 <arg name="track_dist" default="860"/>
-<arg name="trav_inc" default="400"/>
+<arg name="trav_inc" default="150"/>
 
 <arg name="Kpxy" default="0.3"/>
 <arg name="Kpz" default="0.01"/>

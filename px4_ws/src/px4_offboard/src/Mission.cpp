@@ -17,7 +17,7 @@ Mission::Mission()
 	_is_fail = 0;
 
 	_obst_found = 0;
-	_obst_cnt = 2; 		// start with 2 obstacles cnt (cuz the first time calibration doesn't count);
+	_obst_cnt = 1; 		// start with 2 obstacles cnt (cuz the first time calibration doesn't count);
 	_wall_cnt = _obj_cnt = _cali_cnt = 0;
 	_cannot_find_wall_cnt = 0;
 	_roll = _pitch = _yaw = 0;
@@ -192,17 +192,17 @@ bool Mission::turnLeft90()
 	{
 		_yaw += 2* M_PI; // warp around
 	}
-	// if(fabs(_vel(5)) < 2.5 *_ang_tol)
-	// {
-	// 	// cout << "error remaining is " << fabs(_yaw - _yaw_prev - 0.5 * M_PI) << endl;
-	// }
-	// {
+
+
+	const float turn_ratio = 0.5; // adjust this manually if there's not enough / over turning （ideally should be 0.5)
+	const float Kturn = 0.5;
 	_is_update = 1;
-	_objCommand.yaw = _Kyaw * fabs(_yaw - _yaw_prev - 0.5*M_PI);
-	_objCommand.yaw = max(_objCommand.yaw, 0.06);
+	_objCommand.yaw = Kturn * fabs(_yaw - _yaw_prev - turn_ratio*M_PI);
+	_objCommand.yaw = max(_objCommand.yaw, 0.1);
+
 	// }
 	_objCommand.yaw_pos = _yaw; // note down yaw angle (after turn)
-	return (fabs(_yaw - _yaw_prev - 0.5 * M_PI) < (_ang_tol)); // true if finished turning (set this threshold to be higher if overturn)
+	return (fabs(_yaw - _yaw_prev - turn_ratio * M_PI) < (_ang_tol)); // true if finished turning (set this threshold to be higher if overturn)
 }
 
 void Mission::objCallback(const geometry_msgs::Point pos)
@@ -346,7 +346,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 				 {
 
 					_obst_found = 1;
-					// _objCommand.yaw = _Kyaw * _angle_rad;
+					_objCommand.yaw = _Kyaw * _angle_rad;
 					_objCommand.position.y = _traverse_speed * (msg.z - _trav_dist)/1000.0;
 					_objCommand.control = VEL; // back off still using velocity control
 					_is_update = 1;
@@ -367,7 +367,7 @@ void Mission::obstCallback(geometry_msgs::Point msg)
 						setFlightMode(turning); // enter turning mode
 					}
 
-					if ((_trav_dist < _room_size)&&(!(_obst_cnt%4))){ // room dimension
+					if ((_trav_dist < _room_size)&&(!(_obst_cnt%2))){ // room dimension
 						ROS_INFO("[Mission] Increment traverse to %d", _trav_dist);
 						_trav_dist += _traverse_inc;
 						_obst_cnt++;

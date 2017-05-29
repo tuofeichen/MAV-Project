@@ -23,8 +23,7 @@ public:
 
 	// rgbd slam related
 	void 	 updateCamPos (double, Matrix4f); // to pixhawk
-	void 	 updateLpeLastPose() {_lpe_cam = _lpe; _time_cam = _time; }; // note down new lpe (for next edge calculation)
-
+	void 	 updateLpeLastPose(int id);
 	// object detection and navigation related
 	void 	 updateObjPos  (geometry_msgs::Point);
 	void 	 updateWallPos (geometry_msgs::Point);
@@ -32,9 +31,10 @@ public:
 
 	// mavros related
 	Matrix4f getLpe();
-	Matrix3f fuseRpy(Matrix3f);
+	Matrix4f fuseLpeTm(Matrix4f,int from, int to);  // need to be consistent with pixhawk
+	// void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
 
-	void 	 getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double& dt);
+	Matrix4f 	 getTmFromIdtoId(int from, int to);
 	bool 	 getTakeoffFlag(){ return _is_takeoff;};
 	bool 	 getArmFlag(){ return _is_arm;};
 
@@ -63,13 +63,18 @@ private:
 	bool 						_is_arm; // note down arming instance is important for some handling
 	double						_timeout;
 	double 						_time;     	// time stamp
-	double						_time_cam;
-	Matrix4f 					_lpe;			// curren lpe
-	Matrix4f					_lpe_cam; 		// last camera node lpe
 
-	// Matrix4f					_lpe2cam;   // transformation matrix
 
-	Vector3f					_rpy;
+	std::vector<Matrix4f> _lpe_nodes;
+	// note down the stream of lpe
+	// format as time, roll, pitch, yaw
+
+	Matrix4f 						_lpe;									// current lpe
+	// Matrix4f					_lpe_prev_cam; 		// last camera node lpe
+	// double						_time_prev_cam;
+
+	// Matrix4f					_lpe2cam;   			// transformation matrix
+
 	Vector3f					_xyz;
 
 	geometry_msgs::PoseStamped 	_rgbd_slam_pos;

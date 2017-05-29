@@ -57,7 +57,7 @@ bool Mapping::extractFeature()
 		++badFrameCounter;
 		// if(!(badFrameCounter%50))
 			// cout << "bad feature!"<< endl;
-		fusePX4LPE(badFrame);
+		setPx4Node(badFrame);
 		return 0;
 	}
 
@@ -82,16 +82,10 @@ void Mapping::addNewNode()
 
 	tryToAddNode(0) ;	  //  changes currentFrame
 
-	if (currentFrame.getNewNodeFlag()) {
-			px4->updateLpeLastPose(); //update last pose (not necessary now)
-	}
-	else if (!validTrafo[0]) // invalid trafo estimate
+	if (!validTrafo[0]) // invalid trafo estimate (maybe wait until pose graph then decide ? )
 	{
 				setDummyNode();
 	}
-
-	// if (currentFrame.getId() > 0)
-	// 	cout << "added frame " << currentFrame.getId() << "  to pose graph" << endl;
 
 }
 
@@ -113,7 +107,8 @@ void Mapping::optPoseGraph()
 
 	// process graph
 	time_delay.tic();
-	// again don't deal with immediate node
+
+	// thread start with 1 (don't deal with immediate node)
 	for(int thread = 1; thread < frames && !procFrame.getDummyFrameFlag(); ++thread)
 	{
 		if (procFrame.getId() > 0)
@@ -149,7 +144,7 @@ void Mapping::optPoseGraph()
 	time_delay.tic();
 
 	if(procFrame.getDummyFrameFlag())
-	{ // trafo to small or to big
+	{
 		if(exchangeFirstNode && nodes.size() == 1)
 		{
 			exchangeFirstFrame();
@@ -162,6 +157,7 @@ void Mapping::optPoseGraph()
 
 		// optimize graph once
 		graphHandler.join(); // avoid overflowing
+
 		// optimizeGraph(false);
 		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
 
@@ -171,7 +167,6 @@ void Mapping::optPoseGraph()
 			{
 				if(optimizeTillConvergence)
 				{
-
 					// optimize graph till convergenz
 					// optimizeGraph(true);
 					graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
@@ -211,19 +206,19 @@ void Mapping::run()
 	}
 
 	time.tic();
-
 	addNewNode();
-
 	delayProc.join(); // join optimizing graph
 
 	if (optFlag && currentFrame.getNewNodeFlag() > 0) // new node then lets do graph optimization
 	{
-		optFlag 		 = false; // don't add new thread to the queue, this should be asynchronous
-		// mapMutex.lock(); // flag is thread safe
+		optFlag 		 = false; // don't add new thread to the queue, this can be asynchronous
 		delayProc 	 = boost::thread(&Mapping::optPoseGraph,this); //shouldn't overlap with itself
-		// mapMutex.unlock();
-		// delayProc.join();
 	}
+
+	if (currentFrame.getNewNodeFlag()) {
+			px4->updateLpeLastPose(currentFrame.getId());
+	}
+
 }
 
 void Mapping::addFrame(Frame& frame)
@@ -258,7 +253,6 @@ void Mapping::matchTwoFrames(
 	//
 	// feature detecting, extracting and matching
 	//
-
 
 	std::vector<int> matchesIdx1;
 	std::vector<int> matchesIdx2;
@@ -295,6 +289,8 @@ void Mapping::matchTwoFrames(
 		tm.row(1) = tm_temp.row(0) * rot;
 		tm.row(2) = tm_temp.row(1) * rot;
 		tm.col(3) =	rot.inverse() * tm_temp.col(3);
+
+		tm = px4->fuseLpeTm(tm,frame2.getId(),frame1.getId());
 		transformationMatrix.matrix() = tm.cast<double>();
 	}
 	else
@@ -315,13 +311,6 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			{
 				currentFrame.setNewNodeFlag(true);
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
-
-// when adding node keep translation the same but filter rotation from lpe
-			  Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
-				rot =  px4->fuseRpy(rot);
-				currentPosition.matrix().topLeftCorner(3,3) = rot.cast<double>();
-
-
 				currentFrame.setPosition(currentPosition.matrix().cast<float>());
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
@@ -339,7 +328,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			loopClosureFound = true;
 		}
 
-		// add edge to current node (only add edges)
+		// add edge to current node (add edges)
 		poseGraph->addEdgeFromIdToId(transformationMatrix, informationMatrix, prevId,currId);
 		return trafoValid;
 	}
@@ -570,7 +559,7 @@ void Mapping::setDummyNode()
 	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
 	{
 		sequenceOfLostFramesCntr = 0; //reset sequence lost frame counter
-		fusePX4LPE(dummyFrame);
+		setPx4Node(dummyFrame);
 	}
 
 		// if(!nodes.back().getDummyFrameFlag())
@@ -717,7 +706,7 @@ void Mapping::addFirstNode()
 }
 
 
-void Mapping::fusePX4LPE(int frameType)
+void Mapping::setPx4Node(int frameType)
 {
 		Isometry3d	  		 tm_lpe;
 		Matrix<double, 6, 6>  im_lpe;
@@ -733,13 +722,10 @@ void Mapping::fusePX4LPE(int frameType)
 				// no new node is set, no keyframe is set
 			break;
 
-			// case recoverFrame:							  // recover from bad frame (not necessary)
-			// 	currentFrame.setBadFrameFlag(2);
-			// break;
-
 			case dummyFrame:
 				// cout << "fuse dummy frame" << endl;
-			// most likely due to recovery from bad frame, directly add new node
+
+				// most likely due to recovery from bad frame, directly add new node
 				currentFrame.setBadFrameFlag(3);    // dummy frame flag
 				currentFrame.setNewNodeFlag(true);  // new node flag (should we?)
 				currentPosition = px4 -> getLpe().cast<double>();  // directly use LPE to be consistant
@@ -756,28 +742,6 @@ void Mapping::fusePX4LPE(int frameType)
 			break;
 		}
 
-		if (currentFrame.getNewNodeFlag()){ // after fusion
-
-			// should we consider search key frame for dummy frame?
-			// Eigen::Isometry3d prevKey = poseGraph->getPositionOfId(keyFrames.back().getId());
-			// Eigen::Matrix4d keyTm = prevKey.matrix().inverse()*currentPosition.matrix();
-			// double maxDisp  = keyTm.topRightCorner(3,1).norm();
-			// double roll, pitch, yaw;
-			// convertRotMatToEulerAngles(keyTm.topLeftCorner(3,3),roll,pitch,yaw);
-			// double maxAngle = std::max(fabs(roll),std::max(fabs(pitch),fabs(yaw)));
-			// // if (maxAngle > 30 * minRotation || maxDisp > 30 * minTranslation)
-			// // {
-			// // 	Frame& keyFrame = nodes.back();
-			// // 	keyFrame.setKeyFrameFlag(true);
-			// // 	keyFrames.push_back(keyFrame);
-			// // 	cout << "Added frame (dummy) " << keyFrames.back().getId() << " as key frame------------------- " << keyFrames.size() << endl;
-			// // }
-
-			// if (!(currentFrame.getId()%10))
-			// 	cout << "frame type " << frameType << " compensated by px4" << endl;
-				// cout << "update lpe cam pose in bad frame" << endl;
-				px4->updateLpeLastPose();
-		}
 		return;
 }
 
