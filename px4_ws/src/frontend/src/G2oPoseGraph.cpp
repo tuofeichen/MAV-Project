@@ -26,7 +26,6 @@ G2oPoseGraph::~G2oPoseGraph()
 int G2oPoseGraph::addFirstNode(const Eigen::Isometry3d& position)
 {
 	boost::mutex::scoped_lock(graphMutex);
-
 	optimizer.clear(); // freeing the graph memory
 	currentIndex = 0;
 

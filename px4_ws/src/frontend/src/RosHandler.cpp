@@ -40,10 +40,10 @@ RosHandler::~RosHandler()
 void 	RosHandler::updateLpeLastPose(int id)
 // add rotational information to fuse (should at end of the day fuse to ekf2)
 {
-	// keep a pose graph of lpe
+	// keep a pose graph of lpe as well for trafo fusion
 	_lpe_nodes.push_back(_lpe);
-	cout << "slam/lpe node id is " << id << " " << _lpe_nodes.size()-1 << endl;
-}; // note down new lpe (for next edge calculation)
+	// cout << "slam/lpe node id is " << id << " " << _lpe_nodes.size()-1 << endl;
+}; 
 
 void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 {

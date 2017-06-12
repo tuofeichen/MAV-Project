@@ -173,7 +173,7 @@ int main(int argc, char **argv)
 			{
 			  // logLpeNode(px4.getLpe(), frame.getTime(),nodeId,badFrame);
 				timeDiff = time.toc();
-				cout << "total processing time " << timeDiff << endl << endl;
+				cout << "total processing time for "<< frame.getId() << " is " << timeDiff << endl << endl;
 			}
 
 // Keyframe Processing (Add New Node to backend PCL) (can be threaded)

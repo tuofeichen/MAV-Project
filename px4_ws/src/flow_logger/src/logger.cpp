@@ -27,9 +27,9 @@ int main(int argv, char **argc)
 
 if (logger.px_lpe.size()>0)
 {
-  plt::figure();
+  plt::figure(1);
   plt::plot(logger.px_lpe, logger.py_lpe);
-  plt::figure();
+  plt::figure(2);
   plt::plot(logger.pz_lpe);
 //  plt::plot(logger.px_lpe, logger.time_lpe);
 //  plt::figure();
@@ -39,7 +39,7 @@ if (logger.px_lpe.size()>0)
 
 if(logger.px_vision.size()>0)
 {
-  plt::figure();
+  plt::figure(3);
   plt::plot(logger.px_vision,logger.py_vision);
 }
 //  plt::show();

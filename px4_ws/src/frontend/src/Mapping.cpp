@@ -290,8 +290,8 @@ void Mapping::matchTwoFrames(
 		tm.row(2) = tm_temp.row(1) * rot;
 		tm.col(3) =	rot.inverse() * tm_temp.col(3);
 
-		if (frame2.getId() > 1) // start fusing after inital correction
-			tm = px4->fuseLpeTm(tm,frame2.getId(),frame1.getId());
+		// if (frame2.getId() > 1) // start fusing after inital correction
+		// 	tm = px4->fuseLpeTm(tm,frame2.getId(),frame1.getId());
 
 		transformationMatrix.matrix() = tm.cast<double>();
 	}
@@ -315,10 +315,10 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				currentFrame.setPosition(currentPosition.matrix().cast<float>());
 
-				// try to correct yaw steady state error
-  			Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
-  			rot =  px4->fuseRpy(rot);
- 				currentPosition.matrix().topLeftCorner(3,3) = rot.cast<double>();
+				// // try to correct yaw steady state error
+  			// Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
+  			// rot =  px4->fuseRpy(rot);
+ 			// 	currentPosition.matrix().topLeftCorner(3,3) = rot.cast<double>();
 
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
