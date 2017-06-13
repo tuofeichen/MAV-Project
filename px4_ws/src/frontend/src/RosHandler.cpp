@@ -38,12 +38,11 @@ RosHandler::~RosHandler()
 };
 
 void 	RosHandler::updateLpeLastPose(int id)
-// add rotational information to fuse (should at end of the day fuse to ekf2)
 {
 	// keep a pose graph of lpe as well for trafo fusion
 	_lpe_nodes.push_back(_lpe);
-	// cout << "slam/lpe node id is " << id << " " << _lpe_nodes.size()-1 << endl;
-}; 
+
+};
 
 void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 {
@@ -51,10 +50,6 @@ void RosHandler::lpeCallback(const geometry_msgs::PoseStamped pos_read)
 	_time = pos_read.header.stamp.sec + pos_read.header.stamp.nsec / 1000000000.0;
 	_lpe.setIdentity(); 	// clear buffer
 	_lpe.topLeftCorner (3,3) = q.matrix();
-
-	// float r, p, y;
-	// rot2rpy(q.matrix(),r,p,y);
-	// cout << "lpe rpy is " << r << " " << p << " "<< y << endl;
 
 	_lpe.topRightCorner(3,1) << pos_read.pose.position.x, pos_read.pose.position.y, pos_read.pose.position.z;
 
@@ -69,10 +64,10 @@ void RosHandler::flowValidCallback(const std_msgs::Float64 data)
 
 void RosHandler::batCallback(const mavros_msgs::BatteryStatus bat)
 {
-	// if (bat.voltage < 14.5)
-	// {
-	//   ROS_WARN("Low battery!");
-	// }
+	if (bat.voltage < 14.5)
+	{
+	  ROS_WARN("Low battery!");
+	}
 }
 
 void RosHandler::updateObstacleDistance(geometry_msgs::Point obsDist)
@@ -90,7 +85,6 @@ void RosHandler::updateWallPos(geometry_msgs::Point wallPos)
 	_wall_pub.publish(wallPos);
 }
 
-// everthing aligned in camera frame
 void RosHandler::updateCamPos(double timeStamp, Matrix4f currentTME) // update slam estimate
 {
 		Matrix3f rot_mat   =  currentTME.topLeftCorner(3,3);    //  get rotation matrix
@@ -144,9 +138,8 @@ Matrix4f RosHandler::getTmFromIdtoId(int from, int to)
 // void  RosHandler::getTm(Matrix4f& tm, Matrix<float, 6, 6>& im, double&dt)
 // {
 // 	tm =  _lpe_prev_cam.inverse() * _lpe; // (body frame A = B * T, therefore T = inv(B) * A)
-// 	im = Matrix<float, 6, 6>::Identity() * 5000;
-// 	// TODO get actual covariance matrix from mavlink (need to modify mavros to subscribe)
-//
+// 	im = Matrix<float, 6, 6>::Identity() * 5000; // TODO assign this based on LPE covariance
+
 // 	dt = _time - _time_prev_cam;
 // }
 

@@ -135,13 +135,13 @@ int main_wrap(float dRatio,float rRatio)
 		slam.addFrame(frame);
 		slam.run();
 
-		// if (slam.getOptFlag()>0){
-		// 	mapMutex.lock();
-		// 	map3d.updateTrajectory(slam.getCurrentPosition());
-		// 	logPoseGraphNode(frame, slam.getCurrentPosition());
-		// 	map3d.updateMapViewer();
-		// 	mapMutex.unlock();
-		// }
+		if (slam.getOptFlag()>0){
+			mapMutex.lock();
+			map3d.updateTrajectory(slam.getCurrentPosition());
+			logPoseGraphNode(frame, slam.getCurrentPosition());
+			map3d.updateMapViewer();
+			mapMutex.unlock();
+		}
 		cout << "Total Processing Time " << timer.toc() << endl << endl;
 
 	}

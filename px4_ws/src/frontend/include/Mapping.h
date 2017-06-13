@@ -61,13 +61,25 @@ public:
 	/**
 	 * @brief processes the new frame
 	 */
-	// void run(RosHandler& lpe);
 	void run();
 	// break down original run into following three functions
+
+	/**
+	 * @brief extract features for SLAM / object detection
+
+	  @return if it is a good frame (enough featuress)
+	 */
 	bool extractFeature();
+
+	/**
+	 * @brief initial matching to the last node, then publish mavros position
+	 */
 
 	void addNewNode();
 
+	/**
+	 * @brief parallel matching and pose graph optimization (parallel to next feature extraction)
+	 */
 	void optPoseGraph();
 	/**
 	 * @brief adds a new frame
