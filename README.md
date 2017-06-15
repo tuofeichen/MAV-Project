@@ -8,5 +8,5 @@
 `px4_ws`is the workspace that contains all the ROS packages we implemented on the Odroid. Specifically the ros packages are briefly described as below: 
 
 ### Documentation
-
-### Dependency
+The master thesis can be found here. 
+https://www.overleaf.com/read/mzyhntfpzxxk
