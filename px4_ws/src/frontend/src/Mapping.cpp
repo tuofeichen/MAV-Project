@@ -474,8 +474,7 @@ void Mapping::parallelMatching(Frame procFrame)
 							break;
 						}
 					}
-				} while(isNeighbor); //TODO check that not the same key frames are matched
-
+				} while(isNeighbor); 
 				// matching
 				graphIds[frames] = keyFrames.at(id).getId();
 				deltaT[frames] = procFrame.getTime() - keyFrames.at(id).getTime();
