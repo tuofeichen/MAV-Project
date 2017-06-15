@@ -12,12 +12,29 @@ enum flightmode_t { MANUAL=0, ALTCTL, POSCTL, AUTO_MISSION, AUTO_LOITER, AUTO_RT
 class CtrlPx4 {
 
 public:
+  /**
+ * @brief  constructor
+ */
   CtrlPx4();
+  /**
+ * @brief parse command and publish to mavros
+ */
   bool commandUpdate();
+  /**
+ * @brief takeoff to altitude, if in velocity control mode, take off with input velocity
+ */
   bool takeoff(double altitude, double velcity);
+  /**
+ * @brief land with input velocity
+ */
   bool land(double velocity);
+  /**
+ * @brief set all setpoints to current position (won't publish until commandUpdate)
+ */
   void hover();
-
+  /**
+	 * @brief public control methods
+	 */
   void forward(float distance);
   void backward(float distance);
   void left (float distance);
@@ -33,13 +50,13 @@ private:
 
 // SETTINGS
 
-// Controller Saturation (meters)
+// Controller Saturation (meters) (can be changed in SLAM.launch)
   float MAX_Z    = 0.9;
   float MAX_DZ   = 1.1;
   float MAX_DXY  = 0.3;
   float MAX_DYAW = 0.5;
   float MAX_V_POS = 0.1;
-  float BAT_LOW_THRESH = 9.5; //(V)
+  float BAT_LOW_THRESH = 14.5; //(V)
 
 
   // subscriber callbacks from MAV
@@ -54,11 +71,14 @@ private:
   void joyCallback(const px4_offboard::MavState);
   void aprilCallback(const px4_offboard::MavState);
   void objCallback(const px4_offboard::MavState);
-
-
   void updateState();
 
   // flight controller
+  /**
+ * @brief core position setpoint computation. Note that input dx,dy are all
+ * deltas from the current position.dz will be the absolute position setpoint.
+ * Body frame control.
+ */
   void  moveToPoint (float x_sp, float y_sp, float z_sp, float yaw_sp);
   bool  setMode(int mode);
   bool  setArm (bool arm);
@@ -66,12 +86,12 @@ private:
   // state of vehile
   bool sim_;     // disregard all offboard command
   bool off_en_;  // offboard enable flag  (if at sim_, always on, however, no ros node will be sending offboard command)
-  int auto_tl_; // auto takeoff landing flag
+  int auto_tl_;  // auto takeoff landing flag
   int obj_mode_;
   int obj_mode_prev;
   bool pos_ctrl_; // position control or velocity control (0 is POS, 1 is VEL)
 
-  float tl_height_ = 1.0; // takeoff height default
+  float tl_height_ = 0.7; // takeoff height default
 
   // controller
   PID pid_takeoff;
@@ -80,7 +100,7 @@ private:
 
   // setpoint related
   float prev_yaw_sp_;
-  float pos_dir_ = -5; // external direction for body frame setpoint position
+  float pos_dir_ = -5; // external direction for body frame setpoint position (not fully tested dont' use)
 
   my_state state_set_{0, 0, 0, 0}, state_read_{0, 0, 0, 0};
   my_pos home_;

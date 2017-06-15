@@ -197,7 +197,7 @@ void CtrlPx4::objCallback(const px4_offboard::MavState joy) {
     {
       if(obj_mode_prev == obj_mode_)
         moveToPoint(joy.position.x, joy.position.y, joy.position.z, joy.yaw);
-      else 
+      else
       {
         ROS_INFO("switched flight mode, hover");
         hover(); // reset all setpoint to current position
@@ -448,8 +448,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   // }
 
   pos_body << dx_sp, dy_sp, dz_sp;
-
-
   pos_nav(0) =
       -pos_body(0) * sin(yaw) + pos_body(1) * cos(yaw); // left and right
   pos_nav(1) =
@@ -460,7 +458,7 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     // first term is the previous setpoint
   float x = fcu_pos_setpoint_.pose.position.x + pos_nav(0);
   float y = fcu_pos_setpoint_.pose.position.y + pos_nav(1);
-  float z = dz_sp;// fcu_pos_setpoint_.pose.position.z + pos_body(2);
+  float z = dz_sp;
 
   if (obj_mode_ == tracking){
     // cout << "directly use dz as setpoint " << dz_sp <<  endl;
@@ -469,31 +467,34 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     z =  pos_read_.pz + pos_body(2); // use dz as z setpoint
   }
 
+// check Saturation
   float v_norm = sqrt(vel_.vx*vel_.vx+vel_.vy*vel_.vy);
   float p_norm = fabs(fcu_pos_setpoint_.pose.position.x-pos_read_.px) + fabs(fcu_pos_setpoint_.pose.position.y-pos_read_.py);
 
-  if((obj_mode_ == turning)||(fabs( prev_yaw_sp_) > 5)||((0 < dyaw_sp) && (dyaw_sp < 0.0001)))// initializing prev_yaw_sp_ at beginning (or very little change needed)
+// initializing prev_yaw_sp_ at beginning (or very little change needed)
+  if((obj_mode_ == turning)||(fabs( prev_yaw_sp_) > 5)||((0 < dyaw_sp) && (dyaw_sp < 0.0001)))
     prev_yaw_sp_ = yaw;//
 
+// check yaw saturation
   if ((fabs(yaw - prev_yaw_sp_) > MAX_DYAW))// || (fabs(vel_.vyaw) > 0.1)) {
   {
-    // cout << "reset yaw vyaw" << vel_.vyaw << endl;
     dyaw_sp = 0;
   }
 
   float yaw_sp = prev_yaw_sp_ + dyaw_sp; // important to prevent drifting
-  // float yaw_sp = yaw
+
 // avoid wrap around
   if (yaw_sp > M_PI) // saturation should be here
     yaw_sp -= 2*M_PI;
   else if (yaw_sp < -M_PI)
     yaw_sp += 2*M_PI;
 
+//translate yaw setpoint to quaternion
   float qw = cos(0.5 * yaw_sp);
   float qz = sin(0.5 * yaw_sp);
   prev_yaw_sp_ = yaw_sp;
 
-  // decided if we need to reset position setpoint
+  // decided if position setpoint is outof range
   if (((fabs(pos_read_.px + pos_nav(0) - x) +
        fabs(pos_read_.py + pos_nav(1) - y)) > (MAX_DXY*20)) || (fabs(pos_read_.pz + pos_body(2) - z) > (10*MAX_DZ))) // avoid position setpoint goes crazy
   {
@@ -521,15 +522,12 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
   }
   else
   {
-    // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0); // don't change position setpoint
+    // don't change position setpoint
+    // fcu_pos_setpoint_.pose.position.x = pos_read_.px + pos_nav(0);
     // fcu_pos_setpoint_.pose.position.y = pos_read_.py + pos_nav(1);
     // ROS_INFO("reset xy"); // if the new setpoint is closer to current position than use the new setpoint
   }
 
-  // if (fabs(pos_read_.pz + pos_body(2) - z) > MAX_DZ) {
-  //   fcu_pos_setpoint_.pose.position.z = pos_read_.pz;
-  //   ROS_INFO("[PX4 CTRL] Reset z");
-  // } else
 
   if (z < MAX_Z) {
     fcu_pos_setpoint_.pose.position.z = z;
@@ -560,10 +558,6 @@ void CtrlPx4::moveToPoint(float dx_sp, float dy_sp, float dz_sp,
     fcu_vel_setpoint_.twist.angular.z = dyaw_sp;   // yaw setpoint
   }
 
-  // if (pos_ctrl_)
-  //   ROS_INFO("position setpoint: [z: %f]",fcu_pos_setpoint_.pose.position.z);
-  // else
-  //   ROS_INFO("velocity setpoint: [z: %f]", fcu_vel_setpoint_.twist.linear.z);
 
 };
 
