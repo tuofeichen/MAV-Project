@@ -5,7 +5,7 @@
 
 `util` contains some setup files and documentations (need rename, update and clean up')
 
-`px4_ws`is the workspace that contains all the ROS packages we implemented on the Odroid. Specifically the ros packages are briefly described as below: 
+`px4_ws`is the workspace that contains all the ROS packages we implemented on the ODROID. Note that we use a Pixhawk flight controller for our low level control and we modified their Firmware to suit our need. Here's the Firmware repo. https://github.com/tuofeichen/Firmware
 
 ### Documentation
 The master thesis can be found here. 
