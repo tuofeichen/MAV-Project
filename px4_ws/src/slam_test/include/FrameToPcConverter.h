@@ -12,6 +12,7 @@
 #include "pcl/point_cloud.h"
 
 #include "Frame.h"
+#include <limits>       
 
 namespace SLAM {
 

@@ -20,6 +20,7 @@
 #include "IMap.h"
 #include "Frame.h"
 #include "FrameToPcConverter.h"
+#include "ICP.h"
 
 boost::mutex mapMutex;
 
@@ -118,6 +119,9 @@ public:
 	static constexpr double loopClosureDetectionThreshold = std::numeric_limits<double>::infinity(); ///< loop closure detection threshold for the averge descriptor
 	static constexpr double edgeErrorThreshold = 30.0 / (0.02 * 0.02); ///< g²o threshold for eges with big errors
 
+	static constexpr double keyframeMinRotation = 10.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double keyframeMinTranslation = 0.5;   ///< minimal translation in meter(negative values to disable)
+
 private:
 
 	//
@@ -146,6 +150,7 @@ private:
 		 int prevId, int currId,  double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
 	inline void convertRotMatToEulerAngles(const Eigen::Matrix3d& t, double& roll, double& pitch, double& yaw) const;
 	bool isMovementBigEnough(const Eigen::Isometry3d& trafo) const;
+	bool isKeyframeMovementBigEnough(const Eigen::Isometry3d& trafo) const;
 	bool isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double deltaT) const;
 	void addFirstNode();
 	enum ComparisonResult {noTimeStamp, succeed, failed};
@@ -168,8 +173,15 @@ private:
 	int frames = 0;
 
 	Eigen::Isometry3d currentPosition;
+	Eigen::Isometry3d keyframePosition;
 	Frame currentFrame;
-  Frame temp;
+	Frame previousFrame;
+  	Frame temp;
+
+  	ICP icp;
+  	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1normals;
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc2normals;
+	Eigen::Isometry3d previousTransformation;
 
 	std::vector<Frame> nodes;
 	std::vector<Frame> keyFrames;
@@ -178,6 +190,9 @@ private:
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
   boost::thread graphHandler;
 	boost::thread realTimeProc,delayProc;
+
+	boost::thread icpHandler1;
+	boost::thread icpHandler2;
 
 	bool optFlag = true;
 

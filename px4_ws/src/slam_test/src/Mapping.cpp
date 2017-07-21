@@ -23,7 +23,8 @@ Mapping::Mapping(
 		IPoseGraph* aGO,
 		IMap* aMap
 		)
- : fdem(aFDEM), tme(aTME), poseGraph(aGO), map3d(aMap)
+ : fdem(aFDEM), tme(aTME), poseGraph(aGO), map3d(aMap),
+ pc1normals(new pcl::PointCloud<pcl::PointXYZRGBNormal> ()), pc2normals(new pcl::PointCloud<pcl::PointXYZRGBNormal> ())
 {
 	// check element are not pointing to 0
 	assert(fdem);
@@ -32,6 +33,8 @@ Mapping::Mapping(
 	assert(map3d);
 
 	currentPosition = Eigen::Isometry3d::Identity();
+	keyframePosition = Eigen::Isometry3d::Identity();
+	previousTransformation = Eigen::Isometry3d::Identity();
 	keyFrames.clear();
 	nodes.clear();
 	nodes.reserve(1); // allocate memory for nodes
@@ -56,12 +59,31 @@ void Mapping::addNewNode()
   // needs to be thread safe
 	// mapMutex.lock();
 	matchTwoFrames(boost::ref(currentFrame),
-					boost::ref(*lastNode),
+					boost::ref(previousFrame),
 					boost::ref(enoughMatches[0]),
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
 					boost::ref(informationMatrices[0]));
 	 					//  start from second node when doing parallel matching
+	/*pcl::PointCloud<pcl::PointXYZRGB> pc1;
+	pcl::PointCloud<pcl::PointXYZRGB> pc2;
+	FrameToPcConverter::getColorPC(currentFrame, pc1);
+	FrameToPcConverter::getColorPC(previousFrame, pc2);
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1normals(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc2normals(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
+	pcl::copyPointCloud(pc1,*pc1normals);
+	pcl::copyPointCloud(pc2,*pc2normals);
+	//ICP icp;*/
+	if (validTrafo[0])
+		icp.setTransformationGuess(transformationMatrices[0].matrix().cast <float>());
+	else
+		icp.setTransformationGuess(previousTransformation.matrix().cast <float>());  // does inverse make sense??
+	//icp.filteringAndProcessing(pc1normals);
+	//icp.filteringAndProcessing(pc2normals);
+	validTrafo[0] = icp.run(pc2normals,pc1normals) || validTrafo[0];
+	//enoughMatches[0] = validTrafo[0];
+	transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
+	previousTransformation = transformationMatrices[0];
 
 	tryToAddNode(0) ;	  //  chages currentFrame
 	// mapMutex.unlock();
@@ -219,6 +241,24 @@ void Mapping::run()
 	double relTime;
 	// cout << "=== run start " << endl;
 
+	//mapMutex.lock();
+	pcl::PointCloud<pcl::PointXYZRGB> pc1;
+	pcl::PointCloud<pcl::PointXYZRGB> pc2;
+	icpHandler1 = boost::thread(&FrameToPcConverter::getColorPC,currentFrame,boost::ref(pc1));	// just use previousFrame data instead, store it
+	icpHandler2 = boost::thread(&FrameToPcConverter::getColorPC,previousFrame,boost::ref(pc2));	
+	icpHandler2.join();
+	icpHandler1.join();
+
+	pcl::copyPointCloud(pc1,*pc1normals);
+	pcl::copyPointCloud(pc2,*pc2normals);
+
+	icpHandler1 = boost::thread(&ICP::filteringAndProcessing,pc1normals);
+	icpHandler2 = boost::thread(&ICP::filteringAndProcessing,pc2normals);
+	icpHandler2.join();
+	icpHandler1.join();
+	//mapMutex.unlock();
+
+
 	// initialize variables
 	bestInforamtionValue = 0;
 	smallestId = lcSmallestId = poseGraph->getCurrentId();
@@ -296,6 +336,7 @@ void Mapping::matchTwoFrames(
 		Eigen::Matrix4f tm;
 		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix);
 		transformationMatrix.matrix() = tm.cast<double>();
+
 	}
 	else
 		validTrafo = false;
@@ -314,6 +355,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			{
 				// add new node here
 				currentPosition =  (poseGraph->getPositionOfId(prevId))*transformationMatrix;
+				keyframePosition =  keyframePosition*transformationMatrix;
 				poseGraph->addNode(currentPosition);
 				currentFrame.setId(poseGraph->getCurrentId());
 				currId = currentFrame.getId();
@@ -322,6 +364,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			else
 			{ // transformation to small
 				currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix; // still update current position
+				keyframePosition =  keyframePosition*transformationMatrix;
 				return trafoToSmall; // don't add node onto the pose graph but should update position
 			}
 		}
@@ -496,7 +539,7 @@ void Mapping::parallelMatching(Frame procFrame)
 void Mapping::tryToAddNode(int thread)
 {
 
-	if (validTrafo[thread] && enoughMatches[thread])
+	if (validTrafo[thread])
 	{
 		GraphProcessingResult result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], currentFrame.getId(), deltaT[thread], true, false);
 		if(result == trafoValid)
@@ -522,7 +565,7 @@ void Mapping::tryToAddNode(int thread)
 
 void Mapping::addEdges(int thread, int currId)
 {
-	if (validTrafo[thread] && enoughMatches[thread])
+	if (validTrafo[thread])
 	{
 		GraphProcessingResult result;
 		if(lcRandomMatching == 0)
@@ -573,7 +616,7 @@ void Mapping::setDummyNode()
 bool Mapping::searchKeyFrames(Frame procFrame)
 {
 	bool ret = false;
-	if (smallestId > keyFrames.back().getId())
+	/*if (smallestId > keyFrames.back().getId())
 	{
 		// cout << "smallest id " << smallestId << " that match to current frame " << procFrame.getId() << endl;
 
@@ -581,6 +624,7 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 		{
 			if (validTrafo[thread] &&  isVelocitySmallEnough(transformationMatrices[thread], deltaT[thread]))
 			{
+					keyframePosition = Eigen::Isometry3d::Identity();
 					Frame& keyFrame = nodes.back();
 					keyFrame.setKeyFrameFlag(true);
 					keyFrames.push_back(keyFrame);
@@ -590,8 +634,20 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 					break;
 			}
 		}
-	}
+	}*/
+	if (isKeyframeMovementBigEnough(keyframePosition))
+	{
+		keyframePosition = Eigen::Isometry3d::Identity();
+		Frame& keyFrame = nodes.back();
+		keyFrame.setKeyFrameFlag(true);
+		keyFrames.push_back(keyFrame);
+		cout << "Added id " << keyFrame.getId() << " as key frame <=========================================" << endl;
 
+		ret = true;
+	}
+	
+
+	previousFrame = nodes.back();
 	// delete images
 	nodes.back().deleteRgb();
 	nodes.back().deleteDepth();
@@ -658,6 +714,16 @@ bool Mapping::isMovementBigEnough(const Eigen::Isometry3d& trafo) const
     return (distSqrt > minTranslation*minTranslation || maxAngle > minRotation); // movment
 }
 
+bool Mapping::isKeyframeMovementBigEnough(const Eigen::Isometry3d& trafo) const
+{
+	double roll, pitch, yaw;
+	convertRotMatToEulerAngles(trafo.rotation(),roll,pitch,yaw);
+	double maxAngle = std::max(fabs(roll),std::max(fabs(pitch),fabs(yaw)));
+    double distSqrt = (trafo.translation()).squaredNorm();
+    return (distSqrt > keyframeMinTranslation*keyframeMinTranslation || maxAngle > keyframeMinRotation); // movment
+}
+
+
 bool Mapping::isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double dt) const
 {
 	double roll, pitch, yaw;
@@ -676,6 +742,7 @@ void Mapping::addFirstNode()
 	nodes.push_back(currentFrame);		//  1st copy constructor
 	nodes.back().setKeyFrameFlag(true);
 	keyFrames.push_back(nodes.back()); // 2nd copy constrictpr
+	previousFrame  = nodes.back();
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
 	nodes.back().deleteGray();

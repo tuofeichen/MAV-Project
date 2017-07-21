@@ -8,7 +8,7 @@ add_definitions("-x c++")
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  # message_generation
+  message_generation
   std_msgs
   geometry_msgs
 )
@@ -49,9 +49,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 # add_message_files(
 # FILES
-# #   Message1.msg
-# #   Message2.msg
-#  )
+#  CtrlState.msg
+#   Message1.msg
+#   Message2.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -68,11 +69,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#    DEPENDENCIES
-
-# #   std_msgs
-# )
+#generate_messages(
+#   DEPENDENCIES
+#
+#   std_msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,13 +105,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES rgbd_slam
-  CATKIN_DEPENDS
-  roscpp
-  std_msgs
-  # message_runtime
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES rgbd_slam
+  CATKIN_DEPENDS roscpp std_msgs 
+  DEPENDS system_lib
 
 )
 
@@ -123,63 +121,58 @@ catkin_package(
 # include_directories(include)
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize -Wall")
+
+set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/home/dexheimere/opencv/include -I/usr/include/eigen3 -I/home/dexheimere/OpenNI-Linux-x64-2.2/Include -Wall ")
 
 # -ftree-vectorizer-verbose=9
 
-set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist")
+set(CMAKE_CXX_LINK_FLAGS "-L/home/dexheimere/opencv/lib -L/usr/lib -L/home/dexheimere/OpenNI-Linux-x64-2.2/Redist")
 
-configure_file(/home/tuofeichen/g2o/config.h.in /home/tuofeichen/g2o/g2o/config.h)
+configure_file(/home/dexheimere/g2o/config.h.in /home/dexheimere/g2o/g2o/config.h)
+
+set(CMAKE_PREFIX_PATH "/home/dexheimere/opencv3")
+find_package(OpenCV 3.0 REQUIRED)
+set(OpenCV_INCLUDE_DIRS "/home/dexheimere/opencv3/include")
+
+find_package(PCL 1.7 REQUIRED)
+
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
 
 include_directories(
   include
+  ${catkin_SOURCE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
   /usr/include/pcl-1.7
-  /usr/include/vtk-5.8
-  /home/tuofeichen/g2o
-  /home/tuofeichen/g2o/EXTERNAL/csparse
+  /home/dexheimere/g2o
+  /home/dexheimere/g2o/EXTERNAL/csparse
   /usr/include/eigen3
-  /home/tuofeichen/OpenNI-Linux-x64-2.2/Include
-  /opt/opencv3/include
+  /home/dexheimere/opencv/include
+  #/home/dexheimere/OpenNI-Linux-x64-2.2/Include
+  #/home/dexheimere/OpenNI/Include
+  #/usr/include/ni
+  ${PCL_INCLUDE_DIRS}
 )
 
 link_directories(
 
-/opt/opencv3/lib
-/usr/lib
-/home/tuofeichen/g2o/lib
-/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist
+/home/dexheimere/opencv/lib
+/home/dexheimere/g2o/lib
+/usr/local/lib
 /opt/ros/indigo/lib/
-
+#/home/dexheimere/OpenNI-Linux-x64-2.2/Redist
+#${PCL_LIBRARY_DIRS}
 )
 
 
 ## Declare a C++ executable
 add_executable(slam_test src/main.cpp) # src/RosHandler.cpp)
 
-
 add_library(
 SLAM
-src/AnalyticBasedTME.cpp
-src/FrameToPcConverter.cpp
-src/G2oPoseGraph.cpp
-src/Mapping.cpp
-src/Frame.cpp
-src/RANSACBasedTME.cpp
-src/TcpClient.cpp
-src/SIFT.cpp
-src/PointCloudMap.cpp
-src/SURF.cpp
-src/ORB.cpp
-src/OrbDetSurfDesc.cpp
-src/UavComProtocolHandler.cpp
-src/AsusProLiveOpenNI2.cpp
-# src/RosHandler.cpp
-# src/Backend.cpp
-# src/TcpServer.cpp
-# src/ObjDetection.cpp
-src/RGDBSimulator.cpp)
+src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Frame.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/PointCloudMap.cpp src/RANSACBasedTME.cpp src/RGDBSimulator.cpp src/SIFT.cpp src/SURF.cpp src/TcpClient.cpp src/UavComProtocolHandler.cpp src/ICP.cpp
+)
 
 target_link_libraries(SLAM
 ${catkin_LIBRARIES}
@@ -190,10 +183,6 @@ boost_system
 boost_thread
 pthread
 OpenNI2
-pcl_io
-pcl_common
-pcl_visualization
-pcl_filters
 opencv_core
 opencv_xfeatures2d
 opencv_features2d
@@ -203,7 +192,8 @@ opencv_highgui
 opencv_videoio
 opencv_imgproc
 opencv_imgcodecs
-
+opencv_surface_matching
+${PCL_LIBRARIES}
 )
 
 target_link_libraries(slam_test

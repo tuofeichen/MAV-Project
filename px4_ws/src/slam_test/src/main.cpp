@@ -71,7 +71,7 @@ int main_wrap(float dRatio,float rRatio)
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
 	pcl::console::TicToc timer;
 
-	string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg1_desk/";
+	string folder = "/home/dexheimere/MAV-Project/HSR/02_Libs/HAL/simData/rgbd_dataset_freiburg3_structure_notexture_far/";
 	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
 	RGDBSimulator rgbdSensor(folder);
 
@@ -79,8 +79,8 @@ int main_wrap(float dRatio,float rRatio)
 	//
 	OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
   // SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
-	// SIFT fdem(0.8f, 50, 600);
-	// ORB fdem(0.7f, 500, 50, 600);
+	//SIFT fdem(0.8f, 50, 600);
+	//ORB fdem(0.7f, 500, 50, 600);
 	RANSACBasedTME tme(1000, 0.02, 0.03, rRatio, 30);
 	PointCloudMap map3d(0.02f);
 	G2oPoseGraph go;
@@ -145,7 +145,7 @@ int main_wrap(float dRatio,float rRatio)
 		cout << "Total Processing Time " << timer.toc() << endl << endl;
 
 	}
-  map3d.updateMapViewer();
+  	map3d.updateMapViewer();
 	sensor.stop();
 
 	// plot statistic
@@ -165,10 +165,10 @@ int main_wrap(float dRatio,float rRatio)
 	// // logPos.close();
 	// map3d.saveMap("Map.pcd");
 	// map3d.saveTrajectory("Traj.pcd");
-	map3d.showMap();
-
+	//map3d.showMap();
+	//map3d.stopMapViewer();
 	// optimize
-	go.optimizeTillConvergenz();
+	//go.optimizeTillConvergenz();
 
 	// remove edges with big errors
 //	while(go.removeEdgesWithErrorBiggerThen(edgeErrorThreshold))
@@ -178,7 +178,7 @@ int main_wrap(float dRatio,float rRatio)
 	// Save optimized map and position
 	// map3d.clearTrajectory();
 	cout << "start final graph optimization" << endl;
-	logPos.open("positionOpt.txt", std::ofstream::out | std::ofstream::trunc);
+	logPos.open("/home/dexheimere/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt", std::ofstream::out | std::ofstream::trunc);
 	int key = 0;
 	for(int i=0; i < static_cast<int>(slam.getNodes().size()); ++i)
 	{
@@ -197,24 +197,22 @@ int main_wrap(float dRatio,float rRatio)
 	cout << "SLAM done." << endl << endl;
 
 	//
-		string evalCommand = "python /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/evaluate_rpe.py ";
+		string evalCommand = "python /home/dexheimere/MAV-Project/px4_ws/src/slam_test/log/evaluate_rpe.py ";
 		evalCommand += folder;
 		evalCommand += "groundtruth.txt ";
-		evalCommand += " /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
+		evalCommand += " /home/dexheimere/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
 		string rpe_error = exec(evalCommand.c_str());
 
-		evalCommand = "python /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/evaluate_ate.py ";
+		evalCommand = "python /home/dexheimere/MAV-Project/px4_ws/src/slam_test/log/evaluate_ate.py ";
 		evalCommand += folder;
 		evalCommand += "groundtruth.txt ";
-		evalCommand += " /home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
+		evalCommand += " /home/dexheimere/MAV-Project/px4_ws/src/slam_test/log/positionOpt.txt";
 
 		string ate_error = exec(evalCommand.c_str());
 
 		logPerf << dRatio << "," << rRatio << "," <<  slam.getNodes().size() << "," \
 		<< slam.minRotation << "," << slam.minTranslation <<","<< slam.getFrameProcMeanTime() << "," \
 		<< slam.getFrameProcMaxTime() << "," <<  rpe_error.substr(0,5)  << "," << ate_error.substr(0,5);
-
-
 
 		cout << "descriptor ratio, ransac ratio, node number, min rot,min trans, mean proc time, max proc time, error_rpe, erro_ate" <<endl;
 		cout << dRatio << "," << rRatio << "," <<  slam.getNodes().size() << "," \
