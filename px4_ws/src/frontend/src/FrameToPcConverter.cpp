@@ -22,7 +22,7 @@ void FrameToPcConverter::getGrayPC(const Frame& frame, pcl::PointCloud<pcl::Poin
 		for (int col = 0; col < width; ++col) {
 
 				uint16_t depth = depthIm.at<uint16_t>(row * width + col);
-				if(depth != 0 && depth <= static_cast<uint16_t>(3.5*depthScale)) {
+				if(depth != 0) {
 					tmpZ = static_cast<float>(depth) * idepthScale;
 					tmpX = tmpZ * (static_cast<float>(col) - cx) * ifx;
 					tmpY = tmpZ * (static_cast<float>(row) - cy) * ify;
@@ -43,22 +43,34 @@ void FrameToPcConverter::getColorPC(const Frame& frame, pcl::PointCloud<pcl::Poi
 	const int hight = depthIm.rows;
 
 	pcOut.clear();
+	pcOut.width    = 320; 
+    pcOut.height   = 240;
+    pcOut.is_dense = false;
+    pcOut.points.resize(pcOut.width * pcOut.height);
+
 	for (int row = 0; row < hight; ++row) {
 
 		for (int col = 0; col < width; ++col) {
 
 				uint16_t depth = depthIm.at<uint16_t>(row * width + col);
-				if(depth != 0 && depth <= static_cast<uint16_t>(3.5*depthScale)) {
+				const int rgbCol = 3*col;
+				if(depth != 0) {
 					tmpZ = static_cast<float>(depth)*idepthScale;
 					tmpX = tmpZ * (static_cast<float>(col) - cx) * ifx;
 					tmpY = tmpZ * (static_cast<float>(row) - cy) * ify;
 
-					const int rgbCol = 3*col;
 					pcl::PointXYZRGB tmpPoint(rgbIm.at<uint8_t>(row, rgbCol+2),rgbIm.at<uint8_t>(row, rgbCol+1),rgbIm.at<uint8_t>(row, rgbCol));
 					tmpPoint.x = tmpX;
 					tmpPoint.y = tmpY;
 					tmpPoint.z = tmpZ;
-					pcOut.push_back(tmpPoint);
+					pcOut.points[row*pcOut.width + col] = tmpPoint;
+				}
+				else {
+					pcl::PointXYZRGB tmpPoint(rgbIm.at<uint8_t>(row, rgbCol+2),rgbIm.at<uint8_t>(row, rgbCol+1),rgbIm.at<uint8_t>(row, rgbCol));
+					tmpPoint.x = std::numeric_limits<float>::quiet_NaN();
+					tmpPoint.y = std::numeric_limits<float>::quiet_NaN();
+					tmpPoint.z = std::numeric_limits<float>::quiet_NaN();
+					pcOut.points[row*pcOut.width + col] = tmpPoint;
 				}
 		}
 	}

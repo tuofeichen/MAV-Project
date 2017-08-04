@@ -28,7 +28,8 @@ Mapping::Mapping(
 		RosHandler* aRos//,
 		// IMap* aMap
 		)
- : fdem(aFDEM), tme(aTME), poseGraph(aGO), px4(aRos)//, map3d(aMap)
+ : fdem(aFDEM), tme(aTME), poseGraph(aGO), px4(aRos), 
+ pc1normals(new pcl::PointCloud<pcl::PointXYZRGBNormal> ()), pc2normals(new pcl::PointCloud<pcl::PointXYZRGBNormal> ())//, map3d(aMap)
 {
 	// check element are not pointing to 0
 	// assert(map3d);
@@ -38,6 +39,8 @@ Mapping::Mapping(
 	srand(std::time(NULL));
 
 	currentPosition = Eigen::Isometry3d::Identity();
+	keyframePosition = Eigen::Isometry3d::Identity();
+	previousTransformation = Eigen::Isometry3d::Identity();
 	keyFrames.clear();
 	nodes.clear();
 	nodes.reserve(100);
@@ -50,14 +53,16 @@ bool Mapping::extractFeature()
 {
 	// double relTime = 0;
 	// time.tic();
+	icpHandler.join();
+	icpHandler = boost::thread(&Mapping::preprocessingICP,this,currentFrame,1);
 
 	if (!featureDetectionAndExtraction())
 	{
 
-		++badFrameCounter;
+		//++badFrameCounter;
 		// if(!(badFrameCounter%50))
 			// cout << "bad feature!"<< endl;
-		setPx4Node(badFrame);
+		//setPx4Node(badFrame);
 		return 0;
 	}
 
@@ -71,14 +76,33 @@ void Mapping::addNewNode()
 	lcSmallestId 	= std::min(lcSmallestId,graphIds[0]);
 	deltaT[0] 		= currentFrame.getTime() - lastNode->getTime();
 
+	icpHandler.join();
+	icp.setTransformationGuess(previousTransformation.matrix().cast <float>());
+	icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
   // needs to be thread safe
 	matchTwoFrames(boost::ref(currentFrame),
-					boost::ref(*lastNode),
+					boost::ref(previousFrame),
 					boost::ref(enoughMatches[0]),
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
 					boost::ref(informationMatrices[0]));
 	 					//  start from second node when doing parallel matching
+	
+	if (!validTrafo[0]) {
+		//icp.setTransformationGuess(previousTransformation.matrix().cast <float>()); // or identity?
+		//icp.setTransformationGuess(Eigen::Matrix4f::Identity());
+		icpHandler.join();
+		validTrafo[0] = icp.convergence();
+		if (!validTrafo[0]) {
+			++badFrameCounter;
+			setPx4Node(badFrame);
+		}
+		else {
+			std::cout << "using ICP result " << std::endl;
+			transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
+		}
+	}
+	previousTransformation = transformationMatrices[0];
 
 	tryToAddNode(0) ;	  //  changes currentFrame
 
@@ -156,10 +180,10 @@ void Mapping::optPoseGraph()
 		bool addedKeyFrame = searchKeyFrames(procFrame);
 
 		// optimize graph once
-		graphHandler.join(); // avoid overflowing
+		/*graphHandler.join(); // avoid overflowing
 
 		// optimizeGraph(false);
-		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
+		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);*/
 
 		if(addedKeyFrame)
 		{
@@ -169,7 +193,7 @@ void Mapping::optPoseGraph()
 				{
 					// optimize graph till convergenz
 					// optimizeGraph(true);
-					graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
+					/*graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);*/
 				}
 				loopClosureFound = false;
 			}
@@ -219,6 +243,12 @@ void Mapping::run()
 			px4->updateLpeLastPose(currentFrame.getId());
 	}
 
+	
+	/*if (startOptimizing) {
+		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
+		startOptimizing = false;
+	}*/
+
 }
 
 void Mapping::addFrame(Frame& frame)
@@ -231,8 +261,6 @@ void Mapping::addFrame(Frame& frame)
 			initDone = true;
 	}
 
-
-	lastFrame = currentFrame;
 	currentFrame = frame;
 
 }
@@ -282,13 +310,17 @@ void Mapping::matchTwoFrames(
 		std::vector<int> consensus;
 		validTrafo = tme->estimateTrafo(frame1.getKeypoints3D(), matchesIdx1, frame2.getKeypoints3D(), matchesIdx2, tm, informationMatrix,consensus);
 
-
+		/*std::cout << "-------- RANSAC transformation -----------" << std::endl;
+		std::cout << tm << std::endl;*/
 		// align with px4 frame
 		tm_temp = tm;
 		tm.row(0) = tm_temp.row(2) * rot;
 		tm.row(1) = tm_temp.row(0) * rot;
 		tm.row(2) = tm_temp.row(1) * rot;
 		tm.col(3) =	rot.inverse() * tm_temp.col(3);
+
+		/*std::cout << "-------- px4 frame transformation -----------" << std::endl;
+		std::cout << tm << std::endl;*/
 
 		// if (frame2.getId() > 1) // start fusing after inital correction
 		// 	tm = px4->fuseLpeTm(tm,frame2.getId(),frame1.getId());
@@ -314,6 +346,7 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 				currentFrame.setNewNodeFlag(true);
 				currentPosition = (poseGraph->getPositionOfId(prevId))*transformationMatrix;
 				currentFrame.setPosition(currentPosition.matrix().cast<float>());
+				keyframePosition =  keyframePosition*transformationMatrix;
 
 				// // try to correct yaw steady state error
   			// Eigen::Matrix3f rot = currentPosition.matrix().topLeftCorner(3,3).cast<float>();
@@ -327,8 +360,9 @@ Mapping::GraphProcessingResult Mapping::processGraph(const Eigen::Isometry3d& tr
 			}
 			else
 			{
-  			currentFrame.setNewNodeFlag(false);
-			  currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix;
+  				currentFrame.setNewNodeFlag(false);
+			  	currentPosition =  poseGraph->getPositionOfId(prevId)*transformationMatrix;
+			  	keyframePosition =  keyframePosition*transformationMatrix;
 				return trafoToSmall;
 			}
 		}
@@ -499,7 +533,7 @@ void Mapping::parallelMatching(Frame procFrame)
 
 void Mapping::tryToAddNode(int thread)
 {
-	if (validTrafo[thread] && enoughMatches[thread])
+	if (validTrafo[thread])
 	{
 		GraphProcessingResult result = processGraph(transformationMatrices[thread], informationMatrices[thread], graphIds[thread], currentFrame.getId(), deltaT[thread], true, false);
 
@@ -529,7 +563,7 @@ void Mapping::tryToAddNode(int thread)
 
 void Mapping::addEdges(int thread, int currId)
 {
-	if (validTrafo[thread] && enoughMatches[thread])
+	if (validTrafo[thread])
 	{
 		GraphProcessingResult result;
 		if(lcRandomMatching == 0)
@@ -595,7 +629,7 @@ void Mapping::setDummyNode()
 bool Mapping::searchKeyFrames(Frame procFrame)
 {
 	bool ret = false;
-	if (smallestId > keyFrames.back().getId())
+	/*if (smallestId > keyFrames.back().getId())
 	{
 		// cout << "smallest id " << smallestId << " that match to current frame " << procFrame.getId() << endl;
 
@@ -613,8 +647,20 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 					break;
 			}
 		}
-	}
+	}*/
+	if (isKeyframeMovementBigEnough(keyframePosition))
+	{
+		keyframePosition = Eigen::Isometry3d::Identity();
+		Frame& keyFrame = nodes.back();
+		mapUpdate = true;
+		keyFrame.setKeyFrameFlag(true);
+		keyFrames.push_back(keyFrame);
+		cout << "Added id " << keyFrame.getId() << " as key frame <=========================================" << endl;
 
+		ret = true;
+ 	}
+	
+	previousFrame = nodes.back();
 	// delete images
 	nodes.back().deleteRgb();
 	nodes.back().deleteDepth();
@@ -626,26 +672,30 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 
 void Mapping::optimizeGraph(bool tillConvergenz)
 {
-	if (onlineOptimization)
-	{
-		optTime.tic();
-		if(tillConvergenz)
+	//while (true) {
+		if (onlineOptimization)
 		{
-			if(removeEdgesWithBigErrors)
-				poseGraph->removeEdgesWithErrorBiggerThen(edgeErrorThreshold);
-			poseGraph->optimizeTillConvergenz();
+			optTime.tic();
+			if(tillConvergenz)
+			{
+				if(removeEdgesWithBigErrors)
+					poseGraph->removeEdgesWithErrorBiggerThen(edgeErrorThreshold);
+				poseGraph->optimizeTillConvergenz();
+			}
+			else
+				poseGraph->optimize();
+
+			double took = optTime.toc();
+			++nOpt;
+			optAvrTime += took;
+			if(took > optMaxTime)
+				optMaxTime = took;
+
+			currentPosition = poseGraph->getCurrentPosition(); // update current position after posegraph opt.
 		}
-		else
-			poseGraph->optimize();
-
-		double took = optTime.toc();
-		++nOpt;
-		optAvrTime += took;
-		if(took > optMaxTime)
-			optMaxTime = took;
-
-		currentPosition = poseGraph->getCurrentPosition(); // update current position after posegraph opt.
-	}
+		//boost::this_thread::sleep(boost::posix_time::milliseconds(10));
+		//std::cout << "optimizing" << std::endl;
+	//}
 }
 
 // void Mapping::updateMap()
@@ -685,6 +735,17 @@ bool Mapping::isMovementBigEnough(const Eigen::Isometry3d& trafo) const
 	    return (maxAngle > minRotation)||(distSqrt > minTranslation*minTranslation);
 }
 
+bool Mapping::isKeyframeMovementBigEnough(const Eigen::Isometry3d& trafo) const
+{
+	double roll, pitch, yaw;
+	convertRotMatToEulerAngles(trafo.rotation(),roll,pitch,yaw);
+	double maxAngle = std::max(fabs(roll),std::max(fabs(pitch),fabs(yaw)));
+    double distSqrt = (trafo.translation()).squaredNorm();
+    return (distSqrt > keyframeMinTranslation*keyframeMinTranslation || maxAngle > keyframeMinRotation); // movment
+}
+
+
+
 bool Mapping::isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double dt) const
 {
 	double roll, pitch, yaw;
@@ -710,6 +771,7 @@ void Mapping::addFirstNode()
 	keyFrames.push_back(nodes.back());
 
 	px4->updateLpeLastPose(0); // note down first node
+	previousFrame = nodes.back();
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
 	nodes.back().deleteGray();
@@ -819,6 +881,54 @@ void Mapping::loopClosureDetection(Frame procFrame)
 		// 	// }
 		// }
 	}
+}
+
+void Mapping::preprocessingICP(Frame& frame, int pc_selection)
+{
+	pcl::PointCloud<pcl::PointXYZRGB> pc;
+	FrameToPcConverter::getColorPC(frame,pc);
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
+	pcl::copyPointCloud(pc,*cloud);
+	ICP::filteringAndProcessing(cloud);
+	if (pc_selection == 1) {
+		pcl::copyPointCloud(*pc1normals,*pc2normals);			// both are pointers
+		pcl::copyPointCloud(*cloud,*pc1normals);
+	}
+	else if (pc_selection == 2)
+		pcl::copyPointCloud(*cloud,*pc2normals);
+	else
+		pcl::copyPointCloud(*cloud,*pc1normals);
+}
+
+bool Mapping::isGoodNormalDistribution() {
+	long n = pc1normals->height * pc1normals->width;
+	if ( n == 0)
+		return false;
+
+	double x_sum = 0;
+	double y_sum = 0;
+	double z_sum = 0;
+	double x_sq = 0;
+	double y_sq = 0;
+	double z_sq = 0;	
+	for(pcl::PointCloud<pcl::PointXYZRGBNormal>::iterator it = pc1normals->begin(); it!= pc1normals->end(); it++) {
+    	x_sum += it->normal_x;
+    	y_sum += it->normal_y;
+    	z_sum += it->normal_z;
+    	x_sq += it->normal_x * it->normal_x;
+    	y_sq += it->normal_y * it->normal_y; 
+    	z_sq += it->normal_z * it->normal_z;     
+    }
+    double x_mean = x_sum/n;
+    double y_mean = y_sum/n;
+    double z_mean = z_sum/n;
+    double x_var = x_sq/n - x_mean*x_mean;
+    double y_var = y_sq/n - y_mean*y_mean;
+    double z_var = z_sq/n - z_mean*z_mean;
+
+    //cout << "x var: " << x_var << " y_var: " << y_var << " z_var: " << z_var << endl;
+
+    return (x_var > 0.01) || (y_var > 0.01) || (z_var > 0.01);
 }
 
 } /* namespace SLAM */

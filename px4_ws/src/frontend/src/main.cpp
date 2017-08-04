@@ -36,7 +36,7 @@ using namespace SLAM;
 //
 
 static constexpr char frontEndIp[] = "192.168.144.11"; // WLAN
-static constexpr bool backEndSupport = false;
+static constexpr bool backEndSupport = true;
 //static constexpr char frontEndIp[] = "127.0.0.1"; // local host
 
 enum {
@@ -58,8 +58,8 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 // static objects
 static SURF fdem(descriptorRatio, minMatches, sufficientMatches,100);
 static SURF objdem(0.8, 20, sufficientMatches,100);
-// static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
-// static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
+//static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+//static OrbDetSurfDesc objdem (descriptorRatio, maxNrOfFeatures, 15, sufficientMatches);
 // static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 // static SIFT objdem(descriptorRatio, 15, sufficientMatches);
 
@@ -83,6 +83,7 @@ int main(int argc, char **argv)
 // threads for parallelizing object detection and slam
 	boost::thread t_obj;
 	boost::thread t_slam;
+	boost::thread t_opt;
 
 // Timing Variables
 	pcl::console::TicToc time;
@@ -103,7 +104,8 @@ int main(int argc, char **argv)
 
 	// setup SLAM related objects
 	RosHandler px4; 													// roshandler for communication with pixhawk
-	Frame frame;	  													// frame class that contains information of each frame
+	Frame frame;	
+	Frame previousFrame;  													// frame class that contains information of each frame
 	Mapping slam(&fdem, &tme, &graph, &px4);	// SLAM workflow
 	ObjDetection obj(&objdem,&px4);						// object detection workflow
 
@@ -125,7 +127,7 @@ int main(int argc, char **argv)
 	{
 		ros::spinOnce(); // get up-to-date lpe regardless
 		time.tic();
-
+		previousFrame = frame;
 
 #ifdef DEBUG // in debug mode,read stored images (video frames)
 		if(readImage(frame,nodeId))//nodeId is node number
@@ -141,13 +143,19 @@ int main(int argc, char **argv)
 #endif
 			// start slam
 			slam.addFrame(frame);
-			if(slam.extractFeature() && (!obj.getObjDetectFlag())){ // stop slam when is in tracking mode
+
+			bool enoughFeatures = true;
+			slam.extractFeature();
+
+			if(enoughFeatures && (!obj.getObjDetectFlag())){ // stop slam when is in tracking mode
 				t_slam 		= boost::thread (&Mapping::run, &slam); // only run slam if we have enough feature
 			}
 			// run object detection all the time (for obstacle detection despite we don't have enough feature)
 			t_obj = boost::thread (&ObjDetection::processFrame, &obj, frame);
 			t_slam.join();
 			t_obj.join();
+			t_opt.join();
+			t_opt = boost::thread(&Mapping::optimizeGraph,&slam,false);
 
 			if ((slam.getBadFrameFlag() < 1) && (!obj.getObjDetectFlag()))
 			{
