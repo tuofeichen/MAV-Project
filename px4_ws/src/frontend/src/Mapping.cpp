@@ -76,9 +76,10 @@ void Mapping::addNewNode()
 	lcSmallestId 	= std::min(lcSmallestId,graphIds[0]);
 	deltaT[0] 		= currentFrame.getTime() - lastNode->getTime();
 
-	icpHandler.join();
-	icp.setTransformationGuess(previousTransformation.matrix().cast <float>());
-	icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
+	//icpHandler.join();
+	//icp.setTransformationGuess(previousTransformation.matrix().cast <float>());
+	//icp.setTransformationGuess(Eigen::Matrix4f::Identity());
+	//icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
   // needs to be thread safe
 	matchTwoFrames(boost::ref(currentFrame),
 					boost::ref(previousFrame),
@@ -88,20 +89,24 @@ void Mapping::addNewNode()
 					boost::ref(informationMatrices[0]));
 	 					//  start from second node when doing parallel matching
 	
-	if (!validTrafo[0]) {
-		//icp.setTransformationGuess(previousTransformation.matrix().cast <float>()); // or identity?
+	icpHandler.join();
+	if (!validTrafo[0])
+		icp.setTransformationGuess(previousTransformation.matrix().cast <float>()); // or identity?
 		//icp.setTransformationGuess(Eigen::Matrix4f::Identity());
-		icpHandler.join();
-		validTrafo[0] = icp.convergence();
-		if (!validTrafo[0]) {
-			++badFrameCounter;
-			setPx4Node(badFrame);
-		}
-		else {
-			std::cout << "using ICP result " << std::endl;
-			transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
-		}
+	else
+		icp.setTransformationGuess(transformationMatrices[0].matrix().cast <float>()); // or identity?
+	icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
+	icpHandler.join();
+	validTrafo[0] = icp.convergence();
+	if (!validTrafo[0]) {
+		++badFrameCounter;
+		setPx4Node(badFrame);
 	}
+	else {
+		std::cout << "using ICP result " << std::endl;
+		transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
+	}
+	
 	previousTransformation = transformationMatrices[0];
 
 	tryToAddNode(0) ;	  //  changes currentFrame

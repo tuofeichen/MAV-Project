@@ -55,13 +55,14 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     std::cout<<"downsampling time: "<< duration <<'\n';
     start = std::clock();*/
 
+    //std::cout << "cloud size: " << downsampledCloud->size() << std::endl;
     // bilateral filter for organized point clouds
     /*pcl::PointCloud<pcl::PointXYZRGB>::Ptr points(new pcl::PointCloud<pcl::PointXYZRGB>);
     pcl::copyPointCloud(*downsampledCloud,*points);
     pcl::FastBilateralFilter<pcl::PointXYZRGB> bilateral_filter;
     bilateral_filter.setInputCloud(points);
-    bilateral_filter.setSigmaS(2);	// 5
-    bilateral_filter.setSigmaR(0.35f);	// 0.35f
+    bilateral_filter.setSigmaS(5);	// 2
+    bilateral_filter.setSigmaR(0.005f);	// 0.35f
     bilateral_filter.applyFilter(*points);
     pcl::copyPointCloud(*points, *downsampledCloud);*/
 

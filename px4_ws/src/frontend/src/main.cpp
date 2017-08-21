@@ -157,6 +157,8 @@ int main(int argc, char **argv)
 			t_opt.join();
 			t_opt = boost::thread(&Mapping::optimizeGraph,&slam,false);
 
+			//reassign frame here
+
 			if ((slam.getBadFrameFlag() < 1) && (!obj.getObjDetectFlag()))
 			{
 			  pos = slam.getCurrentPosition();
