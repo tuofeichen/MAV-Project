@@ -56,13 +56,13 @@ bool Mapping::extractFeature()
 	icpHandler.join();
 	icpHandler = boost::thread(&Mapping::preprocessingICP,this,currentFrame,1);
 
-	if (!featureDetectionAndExtraction())
+	if (!featureDetectionAndExtraction() && !isGoodNormalDistribution())
 	{
 
-		//++badFrameCounter;
-		// if(!(badFrameCounter%50))
-			// cout << "bad feature!"<< endl;
-		//setPx4Node(badFrame);
+		++badFrameCounter;
+		 if(!(badFrameCounter%50))
+			 cout << "bad feature!"<< endl;
+		setPx4Node(badFrame);
 		return 0;
 	}
 
@@ -88,6 +88,12 @@ void Mapping::addNewNode()
 					boost::ref(transformationMatrices[0]),
 					boost::ref(informationMatrices[0]));
 	 					//  start from second node when doing parallel matching
+
+	/*dynamicHandler = boost::thread(&DynamicObj::getObjCandidates,
+								&dynamicObj,
+								transformationMatrices[0].matrix().cast <float>(),
+								boost::ref(currentFrame), 
+								boost::ref(previousFrame) );*/
 	
 	icpHandler.join();
 	if (!validTrafo[0])
@@ -97,14 +103,12 @@ void Mapping::addNewNode()
 		icp.setTransformationGuess(transformationMatrices[0].matrix().cast <float>()); // or identity?
 	icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
 	icpHandler.join();
-	validTrafo[0] = icp.convergence();
-	if (!validTrafo[0]) {
-		++badFrameCounter;
-		setPx4Node(badFrame);
-	}
-	else {
+	bool icpValid = icp.convergence();
+	//validTrafo[0] = icp.convergence();
+	if (icpValid) {
 		std::cout << "using ICP result " << std::endl;
 		transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
+		validTrafo[0] = true;
 	}
 	
 	previousTransformation = transformationMatrices[0];

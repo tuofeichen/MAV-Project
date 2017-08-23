@@ -52,7 +52,7 @@ FILES
 MavState.msg
 #   Message1.msg
 #   Message2.msg
- )
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -72,7 +72,7 @@ MavState.msg
 generate_messages(
    DEPENDENCIES
    geometry_msgs
-#   std_msgs
+   #std_msgs
 )
 
 ################################################
@@ -105,10 +105,10 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES rgbd_slam
-  CATKIN_DEPENDS roscpp std_msgs message_runtime
-#  DEPENDS system_lib
+  #INCLUDE_DIRS include
+  #LIBRARIES rgbd_slam
+  CATKIN_DEPENDS roscpp std_msgs message_runtime 
+  #DEPENDS system_lib
 
 )
 
@@ -122,13 +122,22 @@ catkin_package(
 
 
 
-set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/opt/opencv3/include -I/usr/include/eigen3 -I/home/tuofeichen/OpenNI-Linux-x64-2.2/Include -Wall ")
+set (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Ofast -ftree-vectorize  -I/home/dexheimere/opencv/include -I/usr/include/eigen3 -I/home/dexheimere/OpenNI-Linux-x64-2.2/Include -Wall ")
 
 # -ftree-vectorizer-verbose=9
 
-set(CMAKE_CXX_LINK_FLAGS "-L/opt/opencv3/lib -L/usr/lib -L/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist")
+set(CMAKE_CXX_LINK_FLAGS "-L/home/dexheimere/opencv/lib -L/usr/lib -L/home/dexheimere/OpenNI-Linux-x64-2.2/Redist")
 
-configure_file(/home/tuofeichen/g2o/config.h.in /home/tuofeichen/g2o/g2o/config.h)
+configure_file(/home/dexheimere/g2o/config.h.in /home/dexheimere/g2o/g2o/config.h)
+
+set(CMAKE_PREFIX_PATH "/home/dexheimere/opencv3")
+find_package(OpenCV 3.0 REQUIRED)
+set(OpenCV_INCLUDE_DIRS "/home/dexheimere/opencv3/include")
+
+find_package(PCL 1.7 REQUIRED)
+
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
 
 include_directories(
   include
@@ -136,32 +145,34 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
   /usr/include/pcl-1.7
-  # /usr/include/vtk-5.8
-	# /usr/src/linux-headers-3.19.0-25/arch/powerpc/include/asm
-  /home/tuofeichen/g2o
-  /home/tuofeichen/g2o/EXTERNAL/csparse
+  /home/dexheimere/g2o
+  /home/dexheimere/g2o/EXTERNAL/csparse
   /usr/include/eigen3
-  /home/tuofeichen/OpenNI-Linux-x64-2.2/Include
-  /opt/opencv3/include
+  /home/dexheimere/opencv/include
+  #/home/dexheimere/OpenNI-Linux-x64-2.2/Include
+  #/home/dexheimere/OpenNI/Include
+  #/usr/include/ni
+  ${PCL_INCLUDE_DIRS}
 )
 
 link_directories(
-/opt/opencv3/lib
-/usr/lib
-/home/tuofeichen/g2o/lib
-/home/tuofeichen/OpenNI-Linux-x64-2.2/Redist
-/opt/ros/indigo/lib/
 
+/home/dexheimere/opencv/lib
+/home/dexheimere/g2o/lib
+/usr/local/lib
+/opt/ros/indigo/lib/
+#/home/dexheimere/OpenNI-Linux-x64-2.2/Redist
+#${PCL_LIBRARY_DIRS}
 )
 
 
 ## Declare a C++ executable
 add_executable(frontend src/main.cpp) # src/RosHandler.cpp)
-# add_executable(rgbd_slam ${SOURCES})
 
 add_library(
 SLAM
-src/Debug.cpp  src/AnalyticBasedTME.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/RosHandler.cpp src/Mapping.cpp src/Frame.cpp src/RANSACBasedTME.cpp src/TcpClient.cpp src/SIFT.cpp src/SURF.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/UavComProtocolHandler.cpp src/Frontend.cpp src/AsusProLiveOpenNI2.cpp  src/Backend.cpp src/TcpServer.cpp src/ObjDetection.cpp)
+src/AnalyticBasedTME.cpp src/AsusProLiveOpenNI2.cpp src/Backend.cpp src/Debug.cpp src/Frame.cpp src/FrameToPcConverter.cpp src/Frontend.cpp src/G2oPoseGraph.cpp src/ICP.cpp src/Mapping.cpp src/ObjDetection.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/PointCloudMap.cpp src/RANSACBasedTME.cpp src/RosHandler.cpp src/SIFT.cpp src/SURF.cpp src/TcpClient.cpp src/TcpServer.cpp src/UavComProtocolHandler.cpp src/DynamicObj.cpp
+)
 
 target_link_libraries(SLAM
 ${catkin_LIBRARIES}
@@ -181,6 +192,8 @@ opencv_highgui
 opencv_videoio
 opencv_imgproc
 opencv_imgcodecs
+opencv_surface_matching
+${PCL_LIBRARIES}
 )
 
 target_link_libraries(frontend

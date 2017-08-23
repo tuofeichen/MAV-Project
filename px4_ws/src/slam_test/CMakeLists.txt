@@ -171,7 +171,7 @@ add_executable(slam_test src/main.cpp) # src/RosHandler.cpp)
 
 add_library(
 SLAM
-src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Frame.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/PointCloudMap.cpp src/RANSACBasedTME.cpp src/RGDBSimulator.cpp src/SIFT.cpp src/SURF.cpp src/TcpClient.cpp src/UavComProtocolHandler.cpp src/ICP.cpp
+src/AnalyticBasedTME.cpp src/AsusProLive.cpp src/AsusProLiveOpenNI2.cpp src/Frame.cpp src/FrameToPcConverter.cpp src/G2oPoseGraph.cpp src/Mapping.cpp src/ORB.cpp src/OrbDetSurfDesc.cpp src/PointCloudMap.cpp src/RANSACBasedTME.cpp src/RGDBSimulator.cpp src/SIFT.cpp src/SURF.cpp src/TcpClient.cpp src/UavComProtocolHandler.cpp src/ICP.cpp src/DynamicObj.cpp
 )
 
 target_link_libraries(SLAM

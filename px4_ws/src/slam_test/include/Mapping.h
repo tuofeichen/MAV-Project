@@ -21,6 +21,7 @@
 #include "Frame.h"
 #include "FrameToPcConverter.h"
 #include "ICP.h"
+#include "DynamicObj.h"
 
 boost::mutex mapMutex;
 
@@ -188,8 +189,9 @@ private:
 
 	// threads
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
-  boost::thread graphHandler;
+  	boost::thread graphHandler;
 	boost::thread realTimeProc,delayProc;
+	boost::thread dynamicHandler;
 
 	boost::thread icpHandler1;
 	boost::thread icpHandler2;
@@ -235,6 +237,8 @@ private:
 	double frameProcMeanTime = 0;
 	double frameProcMaxTime = 0;
 	int nframeProc = 0;
+
+	DynamicObj dynamicObj;
 
 public:
 	double getOptAvrTime() { return optAvrTime / static_cast<double>(nOpt); }

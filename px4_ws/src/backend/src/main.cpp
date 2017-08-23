@@ -46,8 +46,8 @@ static constexpr float voxelSize = 0.02f; ///< voxel grid size
 //
 // static objects
 //
-static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
-//static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
+//static SURF fdem(descriptorRatio, minMatches, sufficientMatches);
+static OrbDetSurfDesc fdem(descriptorRatio, maxNrOfFeatures, minMatches, sufficientMatches);
 //static SIFT fdem(descriptorRatio, minMatches, sufficientMatches);
 static RANSACBasedTME tme(maxRansacIterations, maxDistanceForInlier, thresholdAbsolutDistanceTest, sufficentPercentageOfInlier, minNrOfInlier);
 static G2oPoseGraph graph;
@@ -111,9 +111,9 @@ int main()
 			tm.clear(); // need to clear vector
 			frontend.getUpdateGraph(tm, numNode); // get vector of position
 			// imshow
-			cout << "Start imshow " << tm.size() << " num node " << numNode <<  endl;
+			/*cout << "Start imshow " << tm.size() << " num node " << numNode <<  endl;
 			cv::imshow("RGB Image", frame.getRgb());
-			cv::waitKey(30);
+			cv::waitKey(30);*/
 
 //			cout << tm.back().translation() << endl;
 			//			slam.addFrame(frame);
@@ -144,6 +144,7 @@ int main()
 //			if (numNode == 3)
 	//			pointCloudMap.showMap();
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+			pointCloudMap.updateMapViewer();
 		}
 	}
 

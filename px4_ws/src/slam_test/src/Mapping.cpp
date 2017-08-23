@@ -64,6 +64,15 @@ void Mapping::addNewNode()
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
 					boost::ref(informationMatrices[0]));
+
+	Frame filteredFrame;
+	dynamicHandler = boost::thread(&DynamicObj::dynamicObjectRemoval,
+								&dynamicObj,
+								transformationMatrices[0].matrix().cast <float>(),
+								currentFrame, 
+								previousFrame,
+								boost::ref(filteredFrame) );
+	dynamicHandler.join();
 	 					//  start from second node when doing parallel matching
 	/*pcl::PointCloud<pcl::PointXYZRGB> pc1;
 	pcl::PointCloud<pcl::PointXYZRGB> pc2;
@@ -142,7 +151,7 @@ void Mapping::optPoseGraph()
 	if(loopClosureFound)
 	{
 		++detLoopClsrsCounter;
-		// std::cout << "<----------------------------------------------------------------------- loop detected!" << std::endl;
+		std::cout << "<---------------------------- loop detected!" << std::endl;
 	}
 
 
@@ -241,8 +250,7 @@ void Mapping::run()
 	double relTime;
 	// cout << "=== run start " << endl;
 
-	//mapMutex.lock();
-	pcl::PointCloud<pcl::PointXYZRGB> pc1;
+	/*pcl::PointCloud<pcl::PointXYZRGB> pc1;
 	pcl::PointCloud<pcl::PointXYZRGB> pc2;
 	icpHandler1 = boost::thread(&FrameToPcConverter::getColorPC,currentFrame,boost::ref(pc1));	// just use previousFrame data instead, store it
 	icpHandler2 = boost::thread(&FrameToPcConverter::getColorPC,previousFrame,boost::ref(pc2));	
@@ -253,11 +261,12 @@ void Mapping::run()
 	pcl::copyPointCloud(pc2,*pc2normals);
 
 	icpHandler1 = boost::thread(&ICP::filteringAndProcessing,pc1normals);
-	icpHandler2 = boost::thread(&ICP::filteringAndProcessing,pc2normals);
+	icpHandler2 = boost::thread(&ICP::filteringAndProcessing,pc2normals);*/
+	icpHandler1 = boost::thread(&ICP::preprocessing,currentFrame,pc1normals);
+	icpHandler2 = boost::thread(&ICP::preprocessing,previousFrame,pc2normals);
+	bool enoughFeatures = featureDetectionAndExtraction();
 	icpHandler2.join();
 	icpHandler1.join();
-	//mapMutex.unlock();
-
 
 	// initialize variables
 	bestInforamtionValue = 0;
@@ -265,7 +274,7 @@ void Mapping::run()
 	// frames = 0; unnecessary
 
 	time.tic();
-	if (!featureDetectionAndExtraction())
+	if (!enoughFeatures)
 	{
 		++badFrameCounter;
 		return; // immediately return if bad frame
@@ -742,7 +751,7 @@ void Mapping::addFirstNode()
 	nodes.push_back(currentFrame);		//  1st copy constructor
 	nodes.back().setKeyFrameFlag(true);
 	keyFrames.push_back(nodes.back()); // 2nd copy constrictpr
-	previousFrame  = nodes.back();
+	previousFrame = nodes.back();
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
 	nodes.back().deleteGray();

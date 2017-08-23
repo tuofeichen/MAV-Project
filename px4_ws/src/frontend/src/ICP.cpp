@@ -38,6 +38,14 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
 	// get current cloud
     pcl::copyPointCloud(*cloud, *currCloud);
 
+        // estimate normals for organized point cloud 
+    pcl::IntegralImageNormalEstimation<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal> ne;
+    ne.setNormalEstimationMethod (ne.AVERAGE_3D_GRADIENT);
+    ne.setMaxDepthChangeFactor(0.02f);
+    ne.setNormalSmoothingSize(10.0f);
+    ne.setInputCloud(currCloud);
+    ne.compute(*currCloud);
+
     //std::cout << currCloud->width * currCloud->height << std::endl;
     pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr downsampledCloud(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
     // downsample point cloud from 640x320 to 320x240
@@ -69,14 +77,6 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     /*duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     std::cout<<"bilateral filter time: "<< duration <<'\n';
     start = std::clock();*/
-
-    // estimate normals for organized point cloud 
-    pcl::IntegralImageNormalEstimation<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal> ne;
-    ne.setNormalEstimationMethod (ne.AVERAGE_3D_GRADIENT);
-    ne.setMaxDepthChangeFactor(0.02f);
-    ne.setNormalSmoothingSize(10.0f);
-    ne.setInputCloud(downsampledCloud);
-    ne.compute(*downsampledCloud);
 
     /*duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     std::cout<<"normal estimation time: "<< duration <<'\n';

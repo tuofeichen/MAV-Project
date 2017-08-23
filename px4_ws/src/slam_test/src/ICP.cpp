@@ -51,8 +51,8 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     pcl::copyPointCloud(*downsampledCloud,*points);
     pcl::FastBilateralFilter<pcl::PointXYZRGB> bilateral_filter;
     bilateral_filter.setInputCloud(points);
-    bilateral_filter.setSigmaS(2);	// 5
-    bilateral_filter.setSigmaR(0.35f);	// 0.35f
+    bilateral_filter.setSigmaS(5);	// 5
+    bilateral_filter.setSigmaR(0.005f);	// 0.35f
     bilateral_filter.applyFilter(*points);
     pcl::copyPointCloud(*points, *downsampledCloud);
     //duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
@@ -84,16 +84,27 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     pcl::NormalSpaceSampling<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal> normal_space_sampling;
     normal_space_sampling.setInputCloud(downsampledCloud);
     normal_space_sampling.setNormals (downsampledCloud);
-    normal_space_sampling.setBins(5, 5, 5); //10
+    normal_space_sampling.setBins(10, 10, 10); //10
     normal_space_sampling.setSeed(rand());
-    normal_space_sampling.setSample(1000); //1000
+    normal_space_sampling.setSample(5000); //1000
     normal_space_sampling.filter(*filteredCloud);
     
     pcl::copyPointCloud(*filteredCloud, *cloud);
 }
 
+void ICP::preprocessing(Frame& frame, pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud)
+{
+	pcl::PointCloud<pcl::PointXYZRGB> pc;
+	FrameToPcConverter::getColorPC(frame,pc);
+	pcl::copyPointCloud(pc,*cloud);
+	ICP::filteringAndProcessing(cloud);
+}
+
 bool ICP::run(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1,pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc2)
 {
+	std::clock_t start;
+    double duration;
+
 	pcl::IterativeClosestPoint<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal> icp;
 
 	//correspondence estimation
@@ -115,11 +126,11 @@ bool ICP::run(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1,pcl::PointCloud<p
 	rejector_normal->setInputTarget<pcl::PointXYZRGBNormal>(pc1);
 	rejector_normal->setInputNormals<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal>(pc2);
 	rejector_normal->setTargetNormals<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal>(pc1); 
-	rejector_normal->setThreshold (cos(5*M_PI/180)); // 10 degrees converted to radians, threshold is cosine of angle
+	rejector_normal->setThreshold (cos(3*M_PI/180)); // 10 degrees converted to radians, threshold is cosine of angle
 	icp.addCorrespondenceRejector(rejector_normal);
 	// distance rejection
 	pcl::registration::CorrespondenceRejectorMedianDistance::Ptr rejector_median_distance (new pcl::registration::CorrespondenceRejectorMedianDistance);
-	rejector_median_distance->setMedianFactor(1.5);
+	rejector_median_distance->setMedianFactor(2);
 	icp.addCorrespondenceRejector(rejector_median_distance);
 	// boundary points rejection
 	//pcl::registrationCorrespondenceRejectionOrganizedBoundary::Ptr rejector_organized_boundary (new pcl::registrationCorrespondenceRejectionOrganizedBoundary);
@@ -136,7 +147,10 @@ bool ICP::run(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1,pcl::PointCloud<p
 	icp.setTransformationEpsilon(1e-5);
 	icp.setEuclideanFitnessEpsilon(1); 
 	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr Final(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
+	start = std::clock();
 	icp.align(*Final,initialTransformation);
+	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    std::cout<<"alignment takes: "<< duration <<'\n';
 
 	if (icp.hasConverged() && (icp.getFitnessScore() < 0.005))
 		converged = true;

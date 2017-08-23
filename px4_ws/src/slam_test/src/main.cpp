@@ -71,14 +71,14 @@ int main_wrap(float dRatio,float rRatio)
 	// note: to run the the datasets successfully check that the Frame class of the SLAM library uses the correct intinsic paramters (f_x, f_y, c_x, c_y) and depth scale factor
 	pcl::console::TicToc timer;
 
-	string folder = "/home/dexheimere/MAV-Project/HSR/02_Libs/HAL/simData/rgbd_dataset_freiburg3_structure_notexture_far/";
-	// string folder = "/home/tuofeichen/SLAM/MAV-Project/px4_ws/src/slam_test/simData/rgbd_dataset_freiburg3_long_office_household/";
+	string folder = "/home/dexheimere/MAV-Project/HSR/02_Libs/HAL/simData/rgbd_dataset_freiburg1_desk/";
+	//string folder = "/home/dexheimere/MAV-Project/HSR/02_Libs/HAL/simData/rgbd_dataset_freiburg3_structure_notexture_far/";
 	RGDBSimulator rgbdSensor(folder);
 
 	// Features
 	//
-	OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
-  // SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+	//OrbDetSurfDesc fdem(0.7f, 600, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
+    SURF fdem(dRatio, 50, 600); // small ratio --> more accurate position, but more images dropped and less position estimates (fast parts missing)
 	//SIFT fdem(0.8f, 50, 600);
 	//ORB fdem(0.7f, 500, 50, 600);
 	RANSACBasedTME tme(1000, 0.02, 0.03, rRatio, 30);

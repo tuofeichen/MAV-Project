@@ -44,7 +44,7 @@ void FrameToPcConverter::getColorPC(const Frame& frame, pcl::PointCloud<pcl::Poi
 
 	pcOut.clear();
 	pcOut.width    = 640; 
-    pcOut.height   = 480;;
+    pcOut.height   = 480;
     pcOut.is_dense = false;
     pcOut.points.resize(pcOut.width * pcOut.height);
 

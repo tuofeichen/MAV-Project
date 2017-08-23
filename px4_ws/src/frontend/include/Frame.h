@@ -48,6 +48,7 @@ public:
 	static constexpr float fy = 285.0; ///< focal length in y direction in pixel
 	static constexpr float cx = 159.5; ///< center point in x direction in pixel
 	static constexpr float cy = 119.5; ///< center point in y direction in pixel
+	static constexpr float idepthScale = 1.0/depthScale;
 
 	enum{
 		rows = 240,
@@ -241,6 +242,8 @@ public:
 
 	Eigen::Matrix4f getPosition() const {return *pos;}
 
+	void setDepth(cv::Mat& depthImage) {assert(depth); *depth = depthImage;}
+
 
 private:
 	void setAverageDescriptors();
@@ -266,7 +269,6 @@ private:
 
 	static constexpr float ifx = 1.0/fx;
 	static constexpr float ify = 1.0/fy;
-	static constexpr float idepthScale = 1.0/depthScale;
 };
 
 }

@@ -21,6 +21,8 @@
 #include "Frame.h"
 #include "FrameToPcConverter.h"
 #include "RosHandler.h"
+#include "ICP.h"
+#include "DynamicObj.h"
 
 
 namespace SLAM {
@@ -100,6 +102,10 @@ public:
 	 */
 	 // void setRosHandler(RosHandler& rosnode){ px4 = rosnode;}
 
+	void preprocessingICP(Frame& frame, int pc_selection);
+
+	void optimizeGraph(bool tillConvergenz);
+
 	//
 	// debug
 	unsigned int getFrameCounter() {return frameCounter;}
@@ -147,6 +153,10 @@ public:
 	static constexpr double loopClosureDetectionThreshold =   std::numeric_limits<double>::infinity(); //0.1//< loop closure detection threshold for the averge descriptor
 	static constexpr double edgeErrorThreshold = 30.0 / (0.02 * 0.02); ///< g²o threshold for eges with big errors
 
+	static constexpr double keyframeMinRotation = 20.0*M_PI/180.0;  ///< minimal rotation in rad(negative values to disable)
+	static constexpr double keyframeMinTranslation = 0.5;   ///< minimal translation in meter(negative values to disable)
+
+
 private:
 
 	//
@@ -162,7 +172,6 @@ private:
 	// void setDummyNode(RosHandler& lpe);
 	void setDummyNode();
 	bool searchKeyFrames(Frame procFrame);
-	void optimizeGraph(bool tillConvergenz);
 	void updateMap();
 	void matchTwoFrames(
 				const Frame& frame1, // in: new frame
@@ -176,6 +185,7 @@ private:
 	GraphProcessingResult processGraph(const Eigen::Isometry3d& transformationMatrix, const Eigen::Matrix<double, 6, 6>& informationMatrix, int prevId, int currId, double deltaTime, bool tryToAddNode, bool possibleLoopClosure);
 	inline void convertRotMatToEulerAngles(const Eigen::Matrix3d& t, double& roll, double& pitch, double& yaw) const;
 	bool isMovementBigEnough(const Eigen::Isometry3d& trafo) const;
+	bool isKeyframeMovementBigEnough(const Eigen::Isometry3d& trafo) const;
 	bool isVelocitySmallEnough(const Eigen::Isometry3d& trafo, double deltaT) const;
 	void addFirstNode();
 	enum ComparisonResult {noTimeStamp, succeed, failed};
@@ -183,6 +193,7 @@ private:
 	void loopClosureDetection(Frame procFrame);
 	// void setPx4Node(RosHandler& lpe, int frameType);
 	void setPx4Node(int frameType);
+	bool isGoodNormalDistribution();
 
 
 	//
@@ -202,8 +213,14 @@ private:
 	int frames = 0;
 
 	Eigen::Isometry3d currentPosition;
+	Eigen::Isometry3d keyframePosition;
 	Frame currentFrame;
-	Frame lastFrame;
+	Frame previousFrame;
+
+	ICP icp;
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1normals;
+	pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc2normals;
+	Eigen::Isometry3d previousTransformation;
 
 	std::vector<Frame> nodes;
 	std::vector<Frame> keyFrames;
@@ -212,7 +229,10 @@ private:
 	boost::thread handler[lcRandomMatching + contFramesToMatch + neighborsToMatch];
 	boost::thread graphHandler;
 	boost::thread delayProc;
+	boost::thread icpHandler;
+	boost::thread dynamicHandler;
 	boost::mutex mapMutex;
+	boost::mutex graphMutex;
 	bool optFlag = true;
 
 	bool enoughMatches[lcRandomMatching + contFramesToMatch + neighborsToMatch];
@@ -229,6 +249,8 @@ private:
 	bool lcEnoughMatches = 0;
 	bool lcValidTrafo = 0;
 	int lcBestIndex = -1;// = -1;
+
+	volatile bool startOptimizing = true;
 
 	// boost::mutex mapUpdateMutex;
 
@@ -258,6 +280,8 @@ private:
 
 
 	Matrix3d PosDebug; // rotation matrix debug
+
+	DynamicObj dynamicObj;
 
 
 public:

@@ -1,4 +1,4 @@
- /**
+/**
  * @file Frame.h
  * @author Gian Danuser & Michael Eugster
  * @brief This file contains the declaration of the Frame class
@@ -30,6 +30,7 @@ public:
 	//
 	// Asus
 	static constexpr float depthScale = 5000.0; ///< Depth scale factor for the asus xtion pro live sensor
+	static constexpr float idepthScale = 1.0/depthScale;
 
 //	 VGA
 	static constexpr float fx = 570.0; ///< focal length in x direction in pixel
@@ -181,7 +182,6 @@ public:
 
 	void deleteTime() { time.reset(); }
 	/**
-
 	 * @breif deletes the rgb image
 	 */
 	void deleteRgb() { rgb.reset(); }
@@ -238,6 +238,8 @@ public:
 	 */
 	const cv::Mat& getAverageDescriptors() const { assert(averageFeatureDescriptor); return *averageFeatureDescriptor; }
 
+	void setDepth(cv::Mat& depthImage) {assert(depth); *depth = depthImage;}
+
 private:
 	void setAverageDescriptors();
 
@@ -255,7 +257,6 @@ private:
 
 	static constexpr float ifx = 1.0/fx;
 	static constexpr float ify = 1.0/fy;
-	static constexpr float idepthScale = 1.0/depthScale;
 };
 
 }
