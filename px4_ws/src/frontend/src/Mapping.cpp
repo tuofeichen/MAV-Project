@@ -60,9 +60,9 @@ bool Mapping::extractFeature()
 	{
 
 		++badFrameCounter;
-		 if(!(badFrameCounter%50))
-			 cout << "bad feature!"<< endl;
-		setPx4Node(badFrame);
+		//if(!(badFrameCounter%50))
+		//	 cout << "bad feature!"<< endl;
+		//setPx4Node(badFrame);
 		return 0;
 	}
 
@@ -597,7 +597,7 @@ void Mapping::addEdges(int thread, int currId)
 void Mapping::setDummyNode()
 {
 
-	currentFrame.setBadFrameFlag(3);    // set dummy flag so that not publish this position
+	/*currentFrame.setBadFrameFlag(3);    // set dummy flag so that not publish this position
 
 	++noTrafoFoundCounter;
 
@@ -610,7 +610,7 @@ void Mapping::setDummyNode()
 	{
 		sequenceOfLostFramesCntr = 0; //reset sequence lost frame counter
 		setPx4Node(dummyFrame);
-	}
+	}*/
 
 		// if(!nodes.back().getDummyFrameFlag())
 		// {
@@ -633,6 +633,29 @@ void Mapping::setDummyNode()
 		// 	nodes.back() = currentFrame;
 		// }
 	// }
+
+	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
+	{
+		if(!nodes.back().getDummyFrameFlag()) // last node is valid
+		{
+			// add dummy node
+			const Eigen::Isometry3d dummyTm = Eigen::Isometry3d::Identity();
+			const Eigen::Matrix<double, 6, 6> dummyInfoMat = Eigen::Matrix<double, 6, 6>::Identity() * 1e-100;
+			poseGraph->addNode(currentPosition);
+			poseGraph->addEdgeFromIdToCurrent(dummyTm, dummyInfoMat, nodes.back().getId());
+			currentFrame.setId(poseGraph->getCurrentId());
+			currentFrame.setDummyFrameFlag(true);
+			nodes.push_back(currentFrame);
+
+			++dummyNodeCounter; //debug
+		}
+		else if (currentFrame.getKeypoints().size() > nodes.back().getKeypoints().size())
+		{
+			currentFrame.setDummyFrameFlag(true);
+			currentFrame.setId(nodes.back().getId());
+			nodes.back() = currentFrame; // replace last frame with current frame?
+		}
+	}
 }
 
 bool Mapping::searchKeyFrames(Frame procFrame)
