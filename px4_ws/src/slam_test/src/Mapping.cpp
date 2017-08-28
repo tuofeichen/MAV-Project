@@ -64,15 +64,21 @@ void Mapping::addNewNode()
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
 					boost::ref(informationMatrices[0]));
-
-	Frame filteredFrame;
-	dynamicHandler = boost::thread(&DynamicObj::dynamicObjectRemoval,
+	//cv::imshow("prev frame", previousFrame.getRgb());
+	//cv::waitKey(10);
+	//previousFrame = *lastNode;
+	/*dynamicHandler = boost::thread(&DynamicObj::dynamicObjectRemoval,
 								&dynamicObj,
 								transformationMatrices[0].matrix().cast <float>(),
 								currentFrame, 
-								previousFrame,
-								boost::ref(filteredFrame) );
-	dynamicHandler.join();
+								previousFrame);
+	dynamicHandler.join();*/
+	//cv::Mat filteredFrame = dynamicObj.getFilteredDepth();
+	//currentFrame.setDepth(dynamicObj.getFilteredDepth());
+	//cv::imshow("measured depth", currentFrame.getDepth());
+	//cv::imshow("filtered depth", filteredFrame);
+	//cv::waitKey(10);
+
 	 					//  start from second node when doing parallel matching
 	/*pcl::PointCloud<pcl::PointXYZRGB> pc1;
 	pcl::PointCloud<pcl::PointXYZRGB> pc2;
@@ -89,10 +95,15 @@ void Mapping::addNewNode()
 		icp.setTransformationGuess(previousTransformation.matrix().cast <float>());  // does inverse make sense??
 	//icp.filteringAndProcessing(pc1normals);
 	//icp.filteringAndProcessing(pc2normals);
-	validTrafo[0] = icp.run(pc2normals,pc1normals) || validTrafo[0];
+	/*validTrafo[0] = icp.run(pc2normals,pc1normals) || validTrafo[0];
 	//enoughMatches[0] = validTrafo[0];
 	transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
-	previousTransformation = transformationMatrices[0];
+	previousTransformation = transformationMatrices[0];*/
+	//*pc2normals = *pc1normals;
+	//mapMutex.lock();
+	//currentFrame.setDepth(dynamicObj.getFilteredDepth());
+	//mapMutex.unlock();
+	//previousFrame = currentFrame;
 
 	tryToAddNode(0) ;	  //  chages currentFrame
 	// mapMutex.unlock();
@@ -263,10 +274,12 @@ void Mapping::run()
 	icpHandler1 = boost::thread(&ICP::filteringAndProcessing,pc1normals);
 	icpHandler2 = boost::thread(&ICP::filteringAndProcessing,pc2normals);*/
 	icpHandler1 = boost::thread(&ICP::preprocessing,currentFrame,pc1normals);
-	icpHandler2 = boost::thread(&ICP::preprocessing,previousFrame,pc2normals);
-	bool enoughFeatures = featureDetectionAndExtraction();
-	icpHandler2.join();
 	icpHandler1.join();
+	icpHandler2 = boost::thread(&ICP::preprocessing,previousFrame,pc2normals);
+	icpHandler2.join();
+	bool enoughFeatures = featureDetectionAndExtraction();
+	//icpHandler2.join();
+	//icpHandler1.join();
 
 	// initialize variables
 	bestInforamtionValue = 0;
@@ -625,6 +638,7 @@ void Mapping::setDummyNode()
 bool Mapping::searchKeyFrames(Frame procFrame)
 {
 	bool ret = false;
+	//procFrame.setDepth(dynamicObj.getFilteredDepth());
 	/*if (smallestId > keyFrames.back().getId())
 	{
 		// cout << "smallest id " << smallestId << " that match to current frame " << procFrame.getId() << endl;

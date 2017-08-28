@@ -154,8 +154,8 @@ int main(int argc, char **argv)
 			t_obj = boost::thread (&ObjDetection::processFrame, &obj, frame);
 			t_slam.join();
 			t_obj.join();
-			t_opt.join();
-			t_opt = boost::thread(&Mapping::optimizeGraph,&slam,false);
+			//t_opt.join();
+			//t_opt = boost::thread(&Mapping::optimizeGraph,&slam,false);
 
 			//reassign frame here
 

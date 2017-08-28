@@ -9,7 +9,8 @@
 namespace SLAM
 {
 
-DynamicObj::DynamicObj() : currCandidates(cv::Mat(480, 640,CV_8UC1, cvScalar(0))), prevCandidates(cv::Mat(480,640,CV_8UC1, cvScalar(0)))
+DynamicObj::DynamicObj() : currCandidates(cv::Mat(480, 640,CV_8UC1, cvScalar(0))), prevCandidates(cv::Mat(480,640,CV_8UC1, cvScalar(0))),
+                            outputDepth(cv::Mat(480,640,CV_16UC1, cvScalar(0)))
     {}
 
 DynamicObj::~DynamicObj() {}
@@ -30,7 +31,7 @@ void DynamicObj::getObjCandidates(Eigen::Matrix4f tm,
     cv::imshow("Out", adjMap);
     cv::waitKey(40);*/
 
-    outputFrame = currFrame;
+    outputDepth = currFrame.getDepth();
     cv::Mat currDepth = currFrame.getDepth();
     cv::Mat prevDepth = prevFrame.getDepth();
     cv::Mat currGray = currFrame.getGray();
@@ -147,8 +148,7 @@ void DynamicObj::getObjCandidates(Eigen::Matrix4f tm,
 }
 
 void DynamicObj::clusterPointCloud(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud,
-                                    pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr outputCloud,
-                                    Frame& filteredFrame) {
+                                    pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr outputCloud) {
 
     pcl::copyPointCloud(*cloud, *outputCloud);
 
@@ -284,7 +284,6 @@ void DynamicObj::clusterPointCloud(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr 
 		}
 	}*/
 
-    cv::Mat outputDepth = outputFrame.getDepth();
     for (size_t i=0; i<euclidean_label_indices.size(); i++) {
         if (euclidean_label_indices[i].indices.size() > 25) {
             cv::Mat cluster_image = cv::Mat(cloud->height, cloud->width, CV_8UC1, cvScalar(0));
@@ -299,14 +298,12 @@ void DynamicObj::clusterPointCloud(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr 
                     outputCloud->points[euclidean_label_indices[i].indices[j]].r = 255;
                     outputCloud->points[euclidean_label_indices[i].indices[j]].g = 0;
                     outputCloud->points[euclidean_label_indices[i].indices[j]].b = 0;
-                    outputDepth.at<uint16_t>(euclidean_label_indices[i].indices[j]/cloud->width,euclidean_label_indices[i].indices[j]%cloud->width) = 255;
+                    outputDepth.at<uint16_t>(euclidean_label_indices[i].indices[j]/cloud->width,euclidean_label_indices[i].indices[j]%cloud->width) = 0;
                 }
             }
 
         }
     }
-    filteredFrame = outputFrame;
-    filteredFrame.setDepth(outputDepth);
 
     /*double min, max;
     cv::minMaxIdx(outputDepth, &min, &max);
@@ -320,8 +317,7 @@ void DynamicObj::clusterPointCloud(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr 
 
 void DynamicObj::dynamicObjectRemoval(Eigen::Matrix4f tm, 
                             Frame currFrame, 
-                            Frame prevFrame,
-                            Frame& filteredFrame) {
+                            Frame prevFrame) {
 
     this->getObjCandidates(tm, currFrame, prevFrame);
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr colorCloud(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -337,8 +333,7 @@ void DynamicObj::dynamicObjectRemoval(Eigen::Matrix4f tm,
     ne.compute(*currCloud);
 
     pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr outputCloud(new pcl::PointCloud<pcl::PointXYZRGBNormal>);
-    SLAM::Frame outputFrame;
-    this->clusterPointCloud(currCloud,outputCloud,filteredFrame);
+    this->clusterPointCloud(currCloud,outputCloud);
 
 }
 

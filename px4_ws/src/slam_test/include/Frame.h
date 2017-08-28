@@ -238,7 +238,7 @@ public:
 	 */
 	const cv::Mat& getAverageDescriptors() const { assert(averageFeatureDescriptor); return *averageFeatureDescriptor; }
 
-	void setDepth(cv::Mat& depthImage) {assert(depth); *depth = depthImage;}
+	void setDepth(cv::Mat depthImage) {assert(depth); *depth = depthImage;}
 
 private:
 	void setAverageDescriptors();

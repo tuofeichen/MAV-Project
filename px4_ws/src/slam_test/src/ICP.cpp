@@ -70,6 +70,7 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     std::vector<int> indices;
     pcl::removeNaNFromPointCloud(*downsampledCloud,*downsampledCloud, indices);
     pcl::removeNaNNormalsFromPointCloud(*downsampledCloud,*downsampledCloud,indices);
+    //std::cout << downsampledCloud->size() << std::endl;
 
     //sampling
     pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr filteredCloud(new pcl::PointCloud<pcl::PointXYZRGBNormal> ());
@@ -86,13 +87,13 @@ void ICP::filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cl
     normal_space_sampling.setNormals (downsampledCloud);
     normal_space_sampling.setBins(10, 10, 10); //10
     normal_space_sampling.setSeed(rand());
-    normal_space_sampling.setSample(5000); //1000
+    normal_space_sampling.setSample(1000); //1000
     normal_space_sampling.filter(*filteredCloud);
     
     pcl::copyPointCloud(*filteredCloud, *cloud);
 }
 
-void ICP::preprocessing(Frame& frame, pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud)
+void ICP::preprocessing(Frame frame, pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud)
 {
 	pcl::PointCloud<pcl::PointXYZRGB> pc;
 	FrameToPcConverter::getColorPC(frame,pc);

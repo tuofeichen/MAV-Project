@@ -179,9 +179,9 @@ void ICP::run(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1,pcl::PointCloud<p
 	start = std::clock();
 	icp.align(*Final,initialTransformation);
 	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    std::cout<<"alignment takes: "<< duration <<'\n';
+    //std::cout<<"alignment takes: "<< duration <<'\n';
 
-	if (icp.hasConverged() && (icp.getFitnessScore() < 0.005))
+	if (icp.hasConverged() )//&& (icp.getFitnessScore() < 0.01))
 		converged = true;
 	else
 		converged = false;

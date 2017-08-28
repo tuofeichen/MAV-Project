@@ -81,8 +81,9 @@ void Mapping::addNewNode()
 	//icp.setTransformationGuess(Eigen::Matrix4f::Identity());
 	//icpHandler = boost::thread(&ICP::run,&icp,pc2normals,pc1normals);
   // needs to be thread safe
+	//std::cout << currentFrame.getId() << " " << std::cout << previousFrame.getId() << std::endl;
 	matchTwoFrames(boost::ref(currentFrame),
-					boost::ref(previousFrame),
+					boost::ref(*lastNode),
 					boost::ref(enoughMatches[0]),
 					boost::ref(validTrafo[0]),
 					boost::ref(transformationMatrices[0]),
@@ -106,17 +107,20 @@ void Mapping::addNewNode()
 	bool icpValid = icp.convergence();
 	//validTrafo[0] = icp.convergence();
 	if (icpValid) {
-		std::cout << "using ICP result " << std::endl;
 		transformationMatrices[0].matrix() = icp.getFinalTransformation().cast <double>();
 		validTrafo[0] = true;
+		previousTransformation = transformationMatrices[0];
 	}
+	else
+		std::cout << "ICP invalid " << std::endl;
 	
-	previousTransformation = transformationMatrices[0];
 
 	tryToAddNode(0) ;	  //  changes currentFrame
 
 	if (!validTrafo[0]) // invalid trafo estimate (maybe wait until pose graph then decide ? )
 	{
+				//pcl::copyPointCloud(*pc1normals,*pc2normals);
+				//previousFrame = currentFrame;
 				setDummyNode();
 	}
 
@@ -189,10 +193,10 @@ void Mapping::optPoseGraph()
 		bool addedKeyFrame = searchKeyFrames(procFrame);
 
 		// optimize graph once
-		/*graphHandler.join(); // avoid overflowing
+		graphHandler.join(); // avoid overflowing
 
 		// optimizeGraph(false);
-		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);*/
+		graphHandler = boost::thread(&Mapping::optimizeGraph,this,false);
 
 		if(addedKeyFrame)
 		{
@@ -202,7 +206,7 @@ void Mapping::optPoseGraph()
 				{
 					// optimize graph till convergenz
 					// optimizeGraph(true);
-					/*graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);*/
+					graphHandler = boost::thread(&Mapping::optimizeGraph,this,true);
 				}
 				loopClosureFound = false;
 			}
@@ -234,6 +238,7 @@ void Mapping::run()
 
 	if(!initDone)
 	{
+		icpHandler.join();
 		addFirstNode();
 		return;
 	}
@@ -566,7 +571,8 @@ void Mapping::tryToAddNode(int thread)
 	}
 	else
 	{
-			// cout << "invalid trafo " << endl;
+			//currentFrame.setDummyFrameFlag(true);
+			cout << "invalid trafo " << endl;
 	}
 }
 
@@ -597,7 +603,7 @@ void Mapping::addEdges(int thread, int currId)
 void Mapping::setDummyNode()
 {
 
-	/*currentFrame.setBadFrameFlag(3);    // set dummy flag so that not publish this position
+	currentFrame.setBadFrameFlag(3);    // set dummy flag so that not publish this position
 
 	++noTrafoFoundCounter;
 
@@ -606,7 +612,7 @@ void Mapping::setDummyNode()
 		++sequenceOfLostFramesCntr;
 	}
 
-	if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
+	/*if(sequenceOfLostFramesCntr > dummyFrameAfterLostFrames)
 	{
 		sequenceOfLostFramesCntr = 0; //reset sequence lost frame counter
 		setPx4Node(dummyFrame);
@@ -651,6 +657,7 @@ void Mapping::setDummyNode()
 		}
 		else if (currentFrame.getKeypoints().size() > nodes.back().getKeypoints().size())
 		{
+			std::cout << "found frame with more keypoints" << std::endl;
 			currentFrame.setDummyFrameFlag(true);
 			currentFrame.setId(nodes.back().getId());
 			nodes.back() = currentFrame; // replace last frame with current frame?
@@ -692,6 +699,7 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 		ret = true;
  	}
 	
+	pcl::copyPointCloud(*pc1normals,*pc2normals);
 	previousFrame = nodes.back();
 	// delete images
 	nodes.back().deleteRgb();
@@ -704,7 +712,6 @@ bool Mapping::searchKeyFrames(Frame procFrame)
 
 void Mapping::optimizeGraph(bool tillConvergenz)
 {
-	//while (true) {
 		if (onlineOptimization)
 		{
 			optTime.tic();
@@ -725,9 +732,7 @@ void Mapping::optimizeGraph(bool tillConvergenz)
 
 			currentPosition = poseGraph->getCurrentPosition(); // update current position after posegraph opt.
 		}
-		//boost::this_thread::sleep(boost::posix_time::milliseconds(10));
-		//std::cout << "optimizing" << std::endl;
-	//}
+
 }
 
 // void Mapping::updateMap()
@@ -803,6 +808,7 @@ void Mapping::addFirstNode()
 	keyFrames.push_back(nodes.back());
 
 	px4->updateLpeLastPose(0); // note down first node
+	pcl::copyPointCloud(*pc1normals,*pc2normals);
 	previousFrame = nodes.back();
 	nodes.back().deleteDepth();
 	nodes.back().deleteRgb();
@@ -923,7 +929,7 @@ void Mapping::preprocessingICP(Frame& frame, int pc_selection)
 	pcl::copyPointCloud(pc,*cloud);
 	ICP::filteringAndProcessing(cloud);
 	if (pc_selection == 1) {
-		pcl::copyPointCloud(*pc1normals,*pc2normals);			// both are pointers
+		//pcl::copyPointCloud(*pc1normals,*pc2normals);			// both are pointers
 		pcl::copyPointCloud(*cloud,*pc1normals);
 	}
 	else if (pc_selection == 2)

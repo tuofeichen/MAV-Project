@@ -43,18 +43,18 @@ public:
 							); 
 
 	void clusterPointCloud(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud,
-							pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr outputCloud,
-							Frame& filteredFrame);
+							pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr outputCloud);
 
 	void dynamicObjectRemoval(Eigen::Matrix4f tm, 
 							Frame currFrame, 
-							Frame prevFrame,
-							Frame& filteredFrame);
+							Frame prevFrame);
+
+	cv::Mat getFilteredDepth() {return outputDepth;}
 
 private:
 	cv::Mat currCandidates;
 	cv::Mat prevCandidates;
-	Frame outputFrame;
+	cv::Mat outputDepth;
 
 };
 

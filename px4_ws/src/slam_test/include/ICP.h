@@ -34,7 +34,7 @@ public:
 	ICP();
 	~ICP();
 	static void filteringAndProcessing(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud);
-	static void preprocessing(Frame& frame, pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud);
+	static void preprocessing(Frame frame, pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr cloud);
 	bool run(pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc1,pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pc2);
 	void setTransformationGuess(Eigen::Matrix4f guess);
 	Eigen::Matrix4f getFinalTransformation();

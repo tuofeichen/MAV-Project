@@ -75,7 +75,6 @@ int main()
 {
 	//
 	// init
-	cout << "hello " << endl;
 	Frame frame;
 
 	std::vector <Eigen::Isometry3d> tm;
@@ -111,8 +110,13 @@ int main()
 			tm.clear(); // need to clear vector
 			frontend.getUpdateGraph(tm, numNode); // get vector of position
 			// imshow
-			/*cout << "Start imshow " << tm.size() << " num node " << numNode <<  endl;
-			cv::imshow("RGB Image", frame.getRgb());
+			//cout << "Start imshow " << tm.size() << " num node " << numNode <<  endl;
+			/*cv::Mat map = frame.getDepth();
+    		double min, max;
+    		cv::minMaxIdx(map, &min, &max);
+    		cv::Mat adjMap;
+    		cv::convertScaleAbs(map, adjMap, 255 / max);
+			cv::imshow("Depth Image", adjMap);
 			cv::waitKey(30);*/
 
 //			cout << tm.back().translation() << endl;

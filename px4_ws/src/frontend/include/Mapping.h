@@ -22,7 +22,7 @@
 #include "FrameToPcConverter.h"
 #include "RosHandler.h"
 #include "ICP.h"
-#include "DynamicObj.h"
+//#include "DynamicObj.h"
 
 
 namespace SLAM {
@@ -140,7 +140,7 @@ public:
 	static constexpr bool exchangeFirstNode = false; ///< Enables/disable exchanges first node
 	static constexpr bool searchLoopClosures =true;// true; //true; ///< Enables/disable loop closure search
 	static constexpr int lcRandomMatching = 0; ///< Enables/disable random loop closure matching 0 --> off (use average descriptor), else match n random key frames
-	static constexpr bool removeEdgesWithBigErrors = false; ///< Enables/disable remove edeges with big errors
+	static constexpr bool removeEdgesWithBigErrors = true; ///< Enables/disable remove edeges with big errors
 	// static constexpr double minRotation = -1.0;    //   < minimal rotation in rad(negative values to disable)
 	// static constexpr double minTranslation = 0.01; // 0.01;  ///< minimal translation  in meter(negative values to disable)
 
@@ -281,7 +281,8 @@ private:
 
 	Matrix3d PosDebug; // rotation matrix debug
 
-	DynamicObj dynamicObj;
+	//DynamicObj dynamicObj;
+	bool lostTracking = false;
 
 
 public:

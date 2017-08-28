@@ -44,8 +44,6 @@ void DynamicObj::getObjCandidates(Eigen::Matrix4f tm,
             double currPZ = (static_cast<float> (currDepth.at<uint16_t>(i,j)) )*Frame::idepthScale;
             if (currPZ == 0)
                 continue;
-            double currPX = currPZ*(i-Frame::cx)/Frame::fx;
-            double currPY = currPZ*(j-Frame::cy)/Frame::fy;
             Eigen::Vector4f currCoord;
             currCoord(2) = (static_cast<float> (currDepth.at<uint16_t>(i,j)) )*Frame::idepthScale; //z
             currCoord(0) = currCoord(2)*(i-Frame::cx)/Frame::fx; // x
